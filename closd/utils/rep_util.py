@@ -8,7 +8,7 @@ from closd.diffusion_planner.data_loaders.humanml.common.quaternion import qrot,
 from closd.diffusion_planner.data_loaders.humanml.scripts.motion_process import recover_from_ric, recover_root_rot_pos
 from closd.diffusion_planner.data_loaders.humanml.scripts.motion_process_torch import extract_features_t2m
 
-from pytorch3d import transforms 
+from closd.utils import pytorch3d_transforms as transforms
 import time
 
 # DEBUG - start
