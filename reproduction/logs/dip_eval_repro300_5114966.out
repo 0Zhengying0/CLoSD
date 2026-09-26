@@ -1,0 +1,561 @@
+==================================================
+Official DiP multi-target 300k - FORMAL EVALUATION
+Host:       acn03.karolina.it4i.cz
+Job ID:     5114966
+Model:      /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/DiP_multi-target_repro_seed10/model000300000.pt
+num_envs:   4096
+episode:    500
+CFG:        7.5
+Start:      Sat Sep 26 17:00:46 CEST 2026
+==================================================
+Sat Sep 26 17:00:46 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:4C:00.0 Off |                    0 |
+| N/A   38C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+=== GPU ===
+PyTorch: 2.2.2+cu121
+CUDA: 12.1
+GPU: NVIDIA A100-SXM4-40GB
+VRAM GiB: 39.51629638671875
+=== FORMAL EVALUATION START ===
+Importing module 'gym_38' (/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)
+Setting GYM_USD_PLUG_INFO_PATH to /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/usd/plugInfo.json
+PyTorch version 2.2.2+cu121
+Device count 1
+/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/src/gymtorch
+MOVING MOTION DATA TO GPU, USING CACHE: False
+MOVING MOTION DATA TO GPU, USING CACHE: False
+Importing module 'rlgpu_38' (/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/rlgpu_38.so)
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+torch_deterministic: False
+Setting seed: 0
+Found checkpoint
+output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth
+Started to play
+Not applying any task filter.
+[2026-09-26 17:02:21,824][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/functional.py:507: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3549.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+
+Not connected to PVD
++++ Using GPU PhysX
+Physics Engine: PhysX
+Physics Device: cuda:0
+GPU Pipeline: enabled
+Using VHACD cache directory '/home/it4i-dianyu/.isaacgym/vhacd'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/strike/target_full.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/back_sit.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/bottom.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/left.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/legs.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/right.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/sit.obj'
+!!!! Using modified SMPL starting pose !!!!
+
+****************************** Current motion keys ******************************
+Sampling motion: torch.Size([30])_torch.Size([30])_tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0], device='cuda:0')
+['standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing'] .....
+*********************************************************************************
+
+Loaded 4096 motions with a total length of 136391.234s and 4096000 frames.
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+MDM dataset size: 4648
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+[2026-09-26 17:04:29,584][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+Loading checkpoints from [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/DiP_multi-target_repro_seed10/model000300000.pt]...
+loading avg model
+Overwriting [context_len, pred_len] to [20, 40] according to the prefix completion MDM parameters.
+[2026-09-26 17:04:39,792][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+
+RL device:  cuda:0
+4096
+69
+574
+0
+{'observation_space': Box(-inf, inf, (574,), float32), 'action_space': Box(-1.0, 1.0, (69,), float32), 'agents': 1, 'value_size': 1}
+RunningMeanStd:  (574,)
+RunningMeanStd:  (1960,)
+### Evaluating CLoSD success rate. Will buffer stats for the following states: [<STATES.REACH: 2>, <STATES.STRIKE_KICK: 3>, <STATES.STRIKE_PUNCH: 4>, <STATES.SIT: 6>, <STATES.GET_UP: 7>]
+=> loading checkpoint 'output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth'
+=> loading checkpoint 'output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth'
+[2026-09-26 17:04:45,285][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/common/quaternion.py:396: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at ../aten/src/ATen/native/Cross.cpp:63.)
+  v = torch.cross(v0, v1)
+
+reward: 73.92903137207031 steps: 118.0
+reward: 74.01372528076172 steps: 119.0
+reward: 77.37346649169922 steps: 121.0
+reward: 74.78267669677734 steps: 127.0
+reward: 75.08940887451172 steps: 131.0
+reward: 76.05914306640625 steps: 132.0
+reward: 70.64524841308594 steps: 133.0
+reward: 79.95375061035156 steps: 137.0
+reward: 74.3176981608073 steps: 138.0
+reward: 80.76510620117188 steps: 139.0
+reward: 73.60733032226562 steps: 140.0
+reward: 81.01661682128906 steps: 141.0
+reward: 80.45573425292969 steps: 148.0
+reward: 72.57561492919922 steps: 150.0
+reward: 76.521484375 steps: 152.0
+reward: 73.99421691894531 steps: 153.0
+reward: 79.31866455078125 steps: 154.0
+reward: 78.828369140625 steps: 155.0
+reward: 74.75626373291016 steps: 157.0
+reward: 78.93089294433594 steps: 158.0
+reward: 77.6978759765625 steps: 160.0
+reward: 75.24216715494792 steps: 161.0
+reward: 78.90434265136719 steps: 163.0
+reward: 76.45217895507812 steps: 164.0
+reward: 80.08273315429688 steps: 165.0
+reward: 81.02957153320312 steps: 167.0
+reward: 80.44818115234375 steps: 168.0
+reward: 81.0552978515625 steps: 170.0
+reward: 80.1176986694336 steps: 171.0
+reward: 81.40357317243304 steps: 172.0
+reward: 79.21806335449219 steps: 173.0
+reward: 73.50103759765625 steps: 174.0
+reward: 77.58278401692708 steps: 175.0
+reward: 78.4085464477539 steps: 176.0
+reward: 79.92979939778645 steps: 177.0
+reward: 75.10115051269531 steps: 178.0
+reward: 76.0558853149414 steps: 179.0
+reward: 83.70376586914062 steps: 180.0
+reward: 83.57612609863281 steps: 181.0
+reward: 85.23174285888672 steps: 182.0
+reward: 79.62899780273438 steps: 183.0
+reward: 81.04667663574219 steps: 184.0
+reward: 82.05883026123047 steps: 185.0
+reward: 81.1827392578125 steps: 186.0
+reward: 73.72158813476562 steps: 187.0
+reward: 81.83509826660156 steps: 188.0
+reward: 79.25916290283203 steps: 189.0
+reward: 83.532958984375 steps: 190.0
+reward: 78.66864776611328 steps: 191.0
+reward: 82.99456787109375 steps: 192.0
+reward: 79.8749267578125 steps: 193.0
+reward: 72.50182342529297 steps: 194.0
+reward: 76.44880676269531 steps: 195.0
+reward: 84.948974609375 steps: 196.0
+reward: 79.9935531616211 steps: 198.0
+reward: 70.2887954711914 steps: 199.0
+reward: 76.19757080078125 steps: 200.0
+reward: 79.83702850341797 steps: 201.0
+reward: 81.07662200927734 steps: 203.0
+reward: 82.45455169677734 steps: 204.0
+reward: 78.884765625 steps: 205.0
+reward: 65.27201843261719 steps: 206.0
+reward: 76.01585388183594 steps: 207.0
+reward: 75.55812072753906 steps: 208.0
+reward: 88.4014892578125 steps: 209.0
+reward: 80.17301177978516 steps: 212.0
+reward: 81.15013122558594 steps: 213.0
+reward: 83.4643783569336 steps: 214.0
+reward: 77.19319152832031 steps: 215.0
+reward: 82.19277954101562 steps: 216.0
+reward: 79.10891723632812 steps: 217.0
+reward: 77.25813293457031 steps: 219.0
+reward: 75.83648681640625 steps: 220.0
+reward: 78.42730712890625 steps: 222.0
+reward: 79.15338134765625 steps: 223.0
+reward: 81.43925476074219 steps: 225.0
+reward: 77.92446899414062 steps: 226.0
+reward: 89.45396423339844 steps: 227.0
+reward: 90.33892059326172 steps: 230.0
+reward: 91.88410186767578 steps: 232.0
+reward: 85.4293212890625 steps: 234.0
+reward: 81.7783203125 steps: 235.0
+reward: 82.52897644042969 steps: 236.0
+reward: 91.90196736653645 steps: 239.0
+reward: 88.75377655029297 steps: 240.0
+reward: 88.63452911376953 steps: 241.0
+reward: 90.24482727050781 steps: 242.0
+reward: 79.22913360595703 steps: 243.0
+reward: 83.64021301269531 steps: 244.0
+reward: 82.66912841796875 steps: 245.0
+reward: 84.82471466064453 steps: 246.0
+reward: 87.08557891845703 steps: 247.0
+reward: 78.56646728515625 steps: 250.0
+reward: 80.82669830322266 steps: 251.0
+reward: 58.10430145263672 steps: 166.0
+reward: 83.52648162841797 steps: 253.0
+reward: 84.13948059082031 steps: 257.0
+reward: 86.90301513671875 steps: 259.0
+reward: 81.80087280273438 steps: 261.0
+reward: 63.31700897216797 steps: 176.0
+reward: 94.62046813964844 steps: 263.0
+reward: 82.88076782226562 steps: 264.0
+reward: 82.87284088134766 steps: 266.0
+reward: 87.9937973022461 steps: 268.0
+reward: 87.07415008544922 steps: 271.0
+reward: 25.343446731567383 steps: 110.0
+reward: 96.99195861816406 steps: 279.0
+reward: 76.19239807128906 steps: 280.0
+reward: 82.91708374023438 steps: 281.0
+reward: 89.2665786743164 steps: 282.0
+reward: 89.39360046386719 steps: 284.0
+reward: 93.29193115234375 steps: 285.0
+reward: 103.22110748291016 steps: 287.0
+reward: 84.46132405598958 steps: 288.0
+reward: 90.6115493774414 steps: 289.0
+reward: 72.89788818359375 steps: 233.0
+reward: 83.81511688232422 steps: 291.0
+reward: 95.03021240234375 steps: 292.0
+reward: 86.09625244140625 steps: 293.0
+reward: 85.28559875488281 steps: 294.0
+reward: 85.01422119140625 steps: 296.0
+reward: 45.611812591552734 steps: 180.0
+reward: 89.81865692138672 steps: 301.0
+reward: 96.92491149902344 steps: 304.0
+reward: 101.50589752197266 steps: 305.0
+reward: 88.54669189453125 steps: 309.0
+reward: 99.21438598632812 steps: 311.0
+reward: 92.6537857055664 steps: 312.0
+reward: 68.3206787109375 steps: 179.0
+reward: 87.21282958984375 steps: 319.0
+reward: 88.09231567382812 steps: 322.0
+reward: 91.20562744140625 steps: 324.0
+reward: 86.2703857421875 steps: 326.0
+reward: 35.55925750732422 steps: 109.0
+reward: 77.48387908935547 steps: 330.0
+reward: 80.23263549804688 steps: 338.0
+reward: 91.25816345214844 steps: 341.0
+reward: 23.948322296142578 steps: 164.0
+reward: 66.15200805664062 steps: 154.0
+reward: 93.35115814208984 steps: 345.0
+reward: 101.69976043701172 steps: 353.0
+reward: 73.94945526123047 steps: 278.5
+reward: 90.23583984375 steps: 357.0
+reward: 25.357669830322266 steps: 68.0
+reward: 109.16720581054688 steps: 361.0
+reward: 69.43750762939453 steps: 177.0
+reward: 32.516117095947266 steps: 95.0
+reward: 98.53500366210938 steps: 379.0
+reward: 96.11566925048828 steps: 382.0
+reward: 53.524417877197266 steps: 190.0
+reward: 22.343637466430664 steps: 280.0
+reward: 101.07315826416016 steps: 402.0
+reward: 119.25393676757812 steps: 413.0
+reward: 118.13636016845703 steps: 414.0
+reward: 52.53592300415039 steps: 145.0
+reward: 75.48856353759766 steps: 239.0
+reward: 65.2993392944336 steps: 174.0
+reward: 132.82205200195312 steps: 426.0
+reward: 69.42596435546875 steps: 224.0
+reward: 74.4948959350586 steps: 193.0
+reward: 100.98322296142578 steps: 341.0
+reward: 118.4891586303711 steps: 441.0
+reward: 25.424707412719727 steps: 115.0
+reward: 93.52772521972656 steps: 462.0
+reward: 50.440345764160156 steps: 268.0
+reward: 97.18217468261719 steps: 469.0
+reward: 83.67410278320312 steps: 316.5
+reward: 99.14500935872395 steps: 422.6666666666667
+reward: 116.16023254394531 steps: 473.0
+reward: 84.26763153076172 steps: 291.0
+reward: 95.21066284179688 steps: 478.0
+reward: 126.02883911132812 steps: 480.0
+reward: 146.51751708984375 steps: 481.0
+reward: 45.81083679199219 steps: 221.0
+reward: 119.63314056396484 steps: 492.0
+reward: 125.68861389160156 steps: 498.0
+reward: 143.25398380355276 steps: 499.0
+reward: 70.17644500732422 steps: 242.0
+reward: 93.36431884765625 steps: 378.0
+reward: 11.45434284210205 steps: 169.0
+reward: 24.015161514282227 steps: 236.0
+reward: 29.560684204101562 steps: 248.0
+reward: 86.44818878173828 steps: 235.0
+reward: 77.59945678710938 steps: 391.0
+reward: 60.92875671386719 steps: 120.0
+reward: 56.193912506103516 steps: 94.0
+reward: 20.058317184448242 steps: 122.0
+reward: 51.9975700378418 steps: 97.0
+reward: 60.528648376464844 steps: 136.0
+reward: 54.84867858886719 steps: 99.0
+reward: 51.40163040161133 steps: 105.0
+reward: 56.68539810180664 steps: 167.0
+reward: 50.65586853027344 steps: 109.0
+reward: 56.660301208496094 steps: 110.0
+reward: 53.27645492553711 steps: 112.0
+reward: 61.753875732421875 steps: 113.0
+reward: 49.43698501586914 steps: 114.0
+reward: 59.18286895751953 steps: 115.0
+reward: 55.17730712890625 steps: 116.0
+reward: 52.565223693847656 steps: 117.0
+reward: 69.4478530883789 steps: 241.5
+reward: 65.84229278564453 steps: 499.0
+reward: 116.59119415283203 steps: 499.0
+reward: 53.980430603027344 steps: 122.0
+reward: 57.62091827392578 steps: 126.0
+reward: 100.02433013916016 steps: 499.0
+reward: 53.40092468261719 steps: 128.0
+reward: 48.485321044921875 steps: 129.0
+reward: 113.34925842285156 steps: 499.0
+reward: 91.62122802734375 steps: 352.2
+reward: 111.86369323730469 steps: 499.0
+reward: 55.940155029296875 steps: 135.0
+reward: 59.36711629231771 steps: 136.0
+reward: 121.75157165527344 steps: 499.0
+reward: 93.13682556152344 steps: 408.75
+reward: 109.89766438802083 steps: 499.0
+reward: 80.33507283528645 steps: 259.6666666666667
+reward: 99.90667724609375 steps: 379.6666666666667
+reward: 62.131256103515625 steps: 143.0
+reward: 59.208258056640624 steps: 144.0
+reward: 58.262001037597656 steps: 145.0
+reward: 61.05445098876953 steps: 147.0
+reward: 127.60398864746094 steps: 499.0
+reward: 59.98039754231771 steps: 149.0
+reward: 62.29534403483073 steps: 150.0
+reward: 55.90668233235677 steps: 151.0
+reward: 72.52928670247395 steps: 249.0
+reward: 81.79529825846355 steps: 268.3333333333333
+reward: 72.88265991210938 steps: 223.0
+reward: 95.60842895507812 steps: 413.0
+reward: 58.326446533203125 steps: 156.0
+reward: 83.9755147298177 steps: 271.0
+reward: 81.15535736083984 steps: 328.5
+reward: 59.71576944986979 steps: 159.0
+reward: 77.83914794921876 steps: 363.4
+reward: 73.919287109375 steps: 363.8
+reward: 61.73523627387153 steps: 162.0
+reward: 80.38538106282552 steps: 387.0
+reward: 88.64517211914062 steps: 275.6666666666667
+reward: 92.23207310267857 steps: 403.57142857142856
+reward: 58.53849792480469 steps: 166.0
+reward: 74.26934814453125 steps: 233.4
+reward: 83.5000228881836 steps: 333.5
+reward: 63.8087158203125 steps: 169.0
+reward: 69.21253204345703 steps: 252.25
+reward: 78.40040588378906 steps: 280.3333333333333
+reward: 84.72752380371094 steps: 376.375
+reward: 70.73365020751953 steps: 499.0
+reward: 85.72283935546875 steps: 336.5
+reward: 71.7347412109375 steps: 369.4
+reward: 66.37279052734375 steps: 240.6
+reward: 94.73538208007812 steps: 418.5
+reward: 81.54878234863281 steps: 338.5
+reward: 70.80080740792411 steps: 361.85714285714283
+reward: 102.21975708007812 steps: 339.5
+reward: 88.38865152994792 steps: 287.0
+reward: 156.23529052734375 steps: 499.0
+reward: 133.3660888671875 steps: 499.0
+reward: 130.6594034830729 steps: 499.0
+reward: 107.6798604329427 steps: 394.3333333333333
+reward: 110.26334054129464 steps: 409.57142857142856
+reward: 107.89601135253906 steps: 499.0
+reward: 127.50469207763672 steps: 499.0
+reward: 66.85980224609375 steps: 189.0
+reward: 122.99571736653645 steps: 499.0
+reward: 108.9897689819336 steps: 499.0
+reward: 99.2572250366211 steps: 499.0
+reward: 120.61243438720703 steps: 499.0
+reward: 79.1845474243164 steps: 346.5
+reward: 114.2008056640625 steps: 397.6666666666667
+reward: 109.6291275024414 steps: 499.0
+reward: 61.24026870727539 steps: 197.0
+reward: 64.7175521850586 steps: 198.0
+reward: 115.84583282470703 steps: 499.0
+reward: 107.20649719238281 steps: 499.0
+reward: 76.12859344482422 steps: 499.0
+reward: 108.6629867553711 steps: 499.0
+reward: 91.40956624348958 steps: 401.0
+reward: 104.81227111816406 steps: 499.0
+reward: 79.72573852539062 steps: 280.0
+reward: 124.56104278564453 steps: 499.0
+reward: 77.98486328125 steps: 354.0
+reward: 62.89713668823242 steps: 210.0
+reward: 71.35265350341797 steps: 211.0
+reward: 83.03244018554688 steps: 355.5
+reward: 101.16397094726562 steps: 499.0
+reward: 97.57154083251953 steps: 499.0
+reward: 85.38079833984375 steps: 499.0
+reward: 79.03041076660156 steps: 357.5
+reward: 123.43885803222656 steps: 499.0
+reward: 64.43046569824219 steps: 218.0
+reward: 81.63600667317708 steps: 312.3333333333333
+reward: 107.27491760253906 steps: 499.0
+reward: 92.57012939453125 steps: 443.6
+reward: 104.16636657714844 steps: 499.0
+reward: 79.8057861328125 steps: 362.0
+reward: 80.4247817993164 steps: 362.5
+reward: 83.47691853841145 steps: 317.6666666666667
+reward: 69.26812744140625 steps: 228.0
+reward: 63.73456954956055 steps: 229.0
+reward: 69.7018051147461 steps: 499.0
+reward: 78.43104553222656 steps: 499.0
+reward: 69.53529866536458 steps: 233.0
+reward: 79.63743591308594 steps: 499.0
+reward: 73.20692443847656 steps: 411.0
+reward: 80.62803649902344 steps: 367.5
+reward: 72.9322738647461 steps: 377.0
+reward: 103.33697509765625 steps: 499.0
+reward: 125.91033935546875 steps: 499.0
+reward: 143.4750773111979 steps: 499.0
+reward: 79.78152974446614 steps: 281.6666666666667
+reward: 112.95222473144531 steps: 499.0
+reward: 106.14562225341797 steps: 499.0
+reward: 127.73267364501953 steps: 499.0
+reward: 66.2046890258789 steps: 141.0
+reward: 104.3477783203125 steps: 415.0
+reward: 60.418697357177734 steps: 248.0
+reward: 70.93732198079427 steps: 284.0
+reward: 127.95436096191406 steps: 499.0
+reward: 98.2964096069336 steps: 376.0
+reward: 68.2889404296875 steps: 255.0
+reward: 46.578529357910156 steps: 208.0
+reward: 114.2005386352539 steps: 499.0
+reward: 79.79185485839844 steps: 296.0
+reward: 73.08942413330078 steps: 260.0
+reward: 84.96917724609375 steps: 380.0
+reward: 109.0810775756836 steps: 499.0
+reward: 98.27069854736328 steps: 499.0
+reward: 121.0318374633789 steps: 499.0
+reward: 136.4404754638672 steps: 499.0
+reward: 80.44986724853516 steps: 270.0
+reward: 61.95900344848633 steps: 271.0
+reward: 60.431949615478516 steps: 272.0
+reward: 48.172725677490234 steps: 137.0
+reward: 65.58985137939453 steps: 275.0
+reward: 78.11502075195312 steps: 278.0
+reward: 96.71881103515625 steps: 499.0
+reward: 96.5812759399414 steps: 499.0
+reward: 93.42105102539062 steps: 426.3333333333333
+reward: 146.13565063476562 steps: 499.0
+reward: 119.78007507324219 steps: 499.0
+reward: 122.75941467285156 steps: 499.0
+reward: 101.04213460286458 steps: 428.3333333333333
+reward: 94.74534606933594 steps: 446.25
+reward: 63.9039192199707 steps: 289.0
+reward: 88.52016194661458 steps: 499.0
+reward: 72.50534057617188 steps: 323.6666666666667
+reward: 115.55703735351562 steps: 499.0
+reward: 93.76907348632812 steps: 499.0
+reward: 62.2545166015625 steps: 295.0
+reward: 67.85908508300781 steps: 499.0
+reward: 62.51567840576172 steps: 117.0
+reward: 77.7926025390625 steps: 499.0
+reward: 67.58119201660156 steps: 299.0
+reward: 113.84494018554688 steps: 433.0
+reward: 79.94284057617188 steps: 303.0
+reward: 127.1907730102539 steps: 499.0
+reward: 151.43064880371094 steps: 499.0
+reward: 96.1495361328125 steps: 320.5
+reward: 91.41567993164062 steps: 405.0
+reward: 90.8042221069336 steps: 405.5
+reward: 73.88131713867188 steps: 313.0
+reward: 90.46652221679688 steps: 408.5
+reward: 91.16701253255208 steps: 374.0
+reward: 70.10185241699219 steps: 320.0
+reward: 64.9561538696289 steps: 154.0
+reward: 112.26277923583984 steps: 499.0
+reward: 64.4484634399414 steps: 147.0
+reward: 103.3457260131836 steps: 499.0
+reward: 105.23119354248047 steps: 499.0
+reward: 114.79138946533203 steps: 499.0
+reward: 94.86810302734375 steps: 499.0
+reward: 60.02883529663086 steps: 155.0
+reward: 47.0865478515625 steps: 226.5
+reward: 95.46276092529297 steps: 499.0
+reward: 65.31559753417969 steps: 250.0
+reward: 77.65875244140625 steps: 255.0
+reward: 96.27672576904297 steps: 499.0
+reward: 79.1987533569336 steps: 342.0
+reward: 77.90045166015625 steps: 421.0
+reward: 71.277099609375 steps: 344.0
+reward: 101.67194366455078 steps: 499.0
+reward: 62.87635040283203 steps: 348.0
+reward: 72.52732849121094 steps: 349.0
+reward: 48.68072509765625 steps: 206.5
+reward: 70.9120101928711 steps: 352.0
+reward: 97.17000579833984 steps: 499.0
+reward: 68.46563720703125 steps: 499.0
+reward: 87.9383544921875 steps: 499.0
+reward: 73.24010467529297 steps: 194.0
+reward: 146.663818359375 steps: 499.0
+reward: 63.99960708618164 steps: 362.0
+reward: 72.97134399414062 steps: 363.0
+reward: 58.8661994934082 steps: 180.0
+reward: 32.34854507446289 steps: 159.0
+reward: 118.24298858642578 steps: 499.0
+reward: 23.175952911376953 steps: 214.0
+reward: 114.290283203125 steps: 499.0
+reward: 27.737262725830078 steps: 217.0
+reward: 100.1200180053711 steps: 499.0
+reward: 19.110029220581055 steps: 166.0
+reward: 94.76221466064453 steps: 386.0
+reward: 105.38858032226562 steps: 499.0
+reward: 68.8367919921875 steps: 213.0
+reward: 59.05126190185547 steps: 254.0
+reward: 84.36042785644531 steps: 391.0
+reward: 46.32100296020508 steps: 216.0
+reward: 79.5452651977539 steps: 499.0
+reward: 125.82050323486328 steps: 499.0
+reward: 83.98684692382812 steps: 403.0
+reward: 86.09452819824219 steps: 293.0
+reward: 80.24070739746094 steps: 314.5
+reward: 73.81035614013672 steps: 243.0
+reward: 89.68449401855469 steps: 410.0
+reward: 70.85819244384766 steps: 176.0
+reward: 105.61923217773438 steps: 369.0
+reward: 91.30453491210938 steps: 456.5
+reward: 98.52246856689453 steps: 457.5
+reward: 55.17328643798828 steps: 179.0
+reward: 82.53321838378906 steps: 308.0
+reward: 90.55007934570312 steps: 392.5
+reward: 150.03900146484375 steps: 499.0
+reward: 165.3895721435547 steps: 499.0
+reward: 125.79898071289062 steps: 499.0
+reward: 98.07408142089844 steps: 440.0
+reward: 128.55307006835938 steps: 499.0
+reward: 25.451583862304688 steps: 222.0
+reward: 55.34718322753906 steps: 200.5
+reward: 83.44750213623047 steps: 478.0
+reward: 103.40721893310547 steps: 499.0
+reward: 73.29705047607422 steps: 359.5
+reward: 75.25506591796875 steps: 499.0
+reward: 86.153564453125 steps: 499.0
+reward: 97.60248565673828 steps: 499.0
+reward: 75.89733123779297 steps: 499.0
+reward: 52.344505310058594 steps: 499.0
+reward: 137.72567749023438 steps: 499.0
+reward: 145.00921630859375 steps: 499.0
+reward: 103.14701843261719 steps: 346.0
+reward: 12.442967414855957 steps: 91.0
+reward: 104.6437759399414 steps: 499.0
+reward: 122.36647033691406 steps: 499.0
+Collected enough data (1000 per task) success rates:
+STATES.REACH: 1.00
+STATES.STRIKE_KICK: 0.88
+STATES.STRIKE_PUNCH: 0.88
+STATES.SIT: 0.47
+STATES.GET_UP: 0.91
+Eval plot ended
+=== FORMAL EVALUATION FINISHED ===
+Sat Sep 26 17:12:19 CEST 2026

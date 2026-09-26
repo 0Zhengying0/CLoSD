@@ -21,6 +21,10 @@ If you find this code useful in your research, please cite:
 ```
 
 
+## Local reproduction (Karolina HPC)
+
+DiP multi-target 从零训练、评测脚本、完整日志与权重发布说明见 [reproduction/README.md](reproduction/README.md)。
+
 ## Getting Started
 
 

@@ -1,0 +1,24 @@
+==================================================
+CLoSD evaluation env-count test
+Job ID:       5100449
+Host:         acn08.karolina.it4i.cz
+NUM_ENVS:     1024
+episode_len:  500
+Model:        /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt
+Start:        Wed Sep 23 22:24:56 CEST 2026
+==================================================
+=== GPU ===
+PyTorch: 2.2.2+cu121
+CUDA: 12.1
+GPU: NVIDIA A100-SXM4-40GB
+Total VRAM GiB: 39.51629638671875
+=== EVAL ENV TEST START ===
+NUM_ENVS=1024
+Importing module 'gym_38' (/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)
+
+==================================================
+Process exit code: 1
+Peak GPU memory: 0 MiB
+=== EVAL ENV TEST FAILED ===
+End: Wed Sep 23 22:24:59 CEST 2026
+==================================================

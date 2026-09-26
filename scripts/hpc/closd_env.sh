@@ -1,13 +1,32 @@
-export ZHENGYING_ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
-
-export PATH=$ZHENGYING_ROOT/envs/closd/bin:$PATH
-export HF_HOME=$ZHENGYING_ROOT/cache/huggingface
-export TORCH_HOME=$ZHENGYING_ROOT/cache/torch
-export XDG_CACHE_HOME=$ZHENGYING_ROOT/cache/xdg
-export PIP_CACHE_DIR=$ZHENGYING_ROOT/cache/pip
-export APPTAINER_CACHEDIR=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/apptainer
-export APPTAINER_TMPDIR=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/tmp
-export TMPDIR=$ZHENGYING_ROOT/tmp
-
-export ISAACGYM_BINDINGS=$ZHENGYING_ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
-export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ZHENGYING_ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+#!/usr/bin/env bash
+# Source this inside the container; installed environments remain at their original prefix.
+export CLOSD_ROOT="${CLOSD_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+export CLOSD_SHARED_ROOT="${CLOSD_SHARED_ROOT:-$(dirname "$CLOSD_ROOT")}"
+export CLOSD_ENV="${CLOSD_ENV:-$CLOSD_SHARED_ROOT/envs/closd}"
+export CLOSD_ISAACGYM="${CLOSD_ISAACGYM:-$CLOSD_SHARED_ROOT/isaacgym}"
+export CLOSD_CONTAINER="${CLOSD_CONTAINER:-$CLOSD_SHARED_ROOT/containers/closd_cuda121_ubuntu20_devel.sif}"
+export CLOSD_CACHE="${CLOSD_CACHE:-$CLOSD_ROOT/.local/cache}"
+export CLOSD_LOGS="${CLOSD_LOGS:-$CLOSD_ROOT/reproduction/logs}"
+export PATH="$CLOSD_ENV/bin:$PATH"
+export PYTHONPATH="$CLOSD_ROOT/closd:$CLOSD_ROOT:${PYTHONPATH:-}"
+export HF_HOME="$CLOSD_CACHE/huggingface"
+export HF_HUB_CACHE="$HF_HOME/hub"
+export HUGGINGFACE_HUB_CACHE="$HF_HUB_CACHE"
+# Run from the prepared, version-pinned snapshot rather than updating upstream main.
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+export TORCH_HOME="$CLOSD_SHARED_ROOT/cache/torch"
+export PIP_CACHE_DIR="$CLOSD_SHARED_ROOT/cache/pip"
+export APPTAINER_CACHEDIR="$CLOSD_SHARED_ROOT/cache/apptainer"
+export XDG_CACHE_HOME="$CLOSD_CACHE/xdg"
+export TORCH_EXTENSIONS_DIR="$CLOSD_CACHE/torch_extensions"
+export TMPDIR="${SLURM_TMPDIR:-$CLOSD_ROOT/.local/tmp}"
+export APPTAINER_TMPDIR="$TMPDIR"
+export ISAACGYM_BINDINGS="$CLOSD_ISAACGYM/python/isaacgym/_bindings/linux-x86_64"
+export LD_LIBRARY_PATH="$ISAACGYM_BINDINGS:$CLOSD_ENV/lib:${LD_LIBRARY_PATH:-}"
+export WANDB_MODE=offline
+export WANDB_DIR="$CLOSD_ROOT/runs/wandb"
+export WANDB_CACHE_DIR="$CLOSD_CACHE/wandb"
+export WANDB_CONFIG_DIR="$CLOSD_CACHE/wandb_config"
+export PYTHONUNBUFFERED=1
+export MAX_JOBS="${MAX_JOBS:-4}"

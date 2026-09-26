@@ -1,0 +1,27 @@
+{
+  "repository": "0Zhengying0/CLoSD",
+  "tag": "repro-dip-seed10-v1",
+  "training_commit": "4af01718653dbabf1de1dd9a2600aa54c91acc38",
+  "assets": [
+    {
+      "name": "model000300000.pt",
+      "step": 300000,
+      "bytes": 234251446,
+      "sha256": "de0467c08bc4ec8ed5507aee15b21e78ee14771df4999e3362a9f6171c1f436e",
+      "local_path": "runs/DiP_multi-target_repro_seed10/model000300000.pt"
+    },
+    {
+      "name": "model000600000.pt",
+      "step": 600000,
+      "bytes": 234251446,
+      "sha256": "c4d4b9ed23d7b0b96ae4d9768c07bc2efa2a20e1541a6d71a2e779e45f41f19b",
+      "local_path": "runs/DiP_multi-target_repro_seed10/model000600000.pt"
+    },
+    {
+      "name": "args.json",
+      "bytes": 1819,
+      "sha256": "fb5d5b627b69d34aae66513c08f3747e7c135194e4a285892101cc24da2ac2d4",
+      "local_path": "runs/DiP_multi-target_repro_seed10/args.json"
+    }
+  ]
+}

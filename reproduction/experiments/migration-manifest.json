@@ -1,0 +1,3216 @@
+{
+  "files": [
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/args.json",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/args.json",
+      "bytes": 1819,
+      "inode": 19884683457,
+      "device": 56,
+      "sha256": "fb5d5b627b69d34aae66513c08f3747e7c135194e4a285892101cc24da2ac2d4",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000000000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000000000.pt",
+      "bytes": 234251446,
+      "inode": 19884683459,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000010000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000010000.pt",
+      "bytes": 234251446,
+      "inode": 19884683461,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000020000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000020000.pt",
+      "bytes": 234251446,
+      "inode": 19884683463,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000030000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000030000.pt",
+      "bytes": 234251446,
+      "inode": 19884683465,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000040000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000040000.pt",
+      "bytes": 234251446,
+      "inode": 19884683467,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000050000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000050000.pt",
+      "bytes": 234251446,
+      "inode": 19884683469,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000060000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000060000.pt",
+      "bytes": 234251446,
+      "inode": 19884683471,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000070000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000070000.pt",
+      "bytes": 234251446,
+      "inode": 19884683473,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000080000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000080000.pt",
+      "bytes": 234251446,
+      "inode": 19884683475,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000090000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000090000.pt",
+      "bytes": 234251446,
+      "inode": 19884683477,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000100000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000100000.pt",
+      "bytes": 234251446,
+      "inode": 19884683479,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000110000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000110000.pt",
+      "bytes": 234251446,
+      "inode": 19884683481,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000120000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000120000.pt",
+      "bytes": 234251446,
+      "inode": 19884683483,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000130000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000130000.pt",
+      "bytes": 234251446,
+      "inode": 19884683485,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000140000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000140000.pt",
+      "bytes": 234251446,
+      "inode": 19884683487,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000150000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000150000.pt",
+      "bytes": 234251446,
+      "inode": 19884691681,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000160000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000160000.pt",
+      "bytes": 234251446,
+      "inode": 19884691683,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000170000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000170000.pt",
+      "bytes": 234251446,
+      "inode": 19884691685,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000180000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000180000.pt",
+      "bytes": 234251446,
+      "inode": 19884691687,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000190000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000190000.pt",
+      "bytes": 234251446,
+      "inode": 19884691689,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000200000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000200000.pt",
+      "bytes": 234251446,
+      "inode": 19884691691,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000210000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000210000.pt",
+      "bytes": 234251446,
+      "inode": 19884691693,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000220000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000220000.pt",
+      "bytes": 234251446,
+      "inode": 19884691695,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000230000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000230000.pt",
+      "bytes": 234251446,
+      "inode": 19884691697,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000240000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000240000.pt",
+      "bytes": 234251446,
+      "inode": 19884691699,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000250000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000250000.pt",
+      "bytes": 234251446,
+      "inode": 19884691701,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000260000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000260000.pt",
+      "bytes": 234251446,
+      "inode": 19884691703,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000270000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000270000.pt",
+      "bytes": 234251446,
+      "inode": 19884691705,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000280000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000280000.pt",
+      "bytes": 234251446,
+      "inode": 19884691707,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000290000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000290000.pt",
+      "bytes": 234251446,
+      "inode": 19884691709,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000300000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000300000.pt",
+      "bytes": 234251446,
+      "inode": 19884691711,
+      "device": 56,
+      "sha256": "de0467c08bc4ec8ed5507aee15b21e78ee14771df4999e3362a9f6171c1f436e",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000310000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000310000.pt",
+      "bytes": 234251446,
+      "inode": 19884699905,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000320000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000320000.pt",
+      "bytes": 234251446,
+      "inode": 19884699907,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000330000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000330000.pt",
+      "bytes": 234251446,
+      "inode": 19884699909,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000340000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000340000.pt",
+      "bytes": 234251446,
+      "inode": 19884699911,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000350000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000350000.pt",
+      "bytes": 234251446,
+      "inode": 19884699913,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000360000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000360000.pt",
+      "bytes": 234251446,
+      "inode": 19884699915,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000370000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000370000.pt",
+      "bytes": 234251446,
+      "inode": 19884699917,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000380000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000380000.pt",
+      "bytes": 234251446,
+      "inode": 19884699919,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000390000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000390000.pt",
+      "bytes": 234251446,
+      "inode": 19884699921,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000400000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000400000.pt",
+      "bytes": 234251446,
+      "inode": 19884699923,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000410000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000410000.pt",
+      "bytes": 234251446,
+      "inode": 19884699925,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000420000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000420000.pt",
+      "bytes": 234251446,
+      "inode": 19884699927,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000430000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000430000.pt",
+      "bytes": 234251446,
+      "inode": 19884699929,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000440000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000440000.pt",
+      "bytes": 234251446,
+      "inode": 19884699931,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000450000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000450000.pt",
+      "bytes": 234251446,
+      "inode": 19884699933,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000460000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000460000.pt",
+      "bytes": 234251446,
+      "inode": 19884699935,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000470000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000470000.pt",
+      "bytes": 234251446,
+      "inode": 19884708129,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000480000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000480000.pt",
+      "bytes": 234251446,
+      "inode": 19884708131,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000490000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000490000.pt",
+      "bytes": 234251446,
+      "inode": 19884708133,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000500000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000500000.pt",
+      "bytes": 234251446,
+      "inode": 19884708135,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000510000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000510000.pt",
+      "bytes": 234251446,
+      "inode": 19884708137,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000520000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000520000.pt",
+      "bytes": 234251446,
+      "inode": 19884708139,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000530000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000530000.pt",
+      "bytes": 234251446,
+      "inode": 19884708141,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000540000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000540000.pt",
+      "bytes": 234251446,
+      "inode": 19884708143,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000550000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000550000.pt",
+      "bytes": 234251446,
+      "inode": 19884708145,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000560000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000560000.pt",
+      "bytes": 234251446,
+      "inode": 19884708147,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000570000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000570000.pt",
+      "bytes": 234251446,
+      "inode": 19884708149,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000580000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000580000.pt",
+      "bytes": 234251446,
+      "inode": 19884708151,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000590000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000590000.pt",
+      "bytes": 234251446,
+      "inode": 19884708153,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000600000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000600000.pt",
+      "bytes": 234251446,
+      "inode": 19884708155,
+      "device": 56,
+      "sha256": "c4d4b9ed23d7b0b96ae4d9768c07bc2efa2a20e1541a6d71a2e779e45f41f19b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/model000600343.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/model000600343.pt",
+      "bytes": 234251446,
+      "inode": 19884708157,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000000000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000000000.pt",
+      "bytes": 213763902,
+      "inode": 19884683460,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000010000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000010000.pt",
+      "bytes": 213763902,
+      "inode": 19884683462,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000020000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000020000.pt",
+      "bytes": 213763902,
+      "inode": 19884683464,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000030000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000030000.pt",
+      "bytes": 213763902,
+      "inode": 19884683466,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000040000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000040000.pt",
+      "bytes": 213763902,
+      "inode": 19884683468,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000050000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000050000.pt",
+      "bytes": 213763902,
+      "inode": 19884683470,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000060000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000060000.pt",
+      "bytes": 213763902,
+      "inode": 19884683472,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000070000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000070000.pt",
+      "bytes": 213763902,
+      "inode": 19884683474,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000080000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000080000.pt",
+      "bytes": 213763902,
+      "inode": 19884683476,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000090000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000090000.pt",
+      "bytes": 213763902,
+      "inode": 19884683478,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000100000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000100000.pt",
+      "bytes": 213763902,
+      "inode": 19884683480,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000110000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000110000.pt",
+      "bytes": 213763902,
+      "inode": 19884683482,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000120000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000120000.pt",
+      "bytes": 213763902,
+      "inode": 19884683484,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000130000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000130000.pt",
+      "bytes": 213763902,
+      "inode": 19884683486,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000140000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000140000.pt",
+      "bytes": 213763902,
+      "inode": 19884691680,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000150000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000150000.pt",
+      "bytes": 213763902,
+      "inode": 19884691682,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000160000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000160000.pt",
+      "bytes": 213763902,
+      "inode": 19884691684,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000170000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000170000.pt",
+      "bytes": 213763902,
+      "inode": 19884691686,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000180000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000180000.pt",
+      "bytes": 213763902,
+      "inode": 19884691688,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000190000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000190000.pt",
+      "bytes": 213763902,
+      "inode": 19884691690,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000200000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000200000.pt",
+      "bytes": 213763902,
+      "inode": 19884691692,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000210000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000210000.pt",
+      "bytes": 213763902,
+      "inode": 19884691694,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000220000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000220000.pt",
+      "bytes": 213763902,
+      "inode": 19884691696,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000230000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000230000.pt",
+      "bytes": 213763902,
+      "inode": 19884691698,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000240000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000240000.pt",
+      "bytes": 213763902,
+      "inode": 19884691700,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000250000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000250000.pt",
+      "bytes": 213763902,
+      "inode": 19884691702,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000260000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000260000.pt",
+      "bytes": 213763902,
+      "inode": 19884691704,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000270000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000270000.pt",
+      "bytes": 213763902,
+      "inode": 19884691706,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000280000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000280000.pt",
+      "bytes": 213763902,
+      "inode": 19884691708,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000290000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000290000.pt",
+      "bytes": 213763902,
+      "inode": 19884691710,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000300000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000300000.pt",
+      "bytes": 213763902,
+      "inode": 19884699904,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000310000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000310000.pt",
+      "bytes": 213763902,
+      "inode": 19884699906,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000320000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000320000.pt",
+      "bytes": 213763902,
+      "inode": 19884699908,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000330000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000330000.pt",
+      "bytes": 213763902,
+      "inode": 19884699910,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000340000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000340000.pt",
+      "bytes": 213763902,
+      "inode": 19884699912,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000350000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000350000.pt",
+      "bytes": 213763902,
+      "inode": 19884699914,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000360000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000360000.pt",
+      "bytes": 213763902,
+      "inode": 19884699916,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000370000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000370000.pt",
+      "bytes": 213763902,
+      "inode": 19884699918,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000380000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000380000.pt",
+      "bytes": 213763902,
+      "inode": 19884699920,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000390000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000390000.pt",
+      "bytes": 213763902,
+      "inode": 19884699922,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000400000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000400000.pt",
+      "bytes": 213763902,
+      "inode": 19884699924,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000410000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000410000.pt",
+      "bytes": 213763902,
+      "inode": 19884699926,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000420000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000420000.pt",
+      "bytes": 213763902,
+      "inode": 19884699928,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000430000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000430000.pt",
+      "bytes": 213763902,
+      "inode": 19884699930,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000440000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000440000.pt",
+      "bytes": 213763902,
+      "inode": 19884699932,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000450000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000450000.pt",
+      "bytes": 213763902,
+      "inode": 19884699934,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000460000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000460000.pt",
+      "bytes": 213763902,
+      "inode": 19884708128,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000470000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000470000.pt",
+      "bytes": 213763902,
+      "inode": 19884708130,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000480000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000480000.pt",
+      "bytes": 213763902,
+      "inode": 19884708132,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000490000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000490000.pt",
+      "bytes": 213763902,
+      "inode": 19884708134,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000500000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000500000.pt",
+      "bytes": 213763902,
+      "inode": 19884708136,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000510000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000510000.pt",
+      "bytes": 213763902,
+      "inode": 19884708138,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000520000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000520000.pt",
+      "bytes": 213763902,
+      "inode": 19884708140,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000530000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000530000.pt",
+      "bytes": 213763902,
+      "inode": 19884708142,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000540000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000540000.pt",
+      "bytes": 213763902,
+      "inode": 19884708144,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000550000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000550000.pt",
+      "bytes": 213763902,
+      "inode": 19884708146,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000560000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000560000.pt",
+      "bytes": 213763902,
+      "inode": 19884708148,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000570000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000570000.pt",
+      "bytes": 213763902,
+      "inode": 19884708150,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000580000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000580000.pt",
+      "bytes": 213763902,
+      "inode": 19884708152,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000590000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000590000.pt",
+      "bytes": 213763902,
+      "inode": 19884708154,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000600000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000600000.pt",
+      "bytes": 213763902,
+      "inode": 19884708156,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10/opt000600343.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10/opt000600343.pt",
+      "bytes": 213763902,
+      "inode": 19884708158,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/args.json",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/args.json",
+      "bytes": 1825,
+      "inode": 19884695129,
+      "device": 56,
+      "sha256": "2562f04bec948a8d7160edb3d219383540876e68dd56b67b8b165a250f32f115",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000000000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000000000.pt",
+      "bytes": 234251446,
+      "inode": 19750944102,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000010000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000010000.pt",
+      "bytes": 234251446,
+      "inode": 19750944100,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000020000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000020000.pt",
+      "bytes": 234251446,
+      "inode": 19884695125,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000030000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000030000.pt",
+      "bytes": 234251446,
+      "inode": 19884703333,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000040000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000040000.pt",
+      "bytes": 234251446,
+      "inode": 19884703335,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000050000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000050000.pt",
+      "bytes": 234251446,
+      "inode": 19884703337,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000060000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000060000.pt",
+      "bytes": 234251446,
+      "inode": 19884703339,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000070000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000070000.pt",
+      "bytes": 234251446,
+      "inode": 19884703341,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000080000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000080000.pt",
+      "bytes": 234251446,
+      "inode": 19884703343,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000090000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000090000.pt",
+      "bytes": 234251446,
+      "inode": 19884703345,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000100000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000100000.pt",
+      "bytes": 234251446,
+      "inode": 19884703347,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000110000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000110000.pt",
+      "bytes": 234251446,
+      "inode": 19884703349,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000120000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000120000.pt",
+      "bytes": 234251446,
+      "inode": 19884703351,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000130000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000130000.pt",
+      "bytes": 234251446,
+      "inode": 19884703357,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000140000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000140000.pt",
+      "bytes": 234251446,
+      "inode": 19884703359,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000150000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000150000.pt",
+      "bytes": 234251446,
+      "inode": 19884711553,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000160000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000160000.pt",
+      "bytes": 234251446,
+      "inode": 19884711555,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000170000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000170000.pt",
+      "bytes": 234251446,
+      "inode": 20153275227,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000180000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000180000.pt",
+      "bytes": 234251446,
+      "inode": 20153275224,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000190000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000190000.pt",
+      "bytes": 234251446,
+      "inode": 20153275230,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000200000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000200000.pt",
+      "bytes": 234251446,
+      "inode": 20153283424,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000210000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000210000.pt",
+      "bytes": 234251446,
+      "inode": 20153283431,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000220000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000220000.pt",
+      "bytes": 234251446,
+      "inode": 20153283433,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000230000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000230000.pt",
+      "bytes": 234251446,
+      "inode": 20153283435,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/model000240000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/model000240000.pt",
+      "bytes": 234251446,
+      "inode": 20153283437,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000000000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000000000.pt",
+      "bytes": 213763902,
+      "inode": 19750944096,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000010000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000010000.pt",
+      "bytes": 213763902,
+      "inode": 19750944098,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000020000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000020000.pt",
+      "bytes": 213763902,
+      "inode": 19884703332,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000030000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000030000.pt",
+      "bytes": 213763902,
+      "inode": 19884703334,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000040000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000040000.pt",
+      "bytes": 213763902,
+      "inode": 19884703336,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000050000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000050000.pt",
+      "bytes": 213763902,
+      "inode": 19884703338,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000060000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000060000.pt",
+      "bytes": 213763902,
+      "inode": 19884703340,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000070000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000070000.pt",
+      "bytes": 213763902,
+      "inode": 19884703342,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000080000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000080000.pt",
+      "bytes": 213763902,
+      "inode": 19884703344,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000090000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000090000.pt",
+      "bytes": 213763902,
+      "inode": 19884703346,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000100000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000100000.pt",
+      "bytes": 213763902,
+      "inode": 19884703348,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000110000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000110000.pt",
+      "bytes": 213763902,
+      "inode": 19884703350,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000120000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000120000.pt",
+      "bytes": 213763902,
+      "inode": 19884703352,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000130000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000130000.pt",
+      "bytes": 213766142,
+      "inode": 19884703358,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000140000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000140000.pt",
+      "bytes": 213766142,
+      "inode": 19884711552,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000150000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000150000.pt",
+      "bytes": 213766142,
+      "inode": 19884711554,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000160000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000160000.pt",
+      "bytes": 213766142,
+      "inode": 19884711556,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000170000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000170000.pt",
+      "bytes": 213766142,
+      "inode": 20153275228,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000180000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000180000.pt",
+      "bytes": 213766142,
+      "inode": 20153275229,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000190000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000190000.pt",
+      "bytes": 213766142,
+      "inode": 20153275231,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000200000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000200000.pt",
+      "bytes": 213766142,
+      "inode": 20153283425,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000210000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000210000.pt",
+      "bytes": 213766142,
+      "inode": 20153283432,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000220000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000220000.pt",
+      "bytes": 213766142,
+      "inode": 20153283434,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000230000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000230000.pt",
+      "bytes": 213766142,
+      "inode": 20153283436,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_repro_seed10_short/opt000240000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_repro_seed10_short/opt000240000.pt",
+      "bytes": 213766142,
+      "inode": 20153283438,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_smoke/args.json",
+      "destination": "CLoSD/runs/DiP_multi-target_smoke/args.json",
+      "bytes": 1802,
+      "inode": 20153262028,
+      "device": 56,
+      "sha256": "46c8cfde2c8692f17ab7131e9c24fb2a6a3635e1793932728023f219f844f536",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_smoke/model000000000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_smoke/model000000000.pt",
+      "bytes": 234251446,
+      "inode": 20153262029,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_smoke/model000000010.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_smoke/model000000010.pt",
+      "bytes": 234251446,
+      "inode": 20153262031,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_smoke/opt000000000.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_smoke/opt000000000.pt",
+      "bytes": 213763902,
+      "inode": 20153262030,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/DiP_multi-target_smoke/opt000000010.pt",
+      "destination": "CLoSD/runs/DiP_multi-target_smoke/opt000000010.pt",
+      "bytes": 213763902,
+      "inode": 20153262032,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/debug-cli.it4i-dianyu.log",
+      "destination": "CLoSD/runs/wandb/wandb/debug-cli.it4i-dianyu.log",
+      "bytes": 0,
+      "inode": 19885080766,
+      "device": 56,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/debug-internal.log",
+      "destination": "CLoSD/runs/wandb/wandb/debug-internal.log",
+      "link": "offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/debug.log",
+      "destination": "CLoSD/runs/wandb/wandb/debug.log",
+      "link": "offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/latest-run",
+      "destination": "CLoSD/runs/wandb/wandb/latest-run",
+      "link": "offline-run-20260925_020149-DiP_multi-target_repro_seed10_short",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/conda-environment.yaml",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/conda-environment.yaml",
+      "bytes": 0,
+      "inode": 19885183615,
+      "device": 56,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/diff.patch",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/diff.patch",
+      "bytes": 608,
+      "inode": 19885191808,
+      "device": 56,
+      "sha256": "01bc6e6a5d8737a9fac35d02a0625ec367667f9442b8e3d7c3a789c41095b5a9",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/wandb-metadata.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/wandb-metadata.json",
+      "bytes": 16155,
+      "inode": 19885191809,
+      "device": 56,
+      "sha256": "42b67649525575927e55b8f874356bcc6e5b2f2dc05f966bfbddbb141c7ceb99",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/wandb-summary.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/files/wandb-summary.json",
+      "bytes": 27,
+      "inode": 19885191811,
+      "device": 56,
+      "sha256": "31c62a44fcf9eade1474d24cf2fc5b6cd045263183f4976fd8a976a41ae5c255",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/logs/debug-internal.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/logs/debug-internal.log",
+      "bytes": 31794,
+      "inode": 20153242313,
+      "device": 56,
+      "sha256": "2d470fd6170156b3a73a243a0cf822535c0be5b98e20c08be0137c81fc642dff",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/logs/debug.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/logs/debug.log",
+      "bytes": 5818,
+      "inode": 20153242312,
+      "device": 56,
+      "sha256": "7ade67a36a2311a91bad8e875987551b65cdac93c33a11da6eb68ead6f85469f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/run-DiP_multi-target_smoke.wandb",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/run-DiP_multi-target_smoke.wandb",
+      "bytes": 26706,
+      "inode": 20153191794,
+      "device": 56,
+      "sha256": "601f710168446fb0246ab35fe1d3846d9f2e5978a2190f3e1e53b4622385b35e",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "bytes": 0,
+      "inode": 19750864936,
+      "device": 56,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "bytes": 16119,
+      "inode": 19750906068,
+      "device": 56,
+      "sha256": "98be21859a372bbaf59ac2f6d4c3596d27d90b66e8112fd9aa5075812a7ebb35",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "bytes": 1079826,
+      "inode": 19884877905,
+      "device": 56,
+      "sha256": "3d4b7836e3363453e8d00d4ab333c0c0991e3e525720ab2d70e9f78f456cc6ab",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "bytes": 5205,
+      "inode": 19884877911,
+      "device": 56,
+      "sha256": "1eb6dd88dbdb34c4b3ba60c67ffea97382032713e488a74d00c756bf08d6db93",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260923_235207-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "bytes": 24150174,
+      "inode": 19750923630,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/files/conda-environment.yaml",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/files/conda-environment.yaml",
+      "bytes": 0,
+      "inode": 19616719485,
+      "device": 56,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/files/wandb-metadata.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/files/wandb-metadata.json",
+      "bytes": 16095,
+      "inode": 19616719486,
+      "device": 56,
+      "sha256": "5a451c33c6d0056d7744b992c38d3a11b19b0935f0c7b200de3414ef19a86d14",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/files/wandb-summary.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/files/wandb-summary.json",
+      "bytes": 31,
+      "inode": 19616719482,
+      "device": 56,
+      "sha256": "20d1d6489618fc21df8dabb8efb52d0feb0363cb51876a2d25d907792489e02d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/logs/debug-internal.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/logs/debug-internal.log",
+      "bytes": 21515167,
+      "inode": 19482173997,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/logs/debug.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/logs/debug.log",
+      "bytes": 5856,
+      "inode": 19482173996,
+      "device": 56,
+      "sha256": "5c7591cad0bd338ad57bf1473cc775aa6c0d37b5ac46c2b1edfd1142fc9d3667",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/run-DiP_multi-target_repro_seed10.wandb",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_152245-DiP_multi-target_repro_seed10/run-DiP_multi-target_repro_seed10.wandb",
+      "bytes": 113770585,
+      "inode": 19482173998,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "bytes": 0,
+      "inode": 19750497155,
+      "device": 56,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "bytes": 16101,
+      "inode": 19750497156,
+      "device": 56,
+      "sha256": "8de73f487fe5f20394bd0a531f18675efb6e32bc6a1b1d76cb68efe49cf64a7c",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "bytes": 365998,
+      "inode": 19884703354,
+      "device": 56,
+      "sha256": "c93bb5831e2133f7a5b6b93eac435eb36ab3b252c3571b260140bb2e5c5b5acc",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "bytes": 5205,
+      "inode": 19884703353,
+      "device": 56,
+      "sha256": "fbab13c165f0cd84a6ff68582c1e02d3fa652e9c9387a20c73d99f31b4919d90",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_173800-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "bytes": 8061091,
+      "inode": 19750497154,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "bytes": 0,
+      "inode": 20019382596,
+      "device": 56,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "bytes": 16089,
+      "inode": 20019333251,
+      "device": 56,
+      "sha256": "77a00e0c6092f74f719f488c7ef2ea71e72f02a11aee5078f367f75ffbd7f5bc",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "bytes": 1465203,
+      "inode": 20153488514,
+      "device": 56,
+      "sha256": "4da3e69f18d7f431c0a3d9f18c29613cebb40cd2f82d93b66797839844b3e955",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "bytes": 5205,
+      "inode": 20153488513,
+      "device": 56,
+      "sha256": "342108c687746665f544a12780eb846a66c57edeb1379997ac9a2acaf75f1eb1",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260924_214341-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "bytes": 8552757,
+      "inode": 20153303153,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/files/conda-environment.yaml",
+      "bytes": 0,
+      "inode": 20019390825,
+      "device": 56,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/files/wandb-metadata.json",
+      "bytes": 16101,
+      "inode": 20019390828,
+      "device": 56,
+      "sha256": "b97c937f3ff33cd789340b3647301affafa0640684496e41d2c2f8b6a1ede5d4",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug-internal.log",
+      "bytes": 1463264,
+      "inode": 20153406281,
+      "device": 56,
+      "sha256": "933e183cfad096879b89195065babcb9657177d9fe96e90027decfa1d53fd14f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug.log",
+      "bytes": 5205,
+      "inode": 20153406280,
+      "device": 56,
+      "sha256": "18165768328a952bf0ec872f293fcfa28ba8e784632210c6b9b82e2149de7e67",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "destination": "CLoSD/runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/run-DiP_multi-target_repro_seed10_short.wandb",
+      "bytes": 8060940,
+      "inode": 20153283429,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_real_smoke_5099144.err",
+      "destination": "CLoSD/reproduction/logs/closd_real_smoke_5099144.err",
+      "bytes": 6057,
+      "inode": 19616469247,
+      "device": 56,
+      "sha256": "5c45489ac282a56cd293367101c1d4e9ff3b494d9b20912f0021a3f6c3040da6",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_real_smoke_5099144.out",
+      "destination": "CLoSD/reproduction/logs/closd_real_smoke_5099144.out",
+      "bytes": 5750,
+      "inode": 19616469246,
+      "device": 56,
+      "sha256": "872401aab729a2290f0d921c4669c2ffc9b4b704b8db79c0a39bfa8aa48832a3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_smoke_5099017.err",
+      "destination": "CLoSD/reproduction/logs/closd_smoke_5099017.err",
+      "bytes": 2880,
+      "inode": 19884860986,
+      "device": 56,
+      "sha256": "fd7cafcf99cdb5cd894aaab98fac7a05db1b1ca0e57957b0db78d49209b88eed",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_smoke_5099017.out",
+      "destination": "CLoSD/reproduction/logs/closd_smoke_5099017.out",
+      "bytes": 4034,
+      "inode": 19884860985,
+      "device": 56,
+      "sha256": "dd850b46f41984b6efc8aca62d6d340010e06b870cf809c0d992d36c84150a1c",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_smoke_5099078.err",
+      "destination": "CLoSD/reproduction/logs/closd_smoke_5099078.err",
+      "bytes": 1196,
+      "inode": 19884869186,
+      "device": 56,
+      "sha256": "ab6a85328473255f0795cccacae4199bed64d73e606270bfbb93b669db47c026",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_smoke_5099078.out",
+      "destination": "CLoSD/reproduction/logs/closd_smoke_5099078.out",
+      "bytes": 3179,
+      "inode": 19884869185,
+      "device": 56,
+      "sha256": "88e616691e7df9c788c00150b373bfd96e91bd91629610bc4d745e6a67293c4b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_smoke_5099128.err",
+      "destination": "CLoSD/reproduction/logs/closd_smoke_5099128.err",
+      "bytes": 951,
+      "inode": 19884869193,
+      "device": 56,
+      "sha256": "4d3174e5e8daf6f7c0534739b9311a8cbca342f4c3fc6315a786f95fb1e579bf",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/closd_smoke_5099128.out",
+      "destination": "CLoSD/reproduction/logs/closd_smoke_5099128.out",
+      "bytes": 3228,
+      "inode": 19884869192,
+      "device": 56,
+      "sha256": "3b78ea99dd5bd971f067843212bc04794a8724c9cf855f96d64f9a5e7bb6cc13",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100447.err",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100447.err",
+      "bytes": 1223,
+      "inode": 20153294942,
+      "device": 56,
+      "sha256": "792242e18bc81e4b77d7d31403dd1effb543e890456cc13e47975e94ad0657cb",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100447.out",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100447.out",
+      "bytes": 912,
+      "inode": 20153262027,
+      "device": 56,
+      "sha256": "e8cf2789e4d3ced6366c7a507eb9a68707ddb68523d2ed60d5f9c470975b5b92",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100449.err",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100449.err",
+      "bytes": 1223,
+      "inode": 20153303137,
+      "device": 56,
+      "sha256": "792242e18bc81e4b77d7d31403dd1effb543e890456cc13e47975e94ad0657cb",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100449.out",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100449.out",
+      "bytes": 914,
+      "inode": 20153303136,
+      "device": 56,
+      "sha256": "93827515b9d6ac2fa99050830e0c076b401fffb2aa985ba295c9264d24994069",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100460.err",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100460.err",
+      "bytes": 69412,
+      "inode": 20153303140,
+      "device": 56,
+      "sha256": "9969978dd0bdc505edb876cdbc346075d3caf3f7fbc848a03390adeb7d73dbf7",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100460.out",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100460.out",
+      "bytes": 6459,
+      "inode": 20153303139,
+      "device": 56,
+      "sha256": "2de1c646987946e67326af6349f3630df226b5967dea45226b5a0bc94cdf735e",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100524.err",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100524.err",
+      "bytes": 69651,
+      "inode": 20153303142,
+      "device": 56,
+      "sha256": "fc81e4a8f869e9e28cad1ec4f12c49e896765abe2201fe903da4320a595d9ccf",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100524.out",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100524.out",
+      "bytes": 6506,
+      "inode": 20153303144,
+      "device": 56,
+      "sha256": "1368513230f6cfaf2a7c9adccb1b9e39bdf0872aa7c2c244e762093fbdbfde09",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100535.err",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100535.err",
+      "bytes": 70228,
+      "inode": 19884926755,
+      "device": 56,
+      "sha256": "61ee9792b6b96ab07431b52fe3ec3b9c203a32678121249ef21ee0fdee0c3a4d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100535.out",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100535.out",
+      "bytes": 6512,
+      "inode": 19884934990,
+      "device": 56,
+      "sha256": "1b7ae0a2b6ecdade435ea0a0252f166db0429037cde91530942d333919032c03",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100559.err",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100559.err",
+      "bytes": 70528,
+      "inode": 20153303148,
+      "device": 56,
+      "sha256": "50d988f7ad713fe9911c8e6c212c336dae5d21a6eb1a5876ed2cd416c1828008",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_envtest_5100559.out",
+      "destination": "CLoSD/reproduction/logs/dip_envtest_5100559.out",
+      "bytes": 6513,
+      "inode": 20153303146,
+      "device": 56,
+      "sha256": "a04e0959a86438c7e7ca0a6985724f5b84db2b654254de8e2502ffb992511018",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_official_5100596.err",
+      "destination": "CLoSD/reproduction/logs/dip_eval_official_5100596.err",
+      "bytes": 83,
+      "inode": 19884934989,
+      "device": 56,
+      "sha256": "a622a6c2ed26a907beca6dbb5c9cbf0084e08ce5583d81848b2c6a3b4834374b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_official_5100596.out",
+      "destination": "CLoSD/reproduction/logs/dip_eval_official_5100596.out",
+      "bytes": 2140,
+      "inode": 19884902083,
+      "device": 56,
+      "sha256": "953053aeb11a22d0846f4ad58f8b6887476248f16e52ff560b9d16d9162fc2c3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_official_5100756.err",
+      "destination": "CLoSD/reproduction/logs/dip_eval_official_5100756.err",
+      "bytes": 2515,
+      "inode": 19884910328,
+      "device": 56,
+      "sha256": "ac4e24aec8afd33deaa7c2c663eb597412f5b299564f4bbe6131d8be48a51cc5",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_official_5100756.out",
+      "destination": "CLoSD/reproduction/logs/dip_eval_official_5100756.out",
+      "bytes": 13052,
+      "inode": 19884918559,
+      "device": 56,
+      "sha256": "1455f2421a9b81f9be4154d690e9cec41f14d784267feb643706e246ee4e162f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_repro300_5114966.err",
+      "destination": "CLoSD/reproduction/logs/dip_eval_repro300_5114966.err",
+      "bytes": 2263,
+      "inode": 19884943206,
+      "device": 56,
+      "sha256": "ae964a86c5fb27b07b4dd772dab7dd72bb716f9fc0676e84d7e8da2b37c95b96",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_repro300_5114966.out",
+      "destination": "CLoSD/reproduction/logs/dip_eval_repro300_5114966.out",
+      "bytes": 25439,
+      "inode": 19884943205,
+      "device": 56,
+      "sha256": "767abc30bff7a971ef4be3a3a871d39e56bd5426bd2dd26ece9c2cfae7bfe1d5",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_repro600_5114967.err",
+      "destination": "CLoSD/reproduction/logs/dip_eval_repro600_5114967.err",
+      "bytes": 2474,
+      "inode": 19884943208,
+      "device": 56,
+      "sha256": "5e012a67c8228dbde1103dbb950de5cf92fd5bb1f5b9532a916e9eb8ee21f49f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_eval_repro600_5114967.out",
+      "destination": "CLoSD/reproduction/logs/dip_eval_repro600_5114967.out",
+      "bytes": 15996,
+      "inode": 19884943207,
+      "device": 56,
+      "sha256": "5067d156f34649b41427301081feee40ba032775cc31d69ec5661563583a6ef8",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_2h_5105097.err",
+      "destination": "CLoSD/reproduction/logs/dip_mt_2h_5105097.err",
+      "bytes": 2510764,
+      "inode": 19884943203,
+      "device": 56,
+      "sha256": "231436add1ed0030a90aa6e7eeb12921dfbb463179a891cf9d6b7a7912fdb6e8",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_2h_5105097.out",
+      "destination": "CLoSD/reproduction/logs/dip_mt_2h_5105097.out",
+      "bytes": 31685,
+      "inode": 19884943202,
+      "device": 56,
+      "sha256": "246c2832c9fdf35c1ca2d76c7619cf193053d4b4bfbe985b241675ededa2c1bd",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_2h_5106709.err",
+      "destination": "CLoSD/reproduction/logs/dip_mt_2h_5106709.err",
+      "bytes": 2702160,
+      "inode": 20153303152,
+      "device": 56,
+      "sha256": "0eb64f623b8e73a94d6d350e7bd7b69a5b683ec0c62515b1ebf6196ac13f2b82",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_2h_5106709.out",
+      "destination": "CLoSD/reproduction/logs/dip_mt_2h_5106709.out",
+      "bytes": 33767,
+      "inode": 20153303151,
+      "device": 56,
+      "sha256": "d43cb2d533a715315ee031e9c19da53393d36bcaa68efa720d7f07e5ad8f3d7f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_2h_5108318.err",
+      "destination": "CLoSD/reproduction/logs/dip_mt_2h_5108318.err",
+      "bytes": 2526775,
+      "inode": 20153303158,
+      "device": 56,
+      "sha256": "377ad62941d27ec4f4e26716d7cd36ee695054d484fd015d05ebe82846233d5c",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_2h_5108318.out",
+      "destination": "CLoSD/reproduction/logs/dip_mt_2h_5108318.out",
+      "bytes": 31704,
+      "inode": 20153303157,
+      "device": 56,
+      "sha256": "3a76b2ff773d57fa89057e8ce4f17f60f6829f83fee8db294f820f09609dc82d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_6h_5100766.err",
+      "destination": "CLoSD/reproduction/logs/dip_mt_6h_5100766.err",
+      "bytes": 7502441,
+      "inode": 19884935006,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_6h_5100766.out",
+      "destination": "CLoSD/reproduction/logs/dip_mt_6h_5100766.out",
+      "bytes": 88523,
+      "inode": 19884935005,
+      "device": 56,
+      "sha256": "e3a1882496bcdedeaec1429ae10199e178eb7063bf36c5c229bd3015469490da",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_train_5099223.err",
+      "destination": "CLoSD/reproduction/logs/dip_mt_train_5099223.err",
+      "bytes": 36493393,
+      "inode": 19616477450,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_mt_train_5099223.out",
+      "destination": "CLoSD/reproduction/logs/dip_mt_train_5099223.out",
+      "bytes": 418968,
+      "inode": 19616477449,
+      "device": 56,
+      "sha256": "8224e5c85a2ee698ce0568de2dcf7ca1a52c2b14d374236e372945f9d1999401",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_train_smoke_5100032.err",
+      "destination": "CLoSD/reproduction/logs/dip_train_smoke_5100032.err",
+      "bytes": 2427,
+      "inode": 20153262022,
+      "device": 56,
+      "sha256": "7cfd00dfed26d9e9ff4a76835a3ece5f5c62114982ebd6d7d519306418a69d83",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/dip_train_smoke_5100032.out",
+      "destination": "CLoSD/reproduction/logs/dip_train_smoke_5100032.out",
+      "bytes": 10237,
+      "inode": 20153262021,
+      "device": 56,
+      "sha256": "83cd81265f7f42ce4f2549966f9f67a29661c02e8ed0422e767d5fd174e07e15",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/gpu_5100447_128env.csv",
+      "destination": "CLoSD/reproduction/logs/gpu_5100447_128env.csv",
+      "bytes": 482,
+      "inode": 20153294943,
+      "device": 56,
+      "sha256": "d94ab54ddf51e19930010ad9381d54cc8ae263fb238102b463154c059e444f31",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/gpu_5100449_1024env.csv",
+      "destination": "CLoSD/reproduction/logs/gpu_5100449_1024env.csv",
+      "bytes": 122,
+      "inode": 20153303138,
+      "device": 56,
+      "sha256": "3f6a89bbc00aa5a62b624375532fe1a2a79996fac05fba9ff61418a7093933c7",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/gpu_5100460_128env.csv",
+      "destination": "CLoSD/reproduction/logs/gpu_5100460_128env.csv",
+      "bytes": 2501,
+      "inode": 20153303141,
+      "device": 56,
+      "sha256": "40048e8643232cfd5023954386ecd75c3b9d78dcf126f1e028629dd1d95a8a19",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/gpu_5100524_512env.csv",
+      "destination": "CLoSD/reproduction/logs/gpu_5100524_512env.csv",
+      "bytes": 2037,
+      "inode": 20153303143,
+      "device": 56,
+      "sha256": "75c12b50dc74bb2182cd74b98b3a212864681874e2683886920d3a6ea6f3587e",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/gpu_5100535_2048env.csv",
+      "destination": "CLoSD/reproduction/logs/gpu_5100535_2048env.csv",
+      "bytes": 5007,
+      "inode": 19884934984,
+      "device": 56,
+      "sha256": "742493e8b2bda8d29fc0e41ac0d2173b5e6c8dada5f020dd1ac920baa81654d1",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "logs/gpu_5100559_4096env.csv",
+      "destination": "CLoSD/reproduction/logs/gpu_5100559_4096env.csv",
+      "bytes": 8470,
+      "inode": 20153303149,
+      "device": 56,
+      "sha256": "5d2b7d58e344be5c2ed6d2b461329831f7a57612a18dca3944f22bdf391c0e63",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/torch_extensions/gymtorch/.ninja_deps",
+      "destination": "CLoSD/.local/cache/torch_extensions/gymtorch/.ninja_deps",
+      "bytes": 284,
+      "inode": 19884860991,
+      "device": 56,
+      "sha256": "8f351259bdc35850b551a9d76b67c828294e9dfa9f4c7faa287281b418c90628",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/torch_extensions/gymtorch/.ninja_log",
+      "destination": "CLoSD/.local/cache/torch_extensions/gymtorch/.ninja_log",
+      "bytes": 132,
+      "inode": 19884860989,
+      "device": 56,
+      "sha256": "1f848739fac40b9f88f81e600199ed29887a38048b2643674dce11ad15b74464",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/torch_extensions/gymtorch/build.ninja",
+      "destination": "CLoSD/.local/cache/torch_extensions/gymtorch/build.ninja",
+      "bytes": 1367,
+      "inode": 19884860988,
+      "device": 56,
+      "sha256": "64d79deeb006389a92dcb47f5e7d1358c97602715d1b8e0066d14072631a2c72",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/torch_extensions/gymtorch/gymtorch.o",
+      "destination": "CLoSD/.local/cache/torch_extensions/gymtorch/gymtorch.o",
+      "bytes": 2160720,
+      "inode": 19884860990,
+      "device": 56,
+      "sha256": "e5382715c0e774393cca338efa9f40d3501c07ecb35771b37d0867c8e37a0baa",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/torch_extensions/gymtorch/gymtorch.so",
+      "destination": "CLoSD/.local/cache/torch_extensions/gymtorch/gymtorch.so",
+      "bytes": 1264384,
+      "inode": 19884869184,
+      "device": 56,
+      "sha256": "e778832ceb9f59e17fe6359be1ac6ae87444cf4eeb4939da01d5e22be36cefd5",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/0bdb5ba69a3a9e34d71990db15bc535ebc024c8d95ddb5574196f96058faa7d3",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/0bdb5ba69a3a9e34d71990db15bc535ebc024c8d95ddb5574196f96058faa7d3",
+      "bytes": 2232,
+      "inode": 20153230588,
+      "device": 56,
+      "sha256": "0bdb5ba69a3a9e34d71990db15bc535ebc024c8d95ddb5574196f96058faa7d3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/10bcb167590ede83472c6b4bf28eb24c1adb1503",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/10bcb167590ede83472c6b4bf28eb24c1adb1503",
+      "bytes": 8160,
+      "inode": 20153230582,
+      "device": 56,
+      "sha256": "5f747cd7257297981bc743b9520564bc50a5e017e16a72a20faaf24bbebb36c2",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/22e22b7c605678aef06f6815fcf4d31e3c5c5c2f",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/22e22b7c605678aef06f6815fcf4d31e3c5c5c2f",
+      "bytes": 328,
+      "inode": 20153222358,
+      "device": 56,
+      "sha256": "8959973e6ce01e7b0e844778cb08251281c9d12827e6fd79172a159b7dfe4169",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/26e136555dab04c94a129d446c26e6b9939cbf045fbf77bcf5462c1fb5a2001c",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/26e136555dab04c94a129d446c26e6b9939cbf045fbf77bcf5462c1fb5a2001c",
+      "bytes": 1180,
+      "inode": 20153230560,
+      "device": 56,
+      "sha256": "26e136555dab04c94a129d446c26e6b9939cbf045fbf77bcf5462c1fb5a2001c",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/2c336550d452e5769bc12d199c285bb3717af651f3691ee18ac6b82f2de0a3d8",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/2c336550d452e5769bc12d199c285bb3717af651f3691ee18ac6b82f2de0a3d8",
+      "bytes": 2757026,
+      "inode": 20153230572,
+      "device": 56,
+      "sha256": "2c336550d452e5769bc12d199c285bb3717af651f3691ee18ac6b82f2de0a3d8",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/37d88a2167ce6b27a1c3654ac18ca0b951716423719813ae7ebfa3a20989aebf",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/37d88a2167ce6b27a1c3654ac18ca0b951716423719813ae7ebfa3a20989aebf",
+      "bytes": 5730519988,
+      "inode": 20153222367,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/3ca68ae54975946b3fe5c6cd64a6eafc439b5fc43c166bc9a98d1c43aeef6618",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/3ca68ae54975946b3fe5c6cd64a6eafc439b5fc43c166bc9a98d1c43aeef6618",
+      "bytes": 234251013,
+      "inode": 20153222356,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/425a90e861372e818be663857520fabe639afae5f235f1188d9a1237d0a1514d",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/425a90e861372e818be663857520fabe639afae5f235f1188d9a1237d0a1514d",
+      "bytes": 213765645,
+      "inode": 20153222354,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/43e43d198f07b7e080749d1709326783d2bfb5810f56ed0c56c68951ee961d0d",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/43e43d198f07b7e080749d1709326783d2bfb5810f56ed0c56c68951ee961d0d",
+      "bytes": 245581991,
+      "inode": 20153230591,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/4924f235e63f7c5d5b690acedf736419c2edb846a2d69fc0956169615fa75688",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/4924f235e63f7c5d5b690acedf736419c2edb846a2d69fc0956169615fa75688",
+      "bytes": 247186228,
+      "inode": 20153230578,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/58f4f19b5429fe137d7a2ea216099f4745f2be51fff001f2f90d6747eaf053d2",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/58f4f19b5429fe137d7a2ea216099f4745f2be51fff001f2f90d6747eaf053d2",
+      "bytes": 11676214,
+      "inode": 20153230566,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/600da1347b4339f27c529ac5e46fb71e3050e1e6",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/600da1347b4339f27c529ac5e46fb71e3050e1e6",
+      "bytes": 18515,
+      "inode": 20153230581,
+      "device": 56,
+      "sha256": "9d8a5783631a7a1fe31036cb63239e8fe20b57de15b1c83938482c854711c352",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/62577dd2d127888108224d50b7a566eca0fdb650553d8564e268f72a80a2da84",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/62577dd2d127888108224d50b7a566eca0fdb650553d8564e268f72a80a2da84",
+      "bytes": 216577317,
+      "inode": 20153222353,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/6565a65ed9b31e23c328829a309e1c482be8b85fd23b43d65451a9b19a917f40",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/6565a65ed9b31e23c328829a309e1c482be8b85fd23b43d65451a9b19a917f40",
+      "bytes": 1180,
+      "inode": 20153230561,
+      "device": 56,
+      "sha256": "6565a65ed9b31e23c328829a309e1c482be8b85fd23b43d65451a9b19a917f40",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/6a5f7d60301c9465972fc225f8ad0ee8f957e7720431189123eb6d15873a9557",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/6a5f7d60301c9465972fc225f8ad0ee8f957e7720431189123eb6d15873a9557",
+      "bytes": 2232,
+      "inode": 20153230589,
+      "device": 56,
+      "sha256": "6a5f7d60301c9465972fc225f8ad0ee8f957e7720431189123eb6d15873a9557",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/6b629215462b717a16ee13ebee5b87ee92aba91933946d9e6232d021acdcef13",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/6b629215462b717a16ee13ebee5b87ee92aba91933946d9e6232d021acdcef13",
+      "bytes": 1180,
+      "inode": 20153230585,
+      "device": 56,
+      "sha256": "6b629215462b717a16ee13ebee5b87ee92aba91933946d9e6232d021acdcef13",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/6d4a1791b6b94880397e1a3a4539b703a228d2150c57de7b288389a8115f4ef0",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/6d4a1791b6b94880397e1a3a4539b703a228d2150c57de7b288389a8115f4ef0",
+      "bytes": 247530000,
+      "inode": 20153230576,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/6e39ab19d3900f7475aa2b15efa62b2fbfebd323",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/6e39ab19d3900f7475aa2b15efa62b2fbfebd323",
+      "bytes": 32880,
+      "inode": 20153230565,
+      "device": 56,
+      "sha256": "b89bc7df558df6246840702d0976a5d37ecbc4f055642b5c99e509a2d85ac12e",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/6e6fc0204ea9e48abdf94f84e8be22b19a1f1e955c7b98e025b1d702f6fe96a0",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/6e6fc0204ea9e48abdf94f84e8be22b19a1f1e955c7b98e025b1d702f6fe96a0",
+      "bytes": 178968,
+      "inode": 20153230563,
+      "device": 56,
+      "sha256": "6e6fc0204ea9e48abdf94f84e8be22b19a1f1e955c7b98e025b1d702f6fe96a0",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/715834f8f57825b4d081ac738e4e280c411568ce",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/715834f8f57825b4d081ac738e4e280c411568ce",
+      "bytes": 219210,
+      "inode": 20153230562,
+      "device": 56,
+      "sha256": "49fa084e75a7896dde9f6af735979c9430d19feb84bed2d36a39024baf096663",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/739df5e2e025d21ae5ce01ea7e0a8d3038448a46e88865d95a638e6242ee8b6b",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/739df5e2e025d21ae5ce01ea7e0a8d3038448a46e88865d95a638e6242ee8b6b",
+      "bytes": 45008,
+      "inode": 20153230564,
+      "device": 56,
+      "sha256": "739df5e2e025d21ae5ce01ea7e0a8d3038448a46e88865d95a638e6242ee8b6b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/73ed9b73ee5bc5ab683661c132b9f98fe305672dffdf70ceeac1bc447543d668",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/73ed9b73ee5bc5ab683661c132b9f98fe305672dffdf70ceeac1bc447543d668",
+      "bytes": 10077728,
+      "inode": 20153238784,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/79fcc786ad4be0765c5a43c7752c509d76a2efca",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/79fcc786ad4be0765c5a43c7752c509d76a2efca",
+      "bytes": 9102,
+      "inode": 20153222363,
+      "device": 56,
+      "sha256": "43f39300faddbabcd026fd03e10bb32ebe5e2dd4f52e59503a2c11d754db8721",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/7ead3778b95516d8b91b7c5939674e45dd0ad10fcc22da60f9f57d204695f6ac",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/7ead3778b95516d8b91b7c5939674e45dd0ad10fcc22da60f9f57d204695f6ac",
+      "bytes": 216577317,
+      "inode": 20153222357,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/874d777414a94130fa4f04bc36e8548b677d58b0",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/874d777414a94130fa4f04bc36e8548b677d58b0",
+      "bytes": 1767,
+      "inode": 20153222362,
+      "device": 56,
+      "sha256": "daa7f59050525ca5070e7e5426445ad178cf826c026348b4fd92214e3efb56da",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/8d4dc33864f72514c56e2b61f6eef7d443bf6017ac0931d7ee5dac79beb0d883",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/8d4dc33864f72514c56e2b61f6eef7d443bf6017ac0931d7ee5dac79beb0d883",
+      "bytes": 914303113,
+      "inode": 20153230579,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/91f18fb1cafffe861a3197f0d612b2e2d19efd8349846901bd60b7463e9af77e",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/91f18fb1cafffe861a3197f0d612b2e2d19efd8349846901bd60b7463e9af77e",
+      "bytes": 211523685,
+      "inode": 20153222366,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/94ef9fce2eff8fbe6d512e4fe9db194964b234df",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/94ef9fce2eff8fbe6d512e4fe9db194964b234df",
+      "bytes": 1686,
+      "inode": 20153222359,
+      "device": 56,
+      "sha256": "91d87db86f9c905015c40c7048e194d015081bd680cfebcde2a82ec82b6b7f0d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/96ef0daa385ff47fb5be350bac63cdfd1aa135642a6d42f1ec578c77fc5b5e78",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/96ef0daa385ff47fb5be350bac63cdfd1aa135642a6d42f1ec578c77fc5b5e78",
+      "bytes": 3236136,
+      "inode": 20153230573,
+      "device": 56,
+      "sha256": "96ef0daa385ff47fb5be350bac63cdfd1aa135642a6d42f1ec578c77fc5b5e78",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/973b3aa1d17e440317d9cd6f2b6f0f3de36c27cddf786d54e694bc7bbd6e05db",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/973b3aa1d17e440317d9cd6f2b6f0f3de36c27cddf786d54e694bc7bbd6e05db",
+      "bytes": 42013603,
+      "inode": 20153230587,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/9c289a027f74348599ad4ec75cf7d6a802a065d85e245cb7f4fd03088d95d20f",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/9c289a027f74348599ad4ec75cf7d6a802a065d85e245cb7f4fd03088d95d20f",
+      "bytes": 69402,
+      "inode": 20153230574,
+      "device": 56,
+      "sha256": "9c289a027f74348599ad4ec75cf7d6a802a065d85e245cb7f4fd03088d95d20f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/9c93be3d949cb6a9b0cd0eb93408b171533354d43eef9d6cf4877b0a0a54656c",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/9c93be3d949cb6a9b0cd0eb93408b171533354d43eef9d6cf4877b0a0a54656c",
+      "bytes": 211523685,
+      "inode": 20153222365,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/9d667b9124e57a5906a3fd3ce45934a2df0e475bc57395dd63bb76e3641491b3",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/9d667b9124e57a5906a3fd3ce45934a2df0e475bc57395dd63bb76e3641491b3",
+      "bytes": 232011477,
+      "inode": 20153222361,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/a16b386a2b7d357a088c7568b97f6ab0954a508465b1a5d9d0faf29e9e8552fd",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/a16b386a2b7d357a088c7568b97f6ab0954a508465b1a5d9d0faf29e9e8552fd",
+      "bytes": 1404229303,
+      "inode": 20153230569,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/a47bc0716ce0c40ffdbf1b093952e07182d47bf645123852df05c8c91faa68c2",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/a47bc0716ce0c40ffdbf1b093952e07182d47bf645123852df05c8c91faa68c2",
+      "bytes": 216575985,
+      "inode": 20153222355,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "bytes": 1519,
+      "inode": 20153222360,
+      "device": 56,
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/afcc6748905b041202ea44c8ef9b79905705f6695a6ca8da88c01b96382ea687",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/afcc6748905b041202ea44c8ef9b79905705f6695a6ca8da88c01b96382ea687",
+      "bytes": 48133833,
+      "inode": 20153230590,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/b0ddbae714e28148b8c3c4713779e47c2be0ceee",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/b0ddbae714e28148b8c3c4713779e47c2be0ceee",
+      "bytes": 10950,
+      "inode": 20153230571,
+      "device": 56,
+      "sha256": "effa9e866f7c2bd3e5bb518600f95a5fd780a2dcf72c3cdb1e0caf5c93051e17",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/bcf3e482a5236a21731af571c66bd7d0274f5ddf0b6974825fa69333c77f3144",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/bcf3e482a5236a21731af571c66bd7d0274f5ddf0b6974825fa69333c77f3144",
+      "bytes": 232011477,
+      "inode": 20153222364,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/bec9b5d07b4e91a54eb6a8d0411d43bd4ae264ce1cdbc651b30fec10e2b9bd4b",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/bec9b5d07b4e91a54eb6a8d0411d43bd4ae264ce1cdbc651b30fec10e2b9bd4b",
+      "bytes": 1180,
+      "inode": 20153230586,
+      "device": 56,
+      "sha256": "bec9b5d07b4e91a54eb6a8d0411d43bd4ae264ce1cdbc651b30fec10e2b9bd4b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/c4fa34cf78516e5893f7fbecb47056e358478a2003fa18d518c3412ecf23ddb2",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/c4fa34cf78516e5893f7fbecb47056e358478a2003fa18d518c3412ecf23ddb2",
+      "bytes": 7397237230,
+      "inode": 20153230570,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/c9999b373850a7618fc416a46d0f6d1ea112b839",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/c9999b373850a7618fc416a46d0f6d1ea112b839",
+      "bytes": 186330,
+      "inode": 20153230568,
+      "device": 56,
+      "sha256": "e3f65e94282d0b96fb2141e9f0962a0d76c624fb16bbde252524cd878f1265d6",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/d052005f97db9e372aa9ffeb8c63804b0b5d08e89e0fc59f43b16b5a5bf2cd6d",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/d052005f97db9e372aa9ffeb8c63804b0b5d08e89e0fc59f43b16b5a5bf2cd6d",
+      "bytes": 2161089,
+      "inode": 20153230575,
+      "device": 56,
+      "sha256": "d052005f97db9e372aa9ffeb8c63804b0b5d08e89e0fc59f43b16b5a5bf2cd6d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/d85dce83d2c27a92bb94bb51dc1f55a04fcaa328c359d23eccf648e296c16493",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/d85dce83d2c27a92bb94bb51dc1f55a04fcaa328c359d23eccf648e296c16493",
+      "bytes": 79811,
+      "inode": 20153238785,
+      "device": 56,
+      "sha256": "d85dce83d2c27a92bb94bb51dc1f55a04fcaa328c359d23eccf648e296c16493",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/ea01c6654d94a8a1537f3d44c112bbe7e7f5f6e6",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/ea01c6654d94a8a1537f3d44c112bbe7e7f5f6e6",
+      "bytes": 175380,
+      "inode": 20153230567,
+      "device": 56,
+      "sha256": "e3e6975099b19964ee085db3e1d1160365a27e275f4f2b3d37c8ef24cccf4ce9",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/ed1a7e624100b144f295108b0119313c261dc5e5",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/ed1a7e624100b144f295108b0119313c261dc5e5",
+      "bytes": 360137,
+      "inode": 20153230580,
+      "device": 56,
+      "sha256": "e9dbf1e3ebd8ec00bc557a611c73a4d3612d70fd1dc01c8e8cc596f817634f85",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/ed4d55bb3041fefc6f73b70694d6c8edc1020c0d07340be5cc651cae2c6a6ae3",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/ed4d55bb3041fefc6f73b70694d6c8edc1020c0d07340be5cc651cae2c6a6ae3",
+      "bytes": 247101031,
+      "inode": 20153230577,
+      "device": 56,
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/fa868fbb75c51fb59ae42ff30716054804074343",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/fa868fbb75c51fb59ae42ff30716054804074343",
+      "bytes": 262,
+      "inode": 20153230584,
+      "device": 56,
+      "sha256": "25445a41b5bbda0ed7e2e0845eaa5c96373705c5c738fe640c1ea70a07b4176c",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/blobs/fac88da1be6f00d36b72b88c9745c8ac35a94a7bd6ccf1fa3bab380faf8c2e0d",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/blobs/fac88da1be6f00d36b72b88c9745c8ac35a94a7bd6ccf1fa3bab380faf8c2e0d",
+      "bytes": 67470,
+      "inode": 20153238786,
+      "device": 56,
+      "sha256": "fac88da1be6f00d36b72b88c9745c8ac35a94a7bd6ccf1fa3bab380faf8c2e0d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/refs/main",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/refs/main",
+      "bytes": 40,
+      "inode": 20019170276,
+      "device": 56,
+      "sha256": "1f25c2fb80cd54eab2008fe0d974420291a4d7b1c42c31d15547987081323757",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/.gitattributes",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/.gitattributes",
+      "link": "../../blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/README.md",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/README.md",
+      "link": "../../blobs/22e22b7c605678aef06f6815fcf4d31e3c5c5c2f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_multitask_finetune/Humanoid.pth",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_multitask_finetune/Humanoid.pth",
+      "link": "../../../../../blobs/7ead3778b95516d8b91b7c5939674e45dd0ad10fcc22da60f9f57d204695f6ac",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_no_finetune/Humanoid.pth",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_no_finetune/Humanoid.pth",
+      "link": "../../../../../blobs/a47bc0716ce0c40ffdbf1b093952e07182d47bf645123852df05c8c91faa68c2",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_t2m_finetune/Humanoid.pth",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_t2m_finetune/Humanoid.pth",
+      "link": "../../../../../blobs/62577dd2d127888108224d50b7a566eca0fdb650553d8564e268f72a80a2da84",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40/args.json",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40/args.json",
+      "link": "../../../../../blobs/94ef9fce2eff8fbe6d512e4fe9db194964b234df",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40/model000300000.pt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40/model000300000.pt",
+      "link": "../../../../../blobs/3ca68ae54975946b3fe5c6cd64a6eafc439b5fc43c166bc9a98d1c43aeef6618",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40/opt000300000.pt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40/opt000300000.pt",
+      "link": "../../../../../blobs/425a90e861372e818be663857520fabe639afae5f235f1188d9a1237d0a1514d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/args.json",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/args.json",
+      "link": "../../../../../blobs/874d777414a94130fa4f04bc36e8548b677d58b0",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/eval_humanml_PreComHorRerAut_DifSte_10_ConLen_20_PreLen_40_000600343_gscale7.5_wo_mm.log",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/eval_humanml_PreComHorRerAut_DifSte_10_ConLen_20_PreLen_40_000600343_gscale7.5_wo_mm.log",
+      "link": "../../../../../blobs/79fcc786ad4be0765c5a43c7752c509d76a2efca",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/model000200000.pt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/model000200000.pt",
+      "link": "../../../../../blobs/9d667b9124e57a5906a3fd3ce45934a2df0e475bc57395dd63bb76e3641491b3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/model000600343.pt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/model000600343.pt",
+      "link": "../../../../../blobs/bcf3e482a5236a21731af571c66bd7d0274f5ddf0b6974825fa69333c77f3144",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/opt000200000.pt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/opt000200000.pt",
+      "link": "../../../../../blobs/9c93be3d949cb6a9b0cd0eb93408b171533354d43eef9d6cf4877b0a0a54656c",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/opt000600343.pt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40/opt000600343.pt",
+      "link": "../../../../../blobs/91f18fb1cafffe861a3197f0d612b2e2d19efd8349846901bd60b7463e9af77e",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/amass/amass_train_take6_upright.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/amass/amass_train_take6_upright.pkl",
+      "link": "../../../../blobs/37d88a2167ce6b27a1c3654ac18ca0b951716423719813ae7ebfa3a20989aebf",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/Mean.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/Mean.npy",
+      "link": "../../../../../blobs/26e136555dab04c94a129d446c26e6b9939cbf045fbf77bcf5462c1fb5a2001c",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/Std.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/Std.npy",
+      "link": "../../../../../blobs/6565a65ed9b31e23c328829a309e1c482be8b85fd23b43d65451a9b19a917f40",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/all.txt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/all.txt",
+      "link": "../../../../../blobs/715834f8f57825b4d081ac738e4e280c411568ce",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/new_joint_vecs/012314.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/new_joint_vecs/012314.npy",
+      "link": "../../../../../../blobs/6e6fc0204ea9e48abdf94f84e8be22b19a1f1e955c7b98e025b1d702f6fe96a0",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/new_joints/012314.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/new_joints/012314.npy",
+      "link": "../../../../../../blobs/739df5e2e025d21ae5ce01ea7e0a8d3038448a46e88865d95a638e6242ee8b6b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/test.txt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/test.txt",
+      "link": "../../../../../blobs/6e39ab19d3900f7475aa2b15efa62b2fbfebd323",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/texts.zip",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/texts.zip",
+      "link": "../../../../../blobs/58f4f19b5429fe137d7a2ea216099f4745f2be51fff001f2f90d6747eaf053d2",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/train.txt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/train.txt",
+      "link": "../../../../../blobs/ea01c6654d94a8a1537f3d44c112bbe7e7f5f6e6",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/train_val.txt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/train_val.txt",
+      "link": "../../../../../blobs/c9999b373850a7618fc416a46d0f6d1ea112b839",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/val.txt",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/dataset/HumanML3D/val.txt",
+      "link": "../../../../../blobs/b0ddbae714e28148b8c3c4713779e47c2be0ceee",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy",
+      "link": "../../../../blobs/a16b386a2b7d357a088c7568b97f6ab0954a508465b1a5d9d0faf29e9e8552fd",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy",
+      "link": "../../../../blobs/c4fa34cf78516e5893f7fbecb47056e358478a2003fa18d518c3412ecf23ddb2",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_copycat_occlusion_v3.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_copycat_occlusion_v3.pkl",
+      "link": "../../../../blobs/2c336550d452e5769bc12d199c285bb3717af651f3691ee18ac6b82f2de0a3d8",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_isaac_gender_betas.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_isaac_gender_betas.pkl",
+      "link": "../../../../blobs/96ef0daa385ff47fb5be350bac63cdfd1aa135642a6d42f1ec578c77fc5b5e78",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_isaac_gender_betas_unique.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_isaac_gender_betas_unique.pkl",
+      "link": "../../../../blobs/9c289a027f74348599ad4ec75cf7d6a802a065d85e245cb7f4fd03088d95d20f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_isaac_standing_upright_slim.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/sample_data/amass_isaac_standing_upright_slim.pkl",
+      "link": "../../../../blobs/d052005f97db9e372aa9ffeb8c63804b0b5d08e89e0fc59f43b16b5a5bf2cd6d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/SMPL_FEMALE.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/SMPL_FEMALE.pkl",
+      "link": "../../../../blobs/6d4a1791b6b94880397e1a3a4539b703a228d2150c57de7b288389a8115f4ef0",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/SMPL_MALE.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/SMPL_MALE.pkl",
+      "link": "../../../../blobs/ed4d55bb3041fefc6f73b70694d6c8edc1020c0d07340be5cc651cae2c6a6ae3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/SMPL_NEUTRAL.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/SMPL_NEUTRAL.pkl",
+      "link": "../../../../blobs/4924f235e63f7c5d5b690acedf736419c2edb846a2d69fc0956169615fa75688",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/basicmodel_f_lbs_10_207_0_v1.1.0.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/basicmodel_f_lbs_10_207_0_v1.1.0.pkl",
+      "link": "../../../../blobs/6d4a1791b6b94880397e1a3a4539b703a228d2150c57de7b288389a8115f4ef0",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/basicmodel_m_lbs_10_207_0_v1.1.0.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/basicmodel_m_lbs_10_207_0_v1.1.0.pkl",
+      "link": "../../../../blobs/ed4d55bb3041fefc6f73b70694d6c8edc1020c0d07340be5cc651cae2c6a6ae3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/smpl/basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl",
+      "link": "../../../../blobs/4924f235e63f7c5d5b690acedf736419c2edb846a2d69fc0956169615fa75688",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/CloSD.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/CloSD.pkl",
+      "link": "../../../../blobs/8d4dc33864f72514c56e2b61f6eef7d443bf6017ac0931d7ee5dac79beb0d883",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/CloSD_0_3.mp4",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/CloSD_0_3.mp4",
+      "link": "../../../../blobs/ed1a7e624100b144f295108b0119313c261dc5e5",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/config.yaml",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/config.yaml",
+      "link": "../../../../blobs/600da1347b4339f27c529ac5e46fb71e3050e1e6",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/eval.log",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd/eval.log",
+      "link": "../../../../blobs/10bcb167590ede83472c6b4bf28eb24c1adb1503",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/animation/E0003/00.mp4",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/animation/E0003/00.mp4",
+      "link": "../../../../../../../blobs/fa868fbb75c51fb59ae42ff30716054804074343",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/meta/mean.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/meta/mean.npy",
+      "link": "../../../../../../blobs/6b629215462b717a16ee13ebee5b87ee92aba91933946d9e6232d021acdcef13",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/meta/std.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/meta/std.npy",
+      "link": "../../../../../../blobs/bec9b5d07b4e91a54eb6a8d0411d43bd4ae264ce1cdbc651b30fec10e2b9bd4b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/model/latest.tar",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/Decomp_SP001_SM001_H512/model/latest.tar",
+      "link": "../../../../../../blobs/973b3aa1d17e440317d9cd6f2b6f0f3de36c27cddf786d54e694bc7bbd6e05db",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/length_est_bigru/meta/mean.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/length_est_bigru/meta/mean.npy",
+      "link": "../../../../../../blobs/0bdb5ba69a3a9e34d71990db15bc535ebc024c8d95ddb5574196f96058faa7d3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/length_est_bigru/meta/std.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/length_est_bigru/meta/std.npy",
+      "link": "../../../../../../blobs/6a5f7d60301c9465972fc225f8ad0ee8f957e7720431189123eb6d15873a9557",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/length_est_bigru/model/latest.tar",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/length_est_bigru/model/latest.tar",
+      "link": "../../../../../../blobs/afcc6748905b041202ea44c8ef9b79905705f6695a6ca8da88c01b96382ea687",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/text_mot_match/model/finest.tar",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluators/t2m/text_mot_match/model/finest.tar",
+      "link": "../../../../../../blobs/43e43d198f07b7e080749d1709326783d2bfb5810f56ed0c56c68951ee961d0d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/glove/our_vab_data.npy",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/glove/our_vab_data.npy",
+      "link": "../../../blobs/73ed9b73ee5bc5ab683661c132b9f98fe305672dffdf70ceeac1bc447543d668",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/glove/our_vab_idx.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/glove/our_vab_idx.pkl",
+      "link": "../../../blobs/d85dce83d2c27a92bb94bb51dc1f55a04fcaa328c359d23eccf648e296c16493",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/glove/our_vab_words.pkl",
+      "destination": "CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/glove/our_vab_words.pkl",
+      "link": "../../../blobs/fac88da1be6f00d36b72b88c9745c8ac35a94a7bd6ccf1fa3bab380faf8c2e0d",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-23-19-45-10-467209/log.txt",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-23-19-45-10-467209/log.txt",
+      "bytes": 6822,
+      "inode": 20153191796,
+      "device": 56,
+      "sha256": "466ad2a7e5236260d54bad6b80e99224f512b64bf188d6d6fb2f4cc885f21bfb",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-23-19-45-10-467209/progress.csv",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-23-19-45-10-467209/progress.csv",
+      "bytes": 3756,
+      "inode": 20153191797,
+      "device": 56,
+      "sha256": "24cc8e6f81b12d6fcb802b8884ce6a9fefab3fee85ddf84bf58a358abcb2974f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-23-23-52-24-412040/log.txt",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-23-23-52-24-412040/log.txt",
+      "bytes": 75815,
+      "inode": 19750488957,
+      "device": 56,
+      "sha256": "8979bcd136e76fc5963796b6233ce7b401bce4df6dc68de17853f6c56609d3dd",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-23-23-52-24-412040/progress.csv",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-23-23-52-24-412040/progress.csv",
+      "bytes": 44559,
+      "inode": 19750488958,
+      "device": 56,
+      "sha256": "9cf415efe178640d2b9e898a49c1adda791e1820fefa1a7039e992c5f0cd3a99",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-24-15-23-08-363588/log.txt",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-24-15-23-08-363588/log.txt",
+      "bytes": 367092,
+      "inode": 19616727681,
+      "device": 56,
+      "sha256": "6421dbdd06a3d77744fa6461ecc37e6d4b20c341eba71c05026a682d0ac32567",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-24-15-23-08-363588/progress.csv",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-24-15-23-08-363588/progress.csv",
+      "bytes": 218126,
+      "inode": 19616727682,
+      "device": 56,
+      "sha256": "6b9186d4f068f3cc7a6484d1577eb11ad36b311d3d9f5bc993c1dd4f2a45694e",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-24-17-38-19-415185/log.txt",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-24-17-38-19-415185/log.txt",
+      "bytes": 25399,
+      "inode": 19884797100,
+      "device": 56,
+      "sha256": "3cc5a602e19541aab675be5354c25435de2c1f07006f0ce0ad697d9fcf657da3",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-24-17-38-19-415185/progress.csv",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-24-17-38-19-415185/progress.csv",
+      "bytes": 15035,
+      "inode": 19884764222,
+      "device": 56,
+      "sha256": "3a82446c2bf85ebb36bbf0ce30b25801fc8b19b246b1deda744a335ee42906d7",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-24-21-43-57-741583/log.txt",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-24-21-43-57-741583/log.txt",
+      "bytes": 27226,
+      "inode": 20019338133,
+      "device": 56,
+      "sha256": "81caef64ce4f912f1d53cf6caaf831291b9ae5e5aa2eedbb9028d117139f0daf",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-24-21-43-57-741583/progress.csv",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-24-21-43-57-741583/progress.csv",
+      "bytes": 16148,
+      "inode": 20019338134,
+      "device": 56,
+      "sha256": "7f8b2d1a9f35b8d8dac635521ebe1014d69b1d3b88e38ac8e6fe0ea65b388b1f",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-25-02-02-06-625615/log.txt",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-25-02-02-06-625615/log.txt",
+      "bytes": 25399,
+      "inode": 20153303159,
+      "device": 56,
+      "sha256": "a29acee01b7942388333900d8f8801bebda7a1f0416784143a3a10e5f55533da",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/openai-2026-09-25-02-02-06-625615/progress.csv",
+      "destination": "CLoSD/reproduction/logs/training_logger/openai-2026-09-25-02-02-06-625615/progress.csv",
+      "bytes": 15089,
+      "inode": 20153303160,
+      "device": 56,
+      "sha256": "a2aa1e64f402cf90464470c8540dafe939708c30095f7d955887e6b13ad962ae",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/pip_before_closd.txt",
+      "destination": "CLoSD/reproduction/environment/pip_before_closd.txt",
+      "bytes": 794,
+      "inode": 20019218349,
+      "device": 56,
+      "sha256": "ef99ef9fa0b343e83bf81781ba7c3796c4aaa58cd087785ff64d1c0379063ce1",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "tmp/closd_requirements_base.txt",
+      "destination": "CLoSD/reproduction/environment/closd_requirements_base.txt",
+      "bytes": 3647,
+      "inode": 20019218350,
+      "device": 56,
+      "sha256": "b6b1e2fca352b3c86a35b83300d678e995ff783832c2e070f136b7487b1e781b",
+      "verified": "same filesystem rename; inode/size or link unchanged"
+    },
+    {
+      "source": "dip_train_4h.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_train_4h.slurm",
+      "sha256": "7f2dce199407459cae01b4468c9de3d9fb986e55c0f6ce4ddbb25fd0c5ab3533",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_train_smoke.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_train_smoke.slurm",
+      "sha256": "3329c9ef2e4283bea6cdd789945c8a6b84e5b02e273671c7d5015d0d1e28c307",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "closd_real_smoke.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/closd_real_smoke.slurm",
+      "sha256": "b17652e48e15ea162a3d3fe17bccfbc0dbacfe42b81431f80d90e8f073bec613",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_train_2h.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_train_2h.slurm",
+      "sha256": "c12e946e5bfd3765732ba717d7b3631b281d2c4b42d8df51c3dc2ed84af3a3e3",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_train_6h.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_train_6h.slurm",
+      "sha256": "11664822a96d244aa4614e394234cc01deaad1c29d6c8716e98ca6305e9ef9ac",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "closd_smoke.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/closd_smoke.slurm",
+      "sha256": "348afc65df4be112e0744fd71ab40648235fbc68733f212bac427b2ddf3449c7",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_eval_envtest.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_eval_envtest.slurm",
+      "sha256": "ae52d80a02f93d21dbbd86607d142c3121aed6c9d670e0a68f49d5fff379c3c9",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_eval_official.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_eval_official.slurm",
+      "sha256": "6a7cccb0765354c0275e148256220726a5c0fcc14986f9acd568199be048d271",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_eval_repro_300k.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_eval_repro_300k.slurm",
+      "sha256": "0328feb8abd4551494befa02d0fac0c388ce4f040b90a676ae3b3d2f6d2cac6e",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_train_12h.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_train_12h.slurm",
+      "sha256": "b6c8541155a0f7660f89519c1ade25b332c394265ea637380cc78a0d3a1e900b",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_train.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_train.slurm",
+      "sha256": "35bac62b11bcced73741e0d836e91b95f3b2b9745e918c5372daca69ead9986d",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "dip_eval_repro_600k.slurm",
+      "destination": "CLoSD/reproduction/history/scripts/dip_eval_repro_600k.slurm",
+      "sha256": "4e50074ac8381af592e8b9f8b900b17db2cc8e2b31e00f29d7fa3323a2170f53",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "closd_env.sh",
+      "destination": "CLoSD/reproduction/history/scripts/closd_env.sh",
+      "sha256": "8e7468faf84589594007ab37a03ddb738f0b2cc84ba0f1df08018dd376d78d42",
+      "verified": "identical archived copy before source removal"
+    },
+    {
+      "source": "note.txt",
+      "destination": "CLoSD/reproduction/history/note.txt",
+      "sha256": "5ec918801d0c1d87d38f47d9971295bcdbfd8eed99f6550ab5f5a949e74feb5e",
+      "verified": "identical archived copy before source removal"
+    }
+  ],
+  "updated_links": [
+    {
+      "path": "closd/diffusion_planner/save/DiP_no-target_10steps_context20_predict40",
+      "old_target": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40",
+      "new_target": "../../../.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_no-target_10steps_context20_predict40"
+    },
+    {
+      "path": "closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40",
+      "old_target": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40",
+      "new_target": "../../../.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/dip/DiP_multi-target_10steps_context20_predict40"
+    },
+    {
+      "path": "closd/diffusion_planner/saved_motions/closd",
+      "old_target": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd",
+      "new_target": "../../../.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/evaluation/closd"
+    },
+    {
+      "path": "output/CLoSD/CLoSD_no_finetune",
+      "old_target": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_no_finetune",
+      "new_target": "../../.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_no_finetune"
+    },
+    {
+      "path": "output/CLoSD/CLoSD_t2m_finetune",
+      "old_target": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_t2m_finetune",
+      "new_target": "../../.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_t2m_finetune"
+    },
+    {
+      "path": "output/CLoSD/CLoSD_multitask_finetune",
+      "old_target": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_multitask_finetune",
+      "new_target": "../../.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/checkpoints/closd/CLoSD_multitask_finetune"
+    }
+  ],
+  "unclassified_tmp": "Generic pymp-/torch-shm directories, installer and debug-cli logs stay in shared tmp: provenance not established."
+}

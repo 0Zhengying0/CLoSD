@@ -1,0 +1,36 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Using /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions as PyTorch extensions root...
+Creating extension directory /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions/gymtorch...
+Emitting ninja build file /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions/gymtorch/build.ninja...
+Building extension module gymtorch...
+Using envvar MAX_JOBS (4) as the number of workers...
+Loading extension module gymtorch...
+Using /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions as PyTorch extensions root...
+Emitting ninja build file /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions/gymtorch/build.ninja...
+Building extension module gymtorch...
+Using envvar MAX_JOBS (4) as the number of workers...
+Loading extension module gymtorch...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/run.py", line 37, in <module>
+    from closd.utils.parse_task import parse_task
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/utils/parse_task.py", line 29, in <module>
+    from closd.env.tasks.humanoid import Humanoid
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/env/tasks/humanoid.py", line 42, in <module>
+    from closd.utils.smpllib.smpllib.smpl_local_robot import SMPL_Robot
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/utils/smpllib/smpllib/smpl_local_robot.py", line 17, in <module>
+    from closd.utils.smpllib.khrylib.mocap.skeleton_local import Skeleton
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/utils/smpllib/khrylib/mocap/skeleton_local.py", line 8, in <module>
+    from closd.utils.smpllib.khrylib.utils.transformation import euler_matrix
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/utils/smpllib/khrylib/utils/__init__.py", line 4, in <module>
+    from closd.utils.smpllib.khrylib.utils.tools import *
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/utils/smpllib/khrylib/utils/tools.py", line 9, in <module>
+    import cv2
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/cv2/__init__.py", line 181, in <module>
+    bootstrap()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/cv2/__init__.py", line 153, in bootstrap
+    native_module = importlib.import_module("cv2")
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+ImportError: libgthread-2.0.so.0: cannot open shared object file: No such file or directory

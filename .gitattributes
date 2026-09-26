@@ -1,0 +1,3 @@
+# Preserve raw historical evidence, including terminal CRs and trailing spaces.
+reproduction/logs/** -text -whitespace
+reproduction/history/** -text -whitespace

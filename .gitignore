@@ -144,3 +144,14 @@ closd/diffusion_planner/saved_motions
 closd/diffusion_planner/save
 closd/blender/assets/smpl_humanoid
 closd/blender/results
+# Local reproduction resources and runtime outputs
+/.local/
+/runs/
+/reproduction/release-assets/
+# Historical experiment evidence is intentionally versioned.
+!/scripts/hpc/jobs.json
+!/reproduction/**/*.json
+!/reproduction/**/*.log
+!/reproduction/logs/wandb/
+!/reproduction/logs/wandb/**/
+!/reproduction/logs/wandb/**

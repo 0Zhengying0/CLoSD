@@ -1,0 +1,30 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id DiP_multi-target_smoke.
+wandb: Tracking run with wandb version 0.17.4
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 2055.02it/s]
+  0%|          | 0/361 [00:00<?, ?it/s]  0%|          | 1/361 [00:05<31:52,  5.31s/it]  1%|          | 2/361 [00:05<13:42,  2.29s/it]  1%|          | 3/361 [00:05<07:52,  1.32s/it]  1%|          | 4/361 [00:05<05:06,  1.17it/s]  1%|▏         | 5/361 [00:05<03:34,  1.66it/s]  2%|▏         | 6/361 [00:06<02:38,  2.24it/s]  2%|▏         | 7/361 [00:06<02:04,  2.84it/s]  2%|▏         | 8/361 [00:06<01:40,  3.50it/s]  2%|▏         | 9/361 [00:06<01:26,  4.08it/s]  3%|▎         | 10/361 [00:06<01:16,  4.61it/s]  3%|▎         | 10/361 [00:07<04:25,  1.32it/s]
+wandb: - 0.000 MB of 0.000 MB uploadedwandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:  grad_norm ▂█▃▇▂▄▆▁▂▅▄
+wandb:       loss ▂▇█▅▂▄▄▁▃▁▁
+wandb: param_norm ▁▁▂▃▄▅▆▆▇▇█
+wandb:    rot_mse ▃▆█▄▃▃▂▁▃▂▁
+wandb: target_loc ▁██▆▂▄▅▁▃▁▂
+wandb: 
+wandb: Run summary:
+wandb:  grad_norm 17.14318
+wandb:       loss 1.90468
+wandb: param_norm 453.5866
+wandb:    rot_mse 1.23403
+wandb: target_loc 0.67065
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke
+wandb: Find logs at: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/wandb/wandb/offline-run-20260923_194446-DiP_multi-target_smoke/logs
+wandb: WARNING The new W&B backend becomes opt-out in version 0.18.0; try it out with `wandb.require("core")`! See https://wandb.me/wandb-core for more information.
+INFO:    Terminating squashfuse_ll after timeout
+INFO:    Timeouts can be caused by a running background process

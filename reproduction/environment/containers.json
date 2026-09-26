@@ -1,0 +1,54 @@
+[
+  {
+    "name": "closd_cuda117_ubuntu20.sif",
+    "bytes": 1729871872,
+    "sha256": "234f530cc9e76fad7c3ef3a7355bd94c77153567073276631070171d401d9f72",
+    "inspection": {
+      "data": {
+        "attributes": {
+          "labels": {
+            "com.nvidia.cudnn.version": "8.5.0.96",
+            "maintainer": "NVIDIA CORPORATION <cudatools@nvidia.com>",
+            "org.label-schema.build-arch": "amd64",
+            "org.label-schema.build-date": "Wednesday_23_September_2026_12:7:29_CEST",
+            "org.label-schema.schema-version": "1.0",
+            "org.label-schema.usage.apptainer.version": "1.5.3-3.el8",
+            "org.label-schema.usage.singularity.deffile.bootstrap": "docker",
+            "org.label-schema.usage.singularity.deffile.from": "nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04",
+            "org.opencontainers.image.base.digest": "sha256:1433088e22d58d19222adbfd05b81d751d5a9f6098e39ee6c9b537709d78e362",
+            "org.opencontainers.image.base.name": "docker.io/nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04",
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "20.04"
+          }
+        }
+      },
+      "type": "container"
+    }
+  },
+  {
+    "name": "closd_cuda121_ubuntu20_devel.sif",
+    "bytes": 5405945856,
+    "sha256": "361292a580d1aa3468fd04b1e775821564dcd45750d942b124276ea29aa33200",
+    "inspection": {
+      "data": {
+        "attributes": {
+          "labels": {
+            "com.nvidia.cudnn.version": "8.9.0.131",
+            "maintainer": "NVIDIA CORPORATION <cudatools@nvidia.com>",
+            "org.label-schema.build-arch": "amd64",
+            "org.label-schema.build-date": "Wednesday_23_September_2026_12:26:27_CEST",
+            "org.label-schema.schema-version": "1.0",
+            "org.label-schema.usage.apptainer.version": "1.5.3-3.el8",
+            "org.label-schema.usage.singularity.deffile.bootstrap": "docker",
+            "org.label-schema.usage.singularity.deffile.from": "nvidia/cuda:12.1.1-cudnn8-devel-ubuntu20.04",
+            "org.opencontainers.image.base.digest": "sha256:db71d4ff90d59028b6d364df7400ea65601d673b96a49cf81e7cda85cf7cbc31",
+            "org.opencontainers.image.base.name": "docker.io/nvidia/cuda:12.1.1-cudnn8-devel-ubuntu20.04",
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "20.04"
+          }
+        }
+      },
+      "type": "container"
+    }
+  }
+]

@@ -1,0 +1,931 @@
+Logging to /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/tmp/openai-2026-09-24-21-43-57-741583
+loading model from checkpoint: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/DiP_multi-target_repro_seed10_short/model000160000.pt...
+loading optimizer state from checkpoint: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/DiP_multi-target_repro_seed10_short/opt000160000.pt
+----------------------------
+| grad_norm     | 0.299    |
+| loss          | 0.0719   |
+| loss_q0       | 0.0271   |
+| loss_q1       | 0.0346   |
+| loss_q2       | 0.0567   |
+| loss_q3       | 0.2      |
+| param_norm    | 474      |
+| rot_mse       | 0.0699   |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0327   |
+| rot_mse_q2    | 0.0547   |
+| rot_mse_q3    | 0.198    |
+| samples       | 1.03e+07 |
+| step          | 1.61e+05 |
+| target_loc    | 0.00207  |
+| target_loc_q0 | 0.00178  |
+| target_loc_q1 | 0.00184  |
+| target_loc_q2 | 0.00205  |
+| target_loc_q3 | 0.00274  |
+----------------------------
+----------------------------
+| grad_norm     | 0.306    |
+| loss          | 0.0709   |
+| loss_q0       | 0.027    |
+| loss_q1       | 0.0342   |
+| loss_q2       | 0.0559   |
+| loss_q3       | 0.197    |
+| param_norm    | 474      |
+| rot_mse       | 0.0689   |
+| rot_mse_q0    | 0.0252   |
+| rot_mse_q1    | 0.0325   |
+| rot_mse_q2    | 0.0539   |
+| rot_mse_q3    | 0.194    |
+| samples       | 1.04e+07 |
+| step          | 1.62e+05 |
+| target_loc    | 0.00199  |
+| target_loc_q0 | 0.00173  |
+| target_loc_q1 | 0.00174  |
+| target_loc_q2 | 0.00199  |
+| target_loc_q3 | 0.00262  |
+----------------------------
+----------------------------
+| grad_norm     | 0.333    |
+| loss          | 0.0717   |
+| loss_q0       | 0.0275   |
+| loss_q1       | 0.0343   |
+| loss_q2       | 0.057    |
+| loss_q3       | 0.195    |
+| param_norm    | 474      |
+| rot_mse       | 0.0696   |
+| rot_mse_q0    | 0.0256   |
+| rot_mse_q1    | 0.0325   |
+| rot_mse_q2    | 0.0549   |
+| rot_mse_q3    | 0.193    |
+| samples       | 1.04e+07 |
+| step          | 1.63e+05 |
+| target_loc    | 0.00212  |
+| target_loc_q0 | 0.0019   |
+| target_loc_q1 | 0.00186  |
+| target_loc_q2 | 0.00212  |
+| target_loc_q3 | 0.00271  |
+----------------------------
+----------------------------
+| grad_norm     | 0.315    |
+| loss          | 0.0702   |
+| loss_q0       | 0.027    |
+| loss_q1       | 0.0352   |
+| loss_q2       | 0.0559   |
+| loss_q3       | 0.192    |
+| param_norm    | 474      |
+| rot_mse       | 0.0682   |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0333   |
+| rot_mse_q2    | 0.0538   |
+| rot_mse_q3    | 0.189    |
+| samples       | 1.05e+07 |
+| step          | 1.64e+05 |
+| target_loc    | 0.00204  |
+| target_loc_q0 | 0.00175  |
+| target_loc_q1 | 0.00191  |
+| target_loc_q2 | 0.00205  |
+| target_loc_q3 | 0.00258  |
+----------------------------
+----------------------------
+| grad_norm     | 0.326    |
+| loss          | 0.0722   |
+| loss_q0       | 0.0278   |
+| loss_q1       | 0.035    |
+| loss_q2       | 0.0563   |
+| loss_q3       | 0.199    |
+| param_norm    | 475      |
+| rot_mse       | 0.07     |
+| rot_mse_q0    | 0.0257   |
+| rot_mse_q1    | 0.0331   |
+| rot_mse_q2    | 0.0541   |
+| rot_mse_q3    | 0.196    |
+| samples       | 1.06e+07 |
+| step          | 1.65e+05 |
+| target_loc    | 0.00225  |
+| target_loc_q0 | 0.00208  |
+| target_loc_q1 | 0.0019   |
+| target_loc_q2 | 0.00216  |
+| target_loc_q3 | 0.00298  |
+----------------------------
+----------------------------
+| grad_norm     | 0.295    |
+| loss          | 0.0707   |
+| loss_q0       | 0.0269   |
+| loss_q1       | 0.0345   |
+| loss_q2       | 0.0557   |
+| loss_q3       | 0.193    |
+| param_norm    | 475      |
+| rot_mse       | 0.0688   |
+| rot_mse_q0    | 0.0252   |
+| rot_mse_q1    | 0.0329   |
+| rot_mse_q2    | 0.0539   |
+| rot_mse_q3    | 0.191    |
+| samples       | 1.06e+07 |
+| step          | 1.66e+05 |
+| target_loc    | 0.00189  |
+| target_loc_q0 | 0.00162  |
+| target_loc_q1 | 0.00164  |
+| target_loc_q2 | 0.00186  |
+| target_loc_q3 | 0.00256  |
+----------------------------
+----------------------------
+| grad_norm     | 0.323    |
+| loss          | 0.0712   |
+| loss_q0       | 0.0272   |
+| loss_q1       | 0.0342   |
+| loss_q2       | 0.0564   |
+| loss_q3       | 0.196    |
+| param_norm    | 475      |
+| rot_mse       | 0.0692   |
+| rot_mse_q0    | 0.0254   |
+| rot_mse_q1    | 0.0324   |
+| rot_mse_q2    | 0.0544   |
+| rot_mse_q3    | 0.193    |
+| samples       | 1.07e+07 |
+| step          | 1.67e+05 |
+| target_loc    | 0.00206  |
+| target_loc_q0 | 0.00179  |
+| target_loc_q1 | 0.00181  |
+| target_loc_q2 | 0.00201  |
+| target_loc_q3 | 0.00277  |
+----------------------------
+----------------------------
+| grad_norm     | 0.316    |
+| loss          | 0.0713   |
+| loss_q0       | 0.0274   |
+| loss_q1       | 0.0343   |
+| loss_q2       | 0.0565   |
+| loss_q3       | 0.195    |
+| param_norm    | 475      |
+| rot_mse       | 0.0691   |
+| rot_mse_q0    | 0.0256   |
+| rot_mse_q1    | 0.0325   |
+| rot_mse_q2    | 0.0544   |
+| rot_mse_q3    | 0.192    |
+| samples       | 1.08e+07 |
+| step          | 1.68e+05 |
+| target_loc    | 0.00212  |
+| target_loc_q0 | 0.00183  |
+| target_loc_q1 | 0.00182  |
+| target_loc_q2 | 0.00205  |
+| target_loc_q3 | 0.00297  |
+----------------------------
+----------------------------
+| grad_norm     | 0.317    |
+| loss          | 0.0701   |
+| loss_q0       | 0.0274   |
+| loss_q1       | 0.0357   |
+| loss_q2       | 0.0564   |
+| loss_q3       | 0.189    |
+| param_norm    | 475      |
+| rot_mse       | 0.0679   |
+| rot_mse_q0    | 0.0254   |
+| rot_mse_q1    | 0.0336   |
+| rot_mse_q2    | 0.0543   |
+| rot_mse_q3    | 0.186    |
+| samples       | 1.08e+07 |
+| step          | 1.69e+05 |
+| target_loc    | 0.00218  |
+| target_loc_q0 | 0.00197  |
+| target_loc_q1 | 0.00209  |
+| target_loc_q2 | 0.00212  |
+| target_loc_q3 | 0.00268  |
+----------------------------
+----------------------------
+| grad_norm     | 0.302    |
+| loss          | 0.0708   |
+| loss_q0       | 0.0269   |
+| loss_q1       | 0.0346   |
+| loss_q2       | 0.0561   |
+| loss_q3       | 0.195    |
+| param_norm    | 475      |
+| rot_mse       | 0.0688   |
+| rot_mse_q0    | 0.0252   |
+| rot_mse_q1    | 0.0328   |
+| rot_mse_q2    | 0.0541   |
+| rot_mse_q3    | 0.193    |
+| samples       | 1.09e+07 |
+| step          | 1.7e+05  |
+| target_loc    | 0.002    |
+| target_loc_q0 | 0.00171  |
+| target_loc_q1 | 0.00182  |
+| target_loc_q2 | 0.00194  |
+| target_loc_q3 | 0.00269  |
+----------------------------
+saving model...
+----------------------------
+| grad_norm     | 0.3      |
+| loss          | 0.0705   |
+| loss_q0       | 0.0273   |
+| loss_q1       | 0.0349   |
+| loss_q2       | 0.0563   |
+| loss_q3       | 0.191    |
+| param_norm    | 475      |
+| rot_mse       | 0.0685   |
+| rot_mse_q0    | 0.0255   |
+| rot_mse_q1    | 0.033    |
+| rot_mse_q2    | 0.0543   |
+| rot_mse_q3    | 0.189    |
+| samples       | 1.09e+07 |
+| step          | 1.71e+05 |
+| target_loc    | 0.00204  |
+| target_loc_q0 | 0.00177  |
+| target_loc_q1 | 0.0019   |
+| target_loc_q2 | 0.00203  |
+| target_loc_q3 | 0.00257  |
+----------------------------
+----------------------------
+| grad_norm     | 0.303    |
+| loss          | 0.07     |
+| loss_q0       | 0.0273   |
+| loss_q1       | 0.034    |
+| loss_q2       | 0.0559   |
+| loss_q3       | 0.192    |
+| param_norm    | 475      |
+| rot_mse       | 0.068    |
+| rot_mse_q0    | 0.0256   |
+| rot_mse_q1    | 0.0322   |
+| rot_mse_q2    | 0.0539   |
+| rot_mse_q3    | 0.189    |
+| samples       | 1.1e+07  |
+| step          | 1.72e+05 |
+| target_loc    | 0.00197  |
+| target_loc_q0 | 0.0017   |
+| target_loc_q1 | 0.00178  |
+| target_loc_q2 | 0.00196  |
+| target_loc_q3 | 0.00257  |
+----------------------------
+----------------------------
+| grad_norm     | 0.312    |
+| loss          | 0.0701   |
+| loss_q0       | 0.0279   |
+| loss_q1       | 0.0349   |
+| loss_q2       | 0.0557   |
+| loss_q3       | 0.19     |
+| param_norm    | 475      |
+| rot_mse       | 0.0679   |
+| rot_mse_q0    | 0.0259   |
+| rot_mse_q1    | 0.0329   |
+| rot_mse_q2    | 0.0536   |
+| rot_mse_q3    | 0.187    |
+| samples       | 1.11e+07 |
+| step          | 1.73e+05 |
+| target_loc    | 0.00219  |
+| target_loc_q0 | 0.00199  |
+| target_loc_q1 | 0.002    |
+| target_loc_q2 | 0.00201  |
+| target_loc_q3 | 0.00294  |
+----------------------------
+----------------------------
+| grad_norm     | 0.293    |
+| loss          | 0.0701   |
+| loss_q0       | 0.0273   |
+| loss_q1       | 0.0337   |
+| loss_q2       | 0.0553   |
+| loss_q3       | 0.193    |
+| param_norm    | 475      |
+| rot_mse       | 0.0681   |
+| rot_mse_q0    | 0.0255   |
+| rot_mse_q1    | 0.032    |
+| rot_mse_q2    | 0.0534   |
+| rot_mse_q3    | 0.19     |
+| samples       | 1.11e+07 |
+| step          | 1.74e+05 |
+| target_loc    | 0.00193  |
+| target_loc_q0 | 0.00173  |
+| target_loc_q1 | 0.00163  |
+| target_loc_q2 | 0.00191  |
+| target_loc_q3 | 0.00259  |
+----------------------------
+----------------------------
+| grad_norm     | 0.306    |
+| loss          | 0.0707   |
+| loss_q0       | 0.027    |
+| loss_q1       | 0.0347   |
+| loss_q2       | 0.0555   |
+| loss_q3       | 0.196    |
+| param_norm    | 476      |
+| rot_mse       | 0.0686   |
+| rot_mse_q0    | 0.0252   |
+| rot_mse_q1    | 0.0328   |
+| rot_mse_q2    | 0.0534   |
+| rot_mse_q3    | 0.193    |
+| samples       | 1.12e+07 |
+| step          | 1.75e+05 |
+| target_loc    | 0.00206  |
+| target_loc_q0 | 0.00177  |
+| target_loc_q1 | 0.00186  |
+| target_loc_q2 | 0.00204  |
+| target_loc_q3 | 0.0027   |
+----------------------------
+----------------------------
+| grad_norm     | 0.316    |
+| loss          | 0.0707   |
+| loss_q0       | 0.0271   |
+| loss_q1       | 0.0339   |
+| loss_q2       | 0.0566   |
+| loss_q3       | 0.193    |
+| param_norm    | 476      |
+| rot_mse       | 0.0686   |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0321   |
+| rot_mse_q2    | 0.0545   |
+| rot_mse_q3    | 0.19     |
+| samples       | 1.13e+07 |
+| step          | 1.76e+05 |
+| target_loc    | 0.00208  |
+| target_loc_q0 | 0.00181  |
+| target_loc_q1 | 0.00178  |
+| target_loc_q2 | 0.00211  |
+| target_loc_q3 | 0.00271  |
+----------------------------
+----------------------------
+| grad_norm     | 0.306    |
+| loss          | 0.0705   |
+| loss_q0       | 0.0272   |
+| loss_q1       | 0.0338   |
+| loss_q2       | 0.055    |
+| loss_q3       | 0.196    |
+| param_norm    | 476      |
+| rot_mse       | 0.0685   |
+| rot_mse_q0    | 0.0255   |
+| rot_mse_q1    | 0.0321   |
+| rot_mse_q2    | 0.0531   |
+| rot_mse_q3    | 0.193    |
+| samples       | 1.13e+07 |
+| step          | 1.77e+05 |
+| target_loc    | 0.00199  |
+| target_loc_q0 | 0.00172  |
+| target_loc_q1 | 0.00176  |
+| target_loc_q2 | 0.00191  |
+| target_loc_q3 | 0.00275  |
+----------------------------
+----------------------------
+| grad_norm     | 0.304    |
+| loss          | 0.0692   |
+| loss_q0       | 0.0267   |
+| loss_q1       | 0.0348   |
+| loss_q2       | 0.056    |
+| loss_q3       | 0.188    |
+| param_norm    | 476      |
+| rot_mse       | 0.0672   |
+| rot_mse_q0    | 0.025    |
+| rot_mse_q1    | 0.0329   |
+| rot_mse_q2    | 0.0539   |
+| rot_mse_q3    | 0.185    |
+| samples       | 1.14e+07 |
+| step          | 1.78e+05 |
+| target_loc    | 0.00202  |
+| target_loc_q0 | 0.0017   |
+| target_loc_q1 | 0.00186  |
+| target_loc_q2 | 0.00206  |
+| target_loc_q3 | 0.0026   |
+----------------------------
+----------------------------
+| grad_norm     | 0.308    |
+| loss          | 0.0697   |
+| loss_q0       | 0.0274   |
+| loss_q1       | 0.0341   |
+| loss_q2       | 0.056    |
+| loss_q3       | 0.189    |
+| param_norm    | 476      |
+| rot_mse       | 0.0676   |
+| rot_mse_q0    | 0.0254   |
+| rot_mse_q1    | 0.0323   |
+| rot_mse_q2    | 0.0538   |
+| rot_mse_q3    | 0.187    |
+| samples       | 1.15e+07 |
+| step          | 1.79e+05 |
+| target_loc    | 0.00211  |
+| target_loc_q0 | 0.00196  |
+| target_loc_q1 | 0.00181  |
+| target_loc_q2 | 0.0022   |
+| target_loc_q3 | 0.00249  |
+----------------------------
+----------------------------
+| grad_norm     | 0.289    |
+| loss          | 0.0696   |
+| loss_q0       | 0.0272   |
+| loss_q1       | 0.0338   |
+| loss_q2       | 0.0556   |
+| loss_q3       | 0.19     |
+| param_norm    | 476      |
+| rot_mse       | 0.0677   |
+| rot_mse_q0    | 0.0256   |
+| rot_mse_q1    | 0.0321   |
+| rot_mse_q2    | 0.0537   |
+| rot_mse_q3    | 0.187    |
+| samples       | 1.15e+07 |
+| step          | 1.8e+05  |
+| target_loc    | 0.00195  |
+| target_loc_q0 | 0.00168  |
+| target_loc_q1 | 0.00172  |
+| target_loc_q2 | 0.0019   |
+| target_loc_q3 | 0.00269  |
+----------------------------
+saving model...
+----------------------------
+| grad_norm     | 0.309    |
+| loss          | 0.0702   |
+| loss_q0       | 0.0269   |
+| loss_q1       | 0.0348   |
+| loss_q2       | 0.055    |
+| loss_q3       | 0.192    |
+| param_norm    | 476      |
+| rot_mse       | 0.0682   |
+| rot_mse_q0    | 0.0251   |
+| rot_mse_q1    | 0.033    |
+| rot_mse_q2    | 0.0531   |
+| rot_mse_q3    | 0.189    |
+| samples       | 1.16e+07 |
+| step          | 1.81e+05 |
+| target_loc    | 0.00197  |
+| target_loc_q0 | 0.00179  |
+| target_loc_q1 | 0.0018   |
+| target_loc_q2 | 0.00185  |
+| target_loc_q3 | 0.0026   |
+----------------------------
+----------------------------
+| grad_norm     | 0.307    |
+| loss          | 0.0699   |
+| loss_q0       | 0.0267   |
+| loss_q1       | 0.0338   |
+| loss_q2       | 0.0561   |
+| loss_q3       | 0.192    |
+| param_norm    | 476      |
+| rot_mse       | 0.0679   |
+| rot_mse_q0    | 0.025    |
+| rot_mse_q1    | 0.032    |
+| rot_mse_q2    | 0.0541   |
+| rot_mse_q3    | 0.19     |
+| samples       | 1.16e+07 |
+| step          | 1.82e+05 |
+| target_loc    | 0.00201  |
+| target_loc_q0 | 0.00177  |
+| target_loc_q1 | 0.00183  |
+| target_loc_q2 | 0.002    |
+| target_loc_q3 | 0.00261  |
+----------------------------
+----------------------------
+| grad_norm     | 0.293    |
+| loss          | 0.0693   |
+| loss_q0       | 0.0271   |
+| loss_q1       | 0.0351   |
+| loss_q2       | 0.0549   |
+| loss_q3       | 0.189    |
+| param_norm    | 476      |
+| rot_mse       | 0.0673   |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0332   |
+| rot_mse_q2    | 0.053    |
+| rot_mse_q3    | 0.186    |
+| samples       | 1.17e+07 |
+| step          | 1.83e+05 |
+| target_loc    | 0.00203  |
+| target_loc_q0 | 0.0018   |
+| target_loc_q1 | 0.0019   |
+| target_loc_q2 | 0.00197  |
+| target_loc_q3 | 0.00259  |
+----------------------------
+----------------------------
+| grad_norm     | 0.309    |
+| loss          | 0.0706   |
+| loss_q0       | 0.0272   |
+| loss_q1       | 0.0348   |
+| loss_q2       | 0.0555   |
+| loss_q3       | 0.191    |
+| param_norm    | 477      |
+| rot_mse       | 0.0686   |
+| rot_mse_q0    | 0.0255   |
+| rot_mse_q1    | 0.033    |
+| rot_mse_q2    | 0.0534   |
+| rot_mse_q3    | 0.189    |
+| samples       | 1.18e+07 |
+| step          | 1.84e+05 |
+| target_loc    | 0.00205  |
+| target_loc_q0 | 0.00176  |
+| target_loc_q1 | 0.00181  |
+| target_loc_q2 | 0.00206  |
+| target_loc_q3 | 0.0027   |
+----------------------------
+----------------------------
+| grad_norm     | 0.308    |
+| loss          | 0.0695   |
+| loss_q0       | 0.027    |
+| loss_q1       | 0.0346   |
+| loss_q2       | 0.0558   |
+| loss_q3       | 0.187    |
+| param_norm    | 477      |
+| rot_mse       | 0.0675   |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0328   |
+| rot_mse_q2    | 0.0538   |
+| rot_mse_q3    | 0.185    |
+| samples       | 1.18e+07 |
+| step          | 1.85e+05 |
+| target_loc    | 0.002    |
+| target_loc_q0 | 0.00174  |
+| target_loc_q1 | 0.00177  |
+| target_loc_q2 | 0.00199  |
+| target_loc_q3 | 0.00262  |
+----------------------------
+----------------------------
+| grad_norm     | 0.329    |
+| loss          | 0.071    |
+| loss_q0       | 0.0275   |
+| loss_q1       | 0.0342   |
+| loss_q2       | 0.0559   |
+| loss_q3       | 0.193    |
+| param_norm    | 477      |
+| rot_mse       | 0.0688   |
+| rot_mse_q0    | 0.0255   |
+| rot_mse_q1    | 0.0321   |
+| rot_mse_q2    | 0.0538   |
+| rot_mse_q3    | 0.19     |
+| samples       | 1.19e+07 |
+| step          | 1.86e+05 |
+| target_loc    | 0.00223  |
+| target_loc_q0 | 0.00201  |
+| target_loc_q1 | 0.00207  |
+| target_loc_q2 | 0.00214  |
+| target_loc_q3 | 0.00285  |
+----------------------------
+----------------------------
+| grad_norm     | 0.292    |
+| loss          | 0.0689   |
+| loss_q0       | 0.027    |
+| loss_q1       | 0.0341   |
+| loss_q2       | 0.0556   |
+| loss_q3       | 0.187    |
+| param_norm    | 477      |
+| rot_mse       | 0.0669   |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0323   |
+| rot_mse_q2    | 0.0536   |
+| rot_mse_q3    | 0.185    |
+| samples       | 1.2e+07  |
+| step          | 1.87e+05 |
+| target_loc    | 0.00196  |
+| target_loc_q0 | 0.00168  |
+| target_loc_q1 | 0.00181  |
+| target_loc_q2 | 0.00198  |
+| target_loc_q3 | 0.0025   |
+----------------------------
+----------------------------
+| grad_norm     | 0.298    |
+| loss          | 0.0701   |
+| loss_q0       | 0.0274   |
+| loss_q1       | 0.0344   |
+| loss_q2       | 0.0553   |
+| loss_q3       | 0.192    |
+| param_norm    | 477      |
+| rot_mse       | 0.0682   |
+| rot_mse_q0    | 0.0257   |
+| rot_mse_q1    | 0.0327   |
+| rot_mse_q2    | 0.0534   |
+| rot_mse_q3    | 0.189    |
+| samples       | 1.2e+07  |
+| step          | 1.88e+05 |
+| target_loc    | 0.00195  |
+| target_loc_q0 | 0.00174  |
+| target_loc_q1 | 0.00177  |
+| target_loc_q2 | 0.00188  |
+| target_loc_q3 | 0.00255  |
+----------------------------
+----------------------------
+| grad_norm     | 0.295    |
+| loss          | 0.0689   |
+| loss_q0       | 0.0268   |
+| loss_q1       | 0.0338   |
+| loss_q2       | 0.055    |
+| loss_q3       | 0.189    |
+| param_norm    | 477      |
+| rot_mse       | 0.067    |
+| rot_mse_q0    | 0.0252   |
+| rot_mse_q1    | 0.0321   |
+| rot_mse_q2    | 0.0531   |
+| rot_mse_q3    | 0.186    |
+| samples       | 1.21e+07 |
+| step          | 1.89e+05 |
+| target_loc    | 0.00191  |
+| target_loc_q0 | 0.00166  |
+| target_loc_q1 | 0.0017   |
+| target_loc_q2 | 0.00188  |
+| target_loc_q3 | 0.00251  |
+----------------------------
+----------------------------
+| grad_norm     | 0.325    |
+| loss          | 0.0708   |
+| loss_q0       | 0.0279   |
+| loss_q1       | 0.0353   |
+| loss_q2       | 0.0562   |
+| loss_q3       | 0.191    |
+| param_norm    | 477      |
+| rot_mse       | 0.0686   |
+| rot_mse_q0    | 0.0261   |
+| rot_mse_q1    | 0.0332   |
+| rot_mse_q2    | 0.054    |
+| rot_mse_q3    | 0.188    |
+| samples       | 1.22e+07 |
+| step          | 1.9e+05  |
+| target_loc    | 0.0022   |
+| target_loc_q0 | 0.00187  |
+| target_loc_q1 | 0.00214  |
+| target_loc_q2 | 0.00223  |
+| target_loc_q3 | 0.00268  |
+----------------------------
+saving model...
+----------------------------
+| grad_norm     | 0.308    |
+| loss          | 0.0691   |
+| loss_q0       | 0.0272   |
+| loss_q1       | 0.0344   |
+| loss_q2       | 0.0566   |
+| loss_q3       | 0.186    |
+| param_norm    | 477      |
+| rot_mse       | 0.067    |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0325   |
+| rot_mse_q2    | 0.0546   |
+| rot_mse_q3    | 0.184    |
+| samples       | 1.22e+07 |
+| step          | 1.91e+05 |
+| target_loc    | 0.00206  |
+| target_loc_q0 | 0.00189  |
+| target_loc_q1 | 0.00187  |
+| target_loc_q2 | 0.00198  |
+| target_loc_q3 | 0.00261  |
+----------------------------
+----------------------------
+| grad_norm     | 0.303    |
+| loss          | 0.0682   |
+| loss_q0       | 0.0266   |
+| loss_q1       | 0.0338   |
+| loss_q2       | 0.0563   |
+| loss_q3       | 0.183    |
+| param_norm    | 477      |
+| rot_mse       | 0.0662   |
+| rot_mse_q0    | 0.0248   |
+| rot_mse_q1    | 0.0319   |
+| rot_mse_q2    | 0.0543   |
+| rot_mse_q3    | 0.181    |
+| samples       | 1.23e+07 |
+| step          | 1.92e+05 |
+| target_loc    | 0.00199  |
+| target_loc_q0 | 0.00182  |
+| target_loc_q1 | 0.00185  |
+| target_loc_q2 | 0.00195  |
+| target_loc_q3 | 0.00246  |
+----------------------------
+----------------------------
+| grad_norm     | 0.301    |
+| loss          | 0.0698   |
+| loss_q0       | 0.0265   |
+| loss_q1       | 0.0342   |
+| loss_q2       | 0.0549   |
+| loss_q3       | 0.191    |
+| param_norm    | 477      |
+| rot_mse       | 0.0677   |
+| rot_mse_q0    | 0.0248   |
+| rot_mse_q1    | 0.0323   |
+| rot_mse_q2    | 0.0529   |
+| rot_mse_q3    | 0.189    |
+| samples       | 1.24e+07 |
+| step          | 1.93e+05 |
+| target_loc    | 0.00203  |
+| target_loc_q0 | 0.00172  |
+| target_loc_q1 | 0.0019   |
+| target_loc_q2 | 0.00194  |
+| target_loc_q3 | 0.00275  |
+----------------------------
+----------------------------
+| grad_norm     | 0.301    |
+| loss          | 0.0695   |
+| loss_q0       | 0.0263   |
+| loss_q1       | 0.0344   |
+| loss_q2       | 0.0555   |
+| loss_q3       | 0.189    |
+| param_norm    | 478      |
+| rot_mse       | 0.0674   |
+| rot_mse_q0    | 0.0246   |
+| rot_mse_q1    | 0.0326   |
+| rot_mse_q2    | 0.0535   |
+| rot_mse_q3    | 0.186    |
+| samples       | 1.24e+07 |
+| step          | 1.94e+05 |
+| target_loc    | 0.00204  |
+| target_loc_q0 | 0.00178  |
+| target_loc_q1 | 0.00176  |
+| target_loc_q2 | 0.00205  |
+| target_loc_q3 | 0.00269  |
+----------------------------
+----------------------------
+| grad_norm     | 0.307    |
+| loss          | 0.069    |
+| loss_q0       | 0.0269   |
+| loss_q1       | 0.0341   |
+| loss_q2       | 0.0555   |
+| loss_q3       | 0.187    |
+| param_norm    | 478      |
+| rot_mse       | 0.067    |
+| rot_mse_q0    | 0.0252   |
+| rot_mse_q1    | 0.0324   |
+| rot_mse_q2    | 0.0535   |
+| rot_mse_q3    | 0.185    |
+| samples       | 1.25e+07 |
+| step          | 1.95e+05 |
+| target_loc    | 0.00201  |
+| target_loc_q0 | 0.00174  |
+| target_loc_q1 | 0.00177  |
+| target_loc_q2 | 0.00198  |
+| target_loc_q3 | 0.0027   |
+----------------------------
+----------------------------
+| grad_norm     | 0.304    |
+| loss          | 0.0695   |
+| loss_q0       | 0.0269   |
+| loss_q1       | 0.0341   |
+| loss_q2       | 0.0558   |
+| loss_q3       | 0.19     |
+| param_norm    | 478      |
+| rot_mse       | 0.0674   |
+| rot_mse_q0    | 0.025    |
+| rot_mse_q1    | 0.0322   |
+| rot_mse_q2    | 0.0537   |
+| rot_mse_q3    | 0.187    |
+| samples       | 1.25e+07 |
+| step          | 1.96e+05 |
+| target_loc    | 0.00216  |
+| target_loc_q0 | 0.00189  |
+| target_loc_q1 | 0.00183  |
+| target_loc_q2 | 0.00208  |
+| target_loc_q3 | 0.00302  |
+----------------------------
+----------------------------
+| grad_norm     | 0.303    |
+| loss          | 0.069    |
+| loss_q0       | 0.027    |
+| loss_q1       | 0.0334   |
+| loss_q2       | 0.0555   |
+| loss_q3       | 0.188    |
+| param_norm    | 478      |
+| rot_mse       | 0.067    |
+| rot_mse_q0    | 0.0252   |
+| rot_mse_q1    | 0.0317   |
+| rot_mse_q2    | 0.0535   |
+| rot_mse_q3    | 0.186    |
+| samples       | 1.26e+07 |
+| step          | 1.97e+05 |
+| target_loc    | 0.00199  |
+| target_loc_q0 | 0.00182  |
+| target_loc_q1 | 0.00172  |
+| target_loc_q2 | 0.00193  |
+| target_loc_q3 | 0.00258  |
+----------------------------
+----------------------------
+| grad_norm     | 0.307    |
+| loss          | 0.0689   |
+| loss_q0       | 0.0268   |
+| loss_q1       | 0.0337   |
+| loss_q2       | 0.055    |
+| loss_q3       | 0.189    |
+| param_norm    | 478      |
+| rot_mse       | 0.0669   |
+| rot_mse_q0    | 0.025    |
+| rot_mse_q1    | 0.0319   |
+| rot_mse_q2    | 0.0531   |
+| rot_mse_q3    | 0.186    |
+| samples       | 1.27e+07 |
+| step          | 1.98e+05 |
+| target_loc    | 0.00201  |
+| target_loc_q0 | 0.0018   |
+| target_loc_q1 | 0.00184  |
+| target_loc_q2 | 0.00194  |
+| target_loc_q3 | 0.00263  |
+----------------------------
+----------------------------
+| grad_norm     | 0.294    |
+| loss          | 0.0697   |
+| loss_q0       | 0.027    |
+| loss_q1       | 0.034    |
+| loss_q2       | 0.055    |
+| loss_q3       | 0.19     |
+| param_norm    | 478      |
+| rot_mse       | 0.0677   |
+| rot_mse_q0    | 0.0253   |
+| rot_mse_q1    | 0.0322   |
+| rot_mse_q2    | 0.053    |
+| rot_mse_q3    | 0.187    |
+| samples       | 1.27e+07 |
+| step          | 1.99e+05 |
+| target_loc    | 0.002    |
+| target_loc_q0 | 0.0017   |
+| target_loc_q1 | 0.00178  |
+| target_loc_q2 | 0.00204  |
+| target_loc_q3 | 0.00259  |
+----------------------------
+----------------------------
+| grad_norm     | 0.308    |
+| loss          | 0.0693   |
+| loss_q0       | 0.0267   |
+| loss_q1       | 0.034    |
+| loss_q2       | 0.0553   |
+| loss_q3       | 0.188    |
+| param_norm    | 478      |
+| rot_mse       | 0.0673   |
+| rot_mse_q0    | 0.025    |
+| rot_mse_q1    | 0.0322   |
+| rot_mse_q2    | 0.0533   |
+| rot_mse_q3    | 0.186    |
+| samples       | 1.28e+07 |
+| step          | 2e+05    |
+| target_loc    | 0.00202  |
+| target_loc_q0 | 0.00171  |
+| target_loc_q1 | 0.00185  |
+| target_loc_q2 | 0.00204  |
+| target_loc_q3 | 0.00262  |
+----------------------------
+saving model...
+----------------------------
+| grad_norm     | 0.313    |
+| loss          | 0.0725   |
+| loss_q0       | 0.0274   |
+| loss_q1       | 0.035    |
+| loss_q2       | 0.0566   |
+| loss_q3       | 0.202    |
+| param_norm    | 478      |
+| rot_mse       | 0.0704   |
+| rot_mse_q0    | 0.0255   |
+| rot_mse_q1    | 0.0332   |
+| rot_mse_q2    | 0.0545   |
+| rot_mse_q3    | 0.199    |
+| samples       | 1.29e+07 |
+| step          | 2.01e+05 |
+| target_loc    | 0.00212  |
+| target_loc_q0 | 0.00188  |
+| target_loc_q1 | 0.00182  |
+| target_loc_q2 | 0.00208  |
+| target_loc_q3 | 0.00282  |
+----------------------------
+----------------------------
+| grad_norm     | 0.298    |
+| loss          | 0.0707   |
+| loss_q0       | 0.0266   |
+| loss_q1       | 0.0338   |
+| loss_q2       | 0.0554   |
+| loss_q3       | 0.196    |
+| param_norm    | 478      |
+| rot_mse       | 0.0687   |
+| rot_mse_q0    | 0.0249   |
+| rot_mse_q1    | 0.032    |
+| rot_mse_q2    | 0.0534   |
+| rot_mse_q3    | 0.194    |
+| samples       | 1.29e+07 |
+| step          | 2.02e+05 |
+| target_loc    | 0.00201  |
+| target_loc_q0 | 0.00173  |
+| target_loc_q1 | 0.00181  |
+| target_loc_q2 | 0.00199  |
+| target_loc_q3 | 0.00266  |
+----------------------------
+----------------------------
+| grad_norm     | 0.309    |
+| loss          | 0.071    |
+| loss_q0       | 0.0272   |
+| loss_q1       | 0.0343   |
+| loss_q2       | 0.0556   |
+| loss_q3       | 0.196    |
+| param_norm    | 478      |
+| rot_mse       | 0.0689   |
+| rot_mse_q0    | 0.0254   |
+| rot_mse_q1    | 0.0323   |
+| rot_mse_q2    | 0.0535   |
+| rot_mse_q3    | 0.193    |
+| samples       | 1.3e+07  |
+| step          | 2.03e+05 |
+| target_loc    | 0.00214  |
+| target_loc_q0 | 0.00185  |
+| target_loc_q1 | 0.00203  |
+| target_loc_q2 | 0.00212  |
+| target_loc_q3 | 0.00274  |
+----------------------------
+----------------------------
+| grad_norm     | 0.304    |
+| loss          | 0.0711   |
+| loss_q0       | 0.0273   |
+| loss_q1       | 0.0344   |
+| loss_q2       | 0.0557   |
+| loss_q3       | 0.197    |
+| param_norm    | 478      |
+| rot_mse       | 0.069    |
+| rot_mse_q0    | 0.0254   |
+| rot_mse_q1    | 0.0324   |
+| rot_mse_q2    | 0.0536   |
+| rot_mse_q3    | 0.194    |
+| samples       | 1.31e+07 |
+| step          | 2.04e+05 |
+| target_loc    | 0.00212  |
+| target_loc_q0 | 0.00189  |
+| target_loc_q1 | 0.00196  |
+| target_loc_q2 | 0.00209  |
+| target_loc_q3 | 0.00265  |
+----------------------------
