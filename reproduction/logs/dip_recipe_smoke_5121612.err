@@ -1,0 +1,150 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id DiP_multi-target_official_recipe_smoke_5121612.
+wandb: Tracking run with wandb version 0.17.4
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 5422.23it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12786.01it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 10488.28it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12185.93it/s]
+  0%|          | 0/361 [00:00<?, ?it/s]
+0it [00:00, ?it/s][A
+1it [00:01,  1.56s/it][A
+2it [00:02,  1.47s/it][A
+3it [00:04,  1.43s/it][A
+4it [00:06,  1.60s/it][A
+5it [00:07,  1.53s/it][A
+6it [00:08,  1.46s/it][A
+7it [00:10,  1.45s/it][A
+8it [00:11,  1.41s/it][A
+9it [00:13,  1.44s/it][A
+10it [00:14,  1.47s/it][A10it [00:14,  1.48s/it]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 11388.04it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 30%|███       | 3/10 [00:00<00:00, 27.27it/s][A
+100%|██████████| 10/10 [00:00<00:00, 49.92it/s][A100%|██████████| 10/10 [00:00<00:00, 46.38it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 66.99it/s][A100%|██████████| 10/10 [00:00<00:00, 66.85it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 67.15it/s][A100%|██████████| 10/10 [00:00<00:00, 67.00it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 67.11it/s][A100%|██████████| 10/10 [00:00<00:00, 67.00it/s]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 16934.84it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 65.37it/s][A100%|██████████| 10/10 [00:00<00:00, 65.58it/s]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12181.17it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 65.25it/s][A100%|██████████| 10/10 [00:00<00:00, 65.50it/s]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12602.06it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 65.10it/s][A100%|██████████| 10/10 [00:00<00:00, 65.37it/s]
+  0%|          | 1/361 [01:12<7:14:56, 72.49s/it]  1%|          | 2/361 [01:12<2:59:09, 29.94s/it]  1%|          | 3/361 [01:12<1:37:35, 16.35s/it]  1%|          | 4/361 [01:13<59:17,  9.96s/it]    1%|▏         | 5/361 [01:13<38:07,  6.43s/it]  2%|▏         | 6/361 [01:13<25:24,  4.29s/it]  2%|▏         | 7/361 [01:13<17:23,  2.95s/it]  2%|▏         | 8/361 [01:13<12:06,  2.06s/it]  2%|▏         | 9/361 [01:13<08:35,  1.46s/it]  3%|▎         | 10/361 [01:13<06:12,  1.06s/it]
+0it [00:00, ?it/s][A
+1it [00:01,  1.29s/it][A
+2it [00:02,  1.26s/it][A
+3it [00:03,  1.35s/it][A
+4it [00:05,  1.46s/it][A
+5it [00:06,  1.38s/it][A
+6it [00:08,  1.34s/it][A
+7it [00:09,  1.36s/it][A
+8it [00:10,  1.39s/it][A
+9it [00:12,  1.34s/it][A
+10it [00:13,  1.30s/it][A10it [00:13,  1.34s/it]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12218.02it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 65.34it/s][A100%|██████████| 10/10 [00:00<00:00, 65.61it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 66.79it/s][A100%|██████████| 10/10 [00:00<00:00, 66.66it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 66.72it/s][A100%|██████████| 10/10 [00:00<00:00, 66.59it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 66.74it/s][A100%|██████████| 10/10 [00:00<00:00, 66.62it/s]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 242877.29it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 64.09it/s][A100%|██████████| 10/10 [00:00<00:00, 64.43it/s]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 16199.04it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 64.03it/s][A100%|██████████| 10/10 [00:00<00:00, 64.23it/s]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12741.20it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 70%|███████   | 7/10 [00:00<00:00, 65.16it/s][A100%|██████████| 10/10 [00:00<00:00, 65.39it/s]
+  3%|▎         | 10/361 [02:21<1:22:35, 14.12s/it]
+wandb: - 0.000 MB of 0.000 MB uploadedwandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:        Diversity_ground truth ▁█
+wandb:                Diversity_test █▁
+wandb:              FID_ground truth ▁█
+wandb:                      FID_test ▁█
+wandb:   Matching Score_ground truth █▁
+wandb:           Matching Score_test █▁
+wandb:                 floating_test ▁█
+wandb:                     grad_norm ▂█▇▁▃▁▅▂▃▅▃
+wandb:                          loss ▄█▅█▄▄▃▁▁▂▂
+wandb:         mean_penetration_test █▁
+wandb:                    param_norm ▁▂▂▃▃▄▅▆▇██
+wandb:              penetration_test █▁
+wandb:                       rot_mse █▃▂▃▃▆▃▁▁▂▂
+wandb:              skate_ratio_test █▁
+wandb:                  skating_test █▁
+wandb:                    target_loc ▂█▅█▃▂▂▁▁▂▁
+wandb: top1_R_precision_ground truth ▁█
+wandb:         top1_R_precision_test ▁█
+wandb: top2_R_precision_ground truth ▁█
+wandb:         top2_R_precision_test ▁█
+wandb: top3_R_precision_ground truth ▁█
+wandb:         top3_R_precision_test ▁█
+wandb: 
+wandb: Run summary:
+wandb:        Diversity_ground truth 9.49481
+wandb:                Diversity_test 1.9065
+wandb:              FID_ground truth 0.00108
+wandb:                      FID_test 42.93752
+wandb:   Matching Score_ground truth 3.25737
+wandb:           Matching Score_test 7.71217
+wandb:                 floating_test 9.16859
+wandb:                     grad_norm 16.76809
+wandb:                          loss 2.04673
+wandb:         mean_penetration_test 70.18363
+wandb:                    param_norm 453.58757
+wandb:              penetration_test 2.99308
+wandb:                       rot_mse 1.46747
+wandb:              skate_ratio_test 0.17947
+wandb:                  skating_test 7.31763
+wandb:                    target_loc 0.57926
+wandb: top1_R_precision_ground truth 0.44828
+wandb:         top1_R_precision_test 0.03438
+wandb: top2_R_precision_ground truth 0.65754
+wandb:         top2_R_precision_test 0.0625
+wandb: top3_R_precision_ground truth 0.76466
+wandb:         top3_R_precision_test 0.10312
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/wandb/wandb/offline-run-20260927_140824-DiP_multi-target_official_recipe_smoke_5121612
+wandb: Find logs at: ./reproduction/runs/wandb/wandb/offline-run-20260927_140824-DiP_multi-target_official_recipe_smoke_5121612/logs
+wandb: WARNING The new W&B backend becomes opt-out in version 0.18.0; try it out with `wandb.require("core")`! See https://wandb.me/wandb-core for more information.
+INFO:    Terminating squashfuse_ll after timeout
+INFO:    Timeouts can be caused by a running background process

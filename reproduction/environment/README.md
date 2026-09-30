@@ -22,9 +22,9 @@
 在已有 Python 环境的容器 shell 内，从仓库根目录执行：
 
 ```bash
-source scripts/hpc/closd_env.sh
-HF_HUB_OFFLINE=0 TRANSFORMERS_OFFLINE=0 python scripts/hpc/prepare_dependencies.py
-python scripts/hpc/prepare_dependencies.py --check
+source reproduction/scripts/hpc/closd_env.sh
+HF_HUB_OFFLINE=0 TRANSFORMERS_OFFLINE=0 python reproduction/scripts/hpc/prepare_dependencies.py
+python reproduction/scripts/hpc/prepare_dependencies.py --check
 ```
 
 准备脚本下载记录的 revision、固定本地 `refs/main`，并建立官方检查点和评测资源链接。它拒绝把已有官方路径悄悄替换为别的模型。新机器恢复需要联网；已有缓存检查无需联网。

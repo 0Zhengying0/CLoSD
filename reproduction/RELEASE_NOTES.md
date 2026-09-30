@@ -13,7 +13,7 @@
 复现材料见 `reproduction/README.md`，单次结果和日志来源见 `reproduction/experiments/results.md`。下载并验证：
 
 ```bash
-python3 scripts/hpc/download_release.py
+python3 reproduction/scripts/hpc/download_release.py
 ```
 
 整理后的代码未重跑完整训练或正式评测；验证范围见 `reproduction/VALIDATION.md`。

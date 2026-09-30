@@ -1,4 +1,4 @@
 experiment,job_id,model,log,num_envs,episode_length,cfg,samples_per_task,REACH,STRIKE_KICK,STRIKE_PUNCH,SIT,GET_UP
 official_300k,5100756,official DiP multi-target 300k,../logs/dip_eval_official_5100756.out,4096,500,7.5,1000,1.00,0.93,0.93,0.88,0.97
-reproduction_300k,5114966,runs/DiP_multi-target_repro_seed10/model000300000.pt,../logs/dip_eval_repro300_5114966.out,4096,500,7.5,1000,1.00,0.88,0.88,0.47,0.91
-reproduction_600k,5114967,runs/DiP_multi-target_repro_seed10/model000600000.pt,../logs/dip_eval_repro600_5114967.out,4096,500,7.5,1000,0.99,0.89,0.89,0.76,0.93
+reproduction_300k,5114966,reproduction/runs/DiP_multi-target_repro_seed10/model000300000.pt,../logs/dip_eval_repro300_5114966.out,4096,500,7.5,1000,1.00,0.88,0.88,0.47,0.91
+reproduction_600k,5114967,reproduction/runs/DiP_multi-target_repro_seed10/model000600000.pt,../logs/dip_eval_repro600_5114967.out,4096,500,7.5,1000,0.99,0.89,0.89,0.76,0.93

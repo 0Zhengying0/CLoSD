@@ -1,0 +1,121 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id DiP_multi-target_official_recipe_smoke_5121606.
+wandb: Tracking run with wandb version 0.17.4
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 1397.29it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 9636.54it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12684.14it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 9675.44it/s]
+  0%|          | 0/361 [00:00<?, ?it/s]
+0it [00:00, ?it/s][A
+1it [00:01,  1.55s/it][A
+2it [00:02,  1.46s/it][A
+3it [00:04,  1.43s/it][A
+4it [00:06,  1.59s/it][A
+5it [00:07,  1.52s/it][A
+6it [00:08,  1.46s/it][A
+7it [00:10,  1.44s/it][A
+8it [00:11,  1.40s/it][A
+9it [00:13,  1.42s/it][A
+10it [00:14,  1.46s/it][A10it [00:14,  1.47s/it]
+
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s][AFetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 6898.09it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 80%|████████  | 8/10 [00:00<00:00, 70.53it/s][A100%|██████████| 10/10 [00:00<00:00, 70.54it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 80%|████████  | 8/10 [00:00<00:00, 71.62it/s][A100%|██████████| 10/10 [00:00<00:00, 71.46it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 80%|████████  | 8/10 [00:00<00:00, 71.67it/s][A100%|██████████| 10/10 [00:00<00:00, 71.54it/s]
+
+  0%|          | 0/10 [00:00<?, ?it/s][A
+ 80%|████████  | 8/10 [00:00<00:00, 71.67it/s][A100%|██████████| 10/10 [00:00<00:00, 71.52it/s]
+  0%|          | 0/361 [00:35<?, ?it/s]
+Traceback (most recent call last):
+  File "reproduction/scripts/hpc/train_until_checkpoint.py", line 69, in <module>
+    main()
+  File "reproduction/scripts/hpc/train_until_checkpoint.py", line 63, in main
+    train_mdm.main()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/train_mdm.py", line 51, in main
+    TrainLoop(args, train_platform, model, diffusion, data).run_loop()
+  File "reproduction/scripts/hpc/train_until_checkpoint.py", line 37, in run_loop
+    super().run_loop()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/training_loop.py", line 255, in run_loop
+    self.generate_during_training()
+  File "reproduction/scripts/hpc/train_until_checkpoint.py", line 31, in generate_during_training
+    super().generate_during_training()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/training_loop.py", line 392, in generate_during_training
+    all_sample_save_path = generate(gen_args)
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/sample/generate.py", line 286, in main
+    animations[sample_i, rep_i] = plot_3d_motion(animation_save_path,
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/utils/plot_script.py", line 181, in plot_3d_motion
+    ani = VideoClip(update)
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/moviepy/video/VideoClip.py", line 86, in __init__
+    self.size = self.get_frame(0).shape[:2][::-1]
+  File "<decorator-gen-11>", line 2, in get_frame
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/moviepy/decorators.py", line 89, in wrapper
+    return f(*new_a, **new_kw)
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/moviepy/Clip.py", line 93, in get_frame
+    return self.make_frame(t)
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/utils/plot_script.py", line 146, in update
+    _title += ' [{}]'.format(cond['heading_print'][index])
+IndexError: invalid index to scalar variable.
+wandb: 
+wandb: Run history:
+wandb:        Diversity_ground truth ▁
+wandb:                Diversity_test ▁
+wandb:              FID_ground truth ▁
+wandb:                      FID_test ▁
+wandb:   Matching Score_ground truth ▁
+wandb:           Matching Score_test ▁
+wandb:                 floating_test ▁
+wandb:                     grad_norm ▁
+wandb:                          loss ▁
+wandb:         mean_penetration_test ▁
+wandb:                    param_norm ▁
+wandb:              penetration_test ▁
+wandb:                       rot_mse ▁
+wandb:              skate_ratio_test ▁
+wandb:                  skating_test ▁
+wandb:                    target_loc ▁
+wandb: top1_R_precision_ground truth ▁
+wandb:         top1_R_precision_test ▁
+wandb: top2_R_precision_ground truth ▁
+wandb:         top2_R_precision_test ▁
+wandb: top3_R_precision_ground truth ▁
+wandb:         top3_R_precision_test ▁
+wandb: 
+wandb: Run summary:
+wandb:        Diversity_ground truth 9.12396
+wandb:                Diversity_test 1.90815
+wandb:              FID_ground truth 0.00092
+wandb:                      FID_test 42.56267
+wandb:   Matching Score_ground truth 3.26345
+wandb:           Matching Score_test 8.04635
+wandb:                 floating_test 9.03333
+wandb:                     grad_norm 10.318
+wandb:                          loss 2.6097
+wandb:         mean_penetration_test 71.40386
+wandb:                    param_norm 453.58435
+wandb:              penetration_test 3.45938
+wandb:                       rot_mse 1.81996
+wandb:              skate_ratio_test 0.18646
+wandb:                  skating_test 7.94961
+wandb:                    target_loc 0.78973
+wandb: top1_R_precision_ground truth 0.44138
+wandb:         top1_R_precision_test 0.0125
+wandb: top2_R_precision_ground truth 0.65496
+wandb:         top2_R_precision_test 0.04375
+wandb: top3_R_precision_ground truth 0.76401
+wandb:         top3_R_precision_test 0.06875
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/wandb/wandb/offline-run-20260927_140159-DiP_multi-target_official_recipe_smoke_5121606
+wandb: Find logs at: ./reproduction/runs/wandb/wandb/offline-run-20260927_140159-DiP_multi-target_official_recipe_smoke_5121606/logs
+wandb: WARNING The new W&B backend becomes opt-out in version 0.18.0; try it out with `wandb.require("core")`! See https://wandb.me/wandb-core for more information.
+INFO:    Terminating squashfuse_ll after timeout
+INFO:    Timeouts can be caused by a running background process

@@ -1,0 +1,54 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id DiP_multi-target_official_recipe_seed10.
+wandb: Tracking run with wandb version 0.17.4
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 1156.70it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 10496.36it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 10533.36it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 12325.73it/s]
+  0%|          | 0/361 [00:00<?, ?it/s]
+0it [00:00, ?it/s][A0it [00:00, ?it/s]
+  0%|          | 0/361 [00:06<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/train_mdm.py", line 55, in <module>
+    main()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/train_mdm.py", line 51, in main
+    TrainLoop(args, train_platform, model, diffusion, data).run_loop()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/training_loop.py", line 254, in run_loop
+    self.evaluate()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/training_loop.py", line 278, in evaluate
+    eval_dict = eval_humanml.evaluation(
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/eval/eval_humanml.py", line 153, in evaluation
+    motion_loader, mm_motion_loader = motion_loader_getter()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/train/training_loop.py", line 120, in <lambda>
+    'test': lambda: eval_humanml.get_mdm_loader( self.args,
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/motion_loaders/model_motion_loaders.py", line 84, in get_mdm_loader
+    dataset = CompMDMGeneratedDataset(args, model, diffusion, ground_truth_loader, mm_num_samples, mm_num_repeats, max_motion_length, num_samples_limit, scale, hml_type=hml_type)
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/motion_loaders/comp_v6_model_dataset.py", line 222, in __init__
+    assert self.args.target_joint_names == 'DIMP_FINAL', 'We dont support the rest of the configurations anymore'
+AssertionError: We dont support the rest of the configurations anymore
+wandb: 
+wandb: Run history:
+wandb:  grad_norm ▁
+wandb:       loss ▁
+wandb: param_norm ▁
+wandb:    rot_mse ▁
+wandb: target_loc ▁
+wandb: 
+wandb: Run summary:
+wandb:  grad_norm 12.00882
+wandb:       loss 2.73548
+wandb: param_norm 453.58435
+wandb:    rot_mse 1.82002
+wandb: target_loc 0.91547
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/runs/wandb/wandb/offline-run-20260927_133333-DiP_multi-target_official_recipe_seed10
+wandb: Find logs at: ./runs/wandb/wandb/offline-run-20260927_133333-DiP_multi-target_official_recipe_seed10/logs
+wandb: WARNING The new W&B backend becomes opt-out in version 0.18.0; try it out with `wandb.require("core")`! See https://wandb.me/wandb-core for more information.

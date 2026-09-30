@@ -1,0 +1,115 @@
+==================================================
+DiP OFFICIAL-RECIPE 300k CONTROL RUN
+Host:       acn45.karolina.it4i.cz
+Job ID:     5115268
+Save dir:   /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/runs/DiP_multi-target_official_recipe_seed10
+Target:     model000300000.pt
+Start:      Sun Sep 27 13:32:22 CEST 2026
+==================================================
+Sun Sep 27 13:32:22 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:88:00.0 Off |                    0 |
+| N/A   27C    P0             53W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+=== REPRODUCIBILITY INFO ===
+Python 3.8.19
+Git commit:
+bfe977738be9156f26653b3548623bc535ee5aed
+Local modifications:
+ M .gitattributes
+ M reproduction/README.md
+ M reproduction/experiments/README.md
+ D reproduction/history/note.txt
+ D reproduction/history/scripts/closd_env.repository.sh
+ D reproduction/history/scripts/closd_env.sh
+ D reproduction/history/scripts/closd_real_smoke.slurm
+ D reproduction/history/scripts/closd_smoke.slurm
+ D reproduction/history/scripts/dip_eval_envtest.slurm
+ D reproduction/history/scripts/dip_eval_official.slurm
+ D reproduction/history/scripts/dip_eval_repro_300k.slurm
+ D reproduction/history/scripts/dip_eval_repro_600k.slurm
+ D reproduction/history/scripts/dip_train.slurm
+ D reproduction/history/scripts/dip_train_12h.slurm
+ D reproduction/history/scripts/dip_train_2h.slurm
+ D reproduction/history/scripts/dip_train_4h.slurm
+ D reproduction/history/scripts/dip_train_6h.slurm
+ D reproduction/history/scripts/dip_train_smoke.slurm
+ M scripts/hpc/README.md
+?? note.txt
+?? reproduction/logs/dip_exact300_5115268.err
+?? reproduction/logs/dip_exact300_5115268.out
+?? scripts/hpc/dip_train_official_recipe_300k.slurm
+PyTorch: 2.2.2+cu121
+CUDA build: 12.1
+CUDA available: True
+GPU: NVIDIA A100-SXM4-40GB
+=== OFFICIAL-RECIPE TRAINING START ===
+creating data loader...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy]...
+Pointer Pointing at 1384
+creating model and diffusion...
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+Total params: 26.70M
+Training...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 276
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Loading Evaluation Model Wrapper (Epoch 11) Completed!!
+train steps: 600000
+Starting epoch 0
+Logging to /tmp/closd_5115268/openai-2026-09-27-13-34-01-653146
+----------------------------
+| grad_norm     | 12       |
+| loss          | 2.74     |
+| loss_q0       | 2.77     |
+| loss_q1       | 2.48     |
+| loss_q2       | 2.5      |
+| loss_q3       | 3.27     |
+| param_norm    | 454      |
+| rot_mse       | 1.82     |
+| rot_mse_q0    | 1.81     |
+| rot_mse_q1    | 1.95     |
+| rot_mse_q2    | 1.73     |
+| rot_mse_q3    | 1.88     |
+| samples       | 64       |
+| step          | 0        |
+| target_loc    | 0.915    |
+| target_loc_q0 | 0.959    |
+| target_loc_q1 | 0.533    |
+| target_loc_q2 | 0.773    |
+| target_loc_q3 | 1.39     |
+----------------------------
+step[0]: loss[2.73548]
+saving model...
+Running evaluation loop: [Should take about 90 min]
+Generating test ...
+real_num_batches 32
+mm_idxs []

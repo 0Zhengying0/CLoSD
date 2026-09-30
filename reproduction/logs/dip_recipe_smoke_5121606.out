@@ -1,0 +1,209 @@
+==================================================
+DiP DIMP_FINAL TRAIN/EVAL/GEN SMOKE
+Host:       acn07.karolina.it4i.cz
+Job ID:     5121606
+Save dir:   /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/DiP_multi-target_official_recipe_smoke_5121606
+Target:     step 10 + evaluation + generation
+Start:      Sun Sep 27 14:01:32 CEST 2026
+==================================================
+Sun Sep 27 14:01:32 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:0B:00.0 Off |                    0 |
+| N/A   28C    P0             53W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+=== REPRODUCIBILITY INFO ===
+Python 3.8.19
+Git commit:
+bfe977738be9156f26653b3548623bc535ee5aed
+Local modifications:
+ M .gitattributes
+ M .gitignore
+ M reproduction/README.md
+ M reproduction/RELEASE_NOTES.md
+ M reproduction/VALIDATION.md
+ M reproduction/environment/README.md
+ M reproduction/experiments/README.md
+ M reproduction/experiments/release.json
+ M reproduction/experiments/results.csv
+ D reproduction/history/note.txt
+ D reproduction/history/scripts/closd_env.repository.sh
+ D reproduction/history/scripts/closd_env.sh
+ D reproduction/history/scripts/closd_real_smoke.slurm
+ D reproduction/history/scripts/closd_smoke.slurm
+ D reproduction/history/scripts/dip_eval_envtest.slurm
+ D reproduction/history/scripts/dip_eval_official.slurm
+ D reproduction/history/scripts/dip_eval_repro_300k.slurm
+ D reproduction/history/scripts/dip_eval_repro_600k.slurm
+ D reproduction/history/scripts/dip_train.slurm
+ D reproduction/history/scripts/dip_train_12h.slurm
+ D reproduction/history/scripts/dip_train_2h.slurm
+ D reproduction/history/scripts/dip_train_4h.slurm
+ D reproduction/history/scripts/dip_train_6h.slurm
+ D reproduction/history/scripts/dip_train_smoke.slurm
+ D scripts/hpc/README.md
+ D scripts/hpc/closd_env.sh
+ D scripts/hpc/closd_real_smoke.slurm
+ D scripts/hpc/closd_smoke.slurm
+ D scripts/hpc/container.sh
+ D scripts/hpc/dip_eval_envtest.slurm
+ D scripts/hpc/dip_eval_official.slurm
+ D scripts/hpc/dip_eval_repro_300k.slurm
+ D scripts/hpc/dip_eval_repro_600k.slurm
+ D scripts/hpc/dip_train.slurm
+ D scripts/hpc/dip_train_12h.slurm
+ D scripts/hpc/dip_train_2h.slurm
+ D scripts/hpc/dip_train_4h.slurm
+ D scripts/hpc/dip_train_6h.slurm
+ D scripts/hpc/dip_train_smoke.slurm
+ D scripts/hpc/download_release.py
+ D scripts/hpc/import_smoke.py
+ D scripts/hpc/jobs.json
+ D scripts/hpc/prepare_dependencies.py
+ D scripts/hpc/run_job.py
+ D scripts/hpc/submit.sh
+ D scripts/hpc/test_runtime.py
+?? note.txt
+?? reproduction/experiments/layout-update-20260927.json
+?? reproduction/logs/dip_exact300_5115268.err
+?? reproduction/logs/dip_exact300_5115268.out
+?? reproduction/logs/dip_recipe_smoke_5121606.err
+?? reproduction/logs/dip_recipe_smoke_5121606.out
+?? reproduction/scripts/
+PyTorch: 2.2.2+cu121
+CUDA build: 12.1
+CUDA available: True
+GPU: NVIDIA A100-SXM4-40GB
+=== TRAIN/EVAL/GEN SMOKE START ===
+creating data loader...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy]...
+Pointer Pointing at 1384
+creating model and diffusion...
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+Total params: 26.70M
+Training...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 276
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Loading Evaluation Model Wrapper (Epoch 11) Completed!!
+train steps: 20
+Starting epoch 0
+Logging to /tmp/closd_5121606/openai-2026-09-27-14-02-17-655031
+----------------------------
+| grad_norm     | 10.3     |
+| loss          | 2.61     |
+| loss_q0       | 2.7      |
+| loss_q1       | 2.62     |
+| loss_q2       | 2.5      |
+| loss_q3       | 2.65     |
+| param_norm    | 454      |
+| rot_mse       | 1.82     |
+| rot_mse_q0    | 1.81     |
+| rot_mse_q1    | 1.95     |
+| rot_mse_q2    | 1.73     |
+| rot_mse_q3    | 1.88     |
+| samples       | 64       |
+| step          | 0        |
+| target_loc    | 0.79     |
+| target_loc_q0 | 0.892    |
+| target_loc_q1 | 0.676    |
+| target_loc_q2 | 0.779    |
+| target_loc_q3 | 0.772    |
+----------------------------
+step[0]: loss[2.60970]
+saving model...
+Running evaluation loop: [Should take about 90 min]
+Generating test ...
+real_num_batches 11
+mm_idxs []
+Generated Dataset Loading Completed!!!
+==================== Replication 0 ====================
+Time: 2026-09-27 14:02:34.666225
+========== Evaluating Matching Score ==========
+---> [ground truth] Matching Score: 3.2634
+---> [ground truth] R_precision: (top 1): 0.4414 (top 2): 0.6550 (top 3): 0.7640 
+---> [test] Matching Score: 8.0464
+---> [test] R_precision: (top 1): 0.0125 (top 2): 0.0437 (top 3): 0.0688 
+Time: 2026-09-27 14:02:40.627912
+========== Evaluating FID ==========
+---> [ground truth] FID: 0.0009
+---> [test] FID: 42.5627
+Time: 2026-09-27 14:02:43.683351
+========== Evaluating Diversity ==========
+---> [ground truth] Diversity: 9.1240
+---> [test] Diversity: 1.9081
+AUX METRICS:
+---> [test] skate_ratio: 0.1865
+---> [test] mean_penetration: 71.4039
+---> [test] penetration: 3.4594
+---> [test] floating: 9.0333
+---> [test] skating: 7.9496
+!!! DONE !!!
+========== Matching Score Summary ==========
+---> [ground truth] Mean: 3.2634 CInterval: 0.0000
+---> [test] Mean: 8.0464 CInterval: 0.0000
+========== R_precision Summary ==========
+---> [ground truth](top 1) Mean: 0.4414 CInt: 0.0000;(top 2) Mean: 0.6550 CInt: 0.0000;(top 3) Mean: 0.7640 CInt: 0.0000;
+---> [test](top 1) Mean: 0.0125 CInt: 0.0000;(top 2) Mean: 0.0437 CInt: 0.0000;(top 3) Mean: 0.0688 CInt: 0.0000;
+========== FID Summary ==========
+---> [ground truth] Mean: 0.0009 CInterval: 0.0000
+---> [test] Mean: 42.5627 CInterval: 0.0000
+========== Diversity Summary ==========
+---> [ground truth] Mean: 9.1240 CInterval: 0.0000
+---> [test] Mean: 1.9081 CInterval: 0.0000
+========== MultiModality Summary ==========
+========== skate_ratio Summary ==========
+---> [test] Mean: 0.1865 CInterval: 0.0000
+========== mean_penetration Summary ==========
+---> [test] Mean: 71.4039 CInterval: 0.0000
+========== penetration Summary ==========
+---> [test] Mean: 3.4594 CInterval: 0.0000
+========== floating Summary ==========
+---> [test] Mean: 9.0333 CInterval: 0.0000
+========== skating Summary ==========
+---> [test] Mean: 7.9496 CInterval: 0.0000
+{'Matching Score_ground truth': 3.2634460301234802, 'Matching Score_test': 8.04635124206543, 'R_precision_ground truth': array([0.44137931, 0.6549569 , 0.76400862]), 'R_precision_test': array([0.0125 , 0.04375, 0.06875]), 'FID_ground truth': 0.0009230701458733392, 'FID_test': 42.56266960721425, 'Diversity_ground truth': 9.123957, 'Diversity_test': 1.9081486, 'skate_ratio_test': 0.18645833333333334, 'mean_penetration_test': 71.40386402606964, 'penetration_test': 3.459379282824419, 'floating_test': 9.033330608732946, 'skating_test': 7.9496053362028105}
+Evaluation time: 0.4666666666666667min
+Loading dataset...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 276
+Creating model and diffusion...
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+Loading checkpoints from [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/DiP_multi-target_official_recipe_smoke_5121606/model000000000.pt]...
+loading avg model
+### Sampling [repetitions #0]
+created 1 samples
+saving results file to [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/DiP_multi-target_official_recipe_smoke_5121606/model000000000.pt.samples/results.npy]
+saving visualizations to [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/DiP_multi-target_official_recipe_smoke_5121606/model000000000.pt.samples]...

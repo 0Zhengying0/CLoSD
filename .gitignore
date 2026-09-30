@@ -146,12 +146,15 @@ closd/blender/assets/smpl_humanoid
 closd/blender/results
 # Local reproduction resources and runtime outputs
 /.local/
-/runs/
+/reproduction/runs/
 /reproduction/release-assets/
 # Historical experiment evidence is intentionally versioned.
-!/scripts/hpc/jobs.json
+!/reproduction/scripts/hpc/jobs.json
 !/reproduction/**/*.json
 !/reproduction/**/*.log
 !/reproduction/logs/wandb/
 !/reproduction/logs/wandb/**/
 !/reproduction/logs/wandb/**
+
+# All training products remain local, including args.json and W&B files.
+/reproduction/runs/

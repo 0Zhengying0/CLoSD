@@ -1,0 +1,13 @@
+{
+  "moved": {
+    "runs": "reproduction/runs",
+    "scripts": "reproduction/scripts"
+  },
+  "verified_files_and_links": {
+    "runs": 225,
+    "scripts": 24
+  },
+  "deleted_failed_output": "runs/DiP_multi-target_official_recipe_seed10",
+  "failed_job": 5115268,
+  "note": "Original args/logs and initial migration manifest retain historical paths; historical checkpoints unchanged."
+}
