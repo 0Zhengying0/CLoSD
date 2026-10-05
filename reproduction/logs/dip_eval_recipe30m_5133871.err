@@ -1,0 +1,10 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Using /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/torch_extensions as PyTorch extensions root...
+Emitting ninja build file /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/torch_extensions/gymtorch/build.ninja...
+Building extension module gymtorch...
+Using envvar MAX_JOBS (4) as the number of workers...
+Loading extension module gymtorch...
+2026-10-01 14:33:48,887 - INFO - logger - logger initialized
+  0%|          | 0/63 [00:00<?, ?it/s]  2%|▏         | 1/63 [00:00<00:55,  1.11it/s]  3%|▎         | 2/63 [00:03<01:58,  1.95s/it]  5%|▍         | 3/63 [00:05<01:49,  1.82s/it] 10%|▉         | 6/63 [00:05<00:36,  1.55it/s] 14%|█▍        | 9/63 [00:05<00:18,  2.84it/s] 19%|█▉        | 12/63 [00:05<00:11,  4.44it/s] 24%|██▍       | 15/63 [00:05<00:07,  6.38it/s] 29%|██▊       | 18/63 [00:05<00:05,  8.58it/s] 33%|███▎      | 21/63 [00:06<00:03, 10.73it/s] 38%|███▊      | 24/63 [00:06<00:02, 13.10it/s] 43%|████▎     | 27/63 [00:06<00:02, 15.42it/s] 48%|████▊     | 30/63 [00:06<00:01, 17.45it/s] 52%|█████▏    | 33/63 [00:06<00:01, 19.17it/s] 57%|█████▋    | 36/63 [00:06<00:01, 20.53it/s] 62%|██████▏   | 39/63 [00:06<00:01, 21.64it/s] 67%|██████▋   | 42/63 [00:06<00:00, 21.58it/s] 71%|███████▏  | 45/63 [00:07<00:00, 22.22it/s] 76%|███████▌  | 48/63 [00:07<00:00, 22.83it/s] 81%|████████  | 51/63 [00:07<00:00, 23.42it/s] 86%|████████▌ | 54/63 [00:07<00:00, 23.76it/s] 90%|█████████ | 57/63 [00:07<00:00, 23.99it/s] 95%|█████████▌| 60/63 [00:07<00:00, 24.17it/s]100%|██████████| 63/63 [00:07<00:00, 24.34it/s]100%|██████████| 63/63 [00:07<00:00,  8.14it/s]
+  0%|          | 0/4096 [00:00<?, ?it/s]100%|██████████| 4096/4096 [00:00<00:00, 429980.46it/s]

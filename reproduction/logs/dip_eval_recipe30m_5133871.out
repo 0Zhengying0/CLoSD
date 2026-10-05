@@ -1,0 +1,263 @@
+=== dip_eval_recipe30m ===
+Repository: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD
+Container:  /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/containers/closd_cuda121_ubuntu20_devel.sif
+Conda env:  /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd
+Isaac Gym:  /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym
+Model:      /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/DiP_multi-target_official_recipe_seed10/model000300000.pt
+Evaluation command: python closd/run.py learning=im_big env=closd_multitask robot=smpl_humanoid exp_name=CLoSD_multitask_finetune epoch=-1 env.episode_length=500 env.dip.cfg_param=7.5 env.dip.model_path=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/DiP_multi-target_official_recipe_seed10/model000300000.pt env.num_envs=4096 test=True no_virtual_display=True headless=True closd_eval=True no_log=True 
+Thu Oct  1 14:32:56 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:CB:00.0 Off |                    0 |
+| N/A   26C    P0             53W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+=== ENVIRONMENT ===
+Python 3.8.19
+61f9b671e1813ba3cd27a8d8015125213d6d2971
+ M note.txt
+?? reproduction/logs/dip_eval_recipe30m_5133871.err
+?? reproduction/logs/dip_eval_recipe30m_5133871.out
+PyTorch 2.2.2+cu121 CUDA 12.1
+GPU NVIDIA A100-SXM4-40GB
+=== CLoSD TASK EVALUATION START ===
+Importing module 'gym_38' (/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)
+Setting GYM_USD_PLUG_INFO_PATH to /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/usd/plugInfo.json
+PyTorch version 2.2.2+cu121
+Device count 1
+/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/src/gymtorch
+ninja: no work to do.
+MOVING MOTION DATA TO GPU, USING CACHE: False
+MOVING MOTION DATA TO GPU, USING CACHE: False
+Importing module 'rlgpu_38' (/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/rlgpu_38.so)
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+torch_deterministic: False
+Setting seed: 0
+Found checkpoint
+output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth
+Started to play
+Not applying any task filter.
+[2026-10-01 14:34:35,396][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/functional.py:507: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3549.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+
+Not connected to PVD
++++ Using GPU PhysX
+Physics Engine: PhysX
+Physics Device: cuda:0
+GPU Pipeline: enabled
+Using VHACD cache directory '/home/it4i-dianyu/.isaacgym/vhacd'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/strike/target_full.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/back_sit.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/bottom.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/left.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/legs.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/right.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/sit.obj'
+!!!! Using modified SMPL starting pose !!!!
+
+****************************** Current motion keys ******************************
+Sampling motion: torch.Size([30])_torch.Size([30])_tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0], device='cuda:0')
+['standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing'] .....
+*********************************************************************************
+
+Loaded 4096 motions with a total length of 136391.234s and 4096000 frames.
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/.local/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+MDM dataset size: 4648
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+[2026-10-01 14:36:43,586][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+Loading checkpoints from [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/DiP_multi-target_official_recipe_seed10/model000300000.pt]...
+loading avg model
+Overwriting [context_len, pred_len] to [20, 40] according to the prefix completion MDM parameters.
+[2026-10-01 14:36:52,788][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+
+RL device:  cuda:0
+4096
+69
+574
+0
+{'observation_space': Box(-inf, inf, (574,), float32), 'action_space': Box(-1.0, 1.0, (69,), float32), 'agents': 1, 'value_size': 1}
+RunningMeanStd:  (574,)
+RunningMeanStd:  (1960,)
+### Evaluating CLoSD success rate. Will buffer stats for the following states: [<STATES.REACH: 2>, <STATES.STRIKE_KICK: 3>, <STATES.STRIKE_PUNCH: 4>, <STATES.SIT: 6>, <STATES.GET_UP: 7>]
+=> loading checkpoint 'output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth'
+=> loading checkpoint 'output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth'
+[2026-10-01 14:36:58,316][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/common/quaternion.py:396: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at ../aten/src/ATen/native/Cross.cpp:63.)
+  v = torch.cross(v0, v1)
+
+reward: 71.54950714111328 steps: 120.0
+reward: 75.33682250976562 steps: 126.0
+reward: 73.16067504882812 steps: 127.0
+reward: 76.1401138305664 steps: 128.0
+reward: 78.56587219238281 steps: 129.0
+reward: 75.06748453776042 steps: 130.0
+reward: 78.7664794921875 steps: 131.0
+reward: 68.70909881591797 steps: 132.0
+reward: 77.32361857096355 steps: 133.0
+reward: 76.72915649414062 steps: 135.0
+reward: 78.02264404296875 steps: 136.0
+reward: 76.88702392578125 steps: 138.0
+reward: 78.704345703125 steps: 139.0
+reward: 75.47529602050781 steps: 140.0
+reward: 78.60679626464844 steps: 141.0
+reward: 75.54102325439453 steps: 142.0
+reward: 79.89946746826172 steps: 143.0
+reward: 81.14273834228516 steps: 144.0
+reward: 75.11699676513672 steps: 145.0
+reward: 74.7106424967448 steps: 147.0
+reward: 77.01721954345703 steps: 148.0
+reward: 75.12230682373047 steps: 149.0
+reward: 84.19438934326172 steps: 150.0
+reward: 81.63080596923828 steps: 151.0
+reward: 78.32567596435547 steps: 152.0
+reward: 80.93973541259766 steps: 154.0
+reward: 78.83050537109375 steps: 155.0
+reward: 75.75606536865234 steps: 158.0
+reward: 70.02853393554688 steps: 160.0
+reward: 76.18438720703125 steps: 162.0
+reward: 87.02610778808594 steps: 165.0
+reward: 79.43611145019531 steps: 166.0
+reward: 75.77567545572917 steps: 167.0
+reward: 77.23035430908203 steps: 168.0
+reward: 81.69683074951172 steps: 169.0
+reward: 76.78753662109375 steps: 172.0
+reward: 87.35903930664062 steps: 174.0
+reward: 76.77767944335938 steps: 176.0
+reward: 83.26277160644531 steps: 178.0
+reward: 91.9110107421875 steps: 179.0
+reward: 86.89276123046875 steps: 180.0
+reward: 75.61827850341797 steps: 184.0
+reward: 80.41663360595703 steps: 186.0
+reward: 78.53861236572266 steps: 188.0
+reward: 84.23384094238281 steps: 189.0
+reward: 81.7796859741211 steps: 190.0
+reward: 87.49810028076172 steps: 193.0
+reward: 76.08394622802734 steps: 195.0
+reward: 80.69953918457031 steps: 201.0
+reward: 98.89594268798828 steps: 204.0
+reward: 84.45414733886719 steps: 205.0
+reward: 82.53723907470703 steps: 206.0
+reward: 84.54570770263672 steps: 207.0
+reward: 90.08185577392578 steps: 209.0
+reward: 91.98235321044922 steps: 210.0
+reward: 76.02886199951172 steps: 211.0
+reward: 75.4827880859375 steps: 212.0
+reward: 72.61573791503906 steps: 214.0
+reward: 78.03023529052734 steps: 216.0
+reward: 96.14262390136719 steps: 217.0
+reward: 90.33293151855469 steps: 219.0
+reward: 81.30279541015625 steps: 220.0
+reward: 73.44043731689453 steps: 225.0
+reward: 74.28314208984375 steps: 227.0
+reward: 87.13774108886719 steps: 233.0
+reward: 98.42259216308594 steps: 238.0
+reward: 80.55918375651042 steps: 243.0
+reward: 80.85653686523438 steps: 245.0
+reward: 79.1473617553711 steps: 247.0
+reward: 63.25571060180664 steps: 117.0
+reward: 86.67449188232422 steps: 250.0
+reward: 94.4508056640625 steps: 251.0
+reward: 81.88795471191406 steps: 253.0
+reward: 84.12262725830078 steps: 254.0
+reward: 57.4476432800293 steps: 115.0
+reward: 43.95390319824219 steps: 104.0
+reward: 84.1745376586914 steps: 261.0
+reward: 88.80854797363281 steps: 262.0
+reward: 98.3004379272461 steps: 269.0
+reward: 90.96617126464844 steps: 271.0
+reward: 100.95874786376953 steps: 272.0
+reward: 98.29273223876953 steps: 273.0
+reward: 80.16513061523438 steps: 274.0
+reward: 41.77983093261719 steps: 125.0
+reward: 88.95384216308594 steps: 279.0
+reward: 82.67105865478516 steps: 280.0
+reward: 90.06694030761719 steps: 281.0
+reward: 88.08674621582031 steps: 282.0
+reward: 78.19791412353516 steps: 288.0
+reward: 81.61457824707031 steps: 293.0
+reward: 84.79180145263672 steps: 296.0
+reward: 90.87408447265625 steps: 298.0
+reward: 75.58622741699219 steps: 174.0
+reward: 58.562503814697266 steps: 163.0
+reward: 81.3731918334961 steps: 304.0
+reward: 98.95396423339844 steps: 306.0
+reward: 71.12921142578125 steps: 171.0
+reward: 93.44783020019531 steps: 308.0
+reward: 83.4324951171875 steps: 310.0
+reward: 91.59944152832031 steps: 248.0
+reward: 94.43804931640625 steps: 315.0
+reward: 68.4884262084961 steps: 122.0
+reward: 60.19300079345703 steps: 171.0
+reward: 97.7892074584961 steps: 320.0
+reward: 96.65776062011719 steps: 321.0
+reward: 88.12113952636719 steps: 322.0
+reward: 93.64437103271484 steps: 325.0
+reward: 102.39248657226562 steps: 330.0
+reward: 89.93097686767578 steps: 335.0
+reward: 93.8843765258789 steps: 339.0
+reward: 90.03630828857422 steps: 342.0
+reward: 107.86822509765625 steps: 343.0
+reward: 128.31842041015625 steps: 345.0
+reward: 44.15424346923828 steps: 142.0
+reward: 100.9774398803711 steps: 364.0
+reward: 100.64869689941406 steps: 372.0
+reward: 111.27046203613281 steps: 376.0
+reward: 120.15135955810547 steps: 378.0
+reward: 63.022560119628906 steps: 243.0
+reward: 100.63676452636719 steps: 384.0
+reward: 102.5813980102539 steps: 391.0
+reward: 102.5878677368164 steps: 396.0
+reward: 110.57710266113281 steps: 407.0
+reward: 90.3254623413086 steps: 417.0
+reward: 110.1654281616211 steps: 418.0
+reward: 93.84138488769531 steps: 316.5
+reward: 62.40336990356445 steps: 122.0
+reward: 70.23377990722656 steps: 297.0
+reward: 94.63812255859375 steps: 432.0
+reward: 117.79822540283203 steps: 435.0
+reward: 40.29618835449219 steps: 158.0
+reward: 66.53874206542969 steps: 131.0
+reward: 119.77499389648438 steps: 442.0
+reward: 66.91189575195312 steps: 144.0
+reward: 110.63187408447266 steps: 460.0
+reward: 102.77113342285156 steps: 466.0
+reward: 118.31062316894531 steps: 468.0
+reward: 114.48489379882812 steps: 471.0
+reward: 59.6742057800293 steps: 149.0
+reward: 65.21900177001953 steps: 161.0
+reward: 100.41290283203125 steps: 477.0
+reward: 132.0718536376953 steps: 479.0
+reward: 117.41341400146484 steps: 483.0
+reward: 66.96717834472656 steps: 118.0
+Collected enough data (1000 per task) success rates:
+STATES.REACH: 1.00
+STATES.STRIKE_KICK: 0.86
+STATES.STRIKE_PUNCH: 0.86
+STATES.SIT: 0.77
+STATES.GET_UP: 0.96
+Eval plot ended
+=== EVALUATION FINISHED ===

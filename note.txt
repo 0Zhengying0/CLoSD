@@ -3,7 +3,7 @@ For CLoSD:
 source /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/scripts/hpc/closd_env.sh
 
 bash CLoSD/reproduction/scripts/hpc/submit.sh closd_smoke
-squeue -j 5133871
+squeue -j 5144325
 scontrol update JobId=5133871 MailType=BEGIN,END,FAIL MailUser=zy.xu@tum.de
 cat CLoSD/reproduction/logs/closd_smoke_5100756.out
 cat CLoSD/reproduction/logs/closd_smoke_5100756.err
@@ -26,5 +26,10 @@ sacct -j 5100756 \
 评测 官方checkpoints 5100756 （CD）
     从零训练的checkpoints 300k 5114966
     从零训练的checkpoints 600k 5114967
-    5133041
-    5133871
+    从零训练的checkpoints 300k 官方设置 5133041 5133871
+
+替换DiP
+- Flow Matching 
+    train smoke test 5144325
+- Rectified Flow
+- Drifting Model
