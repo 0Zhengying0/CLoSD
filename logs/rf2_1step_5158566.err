@@ -1,0 +1,12 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Using /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions as PyTorch extensions root...
+Emitting ninja build file /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions/gymtorch/build.ninja...
+Building extension module gymtorch...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+Loading extension module gymtorch...
+2026-10-08 21:14:47,136 - INFO - logger - logger initialized
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 3345.30it/s]
+  0%|          | 0/63 [00:00<?, ?it/s]  2%|▏         | 1/63 [00:01<01:02,  1.02s/it]  3%|▎         | 2/63 [00:01<00:36,  1.67it/s]  8%|▊         | 5/63 [00:01<00:12,  4.69it/s] 13%|█▎        | 8/63 [00:01<00:07,  7.74it/s] 16%|█▌        | 10/63 [00:01<00:05,  9.38it/s] 21%|██        | 13/63 [00:01<00:04, 12.16it/s] 25%|██▌       | 16/63 [00:02<00:03, 14.47it/s] 30%|███       | 19/63 [00:02<00:02, 16.23it/s] 33%|███▎      | 21/63 [00:02<00:02, 16.68it/s] 38%|███▊      | 24/63 [00:02<00:02, 17.93it/s] 43%|████▎     | 27/63 [00:02<00:01, 19.12it/s] 48%|████▊     | 30/63 [00:02<00:01, 20.42it/s] 52%|█████▏    | 33/63 [00:02<00:01, 21.40it/s] 57%|█████▋    | 36/63 [00:02<00:01, 22.10it/s] 62%|██████▏   | 39/63 [00:03<00:01, 22.69it/s] 67%|██████▋   | 42/63 [00:03<00:00, 21.99it/s] 71%|███████▏  | 45/63 [00:03<00:00, 21.57it/s] 76%|███████▌  | 48/63 [00:03<00:00, 21.45it/s] 81%|████████  | 51/63 [00:03<00:00, 21.36it/s] 86%|████████▌ | 54/63 [00:03<00:00, 21.23it/s] 90%|█████████ | 57/63 [00:03<00:00, 21.20it/s] 95%|█████████▌| 60/63 [00:04<00:00, 21.17it/s]100%|██████████| 63/63 [00:04<00:00, 21.28it/s]100%|██████████| 63/63 [00:04<00:00, 14.93it/s]
+  0%|          | 0/4096 [00:00<?, ?it/s]100%|██████████| 4096/4096 [00:00<00:00, 414402.13it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 10408.20it/s]

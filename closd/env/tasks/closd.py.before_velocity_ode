@@ -17,7 +17,6 @@ import closd.env.tasks.humanoid_im as humanoid_im
 from closd.diffusion_planner.utils.fixseed import fixseed
 from closd.diffusion_planner.utils.model_util import create_model_and_diffusion, load_saved_model
 from closd.diffusion_planner.utils.sampler_util import ClassifierFreeSampleModel
-from closd.diffusion_planner.diffusion.ode_sampler import VelocityODESampler
 from closd.diffusion_planner.data_loaders.get_data import get_dataset_loader
 from closd.diffusion_planner.data_loaders.humanml.scripts.motion_process import recover_from_ric
 from closd.diffusion_planner.data_loaders.humanml.utils.plot_script import plot_3d_motion
@@ -103,72 +102,7 @@ class CLoSD(humanoid_im.HumanoidIm):
         print(f'MDM dataset size: {self.full_mdm_dataset_size}')
         self.mdm_data_iter = iter(self.mdm_data)
         self.mdm, self.diffusion = create_model_and_diffusion(self.fake_mdm_args, self.mdm_data)
-
-        # -----------------------------------------------------
-        # Generative planner backend
-        #
-        # diffusion:
-        #     original DiP Gaussian diffusion sampler
-        #
-        # flow / rectified_flow:
-        #     shared velocity ODE sampler
-        # -----------------------------------------------------
-        self.generator_type = os.environ.get(
-            "CLOSD_GENERATOR_TYPE",
-            "diffusion",
-        ).lower()
-
-        self.ode_steps = int(
-            os.environ.get(
-                "CLOSD_ODE_STEPS",
-                "10",
-            )
-        )
-
-        self.ode_solver = os.environ.get(
-            "CLOSD_ODE_SOLVER",
-            "euler",
-        ).lower()
-
-        if self.generator_type == "diffusion":
-
-            self.sample_fn = self.diffusion.p_sample_loop
-
-            print(
-                "DiP sampling backend: diffusion"
-            )
-
-        elif self.generator_type in [
-            "flow",
-            "rectified_flow",
-        ]:
-
-            self.ode_sampler = VelocityODESampler(
-                num_timesteps=getattr(
-                    self.fake_mdm_args,
-                    "diffusion_steps",
-                    1000,
-                ),
-                num_steps=self.ode_steps,
-                solver=self.ode_solver,
-            )
-
-            self.sample_fn = self.ode_sampler.p_sample_loop
-
-            print(
-                f"DiP sampling backend: {self.generator_type} | "
-                f"solver={self.ode_solver} | "
-                f"steps={self.ode_steps} | "
-                f"NFE={self.ode_sampler.nfe}"
-            )
-
-        else:
-
-            raise ValueError(
-                f"Unknown CLOSD_GENERATOR_TYPE: "
-                f"{self.generator_type}"
-            )
-
+        self.sample_fn = self.diffusion.p_sample_loop
         fixseed(self.fake_mdm_args.seed)
         print(f"Loading checkpoints from [{self.mdm_path}]...")
         load_saved_model(self.mdm, self.mdm_path, use_avg=self.fake_mdm_args.use_ema)
@@ -371,10 +305,7 @@ class CLoSD(humanoid_im.HumanoidIm):
         init_image = None
         
         # Run MDM with prefix outpainting
-        profile_planner = os.environ.get("CLOSD_PROFILE_PLANNER", "0") == "1"
-        if profile_planner:
-            torch.cuda.synchronize(device=self.mdm_device)
-        start_time = time.perf_counter()
+        start_time = time.time()
 
         sample = self.sample_fn(
             self.mdm,
@@ -389,21 +320,9 @@ class CLoSD(humanoid_im.HumanoidIm):
             const_noise=False,
             cond_fn=cond_fn,
         )  # [bs, 263, 1, 60]
-        if profile_planner:
-            torch.cuda.synchronize(device=self.mdm_device)
-        planner_sec = time.perf_counter() - start_time
-        if profile_planner:
-            print(
-                f"PLANNER_LATENCY_SEC={planner_sec:.6f} "
-                f"GENERATOR={self.generator_type} "
-                f"ODE_STEPS={self.ode_steps} "
-                f"SOLVER={self.ode_solver} "
-                f"BATCH={sample.shape[0]}",
-                flush=True,
-            )
         self.cur_mdm_pred = sample  # used in the context_switch feature
         if self.time_prints:
-            print('=== sample mdm for [{}] envs took [{:.2f}] sec'.format(sample.shape[0], planner_sec))
+            print('=== sample mdm for [{}] envs took [{:.2f}] sec'.format(sample.shape[0], time.time() - start_time))
 
         sample_reshaped = sample.squeeze(2).permute(0, 2, 1)
         sample_xyz = self.rep.hml_to_pose(sample_reshaped, recon_data, sim_at_hml_idx=model_kwargs['y']['prefix_len']-1)  # hml rep [bs, n_frames_20fps, 263] -> smpl xyz [bs, n_frames_30fps, 24, 3]

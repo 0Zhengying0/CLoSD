@@ -1,0 +1,13 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Using /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions as PyTorch extensions root...
+Creating extension directory /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions/gymtorch...
+Emitting ninja build file /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/torch_extensions/gymtorch/build.ninja...
+Building extension module gymtorch...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+Loading extension module gymtorch...
+2026-10-05 23:38:47,178 - INFO - logger - logger initialized
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 1971.72it/s]
+  0%|          | 0/31 [00:00<?, ?it/s]  6%|▋         | 2/31 [00:00<00:01, 16.43it/s]100%|██████████| 31/31 [00:00<00:00, 162.38it/s]100%|██████████| 31/31 [00:00<00:00, 138.45it/s]
+  0%|          | 0/32 [00:00<?, ?it/s]100%|██████████| 32/32 [00:00<00:00, 254682.60it/s]
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 8737.78it/s]

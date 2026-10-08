@@ -213,9 +213,38 @@ def add_training_options(parser):
     group.add_argument("--autoregressive_init", default='data', type=str, choices=['data', 'isaac'], 
                         help="Sets the source of the init frames, either from the dataset or isaac init poses.")
 
+    # Velocity-model sampling (Flow Matching / Rectified Flow)
+    group.add_argument(
+        "--generator_type",
+        default="diffusion",
+        choices=["diffusion", "flow", "rectified_flow"],
+        type=str,
+        help="Generative backend used for sampling."
+    )
+    group.add_argument(
+        "--ode_steps",
+        default=10,
+        type=int,
+        help="Number of ODE integration steps for Flow Matching / Rectified Flow."
+    )
+    group.add_argument(
+        "--ode_solver",
+        default="euler",
+        choices=["euler", "heun"],
+        type=str,
+        help="ODE solver for velocity models."
+    )
+
 
 def add_sampling_options(parser):
     group = parser.add_argument_group('sampling')
+    group.add_argument("--generator_type", default="diffusion",
+                       choices=["diffusion", "flow", "rectified_flow"], type=str,
+                       help="Generative backend used for sampling.")
+    group.add_argument("--ode_steps", default=10, type=int,
+                       help="Number of ODE integration steps for Flow Matching / Rectified Flow.")
+    group.add_argument("--ode_solver", default="euler", choices=["euler", "heun"],
+                       type=str, help="ODE solver for velocity models.")
     group.add_argument("--model_path", required=True, type=str,
                        help="Path to model####.pt file to be sampled.")
     group.add_argument("--output_dir", default='', type=str,

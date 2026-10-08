@@ -1,0 +1,79 @@
+===== RF-2 training smoke =====
+RF-1 init : /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt
+Pairs     : /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/reflow_pairs/rf1_300k_smoke128.pt
+Save dir  : /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/RectifiedFlow2_smoke
+===============================
+Creating HumanML metadata loader...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy]...
+Pointer Pointing at 1384
+Creating MDM...
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+Initializing RF-2 from RF-1 EMA [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt]...
+loading avg model
+Loading reflow pairs from [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/reflow_pairs/rf1_300k_smoke128.pt]...
+Reflow dataset size: 128
+z0 shape: torch.Size([128, 263, 1, 40])
+z1 shape: torch.Size([128, 263, 1, 40])
+Creating RF-2 objective...
+Total params: 26.70M
+===== RF-2 training =====
+Reflow pairs: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/reflow_pairs/rf1_300k_smoke128.pt
+RF-1 initialization: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt
+dataset size: 128
+time discretization: 1000
+target lambda: 1.0
+train steps: 100
+Starting epoch 0
+Logging to /tmp/openai-2026-10-07-16-10-21-763903
+----------------------------
+| grad_norm     | 0.365    |
+| loss          | 0.161    |
+| loss_q0       | 0.143    |
+| loss_q1       | 0.106    |
+| loss_q2       | 0.132    |
+| loss_q3       | 0.252    |
+| param_norm    | 476      |
+| rf2_mse       | 0.146    |
+| rf2_mse_q0    | 0.129    |
+| rf2_mse_q1    | 0.0941   |
+| rf2_mse_q2    | 0.109    |
+| rf2_mse_q3    | 0.243    |
+| samples       | 64       |
+| step          | 0        |
+| target_loc    | 0.0147   |
+| target_loc_q0 | 0.0134   |
+| target_loc_q1 | 0.0114   |
+| target_loc_q2 | 0.023    |
+| target_loc_q3 | 0.00936  |
+----------------------------
+step[0]: loss[0.16053]
+saving model...
+----------------------------
+| grad_norm     | 0.569    |
+| loss          | 0.143    |
+| loss_q0       | 0.116    |
+| loss_q1       | 0.102    |
+| loss_q2       | 0.125    |
+| loss_q3       | 0.303    |
+| param_norm    | 476      |
+| rf2_mse       | 0.13     |
+| rf2_mse_q0    | 0.107    |
+| rf2_mse_q1    | 0.0876   |
+| rf2_mse_q2    | 0.112    |
+| rf2_mse_q3    | 0.29     |
+| samples       | 128      |
+| step          | 1        |
+| target_loc    | 0.0124   |
+| target_loc_q0 | 0.00934  |
+| target_loc_q1 | 0.0146   |
+| target_loc_q2 | 0.0121   |
+| target_loc_q3 | 0.0133   |
+----------------------------
+step[1]: loss[0.14262]
+saving model...
+===== RF-2 training smoke finished =====

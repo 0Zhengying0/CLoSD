@@ -1,0 +1,81 @@
+===== Flow Matching smoke test =====
+Host: acn06.karolina.it4i.cz
+Date: Mon Oct  5 18:26:15 CEST 2026
+CLoSD root: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD
+Save dir: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_smoke
+====================================
+===== Container check =====
+Python: Usage: /usr/bin/which [-a] args
+Python 3.8.19
+torch version: 2.2.2+cu121
+CUDA available: True
+GPU: NVIDIA A100-SXM4-40GB
+FlowMatching import OK
+num_timesteps = 1000
+lambda_target_loc = 1.0
+===== Start training smoke test =====
+creating data loader...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy]...
+Pointer Pointing at 1384
+creating MDM model...
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+creating Flow Matching objective...
+Total params: 26.70M
+Flow Matching training...
+FM time discretization: 1000
+Target location lambda: 1.0
+train steps: 600000
+Starting epoch 0
+Logging to /tmp/openai-2026-10-05-18-29-35-398285
+----------------------------
+| flow_mse      | 3.17     |
+| flow_mse_q0   | 4.42     |
+| flow_mse_q1   | 2.99     |
+| flow_mse_q2   | 2.69     |
+| flow_mse_q3   | 2.81     |
+| grad_norm     | 3.07     |
+| loss          | 3.51     |
+| loss_q0       | 5.19     |
+| loss_q1       | 3.58     |
+| loss_q2       | 2.82     |
+| loss_q3       | 2.83     |
+| param_norm    | 454      |
+| samples       | 64       |
+| step          | 0        |
+| target_loc    | 0.341    |
+| target_loc_q0 | 0.763    |
+| target_loc_q1 | 0.596    |
+| target_loc_q2 | 0.131    |
+| target_loc_q3 | 0.0195   |
+----------------------------
+step[0]: loss[3.50843]
+saving model...
+----------------------------
+| flow_mse      | 3.36     |
+| flow_mse_q0   | 3.86     |
+| flow_mse_q1   | 3.39     |
+| flow_mse_q2   | 3.1      |
+| flow_mse_q3   | 2.86     |
+| grad_norm     | 10.2     |
+| loss          | 3.79     |
+| loss_q0       | 4.55     |
+| loss_q1       | 4        |
+| loss_q2       | 3.22     |
+| loss_q3       | 2.89     |
+| param_norm    | 454      |
+| samples       | 128      |
+| step          | 1        |
+| target_loc    | 0.429    |
+| target_loc_q0 | 0.699    |
+| target_loc_q1 | 0.609    |
+| target_loc_q2 | 0.128    |
+| target_loc_q3 | 0.0267   |
+----------------------------
+step[1]: loss[3.79048]
+saving model...
+===== Smoke test finished =====

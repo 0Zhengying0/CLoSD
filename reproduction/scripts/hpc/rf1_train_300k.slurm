@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=flow_smoke
+#SBATCH --job-name=rf1_300k
 #SBATCH --account=EU-26-37
-#SBATCH --partition=qgpu_exp
+#SBATCH --partition=qgpu
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=16
-#SBATCH --time=00:20:00
+#SBATCH --time=1-23:30:00
 #SBATCH --mail-user=zy.xu@tum.de
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/logs/%x_%j.out
@@ -15,17 +15,16 @@ set -euo pipefail
 ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
 CLOSD_ROOT=$ROOT/CLoSD
 CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
-SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
+SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k
 
-echo "===== Flow Matching smoke test ====="
+mkdir -p "$CLOSD_ROOT/logs"
+mkdir -p "$SAVE_DIR"
+
+echo "===== RF-1 formal training ====="
 echo "Host: $(hostname)"
 echo "Date: $(date)"
-echo "CLoSD root: $CLOSD_ROOT"
 echo "Save dir: $SAVE_DIR"
-echo "===================================="
-
-rm -rf "$SAVE_DIR"
-mkdir -p "$SAVE_DIR"
+echo "================================"
 
 apptainer exec \
     --nv \
@@ -36,7 +35,7 @@ apptainer exec \
 
         ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
         CLOSD_ROOT=$ROOT/CLoSD
-        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
+        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k
 
         export PATH=$ROOT/envs/closd/bin:$PATH
         export PYTHONPATH=$CLOSD_ROOT/closd:$CLOSD_ROOT:${PYTHONPATH:-}
@@ -47,38 +46,18 @@ apptainer exec \
         export PIP_CACHE_DIR=$ROOT/cache/pip
         export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
 
-        export DIFFUSION_TRAINING_TEST=1
         export PYTHONUNBUFFERED=1
+        unset DIFFUSION_TRAINING_TEST
+
+        export WANDB_MODE=offline
+        export WANDB_DIR=$CLOSD_ROOT/reproduction/runs/wandb
+        export WANDB_CACHE_DIR=$CLOSD_ROOT/.local/cache/wandb
+        export WANDB_CONFIG_DIR=$CLOSD_ROOT/.local/cache/wandb_config
+        mkdir -p "$WANDB_DIR" "$WANDB_CACHE_DIR" "$WANDB_CONFIG_DIR"
 
         cd "$CLOSD_ROOT"
 
-        echo "===== Container check ====="
-        echo "Python: $(which python)"
-        python --version
-
-        python - << "PY"
-import torch
-from closd.diffusion_planner.diffusion.flow_matching import FlowMatching
-
-print("torch version:", torch.__version__)
-print("CUDA available:", torch.cuda.is_available())
-
-if torch.cuda.is_available():
-    print("GPU:", torch.cuda.get_device_name(0))
-
-fm = FlowMatching(
-    num_timesteps=1000,
-    lambda_target_loc=1.0,
-)
-
-print("FlowMatching import OK")
-print("num_timesteps =", fm.num_timesteps)
-print("lambda_target_loc =", fm.lambda_target_loc)
-PY
-
-        echo "===== Start training smoke test ====="
-
-        python -m closd.diffusion_planner.train.train_flow \
+        python -m closd.diffusion_planner.train.train_rectified_flow \
             --save_dir "$SAVE_DIR" \
             --overwrite \
             --seed 10 \
@@ -104,10 +83,10 @@ PY
             --lr 0.0001 \
             --weight_decay 0.0 \
             --adam_beta2 0.999 \
-            --num_steps 600000 \
-            --save_interval 1 \
-            --log_interval 1 \
-            --train_platform_type NoPlatform
+            --num_steps 300000 \
+            --save_interval 10000 \
+            --log_interval 1000 \
+            --train_platform_type WandBPlatform
 
-        echo "===== Smoke test finished ====="
+        echo "===== RF-1 training finished ====="
     '

@@ -1,0 +1,7 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Illegal option --
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files:   2%|▏         | 1/52 [00:00<00:21,  2.40it/s]Fetching 52 files:   4%|▍         | 2/52 [00:00<00:12,  3.99it/s]Fetching 52 files:   6%|▌         | 3/52 [00:14<05:11,  6.35s/it]Fetching 52 files:   8%|▊         | 4/52 [00:14<03:19,  4.15s/it]Fetching 52 files:  10%|▉         | 5/52 [00:15<02:17,  2.92s/it]Fetching 52 files:  13%|█▎        | 7/52 [00:16<01:13,  1.63s/it]Fetching 52 files:  21%|██        | 11/52 [00:16<00:28,  1.46it/s]Fetching 52 files:  25%|██▌       | 13/52 [00:18<00:30,  1.29it/s]Fetching 52 files:  27%|██▋       | 14/52 [00:22<00:50,  1.34s/it]Fetching 52 files:  29%|██▉       | 15/52 [02:31<16:30, 26.78s/it]Fetching 52 files:  52%|█████▏    | 27/52 [02:49<03:01,  7.24s/it]Fetching 52 files: 100%|██████████| 52/52 [02:49<00:00,  3.26s/it]
+  0%|          | 0/361 [00:00<?, ?it/s]  0%|          | 1/361 [00:05<34:35,  5.77s/it]  0%|          | 1/361 [00:06<40:31,  6.75s/it]
+INFO:    Terminating squashfuse_ll after timeout
+INFO:    Timeouts can be caused by a running background process

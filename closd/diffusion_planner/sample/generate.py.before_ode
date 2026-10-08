@@ -11,7 +11,6 @@ from closd.diffusion_planner.utils.parser_util import generate_args
 from closd.diffusion_planner.utils.model_util import create_model_and_diffusion, load_saved_model
 from closd.diffusion_planner.utils import dist_util
 from closd.diffusion_planner.utils.sampler_util import ClassifierFreeSampleModel, AutoRegressiveSampler
-from closd.diffusion_planner.diffusion.ode_sampler import VelocityODESampler
 from closd.diffusion_planner.data_loaders.get_data import get_dataset_loader
 from closd.diffusion_planner.data_loaders.humanml.scripts.motion_process import recover_from_ric, traj_global2vel, recover_root_rot_pos, get_target_location, recover_root_rot_heading_ang, sample_goal
 import closd.diffusion_planner.data_loaders.humanml.utils.paramUtil as paramUtil
@@ -91,25 +90,7 @@ def main(args=None):
     print("Creating model and diffusion...")
     model, diffusion = create_model_and_diffusion(args, data)
 
-    if args.generator_type == "diffusion":
-        print("Sampling backend: Gaussian Diffusion")
-        sample_fn = diffusion.p_sample_loop
-    elif args.generator_type in ["flow", "rectified_flow"]:
-        ode_sampler = VelocityODESampler(
-            num_timesteps=1000,
-            num_steps=args.ode_steps,
-            solver=args.ode_solver,
-        )
-        print(
-            f"Sampling backend: {args.generator_type} | "
-            f"solver={args.ode_solver} | "
-            f"steps={args.ode_steps} | "
-            f"NFE={ode_sampler.nfe}"
-        )
-        sample_fn = ode_sampler.p_sample_loop
-    else:
-        raise ValueError(f"Unknown generator_type: {args.generator_type}")
-
+    sample_fn = diffusion.p_sample_loop
     if args.autoregressive:
         sample_cls = AutoRegressiveSampler(args, sample_fn, n_frames)
         sample_fn = sample_cls.sample
@@ -241,8 +222,7 @@ def main(args=None):
 
         heading_all = recover_root_rot_heading_ang(sample)
         heading_all *= 180 / torch.pi
-        heading_all = heading_all.cpu().numpy().round()
-        heading_all = heading_all.reshape(sample.shape[0], -1)
+        heading_all = heading_all.cpu().numpy().round().squeeze()
 
         if args.unconstrained:
             all_text += ['unconstrained'] * args.num_samples

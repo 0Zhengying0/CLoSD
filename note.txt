@@ -3,7 +3,7 @@ For CLoSD:
 source /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/scripts/hpc/closd_env.sh
 
 bash CLoSD/reproduction/scripts/hpc/submit.sh closd_smoke
-squeue -j 5144325
+squeue -j 5144523
 scontrol update JobId=5133871 MailType=BEGIN,END,FAIL MailUser=zy.xu@tum.de
 cat CLoSD/reproduction/logs/closd_smoke_5100756.out
 cat CLoSD/reproduction/logs/closd_smoke_5100756.err
@@ -21,8 +21,6 @@ sacct -j 5100756 \
                 smoke 5121612 成功
                 5121622 结束，保存到300k步
 
-
-
 评测 官方checkpoints 5100756 （CD）
     从零训练的checkpoints 300k 5114966
     从零训练的checkpoints 600k 5114967
@@ -30,6 +28,24 @@ sacct -j 5100756 \
 
 替换DiP
 - Flow Matching 
-    train smoke test 5144325
+    train smoke test 5144408
+    train 5144432
+    评测 closd_velocity_eval.slurm 5153280 10步
 - Rectified Flow
+    - RF1
+    train smoke test 5144509
+    train 5144523
+    评测 closd_velocity_eval.slurm 5153281/2/3/4 10/4/2/1步
+    - RF2
+    ① 用 RF-1 300k 做 128 个 reflow pairs → smoke 5153307
+    ② 写 ReflowPairDataset
+    ③ 写 RF-2 objective + 专用 TrainLoop + train_rf2.py
+    ④ 跑两步 RF-2 training smoke 5153318
+    ⑤ 用 RF-1 300k 正式生成完整 train reflow pairs 5153326/7/8/9 SEED 10/11/12/13
+    ⑥ RF-2 正式 300k 5153360
+    评测 RF2 checkpoints 300k 5158563/4/5/6 10/4/2/1/步
+         DiP 5158705
+         RF2 checkpoints 50k/100k/150k/200k/250k 1-step 5158706/7/8/9/10
 - Drifting Model
+
+ODE smoke 5145287

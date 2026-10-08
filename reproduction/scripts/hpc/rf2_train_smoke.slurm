@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=flow_smoke
+#SBATCH --job-name=rf2_train_smoke
 #SBATCH --account=EU-26-37
 #SBATCH --partition=qgpu_exp
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=16
 #SBATCH --time=00:20:00
 #SBATCH --mail-user=zy.xu@tum.de
-#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-type=END,FAIL
 #SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/logs/%x_%j.out
 #SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/logs/%x_%j.err
 
@@ -15,20 +15,20 @@ set -euo pipefail
 ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
 CLOSD_ROOT=$ROOT/CLoSD
 CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
-SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
 
-echo "===== Flow Matching smoke test ====="
-echo "Host: $(hostname)"
-echo "Date: $(date)"
-echo "CLoSD root: $CLOSD_ROOT"
-echo "Save dir: $SAVE_DIR"
-echo "===================================="
+RF1_MODEL=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt
+PAIR_FILE=$CLOSD_ROOT/reproduction/reflow_pairs/rf1_300k_smoke128.pt
+SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow2_smoke
 
+mkdir -p "$CLOSD_ROOT/logs"
+
+# Smoke only. Avoid stale checkpoint auto-resume.
 rm -rf "$SAVE_DIR"
 mkdir -p "$SAVE_DIR"
 
 apptainer exec \
     --nv \
+    --cleanenv \
     --bind "$ROOT:$ROOT" \
     "$CONTAINER" \
     bash -lc '
@@ -36,10 +36,13 @@ apptainer exec \
 
         ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
         CLOSD_ROOT=$ROOT/CLoSD
-        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
+
+        RF1_MODEL=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt
+        PAIR_FILE=$CLOSD_ROOT/reproduction/reflow_pairs/rf1_300k_smoke128.pt
+        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow2_smoke
 
         export PATH=$ROOT/envs/closd/bin:$PATH
-        export PYTHONPATH=$CLOSD_ROOT/closd:$CLOSD_ROOT:${PYTHONPATH:-}
+        export PYTHONPATH=$CLOSD_ROOT/closd:$CLOSD_ROOT
 
         export HF_HOME=$ROOT/cache/huggingface
         export TORCH_HOME=$ROOT/cache/torch
@@ -47,38 +50,23 @@ apptainer exec \
         export PIP_CACHE_DIR=$ROOT/cache/pip
         export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
 
-        export DIFFUSION_TRAINING_TEST=1
         export PYTHONUNBUFFERED=1
+
+        # Makes TrainLoop exit after it has completed and saved
+        # the second optimizer step.
+        export DIFFUSION_TRAINING_TEST=1
 
         cd "$CLOSD_ROOT"
 
-        echo "===== Container check ====="
-        echo "Python: $(which python)"
-        python --version
+        echo "===== RF-2 training smoke ====="
+        echo "RF-1 init : $RF1_MODEL"
+        echo "Pairs     : $PAIR_FILE"
+        echo "Save dir  : $SAVE_DIR"
+        echo "==============================="
 
-        python - << "PY"
-import torch
-from closd.diffusion_planner.diffusion.flow_matching import FlowMatching
-
-print("torch version:", torch.__version__)
-print("CUDA available:", torch.cuda.is_available())
-
-if torch.cuda.is_available():
-    print("GPU:", torch.cuda.get_device_name(0))
-
-fm = FlowMatching(
-    num_timesteps=1000,
-    lambda_target_loc=1.0,
-)
-
-print("FlowMatching import OK")
-print("num_timesteps =", fm.num_timesteps)
-print("lambda_target_loc =", fm.lambda_target_loc)
-PY
-
-        echo "===== Start training smoke test ====="
-
-        python -m closd.diffusion_planner.train.train_flow \
+        python -m closd.diffusion_planner.train.train_rf2 \
+            --reflow_pairs "$PAIR_FILE" \
+            --rf1_init_model "$RF1_MODEL" \
             --save_dir "$SAVE_DIR" \
             --overwrite \
             --seed 10 \
@@ -104,10 +92,10 @@ PY
             --lr 0.0001 \
             --weight_decay 0.0 \
             --adam_beta2 0.999 \
-            --num_steps 600000 \
+            --num_steps 100 \
             --save_interval 1 \
             --log_interval 1 \
             --train_platform_type NoPlatform
 
-        echo "===== Smoke test finished ====="
+        echo "===== RF-2 training smoke finished ====="
     '

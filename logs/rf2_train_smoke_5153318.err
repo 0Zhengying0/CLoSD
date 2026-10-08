@@ -1,0 +1,4 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 2186.86it/s]
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:03<00:03,  3.22s/it] 50%|█████     | 1/2 [00:03<00:03,  3.94s/it]

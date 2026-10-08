@@ -1,0 +1,25 @@
+===== Generate RF-2 reflow pairs =====
+teacher       : /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt
+solver        : euler
+steps         : 4
+NFE           : 4
+num_pairs     : 128
+======================================
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy]...
+Pointer Pointing at 1384
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+Loading RF-1 EMA teacher...
+loading avg model
+generated pairs: 64
+generated pairs: 128
+===== Reflow pairs finished =====
+z0     : torch.Size([128, 263, 1, 40])
+z1     : torch.Size([128, 263, 1, 40])
+prefix : torch.Size([128, 263, 1, 20])
+target : torch.Size([128, 8, 3])
+saved  : /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/reflow_pairs/rf1_300k_smoke128.pt

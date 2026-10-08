@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=flow_smoke
+#SBATCH --job-name=rf1_smoke
 #SBATCH --account=EU-26-37
 #SBATCH --partition=qgpu_exp
 #SBATCH --gres=gpu:a100:1
@@ -15,9 +15,9 @@ set -euo pipefail
 ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
 CLOSD_ROOT=$ROOT/CLoSD
 CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
-SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
+SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_smoke
 
-echo "===== Flow Matching smoke test ====="
+echo "===== Rectified Flow smoke test ====="
 echo "Host: $(hostname)"
 echo "Date: $(date)"
 echo "CLoSD root: $CLOSD_ROOT"
@@ -36,7 +36,7 @@ apptainer exec \
 
         ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
         CLOSD_ROOT=$ROOT/CLoSD
-        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
+        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_smoke
 
         export PATH=$ROOT/envs/closd/bin:$PATH
         export PYTHONPATH=$CLOSD_ROOT/closd:$CLOSD_ROOT:${PYTHONPATH:-}
@@ -58,7 +58,7 @@ apptainer exec \
 
         python - << "PY"
 import torch
-from closd.diffusion_planner.diffusion.flow_matching import FlowMatching
+from closd.diffusion_planner.diffusion.rectified_flow import RectifiedFlow
 
 print("torch version:", torch.__version__)
 print("CUDA available:", torch.cuda.is_available())
@@ -66,19 +66,19 @@ print("CUDA available:", torch.cuda.is_available())
 if torch.cuda.is_available():
     print("GPU:", torch.cuda.get_device_name(0))
 
-fm = FlowMatching(
+rf = RectifiedFlow(
     num_timesteps=1000,
     lambda_target_loc=1.0,
 )
 
-print("FlowMatching import OK")
-print("num_timesteps =", fm.num_timesteps)
-print("lambda_target_loc =", fm.lambda_target_loc)
+print("RectifiedFlow import OK")
+print("num_timesteps =", rf.num_timesteps)
+print("lambda_target_loc =", rf.lambda_target_loc)
 PY
 
         echo "===== Start training smoke test ====="
 
-        python -m closd.diffusion_planner.train.train_flow \
+        python -m closd.diffusion_planner.train.train_rectified_flow \
             --save_dir "$SAVE_DIR" \
             --overwrite \
             --seed 10 \

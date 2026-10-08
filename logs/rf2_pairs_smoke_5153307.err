@@ -1,0 +1,6 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Fetching 52 files:   0%|          | 0/52 [00:00<?, ?it/s]Fetching 52 files: 100%|██████████| 52/52 [00:00<00:00, 3490.16it/s]
+/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+RF-1 reflow:   0%|          | 0/362 [00:00<?, ?it/s]RF-1 reflow:   0%|          | 1/362 [00:03<19:19,  3.21s/it]RF-1 reflow:   1%|          | 2/362 [00:03<08:28,  1.41s/it]RF-1 reflow:   1%|          | 2/362 [00:03<10:21,  1.73s/it]

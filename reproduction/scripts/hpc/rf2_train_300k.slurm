@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=flow_smoke
+#SBATCH --job-name=rf2_300k
 #SBATCH --account=EU-26-37
-#SBATCH --partition=qgpu_exp
+#SBATCH --partition=qgpu
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=16
-#SBATCH --time=00:20:00
+#SBATCH --time=1-23:30:00
 #SBATCH --mail-user=zy.xu@tum.de
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/logs/%x_%j.out
@@ -15,20 +15,26 @@ set -euo pipefail
 ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
 CLOSD_ROOT=$ROOT/CLoSD
 CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
-SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
 
-echo "===== Flow Matching smoke test ====="
-echo "Host: $(hostname)"
-echo "Date: $(date)"
-echo "CLoSD root: $CLOSD_ROOT"
-echo "Save dir: $SAVE_DIR"
-echo "===================================="
+RF1_MODEL=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt
 
-rm -rf "$SAVE_DIR"
+PAIR_GLOB="$CLOSD_ROOT/reproduction/reflow_pairs/rf1_300k_heun10_seed*.pt"
+
+SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow2_DIMP_FINAL_300k
+
+mkdir -p "$CLOSD_ROOT/logs"
 mkdir -p "$SAVE_DIR"
+
+echo "===== RF-2 formal training ====="
+echo "RF-1 init  = $RF1_MODEL"
+echo "Pairs      = $PAIR_GLOB"
+echo "Save dir   = $SAVE_DIR"
+echo "Steps      = 300000"
+echo "================================"
 
 apptainer exec \
     --nv \
+    --cleanenv \
     --bind "$ROOT:$ROOT" \
     "$CONTAINER" \
     bash -lc '
@@ -36,49 +42,26 @@ apptainer exec \
 
         ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
         CLOSD_ROOT=$ROOT/CLoSD
-        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/FlowMatching_smoke
+
+        RF1_MODEL=$CLOSD_ROOT/reproduction/runs/RectifiedFlow1_DIMP_FINAL_seed10_300k/model000300000.pt
+        PAIR_GLOB="$CLOSD_ROOT/reproduction/reflow_pairs/rf1_300k_heun10_seed*.pt"
+        SAVE_DIR=$CLOSD_ROOT/reproduction/runs/RectifiedFlow2_DIMP_FINAL_300k
 
         export PATH=$ROOT/envs/closd/bin:$PATH
-        export PYTHONPATH=$CLOSD_ROOT/closd:$CLOSD_ROOT:${PYTHONPATH:-}
+        export PYTHONPATH=$CLOSD_ROOT/closd:$CLOSD_ROOT
 
         export HF_HOME=$ROOT/cache/huggingface
         export TORCH_HOME=$ROOT/cache/torch
         export XDG_CACHE_HOME=$ROOT/cache/xdg
         export PIP_CACHE_DIR=$ROOT/cache/pip
         export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
-
-        export DIFFUSION_TRAINING_TEST=1
         export PYTHONUNBUFFERED=1
 
         cd "$CLOSD_ROOT"
 
-        echo "===== Container check ====="
-        echo "Python: $(which python)"
-        python --version
-
-        python - << "PY"
-import torch
-from closd.diffusion_planner.diffusion.flow_matching import FlowMatching
-
-print("torch version:", torch.__version__)
-print("CUDA available:", torch.cuda.is_available())
-
-if torch.cuda.is_available():
-    print("GPU:", torch.cuda.get_device_name(0))
-
-fm = FlowMatching(
-    num_timesteps=1000,
-    lambda_target_loc=1.0,
-)
-
-print("FlowMatching import OK")
-print("num_timesteps =", fm.num_timesteps)
-print("lambda_target_loc =", fm.lambda_target_loc)
-PY
-
-        echo "===== Start training smoke test ====="
-
-        python -m closd.diffusion_planner.train.train_flow \
+        python -m closd.diffusion_planner.train.train_rf2 \
+            --reflow_pairs "$PAIR_GLOB" \
+            --rf1_init_model "$RF1_MODEL" \
             --save_dir "$SAVE_DIR" \
             --overwrite \
             --seed 10 \
@@ -104,10 +87,8 @@ PY
             --lr 0.0001 \
             --weight_decay 0.0 \
             --adam_beta2 0.999 \
-            --num_steps 600000 \
-            --save_interval 1 \
-            --log_interval 1 \
+            --num_steps 300000 \
+            --save_interval 10000 \
+            --log_interval 1000 \
             --train_platform_type NoPlatform
-
-        echo "===== Smoke test finished ====="
     '

@@ -1,0 +1,81 @@
+===== Rectified Flow smoke test =====
+Host: acn06.karolina.it4i.cz
+Date: Mon Oct  5 19:02:51 CEST 2026
+CLoSD root: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD
+Save dir: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/RectifiedFlow1_smoke
+====================================
+===== Container check =====
+Python: Usage: /usr/bin/which [-a] args
+Python 3.8.19
+torch version: 2.2.2+cu121
+CUDA available: True
+GPU: NVIDIA A100-SXM4-40GB
+RectifiedFlow import OK
+num_timesteps = 1000
+lambda_target_loc = 1.0
+===== Start training smoke test =====
+creating data loader...
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_train.npy]...
+Pointer Pointing at 1384
+creating MDM model...
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+creating Flow Matching objective...
+Total params: 26.70M
+Flow Matching training...
+FM time discretization: 1000
+Target location lambda: 1.0
+train steps: 600000
+Starting epoch 0
+Logging to /tmp/openai-2026-10-05-19-03-07-322860
+----------------------------
+| grad_norm     | 6.28     |
+| loss          | 2.85     |
+| loss_q0       | 3.88     |
+| loss_q1       | 2.97     |
+| loss_q2       | 2.37     |
+| loss_q3       | 2.44     |
+| param_norm    | 454      |
+| rf_mse        | 2.48     |
+| rf_mse_q0     | 3.01     |
+| rf_mse_q1     | 2.4      |
+| rf_mse_q2     | 2.2      |
+| rf_mse_q3     | 2.42     |
+| samples       | 64       |
+| step          | 0        |
+| target_loc    | 0.367    |
+| target_loc_q0 | 0.869    |
+| target_loc_q1 | 0.572    |
+| target_loc_q2 | 0.163    |
+| target_loc_q3 | 0.0145   |
+----------------------------
+step[0]: loss[2.84780]
+saving model...
+----------------------------
+| grad_norm     | 4.54     |
+| loss          | 3.81     |
+| loss_q0       | 3.54     |
+| loss_q1       | 4.19     |
+| loss_q2       | 3.94     |
+| loss_q3       | 3.27     |
+| param_norm    | 454      |
+| rf_mse        | 2.8      |
+| rf_mse_q0     | 2.79     |
+| rf_mse_q1     | 2.65     |
+| rf_mse_q2     | 2.81     |
+| rf_mse_q3     | 3.11     |
+| samples       | 128      |
+| step          | 1        |
+| target_loc    | 1.02     |
+| target_loc_q0 | 0.747    |
+| target_loc_q1 | 1.54     |
+| target_loc_q2 | 1.13     |
+| target_loc_q3 | 0.166    |
+----------------------------
+step[1]: loss[3.81486]
+saving model...
+===== Smoke test finished =====
