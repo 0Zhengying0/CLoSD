@@ -117,6 +117,9 @@ class CLoSD(humanoid_im.HumanoidIm):
             "CLOSD_GENERATOR_TYPE",
             "diffusion",
         ).lower()
+        self.planner_profile_calls = 0
+        self.planner_profile_latency_sec = 0.0
+        self.planner_profile_model_forwards = 0
 
         self.ode_steps = int(
             os.environ.get(
@@ -376,28 +379,62 @@ class CLoSD(humanoid_im.HumanoidIm):
             torch.cuda.synchronize(device=self.mdm_device)
         start_time = time.perf_counter()
 
-        sample = self.sample_fn(
-            self.mdm,
-            self.mdm_tensor_shape,
-            clip_denoised=False,
-            model_kwargs=model_kwargs,
-            skip_timesteps=0,  # 0 is the default value - i.e. don't skip any step
-            init_image=init_image,
-            progress=False,
-            dump_steps=None,
-            noise=None,
-            const_noise=False,
-            cond_fn=cond_fn,
-        )  # [bs, 263, 1, 60]
+        # Count actual MDM network forwards, including both CFG branches.
+        # This differs from ODE NFE, which counts velocity-field evaluations.
+        model_forward_calls = 0
+        forward_hook = None
+        if profile_planner and self.generator_type in ["flow", "rectified_flow"]:
+            raw_mdm = self.mdm.model if isinstance(self.mdm, ClassifierFreeSampleModel) else self.mdm
+
+            def count_model_forward(_module, _inputs, _output):
+                nonlocal model_forward_calls
+                model_forward_calls += 1
+
+            forward_hook = raw_mdm.register_forward_hook(count_model_forward)
+
+        try:
+            sample = self.sample_fn(
+                self.mdm,
+                self.mdm_tensor_shape,
+                clip_denoised=False,
+                model_kwargs=model_kwargs,
+                skip_timesteps=0,  # 0 is the default value - i.e. don't skip any step
+                init_image=init_image,
+                progress=False,
+                dump_steps=None,
+                noise=None,
+                const_noise=False,
+                cond_fn=cond_fn,
+            )  # [bs, 263, 1, 60]
+        finally:
+            if forward_hook is not None:
+                forward_hook.remove()
         if profile_planner:
             torch.cuda.synchronize(device=self.mdm_device)
         planner_sec = time.perf_counter() - start_time
         if profile_planner:
+            velocity_nfe = self.ode_sampler.nfe if self.generator_type in ["flow", "rectified_flow"] else 0
+            if (
+                os.environ.get("CLOSD_SOLVER_SWEEP", "0") == "1"
+                and model_forward_calls != 2 * velocity_nfe
+            ):
+                raise RuntimeError(
+                    f"Expected {2 * velocity_nfe} MDM forwards with CFG, "
+                    f"observed {model_forward_calls}"
+                )
+            if self.generator_type in ["flow", "rectified_flow"]:
+                self.planner_profile_calls += 1
+                self.planner_profile_latency_sec += planner_sec
+                self.planner_profile_model_forwards += model_forward_calls
+                velocity_metrics = f"NFE={velocity_nfe} MODEL_FORWARD_CALLS={model_forward_calls}"
+            else:
+                velocity_metrics = ""
             print(
                 f"PLANNER_LATENCY_SEC={planner_sec:.6f} "
                 f"GENERATOR={self.generator_type} "
                 f"ODE_STEPS={self.ode_steps} "
                 f"SOLVER={self.ode_solver} "
+                f"{velocity_metrics} "
                 f"BATCH={sample.shape[0]}",
                 flush=True,
             )

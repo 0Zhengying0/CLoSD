@@ -1,3 +1,4 @@
+import os
 import os.path as osp
 
 
@@ -86,8 +87,28 @@ class IMAMPPlayerContinuous(amp_players.AMPPlayerContinuous):
             
             if all([self.success_counters[k]['resets'] >= self.data_points_per_task for k in self.states_to_eval]):
                 print(f'Collected enough data ({self.data_points_per_task} per task) success rates:')
+                sweep_rates = []
                 for state in self.states_to_eval:
                     print('{}: {:.2f}'.format(str(state), self.success_counters[state]['success']/self.success_counters[state]['resets']))
+                    if os.environ.get("CLOSD_SOLVER_SWEEP", "0") == "1":
+                        counts = self.success_counters[state]
+                        sweep_rates.append(counts['success'] / counts['resets'])
+                        print(
+                            f"EVAL_RESULT STATE={state.name} "
+                            f"SUCCESS={counts['success']} RESETS={counts['resets']} "
+                            f"RATE={counts['success'] / counts['resets']:.8f}",
+                            flush=True,
+                        )
+                if sweep_rates:
+                    task = self.env.task
+                    print(f"EVAL_MACRO_SUCCESS={sum(sweep_rates) / len(sweep_rates):.8f}", flush=True)
+                    print(
+                        f"EVAL_PROFILE CALLS={task.planner_profile_calls} "
+                        f"MODEL_FORWARDS_TOTAL={task.planner_profile_model_forwards} "
+                        f"PLANNER_LATENCY_TOTAL_SEC={task.planner_profile_latency_sec:.6f} "
+                        f"PLANNER_LATENCY_MEAN_SEC={task.planner_profile_latency_sec / task.planner_profile_calls:.6f}",
+                        flush=True,
+                    )
                 print('Eval plot ended')
                 exit()
 

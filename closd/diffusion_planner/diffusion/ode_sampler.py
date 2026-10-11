@@ -32,10 +32,10 @@ class VelocityODESampler:
         if num_steps < 1:
             raise ValueError("num_steps must be >= 1")
 
-        if solver not in ["euler", "heun"]:
+        if solver not in ["euler", "heun", "rk4"]:
             raise ValueError(
                 f"Unsupported solver [{solver}]. "
-                "Choose from ['euler', 'heun']."
+                "Choose from ['euler', 'heun', 'rk4']."
             )
 
         self.num_timesteps = num_timesteps
@@ -52,12 +52,21 @@ class VelocityODESampler:
 
         Heun:
             2 model calls per integration step.
+
+        RK4:
+            4 model calls per integration step.
+
+        This counts velocity evaluations, not the underlying MDM forwards.
+        ClassifierFreeSampleModel runs the MDM twice per evaluation.
         """
         if self.solver == "euler":
             return self.num_steps
 
         if self.solver == "heun":
             return 2 * self.num_steps
+
+        if self.solver == "rk4":
+            return 4 * self.num_steps
 
         raise ValueError(self.solver)
 
@@ -104,10 +113,17 @@ class VelocityODESampler:
             device=x.device,
         )
 
+        # MDM.forward() rebinds y['mask'] after appending the prefix, and
+        # may add other keys. Keep each ODE stage's condition dictionary
+        # independent without copying its large, read-only tensors.
+        call_kwargs = model_kwargs.copy()
+        if "y" in call_kwargs and call_kwargs["y"] is not None:
+            call_kwargs["y"] = call_kwargs["y"].copy()
+
         return model(
             x,
             t_idx,
-            **model_kwargs,
+            **call_kwargs,
         )
 
     @torch.no_grad()
@@ -280,6 +296,24 @@ class VelocityODESampler:
 
                 # Corrector.
                 x = x + 0.5 * dt * (v0 + v1)
+
+            elif self.solver == "rk4":
+                # Classical explicit RK4, always integrating forward 0 -> 1.
+                # Every stage uses the same continuous-to-discrete MDM time
+                # mapping as Euler and Heun. The quantized velocity field is
+                # discontinuous in time, so formal fourth-order convergence
+                # is not guaranteed for this model.
+                t_mid = t0 + 0.5 * dt
+                v1 = self._model_velocity(
+                    model, x + 0.5 * dt * v0, t_mid, model_kwargs,
+                )
+                v2 = self._model_velocity(
+                    model, x + 0.5 * dt * v1, t_mid, model_kwargs,
+                )
+                v3 = self._model_velocity(
+                    model, x + dt * v2, t1, model_kwargs,
+                )
+                x = x + (dt / 6.0) * (v0 + 2.0 * v1 + 2.0 * v2 + v3)
 
             if dump_steps is not None and step_i in dump_steps:
                 dumped.append(x.clone())
