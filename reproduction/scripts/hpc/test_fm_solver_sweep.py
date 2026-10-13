@@ -288,6 +288,15 @@ class SolverSweepTests(unittest.TestCase):
         self.assertEqual(bad.returncode, 2)
         self.assertIn("requires rk4 and NFE=12", bad.stderr)
 
+    def test_multiprocessing_socket_path_budget(self):
+        """A future TMPDIR change must not reproduce the nine-job startup failure."""
+        script = (ROOT / "reproduction/scripts/hpc/closd_velocity_eval.slurm").read_text()
+        self.assertIn("export TMPDIR=$(mktemp -d /tmp/cfm.XXXXXXXX)", script)
+        self.assertIn("s.bind(p)", script)
+        # Python multiprocessing adds its own pymp directory and listener name.
+        longest_expected = "/tmp/cfm." + "x" * 8 + "/pymp-" + "x" * 8 + "/listener-" + "x" * 8
+        self.assertLess(len(os.fsencode(longest_expected)), 107)
+
 
 if __name__ == "__main__":
     unittest.main()

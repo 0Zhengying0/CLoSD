@@ -194,7 +194,12 @@ apptainer exec --nv --cleanenv \
         unset DIFFUSION_TRAINING_TEST
         if [[ -n "$EXPERIMENT_ID" ]]; then
             export CLOSD_SOLVER_SWEEP=1
-            export TMPDIR=$SWEEP_WORK_DIR/tmp
+            # multiprocessing.Manager() creates an AF_UNIX socket below TMPDIR.
+            # The full sweep work path exceeds the 107-byte AF_UNIX path limit.
+            # A unique, node-local /tmp directory keeps the socket path short.
+            export TMPDIR=$(mktemp -d /tmp/cfm.XXXXXXXX)
+            echo "SWEEP_TMPDIR=$TMPDIR"
+            python -c "import os, socket; p=os.path.join(os.environ[\"TMPDIR\"], \"socket_test\"); s=socket.socket(socket.AF_UNIX); s.bind(p); s.close(); os.unlink(p)"
             export TORCH_EXTENSIONS_DIR=$SWEEP_WORK_DIR/cache/torch_extensions
             export TORCH_HOME=$SWEEP_WORK_DIR/cache/torch
             export XDG_CACHE_HOME=$SWEEP_WORK_DIR/cache/xdg

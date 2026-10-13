@@ -49,4 +49,6 @@ python3 reproduction/scripts/hpc/summarize_fm_solver_sweep.py \
 
 MDM 的时间编码仍要求整数索引。Euler、Heun 和 RK4 共用 `round(t × (T−1))`，其中 `T=1000`、`t` 从 0 增至 1；RK4 的两个中间阶段取各步的中点并分别映射到整数索引。取整使速度场对时间呈阶梯变化，**不能保证经典 RK4 的理论四阶收敛率**；此次对照测量的是实际成功率与延迟。
 
-每项 Slurm 作业的 stdout/stderr 含 Job ID，并有独立的 Hydra 目录、控制器权重只读链接、临时目录、Torch 扩展缓存、XDG/W&B 缓存和 Isaac Gym VHACD 缓存。Hugging Face 预下载的 18 GB 数据缓存保持共享，以离线模式读取。运行时记录 Git commit、工作区是否有未提交内容，以及本次相关源码的 SHA256；commit 单独不能表示未提交的本地修改。不要在九项作业运行期间改动采样器、评测器或控制代码。
+每项 Slurm 作业的 stdout/stderr 含 Job ID，并有独立的 Hydra 目录、控制器权重只读链接、临时目录、Torch 扩展缓存、XDG/W&B 缓存和 Isaac Gym VHACD 缓存。`multiprocessing.Manager()` 的 Unix socket 使用作业内新建的短路径 `/tmp/cfm.*`，启动时实际测试 socket 绑定；其他缓存仍在独立工作目录。Hugging Face 预下载的 18 GB 数据缓存保持共享，以离线模式读取。运行时记录 Git commit、工作区是否有未提交内容，以及本次相关源码的 SHA256；commit 单独不能表示未提交的本地修改。不要在九项作业运行期间改动采样器、评测器或控制代码。
+
+`fm_solver_20261012_01` 的九项作业均在加载动作库时因 `AF_UNIX path too long` 退出，没有形成评测结果。其日志和 `submissions.tsv` 保留原样。修复后必须使用新的运行标签；本地检查已通过 `fm_solver_20261012_02`。

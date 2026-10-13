@@ -133,6 +133,15 @@ output/
 log/
 runs/
 
+# Keep completed FM solver sweep stdout logs in Git, but leave work files ignored.
+!/reproduction/experiments/fm_solver_sweep/runs/
+/reproduction/experiments/fm_solver_sweep/runs/*
+!/reproduction/experiments/fm_solver_sweep/runs/*/
+/reproduction/experiments/fm_solver_sweep/runs/*/*
+!/reproduction/experiments/fm_solver_sweep/runs/*/logs/
+/reproduction/experiments/fm_solver_sweep/runs/*/logs/*
+!/reproduction/experiments/fm_solver_sweep/runs/*/logs/*.out
+
 *.png
 *.jpg
 *.mp4
