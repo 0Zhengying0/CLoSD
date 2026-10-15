@@ -223,6 +223,12 @@ class CLoSD(humanoid_im.HumanoidIm):
                                          init_humanoid_root_pose=self._rigid_body_pos[:, 0],
                                          time_prints=self.time_prints,
                                          )
+        record_dir = os.environ.get("CLOSD_QUALITY_EXEC_RECORD_DIR")
+        self.quality_execution_recorder = None
+        if record_dir:
+            from closd.learning.quality_execution_record import QualityExecutionRecorder
+            self.quality_execution_recorder = QualityExecutionRecorder(
+                record_dir, steps=int(os.environ.get("CLOSD_QUALITY_EXEC_RECORD_STEPS", "500")))
         
     def init_save_hml_episodes(self):
         save_motions = self.cfg['env'].get('save_motion', {})
@@ -279,9 +285,16 @@ class CLoSD(humanoid_im.HumanoidIm):
         aux_points = None  
         if self.multi_target_cond:
             aux_points = self.calc_cur_target_multi_joint()  # [bs, n_points, 3]     
+            if os.environ.get("CLOSD_QUALITY_CAPTURE_DIR"):
+                # Capture the real environment target in the same HML frame as
+                # the distance-limited planner target. The first two entries,
+                # used by the model below, retain their original values.
+                aux_points = torch.cat([aux_points, self._tar_pos[:, None]], dim=1)
         
         # Real performed motions from the simulator, translated to HML format
         sim_context, translated_aux_points, recon_data = self.rep.pose_to_hml(pose_context, aux_points, fix_ik_bug=True)  # [bs, n_frames@20fps, 263], [bs, n_points, 3]
+        if os.environ.get("CLOSD_QUALITY_CAPTURE_DIR") and translated_aux_points is not None:
+            self._quality_original_target_local = translated_aux_points[:, 2].clone()
         
 
         sim_context = sim_context.unsqueeze(2).permute(0, 3, 2, 1)  # [bs, 263, 1, n_frames@20fps]
@@ -371,6 +384,34 @@ class CLoSD(humanoid_im.HumanoidIm):
         model_kwargs['y']['text'] = self.get_text_prompts()
         model_kwargs['y']['text_embed'] = self.mdm.encode_text(model_kwargs['y']['text'])  # encoding once instead of each iteration saves lots of time!
         model_kwargs['y'].update(aux_entries)
+        capture_dir = os.environ.get("CLOSD_QUALITY_CAPTURE_DIR")
+        if capture_dir:
+            if not hasattr(self, "_quality_capture"):
+                from closd.learning.quality_snapshot import QualitySnapshotCapture
+                self._quality_capture = QualitySnapshotCapture(
+                    capture_dir,
+                    per_task=int(os.environ.get("CLOSD_QUALITY_CAPTURE_PER_TASK", "16")),
+                    selected=int(os.environ.get("CLOSD_QUALITY_SELECTED_PER_TASK", "4")),
+                    base_seed=0,
+                )
+            if self._quality_capture.record(self, model_kwargs, recon_data):
+                raise SystemExit(0)
+        if os.environ.get("CLOSD_CFG_SWEEP", "0") == "1":
+            guided = self.mdm_cfg_param != 1.
+            if isinstance(self.mdm, ClassifierFreeSampleModel) != guided:
+                raise RuntimeError("CFG wrapper does not match requested scale")
+            if guided:
+                if (self.mdm.guidance_type != 'text' or
+                        'scale' not in model_kwargs['y'] or
+                        not torch.all(model_kwargs['y']['scale'] == self.mdm_cfg_param)):
+                    raise RuntimeError("CFG scale or text guidance was not passed to MDM")
+            elif 'scale' in model_kwargs['y']:
+                raise RuntimeError("CFG=1 must use the raw MDM without a scale tensor")
+            if ('text' not in model_kwargs['y'] or
+                    'text_embed' not in model_kwargs['y']):
+                raise RuntimeError("Text conditioning is missing")
+            print(f"CFG_RUNTIME SCALE={self.mdm_cfg_param:g} "
+                  f"WRAPPED={int(guided)} GUIDANCE=text", flush=True)
         init_image = None
         
         # Run MDM with prefix outpainting
@@ -414,12 +455,13 @@ class CLoSD(humanoid_im.HumanoidIm):
         planner_sec = time.perf_counter() - start_time
         if profile_planner:
             velocity_nfe = self.ode_sampler.nfe if self.generator_type in ["flow", "rectified_flow"] else 0
+            expected_forwards = velocity_nfe * (1 if self.mdm_cfg_param == 1. else 2)
             if (
                 os.environ.get("CLOSD_SOLVER_SWEEP", "0") == "1"
-                and model_forward_calls != 2 * velocity_nfe
+                and model_forward_calls != expected_forwards
             ):
                 raise RuntimeError(
-                    f"Expected {2 * velocity_nfe} MDM forwards with CFG, "
+                    f"Expected {expected_forwards} MDM forwards with CFG={self.mdm_cfg_param}, "
                     f"observed {model_forward_calls}"
                 )
             if self.generator_type in ["flow", "rectified_flow"]:
@@ -561,6 +603,8 @@ class CLoSD(humanoid_im.HumanoidIm):
         super().post_physics_step()
         self._update_pose_buffer()
         self.frame_idx += 1
+        if self.quality_execution_recorder is not None:
+            self.quality_execution_recorder.record(self)
         if self.save_hml_episodes and self.n_all_episodes < self.max_saved_hml_episodes:
             env_ids = self.get_episode_ids()
             self.aggregate_episodes(env_ids)

@@ -59,6 +59,32 @@ class IMAMPPlayerContinuous(amp_players.AMPPlayerContinuous):
             self.success_counters = {k: {'resets': 0, 'success': 0} for k in self.states_to_eval}  # init counters
             self.data_points_per_task = 1000  # hardcoded
 
+        self.episode_diag = None
+        diagnostic_dir = os.environ.get("CLOSD_EPISODE_DIAG_DIR")
+        if diagnostic_dir:
+            if not (self.has_mdm_task and self.closd_eval):
+                raise ValueError("Episode diagnostics require the official CLoSD evaluation")
+            from closd.learning.episode_diagnostics import EpisodeDiagnosticRecorder
+            task = self.env.task
+            self.episode_diag = EpisodeDiagnosticRecorder(
+                output_dir=diagnostic_dir,
+                num_envs=task.num_envs,
+                max_steps=task.max_episode_length,
+                dt=task.dt,
+                checkpoint=task.mdm_path,
+                generator=task.generator_type,
+                metric_names=[state.name for state in self.states_to_eval],
+                configuration={
+                    'seed': int(task.cfg.get('seed', 0)),
+                    'cfg_scale': float(task.mdm_cfg_param),
+                    'ode_solver': task.ode_solver if task.generator_type != 'diffusion' else None,
+                    'ode_steps': task.ode_steps if task.generator_type != 'diffusion' else None,
+                    'num_envs': int(task.num_envs),
+                    'episode_length': int(task.max_episode_length),
+                    'samples_per_official_metric': self.data_points_per_task,
+                },
+            )
+
         return
 
     def _post_step(self, info, done):
@@ -69,6 +95,7 @@ class IMAMPPlayerContinuous(amp_players.AMPPlayerContinuous):
             successful_episods = torch.logical_and(ended_wo_terimation, info['task_done'])
             safe_num_resets = done.sum() + (done.sum() == 0)
             mdm_task_state_buf = info['task_state']
+            diagnostic_masks = {} if self.episode_diag is not None else None
             # batch_dict['mdm_success_rate'] = (successful_episods.sum() / safe_num_resets).cpu().numpy()
             # batch_dict['mdm_success_per_task'] = {}
             for state in self.states_to_eval:
@@ -84,8 +111,20 @@ class IMAMPPlayerContinuous(amp_players.AMPPlayerContinuous):
                     state_success = successful_episods & (mdm_task_state_buf == state)
                 self.success_counters[state]['resets'] += int(state_resets.sum())
                 self.success_counters[state]['success'] += int(state_success.sum())
+                if diagnostic_masks is not None:
+                    diagnostic_masks[state.name] = {
+                        'counted': state_resets.detach().cpu().numpy(),
+                        'success': state_success.detach().cpu().numpy(),
+                    }
+
+            if self.episode_diag is not None:
+                from closd.learning.episode_diagnostics import snapshot_from_task
+                diagnostic_snapshot = snapshot_from_task(self.env.task, info, done)
+                self.episode_diag.record_step(diagnostic_snapshot, diagnostic_masks)
             
             if all([self.success_counters[k]['resets'] >= self.data_points_per_task for k in self.states_to_eval]):
+                if self.episode_diag is not None:
+                    self.episode_diag.finish(diagnostic_snapshot, self.success_counters)
                 print(f'Collected enough data ({self.data_points_per_task} per task) success rates:')
                 sweep_rates = []
                 for state in self.states_to_eval:

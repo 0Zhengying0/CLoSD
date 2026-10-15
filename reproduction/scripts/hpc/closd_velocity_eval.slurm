@@ -23,6 +23,11 @@ ODE_STEPS=${ODE_STEPS:-0}
 ODE_SOLVER=${ODE_SOLVER:-euler}
 EXPERIMENT_ID=${EXPERIMENT_ID:-}
 SWEEP_RUN_ROOT=${SWEEP_RUN_ROOT:-}
+DIAG_LABEL=${DIAG_LABEL:-}
+DIAG_RUN_ROOT=${DIAG_RUN_ROOT:-}
+CFG_SWEEP_ID=${CFG_SWEEP_ID:-}
+CFG_SWEEP_RUN_ROOT=${CFG_SWEEP_RUN_ROOT:-}
+CFG_SCALE=${CFG_SCALE:-7.5}
 
 case "$GENERATOR" in
     diffusion)
@@ -65,11 +70,56 @@ if [[ -n "$EXPERIMENT_ID" || -n "$SWEEP_RUN_ROOT" ]]; then
     fi
 fi
 
+if [[ -n "$DIAG_LABEL" || -n "$DIAG_RUN_ROOT" ]]; then
+    [[ -z "$EXPERIMENT_ID" && -z "$SWEEP_RUN_ROOT" ]] || {
+        echo "Sweep and episode diagnostics modes cannot be combined" >&2; exit 2;
+    }
+    [[ -n "$DIAG_LABEL" && "$DIAG_RUN_ROOT" == /* ]] || {
+        echo "DIAG_LABEL and absolute DIAG_RUN_ROOT are required together" >&2; exit 2;
+    }
+    case "$DIAG_LABEL" in
+        FM-RK4-3)
+            [[ "$GENERATOR" == flow && "$ODE_SOLVER" == rk4 && "$ODE_STEPS" == 3 ]] || {
+                echo "FM-RK4-3 requires flow, rk4, three steps" >&2; exit 2;
+            }
+            ;;
+        DIP-ORIGINAL)
+            [[ "$GENERATOR" == diffusion ]] || {
+                echo "DIP-ORIGINAL requires the original diffusion sampler" >&2; exit 2;
+            }
+            ;;
+        *) echo "Unsupported DIAG_LABEL: $DIAG_LABEL" >&2; exit 2 ;;
+    esac
+fi
+
+if [[ -n "$CFG_SWEEP_ID" || -n "$CFG_SWEEP_RUN_ROOT" ]]; then
+    [[ -z "$EXPERIMENT_ID$SWEEP_RUN_ROOT$DIAG_LABEL$DIAG_RUN_ROOT" ]] || {
+        echo "CFG sweep cannot be combined with other modes" >&2; exit 2;
+    }
+    [[ -n "$CFG_SWEEP_ID" && "$CFG_SWEEP_RUN_ROOT" == /* ]] || {
+        echo "CFG_SWEEP_ID and absolute CFG_SWEEP_RUN_ROOT are required together" >&2; exit 2;
+    }
+    [[ "$GENERATOR" == flow && "$ODE_SOLVER" == rk4 && "$ODE_STEPS" == 3 ]] || {
+        echo "CFG sweep requires flow, RK4, three steps" >&2; exit 2;
+    }
+    case "$CFG_SWEEP_ID" in
+        FM-CFG1) expected_cfg=1 ;; FM-CFG2p5) expected_cfg=2.5 ;;
+        FM-CFG5) expected_cfg=5 ;; FM-CFG7p5) expected_cfg=7.5 ;;
+        FM-CFG10) expected_cfg=10 ;; FM-CFG15) expected_cfg=15 ;;
+        *) echo "Unsupported CFG sweep experiment: $CFG_SWEEP_ID" >&2; exit 2 ;;
+    esac
+    [[ "$CFG_SCALE" == "$expected_cfg" ]] || {
+        echo "$CFG_SWEEP_ID requires CFG_SCALE=$expected_cfg" >&2; exit 2;
+    }
+fi
+
 if [[ ! -s "$MODEL" || ! -s "$(dirname "$MODEL")/args.json" ]]; then
     echo "Missing or empty checkpoint / adjacent args.json: $MODEL" >&2
     exit 2
 fi
-MODEL=$(realpath "$MODEL")
+# Preserve the checkpoint symlink name: args.json is adjacent to that name,
+# whereas a Hugging Face blob resolved by realpath has no adjacent args.json.
+MODEL="$(cd "$(dirname "$MODEL")" && pwd)/$(basename "$MODEL")"
 for resource in "$CLOSD_ROOT/closd/run.py" "$ROOT/envs/closd/bin/python" \
                 "$ROOT/isaacgym/python/isaacgym" "$CONTAINER"; do
     if [[ ! -e "$resource" ]]; then
@@ -77,7 +127,7 @@ for resource in "$CLOSD_ROOT/closd/run.py" "$ROOT/envs/closd/bin/python" \
         exit 2
     fi
 done
-if [[ -n "$EXPERIMENT_ID" && ! -s "$CLOSD_ROOT/output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth" ]]; then
+if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID" && ! -s "$CLOSD_ROOT/output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth" ]]; then
     echo "Missing pretrained CLoSD controller checkpoint" >&2
     exit 2
 fi
@@ -87,6 +137,7 @@ echo "Generator: $GENERATOR"
 echo "Model:     $MODEL"
 echo "ODE steps: $ODE_STEPS"
 echo "Solver:    $ODE_SOLVER"
+echo "CFG:       $CFG_SCALE"
 if [[ "$GENERATOR" != diffusion ]]; then
     case "$ODE_SOLVER" in
         euler) nfe_per_step=1 ;;
@@ -111,11 +162,17 @@ if [[ -z "${SLURM_JOB_ID:-}" ]]; then
 fi
 if [[ -n "$EXPERIMENT_ID" ]]; then
     trap 'status=$?; echo "SWEEP_JOB_EXIT=$status"' EXIT
+elif [[ -n "$DIAG_LABEL" ]]; then
+    trap 'status=$?; echo "DIAG_JOB_EXIT=$status"' EXIT
+elif [[ -n "$CFG_SWEEP_ID" ]]; then
+    trap 'status=$?; echo "CFG_JOB_EXIT=$status"' EXIT
 fi
 
 SWEEP_WORK_DIR=
-if [[ -n "$EXPERIMENT_ID" ]]; then
-    SWEEP_WORK_DIR="$SWEEP_RUN_ROOT/work/${EXPERIMENT_ID}_${SLURM_JOB_ID}"
+ISOLATED_ID=${EXPERIMENT_ID:-${DIAG_LABEL:-$CFG_SWEEP_ID}}
+ISOLATED_RUN_ROOT=${SWEEP_RUN_ROOT:-${DIAG_RUN_ROOT:-$CFG_SWEEP_RUN_ROOT}}
+if [[ -n "$ISOLATED_ID" ]]; then
+    SWEEP_WORK_DIR="$ISOLATED_RUN_ROOT/work/${ISOLATED_ID}_${SLURM_JOB_ID}"
     mkdir "$SWEEP_WORK_DIR"
     mkdir -p "$SWEEP_WORK_DIR/controller" "$SWEEP_WORK_DIR/hydra" \
         "$SWEEP_WORK_DIR/tmp" "$SWEEP_WORK_DIR/cache/torch_extensions" \
@@ -133,6 +190,8 @@ if [[ -n "$EXPERIMENT_ID" ]]; then
             cp -n "${existing_vhacd[@]}" "$SWEEP_WORK_DIR/cache/isaacgym/vhacd/"
         fi
     fi
+fi
+if [[ -n "$EXPERIMENT_ID" ]]; then
     echo "SWEEP_EXPERIMENT_ID=$EXPERIMENT_ID"
     echo "SWEEP_JOB_ID=$SLURM_JOB_ID"
     echo "SWEEP_CHECKPOINT=$MODEL"
@@ -151,10 +210,39 @@ if [[ -n "$EXPERIMENT_ID" ]]; then
         "$CLOSD_ROOT/reproduction/scripts/hpc/summarize_fm_solver_sweep.py" | sha256sum | cut -d ' ' -f1)"
     echo "SWEEP_SEED=0"
     echo "SWEEP_CONFIG=learning:im_big,env:closd_multitask,robot:smpl_humanoid,controller:CLoSD_multitask_finetune,episode_length:500,num_envs:4096,cfg:7.5,samples_per_task:1000,torch_deterministic:False"
+elif [[ -n "$DIAG_LABEL" ]]; then
+    echo "DIAG_LABEL=$DIAG_LABEL"
+    echo "DIAG_JOB_ID=$SLURM_JOB_ID"
+    echo "DIAG_CHECKPOINT=$MODEL"
+    echo "DIAG_GIT_COMMIT=$(git -C "$CLOSD_ROOT" rev-parse HEAD)"
+    echo "DIAG_SOURCE_SHA256=$(sha256sum \
+        "$CLOSD_ROOT/closd/learning/episode_diagnostics.py" \
+        "$CLOSD_ROOT/closd/learning/im_amp_players.py" \
+        "$CLOSD_ROOT/closd/env/tasks/humanoid.py" \
+        "$CLOSD_ROOT/reproduction/scripts/hpc/closd_velocity_eval.slurm" | sha256sum | cut -d ' ' -f1)"
+    echo "DIAG_CONFIG=seed:0,num_envs:4096,episode_length:500,cfg:7.5,samples_per_task:1000"
+elif [[ -n "$CFG_SWEEP_ID" ]]; then
+    echo "CFG_EXPERIMENT_ID=$CFG_SWEEP_ID"
+    echo "CFG_JOB_ID=$SLURM_JOB_ID"
+    echo "CFG_CHECKPOINT=$MODEL"
+    echo "CFG_GIT_COMMIT=$(git -C "$CLOSD_ROOT" rev-parse HEAD)"
+    echo "CFG_GIT_DIRTY=$(if [[ -n "$(git -C "$CLOSD_ROOT" status --porcelain --untracked-files=all -- . ':(exclude)reproduction/experiments/fm_cfg_sweep/runs')" ]]; then echo 1; else echo 0; fi)"
+    echo "CFG_SOURCE_SHA256=$(sha256sum \
+        "$CLOSD_ROOT/closd/env/tasks/closd.py" \
+        "$CLOSD_ROOT/closd/learning/im_amp_players.py" \
+        "$CLOSD_ROOT/closd/diffusion_planner/diffusion/ode_sampler.py" \
+        "$CLOSD_ROOT/closd/diffusion_planner/utils/sampler_util.py" \
+        "$CLOSD_ROOT/reproduction/scripts/hpc/closd_velocity_eval.slurm" \
+        "$CLOSD_ROOT/reproduction/scripts/hpc/submit_fm_cfg_sweep.sh" \
+        "$CLOSD_ROOT/reproduction/scripts/hpc/summarize_fm_cfg_sweep.py" | sha256sum | cut -d ' ' -f1)"
+    echo "CFG_SCALE=$CFG_SCALE"
+    echo "CFG_GUIDANCE_TYPE=text"
+    echo "CFG_SEED=0"
+    echo "CFG_CONFIG=learning:im_big,env:closd_multitask,robot:smpl_humanoid,controller:CLoSD_multitask_finetune,episode_length:500,num_envs:4096,solver:rk4,steps:3,nfe:12,cfg:$CFG_SCALE,guidance:text,samples_per_task:1000,torch_deterministic:False"
 fi
 
 container_binds=(--bind "$ROOT:$ROOT")
-if [[ -n "$EXPERIMENT_ID" ]]; then
+if [[ -n "$ISOLATED_ID" ]]; then
     container_binds+=(--bind "$SWEEP_WORK_DIR/cache/isaacgym:/home/it4i-dianyu/.isaacgym")
 fi
 apptainer exec --nv --cleanenv \
@@ -168,8 +256,17 @@ apptainer exec --nv --cleanenv \
         MODEL=$4
         EXPERIMENT_ID=$5
         SWEEP_WORK_DIR=$6
+        DIAG_LABEL=$7
+        DIAG_RUN_ROOT=$8
+        DIAG_JOB_ID=$9
+        CFG_SWEEP_ID=${10}
+        CFG_SCALE=${11}
         if [[ -n "$EXPERIMENT_ID" ]]; then
             trap '\''status=$?; echo "SWEEP_PROCESS_EXIT=$status"'\'' EXIT
+        elif [[ -n "$DIAG_LABEL" ]]; then
+            trap '\''status=$?; echo "DIAG_PROCESS_EXIT=$status"'\'' EXIT
+        elif [[ -n "$CFG_SWEEP_ID" ]]; then
+            trap '\''status=$?; echo "CFG_PROCESS_EXIT=$status"'\'' EXIT
         fi
         ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
         CLOSD_ROOT=$ROOT/CLoSD
@@ -192,13 +289,21 @@ apptainer exec --nv --cleanenv \
         export PYTHONUNBUFFERED=1
         export WANDB_MODE=offline
         unset DIFFUSION_TRAINING_TEST
-        if [[ -n "$EXPERIMENT_ID" ]]; then
-            export CLOSD_SOLVER_SWEEP=1
+        if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID" ]]; then
+            if [[ -n "$EXPERIMENT_ID$CFG_SWEEP_ID" ]]; then
+                export CLOSD_SOLVER_SWEEP=1
+                if [[ -n "$CFG_SWEEP_ID" ]]; then
+                    export CLOSD_CFG_SWEEP=1
+                fi
+            else
+                export CLOSD_EPISODE_DIAG_DIR=$DIAG_RUN_ROOT/diagnostics
+                export CLOSD_DIAG_JOB_ID=$DIAG_JOB_ID
+            fi
             # multiprocessing.Manager() creates an AF_UNIX socket below TMPDIR.
             # The full sweep work path exceeds the 107-byte AF_UNIX path limit.
             # A unique, node-local /tmp directory keeps the socket path short.
             export TMPDIR=$(mktemp -d /tmp/cfm.XXXXXXXX)
-            echo "SWEEP_TMPDIR=$TMPDIR"
+            echo "JOB_TMPDIR=$TMPDIR"
             python -c "import os, socket; p=os.path.join(os.environ[\"TMPDIR\"], \"socket_test\"); s=socket.socket(socket.AF_UNIX); s.bind(p); s.close(); os.unlink(p)"
             export TORCH_EXTENSIONS_DIR=$SWEEP_WORK_DIR/cache/torch_extensions
             export TORCH_HOME=$SWEEP_WORK_DIR/cache/torch
@@ -213,7 +318,7 @@ apptainer exec --nv --cleanenv \
 
         cd "$CLOSD_ROOT"
         runtime_overrides=()
-        if [[ -n "$EXPERIMENT_ID" ]]; then
+        if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID" ]]; then
             runtime_overrides+=("output_path=$SWEEP_WORK_DIR/controller")
             runtime_overrides+=("hydra.run.dir=$SWEEP_WORK_DIR/hydra")
             runtime_overrides+=("hydra.job.chdir=False")
@@ -227,7 +332,7 @@ apptainer exec --nv --cleanenv \
             seed=0 \
             torch_deterministic=False \
             env.episode_length=500 \
-            env.dip.cfg_param=7.5 \
+            "env.dip.cfg_param=$CFG_SCALE" \
             "env.dip.model_path=$MODEL" \
             env.num_envs=4096 \
             test=True \
@@ -236,4 +341,4 @@ apptainer exec --nv --cleanenv \
             closd_eval=True \
             no_log=True \
             "${runtime_overrides[@]}"
-    ' closd-velocity-eval "$GENERATOR" "$ODE_STEPS" "$ODE_SOLVER" "$MODEL" "$EXPERIMENT_ID" "$SWEEP_WORK_DIR"
+    ' closd-velocity-eval "$GENERATOR" "$ODE_STEPS" "$ODE_SOLVER" "$MODEL" "$EXPERIMENT_ID" "$SWEEP_WORK_DIR" "$DIAG_LABEL" "$DIAG_RUN_ROOT" "$SLURM_JOB_ID" "$CFG_SWEEP_ID" "$CFG_SCALE"

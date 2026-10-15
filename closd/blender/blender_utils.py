@@ -1,7 +1,5 @@
 import bpy
 import numpy as np
-from scipy.spatial.transform import Rotation as sRot
-from closd.blender.obj_utils import xml2mesh
 import sys
 sys.path.append('.')
 import os
@@ -33,6 +31,7 @@ def save_blend(out_path):
     print(f'Saved to [{out_path}]')
 
 def state2mat(pos, rot):
+    from scipy.spatial.transform import Rotation as sRot
     Rm = sRot.from_quat(rot)
     matrix_l = np.hstack((Rm.as_matrix(), np.mat(pos).T))
     matrix_l = np.vstack((matrix_l, np.mat([0, 0, 0, 1])))
@@ -46,6 +45,7 @@ def load_humanoid(mjcf_path, assets_dir='closd/blender/assets', motion_name='mot
         print(f'Found the obj dir [{obj_dir_path}].')
     else:
         print(f'Didnt found the obj dir [{obj_dir_path}] -> hence creating it!')
+        from closd.blender.obj_utils import xml2mesh
         xml2mesh(mjcf_path, obj_dir_path)
     
     humanoid_coll = create_collection(motion_name)

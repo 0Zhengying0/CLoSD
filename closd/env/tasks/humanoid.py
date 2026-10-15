@@ -1227,6 +1227,8 @@ class Humanoid(BaseTask):
                         
             pd_tar_tensor = gymtorch.unwrap_tensor(pd_tar)
             self.gym.set_dof_position_target_tensor(self.sim, pd_tar_tensor)
+            if os.environ.get("CLOSD_EPISODE_DIAG_DIR"):
+                self._episode_diag_pd_target = pd_tar.detach().clone()
         
         else:
             if self.control_mode == "force":
@@ -1236,6 +1238,8 @@ class Humanoid(BaseTask):
                 self.gym.set_dof_actuation_force_tensor(self.sim, force_tensor)
             elif self.control_mode == "pd":
                 self.pd_tar = self._action_to_pd_targets(self.actions)
+                if os.environ.get("CLOSD_EPISODE_DIAG_DIR"):
+                    self._episode_diag_pd_target = self.pd_tar.detach().clone()
         return
     
     
