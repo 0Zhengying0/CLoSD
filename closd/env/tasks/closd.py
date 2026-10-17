@@ -132,6 +132,10 @@ class CLoSD(humanoid_im.HumanoidIm):
             "CLOSD_ODE_SOLVER",
             "euler",
         ).lower()
+        self.ode_rtol = float(os.environ.get("CLOSD_ODE_RTOL", "0.001"))
+        self.ode_atol = float(os.environ.get("CLOSD_ODE_ATOL", "0.0001"))
+        self.ode_max_num_steps = int(os.environ.get("CLOSD_ODE_MAX_NUM_STEPS", "128"))
+        self.ode_max_nfe = int(os.environ.get("CLOSD_ODE_MAX_NFE", "256"))
 
         if self.generator_type == "diffusion":
 
@@ -154,6 +158,10 @@ class CLoSD(humanoid_im.HumanoidIm):
                 ),
                 num_steps=self.ode_steps,
                 solver=self.ode_solver,
+                rtol=self.ode_rtol,
+                atol=self.ode_atol,
+                max_num_steps=self.ode_max_num_steps,
+                max_nfe=self.ode_max_nfe,
             )
 
             self.sample_fn = self.ode_sampler.p_sample_loop
@@ -162,7 +170,10 @@ class CLoSD(humanoid_im.HumanoidIm):
                 f"DiP sampling backend: {self.generator_type} | "
                 f"solver={self.ode_solver} | "
                 f"steps={self.ode_steps} | "
-                f"NFE={self.ode_sampler.nfe}"
+                f"NFE={'adaptive' if self.ode_solver == 'dopri5' else self.ode_sampler.nfe}"
+                + (f" | rtol={self.ode_rtol:g} | atol={self.ode_atol:g} | "
+                   f"max_num_steps={self.ode_max_num_steps} | max_nfe={self.ode_max_nfe}"
+                   if self.ode_solver == 'dopri5' else "")
             )
 
         else:

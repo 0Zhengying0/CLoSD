@@ -28,6 +28,15 @@ DIAG_RUN_ROOT=${DIAG_RUN_ROOT:-}
 CFG_SWEEP_ID=${CFG_SWEEP_ID:-}
 CFG_SWEEP_RUN_ROOT=${CFG_SWEEP_RUN_ROOT:-}
 CFG_SCALE=${CFG_SCALE:-7.5}
+DOPRI5_ID=${DOPRI5_ID:-}
+DOPRI5_RUN_ROOT=${DOPRI5_RUN_ROOT:-}
+DOPRI5_RTOL=${DOPRI5_RTOL:-0.001}
+DOPRI5_ATOL=${DOPRI5_ATOL:-0.0001}
+DOPRI5_MAX_NUM_STEPS=${DOPRI5_MAX_NUM_STEPS:-128}
+DOPRI5_MAX_NFE=${DOPRI5_MAX_NFE:-256}
+MATCHED_ID=${MATCHED_ID:-}
+MATCHED_RUN_ROOT=${MATCHED_RUN_ROOT:-}
+MATCHED_NFE=${MATCHED_NFE:-}
 
 case "$GENERATOR" in
     diffusion)
@@ -36,10 +45,12 @@ case "$GENERATOR" in
         ;;
     flow|rectified_flow)
         case "$ODE_SOLVER" in
-            euler|heun|rk4) ;;
+            euler|heun|rk4|dopri5) ;;
             *) echo "Unsupported ODE_SOLVER: $ODE_SOLVER" >&2; exit 2 ;;
         esac
-        if [[ ! "$ODE_STEPS" =~ ^[1-9][0-9]*$ ]]; then
+        if [[ "$ODE_SOLVER" == dopri5 ]]; then
+            [[ "$ODE_STEPS" == 0 ]] || { echo "DOPRI5 uses adaptive steps; set ODE_STEPS=0" >&2; exit 2; }
+        elif [[ ! "$ODE_STEPS" =~ ^[1-9][0-9]*$ ]]; then
             echo "ODE_STEPS must be a positive integer: $ODE_STEPS" >&2
             exit 2
         fi
@@ -67,6 +78,59 @@ if [[ -n "$EXPERIMENT_ID" || -n "$SWEEP_RUN_ROOT" ]]; then
     if [[ "$ODE_SOLVER" != "$expected_solver" || $((ODE_STEPS * nfe_per_step)) -ne $expected_nfe ]]; then
         echo "Experiment $EXPERIMENT_ID requires $expected_solver and NFE=$expected_nfe" >&2
         exit 2
+    fi
+fi
+
+if [[ -n "$DOPRI5_ID$DOPRI5_RUN_ROOT" ]]; then
+    [[ -z "$EXPERIMENT_ID$SWEEP_RUN_ROOT$DIAG_LABEL$DIAG_RUN_ROOT$CFG_SWEEP_ID$CFG_SWEEP_RUN_ROOT" ]] || {
+        echo "DOPRI5 mode cannot be combined with another evaluation mode" >&2; exit 2;
+    }
+    [[ "$DOPRI5_ID" =~ ^FM-DOPRI5-(12|20|40)$ && "$DOPRI5_RUN_ROOT" == "$CLOSD_ROOT/reproduction/experiments/fm_dopri5/runs/"* ]] || {
+        echo "Invalid DOPRI5 experiment ID or isolated run root" >&2; exit 2;
+    }
+    [[ "$GENERATOR" == flow && "$ODE_SOLVER" == dopri5 && "$ODE_STEPS" == 0 && "$CFG_SCALE" == 7.5 ]] || {
+        echo "DOPRI5 formal evaluation requires FM, adaptive steps, CFG 7.5" >&2; exit 2;
+    }
+    "$ROOT/envs/closd/bin/python" - "$DOPRI5_RTOL" "$DOPRI5_ATOL" "$DOPRI5_MAX_NUM_STEPS" "$DOPRI5_MAX_NFE" <<'PY'
+import math
+import sys
+rtol, atol = map(float, sys.argv[1:3])
+steps, nfe = map(int, sys.argv[3:5])
+if not all(math.isfinite(x) and x > 0 for x in (rtol, atol)) or steps < 1 or nfe < 1:
+    raise SystemExit("Invalid DOPRI5 tolerances or limits")
+PY
+    "$ROOT/envs/closd/bin/python" -c 'import torchdiffeq; assert torchdiffeq.__version__ == "0.2.5"'
+fi
+
+if [[ -n "$MATCHED_ID$MATCHED_RUN_ROOT$MATCHED_NFE" ]]; then
+    [[ -z "$EXPERIMENT_ID$SWEEP_RUN_ROOT$DIAG_LABEL$DIAG_RUN_ROOT$CFG_SWEEP_ID$CFG_SWEEP_RUN_ROOT$DOPRI5_ID$DOPRI5_RUN_ROOT" ]] || {
+        echo "Matched NFE mode cannot be combined with another mode" >&2; exit 2;
+    }
+    [[ "$MATCHED_RUN_ROOT" == "$CLOSD_ROOT/reproduction/experiments/fm_dopri5/runs/"* ]] || {
+        echo "Invalid matched run root" >&2; exit 2;
+    }
+    [[ "$MATCHED_NFE" =~ ^[1-9][0-9]*$ ]] && (( MATCHED_NFE % 4 == 0 )) || {
+        echo "MATCHED_NFE must be a positive multiple of four" >&2; exit 2;
+    }
+    [[ "$GENERATOR" == flow && "$CFG_SCALE" == 7.5 ]] || {
+        echo "Matched comparison requires FM and CFG 7.5" >&2; exit 2;
+    }
+    case "$MATCHED_ID" in
+        FM-ME) expected_solver=euler; factor=1 ;;
+        FM-MH) expected_solver=heun; factor=2 ;;
+        FM-MR) expected_solver=rk4; factor=4 ;;
+        FM-MD) expected_solver=dopri5; factor=0 ;;
+        *) echo "Unknown MATCHED_ID: $MATCHED_ID" >&2; exit 2 ;;
+    esac
+    if [[ "$ODE_SOLVER" != "$expected_solver" ]]; then
+        echo "$MATCHED_ID requires $expected_solver" >&2; exit 2;
+    fi
+    if [[ "$factor" == 0 ]]; then
+        [[ "$ODE_STEPS" == 0 ]] || { echo "Adaptive DOPRI5 requires ODE_STEPS=0" >&2; exit 2; }
+    else
+        (( ODE_STEPS * factor == MATCHED_NFE )) || {
+            echo "$MATCHED_ID requires NFE=$MATCHED_NFE" >&2; exit 2;
+        }
     fi
 fi
 
@@ -127,7 +191,7 @@ for resource in "$CLOSD_ROOT/closd/run.py" "$ROOT/envs/closd/bin/python" \
         exit 2
     fi
 done
-if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID" && ! -s "$CLOSD_ROOT/output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth" ]]; then
+if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID$DOPRI5_ID$MATCHED_ID" && ! -s "$CLOSD_ROOT/output/CLoSD/CLoSD_multitask_finetune/Humanoid.pth" ]]; then
     echo "Missing pretrained CLoSD controller checkpoint" >&2
     exit 2
 fi
@@ -143,8 +207,14 @@ if [[ "$GENERATOR" != diffusion ]]; then
         euler) nfe_per_step=1 ;;
         heun) nfe_per_step=2 ;;
         rk4) nfe_per_step=4 ;;
+        dopri5) nfe_per_step=adaptive ;;
     esac
-    echo "NFE:       $((ODE_STEPS * nfe_per_step))"
+    if [[ "$ODE_SOLVER" == dopri5 ]]; then
+        echo "NFE:       adaptive (measured for every planner call)"
+        echo "Tolerance: rtol=$DOPRI5_RTOL atol=$DOPRI5_ATOL max_num_steps=$DOPRI5_MAX_NUM_STEPS max_nfe=$DOPRI5_MAX_NFE"
+    else
+        echo "NFE:       $((ODE_STEPS * nfe_per_step))"
+    fi
 fi
 echo "Batch:     4096 environments"
 echo "============================================"
@@ -166,13 +236,18 @@ elif [[ -n "$DIAG_LABEL" ]]; then
     trap 'status=$?; echo "DIAG_JOB_EXIT=$status"' EXIT
 elif [[ -n "$CFG_SWEEP_ID" ]]; then
     trap 'status=$?; echo "CFG_JOB_EXIT=$status"' EXIT
+elif [[ -n "$DOPRI5_ID" ]]; then
+    trap 'status=$?; echo "DOPRI5_JOB_EXIT=$status"' EXIT
+elif [[ -n "$MATCHED_ID" ]]; then
+    trap 'status=$?; echo "MATCHED_JOB_EXIT=$status"' EXIT
 fi
 
 SWEEP_WORK_DIR=
-ISOLATED_ID=${EXPERIMENT_ID:-${DIAG_LABEL:-$CFG_SWEEP_ID}}
-ISOLATED_RUN_ROOT=${SWEEP_RUN_ROOT:-${DIAG_RUN_ROOT:-$CFG_SWEEP_RUN_ROOT}}
+ISOLATED_ID=${EXPERIMENT_ID:-${DIAG_LABEL:-${CFG_SWEEP_ID:-${DOPRI5_ID:-$MATCHED_ID}}}}
+ISOLATED_RUN_ROOT=${SWEEP_RUN_ROOT:-${DIAG_RUN_ROOT:-${CFG_SWEEP_RUN_ROOT:-${DOPRI5_RUN_ROOT:-$MATCHED_RUN_ROOT}}}}
 if [[ -n "$ISOLATED_ID" ]]; then
     SWEEP_WORK_DIR="$ISOLATED_RUN_ROOT/work/${ISOLATED_ID}_${SLURM_JOB_ID}"
+    mkdir -p "$ISOLATED_RUN_ROOT/work"
     mkdir "$SWEEP_WORK_DIR"
     mkdir -p "$SWEEP_WORK_DIR/controller" "$SWEEP_WORK_DIR/hydra" \
         "$SWEEP_WORK_DIR/tmp" "$SWEEP_WORK_DIR/cache/torch_extensions" \
@@ -239,6 +314,24 @@ elif [[ -n "$CFG_SWEEP_ID" ]]; then
     echo "CFG_GUIDANCE_TYPE=text"
     echo "CFG_SEED=0"
     echo "CFG_CONFIG=learning:im_big,env:closd_multitask,robot:smpl_humanoid,controller:CLoSD_multitask_finetune,episode_length:500,num_envs:4096,solver:rk4,steps:3,nfe:12,cfg:$CFG_SCALE,guidance:text,samples_per_task:1000,torch_deterministic:False"
+elif [[ -n "$DOPRI5_ID" ]]; then
+    echo "DOPRI5_EXPERIMENT_ID=$DOPRI5_ID"
+    echo "DOPRI5_JOB_ID=$SLURM_JOB_ID"
+    echo "DOPRI5_CHECKPOINT=$MODEL"
+    echo "DOPRI5_GIT_COMMIT=$(git -C "$CLOSD_ROOT" rev-parse HEAD)"
+    echo "DOPRI5_SOURCE_SHA256=$(sha256sum "$CLOSD_ROOT/closd/diffusion_planner/diffusion/ode_sampler.py" "$CLOSD_ROOT/closd/env/tasks/closd.py" "$CLOSD_ROOT/reproduction/scripts/hpc/closd_velocity_eval.slurm" | sha256sum | cut -d ' ' -f1)"
+    echo "DOPRI5_SEED=0"
+    echo "DOPRI5_TARGET_NFE=${DOPRI5_ID##*-}"
+    echo "DOPRI5_CONFIG=learning:im_big,env:closd_multitask,robot:smpl_humanoid,controller:CLoSD_multitask_finetune,episode_length:500,num_envs:4096,cfg:7.5,samples_per_task:1000,torch_deterministic:False,rtol:$DOPRI5_RTOL,atol:$DOPRI5_ATOL,max_num_steps:$DOPRI5_MAX_NUM_STEPS,max_nfe:$DOPRI5_MAX_NFE"
+elif [[ -n "$MATCHED_ID" ]]; then
+    echo "MATCHED_ID=$MATCHED_ID"
+    echo "MATCHED_TARGET_NFE=$MATCHED_NFE"
+    echo "MATCHED_JOB_ID=$SLURM_JOB_ID"
+    echo "MATCHED_CHECKPOINT=$MODEL"
+    echo "MATCHED_GIT_COMMIT=$(git -C "$CLOSD_ROOT" rev-parse HEAD)"
+    echo "MATCHED_SOURCE_SHA256=$(sha256sum "$CLOSD_ROOT/closd/diffusion_planner/diffusion/ode_sampler.py" "$CLOSD_ROOT/closd/env/tasks/closd.py" "$CLOSD_ROOT/reproduction/scripts/hpc/closd_velocity_eval.slurm" | sha256sum | cut -d ' ' -f1)"
+    echo "MATCHED_SEED=0"
+    echo "MATCHED_CONFIG=learning:im_big,env:closd_multitask,robot:smpl_humanoid,controller:CLoSD_multitask_finetune,episode_length:500,num_envs:4096,cfg:7.5,samples_per_task:1000,torch_deterministic:False,solver:$ODE_SOLVER,steps:$ODE_STEPS,target_nfe:$MATCHED_NFE,rtol:$DOPRI5_RTOL,atol:$DOPRI5_ATOL"
 fi
 
 container_binds=(--bind "$ROOT:$ROOT")
@@ -261,12 +354,22 @@ apptainer exec --nv --cleanenv \
         DIAG_JOB_ID=$9
         CFG_SWEEP_ID=${10}
         CFG_SCALE=${11}
+        DOPRI5_ID=${12}
+        DOPRI5_RTOL=${13}
+        DOPRI5_ATOL=${14}
+        DOPRI5_MAX_NUM_STEPS=${15}
+        DOPRI5_MAX_NFE=${16}
+        MATCHED_ID=${17}
         if [[ -n "$EXPERIMENT_ID" ]]; then
             trap '\''status=$?; echo "SWEEP_PROCESS_EXIT=$status"'\'' EXIT
         elif [[ -n "$DIAG_LABEL" ]]; then
             trap '\''status=$?; echo "DIAG_PROCESS_EXIT=$status"'\'' EXIT
         elif [[ -n "$CFG_SWEEP_ID" ]]; then
             trap '\''status=$?; echo "CFG_PROCESS_EXIT=$status"'\'' EXIT
+        elif [[ -n "$DOPRI5_ID" ]]; then
+            trap '\''status=$?; echo "DOPRI5_PROCESS_EXIT=$status"'\'' EXIT
+        elif [[ -n "$MATCHED_ID" ]]; then
+            trap '\''status=$?; echo "MATCHED_PROCESS_EXIT=$status"'\'' EXIT
         fi
         ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
         CLOSD_ROOT=$ROOT/CLoSD
@@ -285,12 +388,16 @@ apptainer exec --nv --cleanenv \
         export CLOSD_GENERATOR_TYPE=$GENERATOR
         export CLOSD_ODE_STEPS=$ODE_STEPS
         export CLOSD_ODE_SOLVER=$ODE_SOLVER
+        export CLOSD_ODE_RTOL=$DOPRI5_RTOL
+        export CLOSD_ODE_ATOL=$DOPRI5_ATOL
+        export CLOSD_ODE_MAX_NUM_STEPS=$DOPRI5_MAX_NUM_STEPS
+        export CLOSD_ODE_MAX_NFE=$DOPRI5_MAX_NFE
         export CLOSD_PROFILE_PLANNER=1
         export PYTHONUNBUFFERED=1
         export WANDB_MODE=offline
         unset DIFFUSION_TRAINING_TEST
-        if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID" ]]; then
-            if [[ -n "$EXPERIMENT_ID$CFG_SWEEP_ID" ]]; then
+        if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID$DOPRI5_ID$MATCHED_ID" ]]; then
+            if [[ -n "$EXPERIMENT_ID$CFG_SWEEP_ID$DOPRI5_ID$MATCHED_ID" ]]; then
                 export CLOSD_SOLVER_SWEEP=1
                 if [[ -n "$CFG_SWEEP_ID" ]]; then
                     export CLOSD_CFG_SWEEP=1
@@ -318,7 +425,7 @@ apptainer exec --nv --cleanenv \
 
         cd "$CLOSD_ROOT"
         runtime_overrides=()
-        if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID" ]]; then
+        if [[ -n "$EXPERIMENT_ID$DIAG_LABEL$CFG_SWEEP_ID$DOPRI5_ID$MATCHED_ID" ]]; then
             runtime_overrides+=("output_path=$SWEEP_WORK_DIR/controller")
             runtime_overrides+=("hydra.run.dir=$SWEEP_WORK_DIR/hydra")
             runtime_overrides+=("hydra.job.chdir=False")
@@ -341,4 +448,4 @@ apptainer exec --nv --cleanenv \
             closd_eval=True \
             no_log=True \
             "${runtime_overrides[@]}"
-    ' closd-velocity-eval "$GENERATOR" "$ODE_STEPS" "$ODE_SOLVER" "$MODEL" "$EXPERIMENT_ID" "$SWEEP_WORK_DIR" "$DIAG_LABEL" "$DIAG_RUN_ROOT" "$SLURM_JOB_ID" "$CFG_SWEEP_ID" "$CFG_SCALE"
+    ' closd-velocity-eval "$GENERATOR" "$ODE_STEPS" "$ODE_SOLVER" "$MODEL" "$EXPERIMENT_ID" "$SWEEP_WORK_DIR" "$DIAG_LABEL" "$DIAG_RUN_ROOT" "$SLURM_JOB_ID" "$CFG_SWEEP_ID" "$CFG_SCALE" "$DOPRI5_ID" "$DOPRI5_RTOL" "$DOPRI5_ATOL" "$DOPRI5_MAX_NUM_STEPS" "$DOPRI5_MAX_NFE" "$MATCHED_ID"

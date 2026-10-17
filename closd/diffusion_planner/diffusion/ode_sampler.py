@@ -1,3 +1,5 @@
+import math
+
 import torch
 
 
@@ -25,22 +27,37 @@ class VelocityODESampler:
         num_timesteps=1000,
         num_steps=10,
         solver="euler",
+        rtol=1e-3,
+        atol=1e-4,
+        max_num_steps=128,
+        max_nfe=256,
     ):
         if num_timesteps < 2:
             raise ValueError("num_timesteps must be >= 2")
 
-        if num_steps < 1:
-            raise ValueError("num_steps must be >= 1")
+        if num_steps < (0 if solver == "dopri5" else 1):
+            raise ValueError("num_steps must be >= 0 for DOPRI5 or >= 1 for fixed solvers")
 
-        if solver not in ["euler", "heun", "rk4"]:
+        if solver not in ["euler", "heun", "rk4", "dopri5"]:
             raise ValueError(
                 f"Unsupported solver [{solver}]. "
-                "Choose from ['euler', 'heun', 'rk4']."
+                "Choose from ['euler', 'heun', 'rk4', 'dopri5']."
             )
+        if solver == "dopri5" and (
+            not math.isfinite(rtol) or not math.isfinite(atol)
+            or rtol <= 0 or atol <= 0
+            or max_num_steps < 1 or max_nfe < 1
+        ):
+            raise ValueError("DOPRI5 requires positive finite tolerances and limits")
 
         self.num_timesteps = num_timesteps
         self.num_steps = num_steps
         self.solver = solver
+        self.rtol = rtol
+        self.atol = atol
+        self.max_num_steps = max_num_steps
+        self.max_nfe = max_nfe
+        self.last_nfe = 0
 
     @property
     def nfe(self):
@@ -56,6 +73,9 @@ class VelocityODESampler:
         RK4:
             4 model calls per integration step.
 
+        DOPRI5:
+            Measured velocity evaluations from the most recent solve.
+
         This counts velocity evaluations, not the underlying MDM forwards.
         ClassifierFreeSampleModel runs the MDM twice per evaluation.
         """
@@ -67,6 +87,9 @@ class VelocityODESampler:
 
         if self.solver == "rk4":
             return 4 * self.num_steps
+
+        if self.solver == "dopri5":
+            return self.last_nfe
 
         raise ValueError(self.solver)
 
@@ -237,6 +260,41 @@ class VelocityODESampler:
                     f"noise shape {tuple(x.shape)} "
                     f"does not match requested shape {tuple(shape)}"
                 )
+
+        if self.solver == "dopri5":
+            if dump_steps is not None:
+                raise NotImplementedError("dump_steps is not defined for adaptive DOPRI5")
+            try:
+                from torchdiffeq import odeint
+            except ImportError as exc:
+                raise ImportError(
+                    "DOPRI5 requires torchdiffeq==0.2.5 in the CLoSD Python environment"
+                ) from exc
+
+            self.last_nfe = 0
+
+            def velocity(tau, state):
+                if self.last_nfe >= self.max_nfe:
+                    raise RuntimeError(
+                        f"DOPRI5 exceeded max_nfe={self.max_nfe}; "
+                        "the rounded MDM time index can cause adaptive step rejections"
+                    )
+                self.last_nfe += 1
+                # _model_velocity uses the same nearest integer MDM index as
+                # Euler, Heun and RK4. It copies the mutable y mapping on
+                # every call, including rejected adaptive stages.
+                return self._model_velocity(model, state, tau, model_kwargs)
+
+            times = torch.tensor([0.0, 1.0], dtype=torch.float64, device=device)
+            x = odeint(
+                velocity, x, times, method="dopri5", rtol=self.rtol,
+                atol=self.atol, options={"max_num_steps": self.max_num_steps},
+            )[-1]
+            if not torch.isfinite(x).all():
+                raise RuntimeError("DOPRI5 produced NaN or Inf motion")
+            if "y" in model_kwargs and "prefix" in model_kwargs["y"]:
+                x = torch.cat([model_kwargs["y"]["prefix"], x], dim=-1)
+            return x
 
         # Integration grid:
         #

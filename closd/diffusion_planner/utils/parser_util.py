@@ -230,7 +230,7 @@ def add_training_options(parser):
     group.add_argument(
         "--ode_solver",
         default="euler",
-        choices=["euler", "heun"],
+        choices=["euler", "heun", "rk4", "dopri5"],
         type=str,
         help="ODE solver for velocity models."
     )
@@ -243,7 +243,7 @@ def add_sampling_options(parser):
                        help="Generative backend used for sampling.")
     group.add_argument("--ode_steps", default=10, type=int,
                        help="Number of ODE integration steps for Flow Matching / Rectified Flow.")
-    group.add_argument("--ode_solver", default="euler", choices=["euler", "heun"],
+    group.add_argument("--ode_solver", default="euler", choices=["euler", "heun", "rk4", "dopri5"],
                        type=str, help="ODE solver for velocity models.")
     group.add_argument("--model_path", required=True, type=str,
                        help="Path to model####.pt file to be sampled.")

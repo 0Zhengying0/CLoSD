@@ -97,14 +97,14 @@ def main(args=None):
     elif args.generator_type in ["flow", "rectified_flow"]:
         ode_sampler = VelocityODESampler(
             num_timesteps=1000,
-            num_steps=args.ode_steps,
+            num_steps=0 if args.ode_solver == "dopri5" else args.ode_steps,
             solver=args.ode_solver,
         )
         print(
             f"Sampling backend: {args.generator_type} | "
             f"solver={args.ode_solver} | "
-            f"steps={args.ode_steps} | "
-            f"NFE={ode_sampler.nfe}"
+            f"steps={'adaptive' if args.ode_solver == 'dopri5' else args.ode_steps} | "
+            f"NFE={'adaptive' if args.ode_solver == 'dopri5' else ode_sampler.nfe}"
         )
         sample_fn = ode_sampler.p_sample_loop
     else:

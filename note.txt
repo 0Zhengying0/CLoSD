@@ -31,6 +31,7 @@ sacct -j 5100756 \
     train smoke test 5144408
     train 5144432
     评测 closd_velocity_eval.slurm 5153280 10步
+    用ot方法实现 train 5220077 eval 5223552 5223553
 - Rectified Flow
     - RF1
     train smoke test 5144509
@@ -51,7 +52,11 @@ sacct -j 5100756 \
 ODE smoke 5145287
 
 fm准确率下降原因排查：
-1. 对比不同积分方法 5185910-18
+1. 对比不同积分方法 5185910-18  5220230
+    FM-ME solver=euler steps=96 target_NFE=96 Job_ID=5220314
+    FM-MH solver=heun steps=48 target_NFE=96 Job_ID=5220315
+    FM-MR solver=rk4 steps=24 target_NFE=96 Job_ID=5220316
+    FM-MD solver=dopri5 steps=0 target_NFE=96 Job_ID=5220317
 2. 逐回合诊断 5199597(fm_rk4_3steps) 5199598(DiP)
     对flow matching rk4 3步（12 nfe）和DiP原始采样分别做逐回合诊断，也就是“保留原始官方评测口径，新增诊断指标，为每个测试回合记录初始任务、第一次完成目标的时间、最小目标距离、是否跌倒、跌倒时间、终止原因、状态转换、实际控制轨迹及最终是否被官方评测脚本计为成功“。针对动作GET_UP，要记录从SIT到GET_UP的切换时间和起身后的状态。
 3. 对比CFG值变化对生成结果的影响 5199639-44
