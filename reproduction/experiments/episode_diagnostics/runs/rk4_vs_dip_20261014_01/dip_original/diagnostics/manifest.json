@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "generator": "diffusion",
+  "checkpoint": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt",
+  "configuration": {
+    "seed": -1,
+    "cfg_scale": 7.5,
+    "ode_solver": null,
+    "ode_steps": null,
+    "num_envs": 4096,
+    "episode_length": 500,
+    "samples_per_official_metric": 1000
+  },
+  "slurm_job_id": "5199598",
+  "num_envs": 4096,
+  "episode_length": 500,
+  "control_dt_s": 0.03333333507180214,
+  "completed_episodes": 4110,
+  "incomplete_episodes": 137,
+  "official_counters": {
+    "REACH": {
+      "resets": 1390,
+      "success": 1389
+    },
+    "STRIKE_KICK": {
+      "resets": 1317,
+      "success": 1230
+    },
+    "STRIKE_PUNCH": {
+      "resets": 1317,
+      "success": 1230
+    },
+    "SIT": {
+      "resets": 1403,
+      "success": 1238
+    },
+    "GET_UP": {
+      "resets": 1223,
+      "success": 1196
+    }
+  },
+  "trace_fields": [
+    "progress_step",
+    "state",
+    "body_pos_xyz",
+    "controller_action",
+    "pd_target",
+    "dof_pos",
+    "target_xyz",
+    "target_actor_pose",
+    "goal_distance_m",
+    "box_up_dot",
+    "physical_goal_hit",
+    "official_task_done",
+    "terminated"
+  ],
+  "control_trace_note": "controller_action and pd_target are pre-physics commands; dof_pos and body_pos_xyz are post-physics realised states",
+  "trajectory_format": "NPZ flat arrays; episode i spans offsets[i]:offsets[i+1]",
+  "time_convention": "post-physics progress_step; transition_step is pre-physics progress_step",
+  "goal_distance_definition": {
+    "REACH": "horizontal pelvis-to-goal distance in metres",
+    "GET_UP": "3D pelvis-to-goal distance in metres",
+    "SIT": "3D pelvis-to-valid-seat-volume distance in metres; zero inside",
+    "STRIKE_KICK": "conditioned foot-to-box-centre distance in metres; diagnostic only",
+    "STRIKE_PUNCH": "conditioned wrist-to-box-centre distance in metres; diagnostic only"
+  },
+  "strike_success_definition": "box_up_dot <= 0.25, independent of limb-to-box distance",
+  "official_metric_note": "KICK and PUNCH use the original shared strike mask; GET_UP is conditional on entering GET_UP"
+}
