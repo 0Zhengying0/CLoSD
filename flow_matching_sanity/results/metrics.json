@@ -1,0 +1,50 @@
+{
+  "seed": 20261017,
+  "device": "cpu",
+  "steps": 6000,
+  "batch_size": 256,
+  "learning_rate": 0.001,
+  "timesteps": 1001,
+  "torchcfm_version": "1.0.7",
+  "torch_version": "2.2.2+cu121",
+  "path_max_abs_error": 0.0,
+  "velocity_max_abs_error": 0.0,
+  "loss_max_abs_difference": 0.0,
+  "final_loss_100_mean": {
+    "closd": 2.2434720432758333,
+    "torchcfm": 2.2434720432758333
+  },
+  "source_mmd2": 0.026631178334355354,
+  "generated_mmd2": {
+    "closd": 0.002975011244416237,
+    "torchcfm": 0.002975011244416237
+  },
+  "mean_target_nearest_neighbor_distance": {
+    "closd": 0.06617111502470449,
+    "torchcfm": 0.06617111502470449
+  },
+  "endpoint_max_abs_difference": 0.0,
+  "trajectory_max_abs_difference": 0.0,
+  "trajectory": {
+    "closd": {
+      "reverse_step_fraction": 0.00019728535353535353,
+      "relative_step_change": 0.03162946179509163,
+      "max_step": 0.03488155081868172,
+      "finite": true
+    },
+    "torchcfm": {
+      "reverse_step_fraction": 0.00019728535353535353,
+      "relative_step_change": 0.03162946179509163,
+      "max_step": 0.03488155081868172,
+      "finite": true
+    }
+  },
+  "checks": {
+    "path_and_velocity_match": true,
+    "paired_training_matches": true,
+    "generated_distribution_improves": true,
+    "rare_trajectory_reversals": true,
+    "finite_trajectories": true
+  },
+  "passed": true
+}

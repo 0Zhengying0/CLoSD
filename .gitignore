@@ -168,3 +168,7 @@ closd/blender/results
 /reproduction/experiments/dip_fm_quality/runs/*/execution/*/episodes.pkl
 /reproduction/experiments/episode_diagnostics/runs/*/*/work/*/controller/Humanoid.pth
 /reproduction/runs/wandb/wandb/offline-run-*-DiP_multi-target_repro_seed10/run-DiP_multi-target_repro_seed10.wandb
+
+# Keep FM sanity check metrics and figures alongside its source and report.
+!/flow_matching_sanity/results/*.json
+!/flow_matching_sanity/results/*.png
