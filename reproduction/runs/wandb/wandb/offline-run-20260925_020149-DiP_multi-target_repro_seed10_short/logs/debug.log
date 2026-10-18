@@ -1,0 +1,28 @@
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_setup.py:_flush():76] Current SDK version is 0.17.4
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_setup.py:_flush():76] Configure stats pid to 1727282
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_setup.py:_flush():76] Loading settings from /home/it4i-dianyu/.config/wandb/settings
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_setup.py:_flush():76] Loading settings from /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/wandb/settings
+2026-09-25 02:01:49,850 WARNING MainThread:1727282 [wandb_setup.py:_flush():76] Unknown environment variable: WANDB_CACHE_DIR
+2026-09-25 02:01:49,850 WARNING MainThread:1727282 [wandb_setup.py:_flush():76] Unknown environment variable: WANDB_CONFIG_DIR
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'root_dir': '/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/wandb', 'mode': 'offline'}
+2026-09-25 02:01:49,850 WARNING MainThread:1727282 [wandb_setup.py:_flush():76] Could not find program at -m closd.diffusion_planner.train.train_mdm
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': None, 'program': '-m closd.diffusion_planner.train.train_mdm'}
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_setup.py:_flush():76] Applying login settings: {}
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_init.py:_log_setup():529] Logging user logs to /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug.log
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_init.py:_log_setup():530] Logging internal logs to /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/wandb/wandb/offline-run-20260925_020149-DiP_multi-target_repro_seed10_short/logs/debug-internal.log
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_init.py:init():569] calling init triggers
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_init.py:init():576] wandb.init called with sweep_config: {}
+config: {}
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_init.py:init():619] starting backend
+2026-09-25 02:01:49,850 INFO    MainThread:1727282 [wandb_init.py:init():623] setting up manager
+2026-09-25 02:01:49,856 INFO    MainThread:1727282 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2026-09-25 02:01:49,858 INFO    MainThread:1727282 [wandb_init.py:init():631] backend started and connected
+2026-09-25 02:01:49,865 INFO    MainThread:1727282 [wandb_init.py:init():720] updated telemetry
+2026-09-25 02:01:49,894 INFO    MainThread:1727282 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2026-09-25 02:01:49,898 INFO    MainThread:1727282 [wandb_init.py:init():804] starting run threads in backend
+2026-09-25 02:01:52,047 INFO    MainThread:1727282 [wandb_run.py:_console_start():2380] atexit reg
+2026-09-25 02:01:52,047 INFO    MainThread:1727282 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2026-09-25 02:01:52,047 INFO    MainThread:1727282 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2026-09-25 02:01:52,048 INFO    MainThread:1727282 [wandb_run.py:_redirect():2325] Redirects installed.
+2026-09-25 02:01:52,066 INFO    MainThread:1727282 [wandb_init.py:init():847] run started, returning control to user process
+2026-09-25 02:01:52,067 INFO    MainThread:1727282 [wandb_run.py:_config_callback():1382] config_cb None None {'cuda': True, 'device': 0, 'seed': 10, 'batch_size': 64, 'train_platform_type': 'WandBPlatform', 'external_mode': False, 'dataset': 'humanml', 'data_dir': '', 'hml_type': None, 'arch': 'trans_dec', 'text_encoder_type': 'bert', 'emb_trans_dec': False, 'layers': 8, 'latent_dim': 512, 'cond_mask_prob': 0.1, 'mask_frames': True, 'lambda_rcxyz': 0.0, 'lambda_vel': 0.0, 'lambda_fc': 0.0, 'lambda_target_loc': 1.0, 'unconstrained': False, 'emb_before_mask': False, 'emb_policy': 'concat', 'pos_embed_max_len': 5000, 'use_ema': True, 'multi_target_cond': True, 'multi_encoder_type': 'single', 'target_enc_layers': 1, 'context_len': 20, 'pred_len': 40, 'spatial_condition': None, 'keyframe_cond_type': '', 'keyframe_cond_prob': 0.5, 'use_inpainting': False, 'use_recon_guidance': False, 'noise_schedule': 'cosine', 'diffusion_steps': 10, 'sigma_small': True, 'save_dir': '/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/runs/DiP_multi-target_repro_seed10_short', 'overwrite': True, 'lr': 0.0001, 'weight_decay': 0.0, 'lr_anneal_steps': 0, 'eval_batch_size': 32, 'eval_split': 'test', 'eval_during_training': False, 'eval_rep_times': 3, 'eval_num_samples': 1000, 'log_interval': 1000, 'save_interval': 10000, 'num_steps': 600000, 'num_frames': 60, 'resume_checkpoint': '', 'gen_during_training': False, 'gen_num_samples': 3, 'gen_num_repetitions': 2, 'gen_guidance_param': 2.5, 'avg_model_beta': 0.9999, 'adam_beta2': 0.999, 'sampling_mode': 'none', 'target_joint_names': 'DIMP_FULL', 'autoregressive': True, 'autoregressive_include_prefix': False, 'autoregressive_init': 'data'}

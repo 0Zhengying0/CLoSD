@@ -1,0 +1,136 @@
+{
+  "checkpoint": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt",
+  "cfg": 7.5,
+  "case_ids": [
+    "REACH_00_normal",
+    "REACH_01_moderate",
+    "REACH_02_challenging",
+    "REACH_03_hard",
+    "STRIKE_KICK_00_normal",
+    "STRIKE_KICK_01_moderate",
+    "STRIKE_KICK_02_challenging",
+    "STRIKE_KICK_03_hard",
+    "STRIKE_PUNCH_00_normal",
+    "STRIKE_PUNCH_01_moderate",
+    "STRIKE_PUNCH_02_challenging",
+    "STRIKE_PUNCH_03_hard",
+    "SIT_00_normal",
+    "SIT_01_moderate",
+    "SIT_02_challenging",
+    "SIT_03_hard",
+    "GET_UP_00_normal",
+    "GET_UP_01_moderate",
+    "GET_UP_02_challenging",
+    "GET_UP_03_hard"
+  ],
+  "case_count": 20,
+  "max_num_steps": 128,
+  "max_nfe": 256,
+  "targets": [
+    12,
+    20,
+    40
+  ],
+  "tolerance_band": {
+    "12": 3,
+    "20": 4,
+    "40": 8
+  },
+  "rows": [
+    {
+      "rtol": 1.0,
+      "atol": 0.1,
+      "status": "COMPLETE",
+      "nfe": 20,
+      "mdm_forwards": 40,
+      "planner_latency_sec": 0.5532649615779519,
+      "reason": ""
+    },
+    {
+      "rtol": 0.3,
+      "atol": 0.03,
+      "status": "COMPLETE",
+      "nfe": 20,
+      "mdm_forwards": 40,
+      "planner_latency_sec": 0.3097816100344062,
+      "reason": ""
+    },
+    {
+      "rtol": 0.1,
+      "atol": 0.010000000000000002,
+      "status": "COMPLETE",
+      "nfe": 26,
+      "mdm_forwards": 52,
+      "planner_latency_sec": 0.40042252372950315,
+      "reason": ""
+    },
+    {
+      "rtol": 0.03,
+      "atol": 0.003,
+      "status": "COMPLETE",
+      "nfe": 32,
+      "mdm_forwards": 64,
+      "planner_latency_sec": 0.49219032377004623,
+      "reason": ""
+    },
+    {
+      "rtol": 0.01,
+      "atol": 0.001,
+      "status": "COMPLETE",
+      "nfe": 44,
+      "mdm_forwards": 88,
+      "planner_latency_sec": 0.6761912638321519,
+      "reason": ""
+    },
+    {
+      "rtol": 0.003,
+      "atol": 0.00030000000000000003,
+      "status": "COMPLETE",
+      "nfe": 68,
+      "mdm_forwards": 136,
+      "planner_latency_sec": 1.043161186389625,
+      "reason": ""
+    },
+    {
+      "rtol": 0.001,
+      "atol": 0.0001,
+      "status": "COMPLETE",
+      "nfe": 98,
+      "mdm_forwards": 196,
+      "planner_latency_sec": 1.5026848381385207,
+      "reason": ""
+    }
+  ],
+  "selected": {
+    "12": null,
+    "20": {
+      "rtol": 0.3,
+      "atol": 0.03,
+      "status": "COMPLETE",
+      "nfe": 20,
+      "mdm_forwards": 40,
+      "planner_latency_sec": 0.3097816100344062,
+      "reason": ""
+    },
+    "40": {
+      "rtol": 0.01,
+      "atol": 0.001,
+      "status": "COMPLETE",
+      "nfe": 44,
+      "mdm_forwards": 88,
+      "planner_latency_sec": 0.6761912638321519,
+      "reason": ""
+    }
+  },
+  "default_dopri5": {
+    "rtol": 0.001,
+    "atol": 0.0001,
+    "status": "COMPLETE",
+    "nfe": 98,
+    "mdm_forwards": 196,
+    "planner_latency_sec": 1.5026848381385207,
+    "reason": ""
+  },
+  "recommended_common_nfe": 96,
+  "warning": "20-case offline NFE predicts but cannot guarantee NFE in 4096-env closed loop"
+}

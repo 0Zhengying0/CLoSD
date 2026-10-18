@@ -1,0 +1,27 @@
+{
+  "task": "REACH",
+  "source_env_id": 6,
+  "source_progress_step": 61,
+  "history_source": "simulator pose_buffer, after first planning horizon",
+  "text": "A person is walking.",
+  "target_joint_names": [
+    "traj"
+  ],
+  "is_heading": true,
+  "heading_target_rad": -2.072998046875,
+  "distance_at_capture_m": 1.2647085189819336,
+  "conditioned_distance_at_capture_m": 1.2000130414962769,
+  "case_id": "REACH_00_normal",
+  "difficulty": "normal",
+  "seed": 10000,
+  "prefix_frames": 20,
+  "pred_frames": 40,
+  "total_frames": 60,
+  "fps": 20,
+  "coordinate_system": "local HumanML3D, Y up, metres",
+  "normalization": "(hml_features - mean) / std",
+  "text_encoding": "raw text; re-encode with each checkpoint's BERT text encoder",
+  "target_coordinate_system": "same local HumanML3D frame as recovered motion",
+  "matched_ground_truth": false,
+  "npz": "REACH_00_normal.npz"
+}

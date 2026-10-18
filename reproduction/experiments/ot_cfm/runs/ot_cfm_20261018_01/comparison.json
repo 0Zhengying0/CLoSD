@@ -1,0 +1,80 @@
+{
+  "success": {
+    "VP-CFM": {
+      "REACH": {
+        "success": 981,
+        "total": 1390,
+        "rate": 0.7057553956834532
+      },
+      "STRIKE_KICK": {
+        "success": 1152,
+        "total": 1311,
+        "rate": 0.8787185354691075
+      },
+      "STRIKE_PUNCH": {
+        "success": 1152,
+        "total": 1311,
+        "rate": 0.8787185354691075
+      },
+      "SIT": {
+        "success": 1354,
+        "total": 1404,
+        "rate": 0.9643874643874644
+      },
+      "GET_UP": {
+        "success": 1026,
+        "total": 1344,
+        "rate": 0.7633928571428571
+      },
+      "macro": 0.838194557630398,
+      "unique_state_macro": 0.8280635631707205
+    },
+    "OT-CFM": {
+      "REACH": {
+        "success": 1204,
+        "total": 1390,
+        "rate": 0.8661870503597122
+      },
+      "STRIKE_KICK": {
+        "success": 982,
+        "total": 1369,
+        "rate": 0.7173119065010957
+      },
+      "STRIKE_PUNCH": {
+        "success": 982,
+        "total": 1369,
+        "rate": 0.7173119065010957
+      },
+      "SIT": {
+        "success": 1346,
+        "total": 1403,
+        "rate": 0.9593727726300784
+      },
+      "GET_UP": {
+        "success": 1121,
+        "total": 1339,
+        "rate": 0.8371919342793129
+      },
+      "macro": 0.819475114054259,
+      "unique_state_macro": 0.8450159159425498
+    }
+  },
+  "quality_mean": {
+    "VP-CFM": {
+      "final_target_error_m": 0.894987117297128,
+      "min_target_distance_m": 0.7769393490234412,
+      "seam_root_jump_m": 0.018869938965758924,
+      "seam_relative_joint_jump_m": 0.04043892811061137,
+      "root_accel_mean_mps2": 19.324961064334474,
+      "joint_accel_mean_mps2": 33.685341375559375
+    },
+    "OT-CFM": {
+      "final_target_error_m": 0.8563880642946065,
+      "min_target_distance_m": 0.6707361027924851,
+      "seam_root_jump_m": 0.014741969920530113,
+      "seam_relative_joint_jump_m": 0.030147534553076782,
+      "root_accel_mean_mps2": 15.524464309174244,
+      "joint_accel_mean_mps2": 28.308607187067263
+    }
+  }
+}

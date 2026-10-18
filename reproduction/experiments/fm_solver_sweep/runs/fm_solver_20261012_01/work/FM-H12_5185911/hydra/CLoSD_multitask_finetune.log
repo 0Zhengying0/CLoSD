@@ -1,0 +1,14 @@
+[2026-10-12 01:58:08,026][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/functional.py:507: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3549.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+
+[2026-10-12 02:00:10,027][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+[2026-10-12 02:00:13,721][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+
+[2026-10-12 02:00:18,951][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/common/quaternion.py:396: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at ../aten/src/ATen/native/Cross.cpp:63.)
+  v = torch.cross(v0, v1)
+

@@ -1,0 +1,179 @@
+hydra:
+  run:
+    dir: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-E20_5185913/hydra
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+  launcher:
+    _target_: hydra._internal.core_plugins.basic_launcher.BasicLauncher
+  sweeper:
+    _target_: hydra._internal.core_plugins.basic_sweeper.BasicSweeper
+    max_batch_size: null
+    params: null
+  help:
+    app_name: ${hydra.job.name}
+    header: '${hydra.help.app_name} is powered by Hydra.
+
+      '
+    footer: 'Powered by Hydra (https://hydra.cc)
+
+      Use --hydra-help to view Hydra specific help
+
+      '
+    template: '${hydra.help.header}
+
+      == Configuration groups ==
+
+      Compose your configuration from those groups (group=option)
+
+
+      $APP_CONFIG_GROUPS
+
+
+      == Config ==
+
+      Override anything in the config (foo.bar=value)
+
+
+      $CONFIG
+
+
+      ${hydra.help.footer}
+
+      '
+  hydra_help:
+    template: 'Hydra (${hydra.runtime.version})
+
+      See https://hydra.cc for more info.
+
+
+      == Flags ==
+
+      $FLAGS_HELP
+
+
+      == Configuration groups ==
+
+      Compose your configuration from those groups (For example, append hydra/job_logging=disabled
+      to command line)
+
+
+      $HYDRA_CONFIG_GROUPS
+
+
+      Use ''--cfg hydra'' to Show the Hydra config.
+
+      '
+    hydra_help: ???
+  hydra_logging:
+    version: 1
+    formatters:
+      simple:
+        format: '[%(asctime)s][HYDRA] %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+    root:
+      level: INFO
+      handlers:
+      - console
+    loggers:
+      logging_example:
+        level: DEBUG
+    disable_existing_loggers: false
+  job_logging:
+    version: 1
+    formatters:
+      simple:
+        format: '[%(asctime)s][%(name)s][%(levelname)s] - %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+      file:
+        class: logging.FileHandler
+        formatter: simple
+        filename: ${hydra.runtime.output_dir}/${hydra.job.name}.log
+    root:
+      level: INFO
+      handlers:
+      - console
+      - file
+    disable_existing_loggers: false
+  env: {}
+  mode: RUN
+  searchpath: []
+  callbacks: {}
+  output_subdir: .hydra
+  overrides:
+    hydra:
+    - hydra.run.dir=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-E20_5185913/hydra
+    - hydra.job.chdir=False
+    - hydra.mode=RUN
+    task:
+    - learning=im_big
+    - env=closd_multitask
+    - robot=smpl_humanoid
+    - exp_name=CLoSD_multitask_finetune
+    - epoch=-1
+    - seed=0
+    - torch_deterministic=False
+    - env.episode_length=500
+    - env.dip.cfg_param=7.5
+    - env.dip.model_path=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt
+    - env.num_envs=4096
+    - test=True
+    - no_virtual_display=True
+    - headless=True
+    - closd_eval=True
+    - no_log=True
+    - output_path=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-E20_5185913/controller
+  job:
+    name: ${exp_name}
+    chdir: false
+    override_dirname: closd_eval=True,env.dip.cfg_param=7.5,env.dip.model_path=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt,env.episode_length=500,env.num_envs=4096,env=closd_multitask,epoch=-1,exp_name=CLoSD_multitask_finetune,headless=True,learning=im_big,no_log=True,no_virtual_display=True,output_path=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-E20_5185913/controller,robot=smpl_humanoid,seed=0,test=True,torch_deterministic=False
+    id: ???
+    num: ???
+    config_name: config
+    env_set:
+      OMP_NUM_THREADS: '1'
+    env_copy: []
+    config:
+      override_dirname:
+        kv_sep: '='
+        item_sep: ','
+        exclude_keys: []
+  runtime:
+    version: 1.3.2
+    version_base: '1.3'
+    cwd: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD
+    config_sources:
+    - path: hydra.conf
+      schema: pkg
+      provider: hydra
+    - path: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/data/cfg
+      schema: file
+      provider: main
+    - path: ''
+      schema: structured
+      provider: schema
+    output_dir: /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-E20_5185913/hydra
+    choices:
+      sim: default_sim
+      learning: im_big
+      robot: smpl_humanoid
+      env: closd_multitask
+      env/dip: dip_defaults
+      hydra/env: default
+      hydra/callbacks: null
+      hydra/job_logging: default
+      hydra/hydra_logging: default
+      hydra/hydra_help: default
+      hydra/help: default
+      hydra/sweeper: basic
+      hydra/launcher: basic
+      hydra/output: default
+  verbose: false

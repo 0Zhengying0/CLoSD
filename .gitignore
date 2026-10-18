@@ -133,15 +133,6 @@ output/
 log/
 runs/
 
-# Keep completed FM solver sweep stdout logs in Git, but leave work files ignored.
-!/reproduction/experiments/fm_solver_sweep/runs/
-/reproduction/experiments/fm_solver_sweep/runs/*
-!/reproduction/experiments/fm_solver_sweep/runs/*/
-/reproduction/experiments/fm_solver_sweep/runs/*/*
-!/reproduction/experiments/fm_solver_sweep/runs/*/logs/
-/reproduction/experiments/fm_solver_sweep/runs/*/logs/*
-!/reproduction/experiments/fm_solver_sweep/runs/*/logs/*.out
-
 *.png
 *.jpg
 *.mp4
@@ -153,17 +144,26 @@ closd/diffusion_planner/saved_motions
 closd/diffusion_planner/save
 closd/blender/assets/smpl_humanoid
 closd/blender/results
-# Local reproduction resources and runtime outputs
+# Local reproduction resources
 /.local/
-/reproduction/runs/
 /reproduction/release-assets/
-# Historical experiment evidence is intentionally versioned.
-!/reproduction/scripts/hpc/jobs.json
-!/reproduction/**/*.json
-!/reproduction/**/*.log
-!/reproduction/logs/wandb/
-!/reproduction/logs/wandb/**/
-!/reproduction/logs/wandb/**
 
-# All training products remain local, including args.json and W&B files.
-/reproduction/runs/
+# Keep experiment evidence visible to Git, including Slurm .out/.err logs,
+# result tables, trajectories, videos, checkpoints and reflow pairs.
+# GitHub file-size limits still apply when these files are uploaded.
+!/reproduction/scripts/hpc/jobs.json
+!/logs/**
+!/reproduction/logs/**
+!/reproduction/experiments/*/runs/
+!/reproduction/experiments/*/runs/**
+!/reproduction/runs/
+!/reproduction/runs/**
+!/reproduction/reflow_pairs/**
+!/reproduction/ode_smoke/**
+
+# Result files currently above GitHub's 100 MiB regular Git object limit.
+# Keep smaller smoke pairs, W&B runs, logs, tables and videos visible.
+/reproduction/runs/*/*.pt
+/reproduction/reflow_pairs/rf1_300k_heun10_seed*.pt
+/reproduction/experiments/dip_fm_quality/runs/*/execution/*/episodes.pkl
+/reproduction/runs/wandb/wandb/offline-run-*-DiP_multi-target_repro_seed10/run-DiP_multi-target_repro_seed10.wandb

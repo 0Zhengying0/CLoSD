@@ -1,0 +1,11 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Using /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-R40_5185918/cache/torch_extensions as PyTorch extensions root...
+Creating extension directory /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-R40_5185918/cache/torch_extensions/gymtorch...
+Emitting ninja build file /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_solver_sweep/runs/fm_solver_20261012_01/work/FM-R40_5185918/cache/torch_extensions/gymtorch/build.ninja...
+Building extension module gymtorch...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+Loading extension module gymtorch...
+2026-10-12 01:57:57,751 - INFO - logger - logger initialized
+  0%|          | 0/63 [00:00<?, ?it/s]  2%|▏         | 1/63 [00:01<01:04,  1.04s/it]  3%|▎         | 2/63 [00:02<01:05,  1.08s/it]  8%|▊         | 5/63 [00:02<00:21,  2.74it/s] 13%|█▎        | 8/63 [00:02<00:11,  4.96it/s] 17%|█▋        | 11/63 [00:02<00:07,  7.33it/s] 22%|██▏       | 14/63 [00:02<00:04,  9.96it/s] 27%|██▋       | 17/63 [00:02<00:03, 12.58it/s] 32%|███▏      | 20/63 [00:03<00:03, 11.02it/s] 37%|███▋      | 23/63 [00:03<00:02, 13.39it/s] 41%|████▏     | 26/63 [00:03<00:02, 15.62it/s] 46%|████▌     | 29/63 [00:03<00:01, 17.63it/s] 51%|█████     | 32/63 [00:03<00:01, 19.28it/s] 56%|█████▌    | 35/63 [00:03<00:01, 20.58it/s] 60%|██████    | 38/63 [00:03<00:01, 21.59it/s] 65%|██████▌   | 41/63 [00:04<00:01, 20.90it/s] 70%|██████▉   | 44/63 [00:04<00:00, 21.59it/s] 75%|███████▍  | 47/63 [00:04<00:00, 22.39it/s] 79%|███████▉  | 50/63 [00:04<00:00, 23.02it/s] 84%|████████▍ | 53/63 [00:04<00:00, 23.37it/s] 89%|████████▉ | 56/63 [00:04<00:00, 23.70it/s] 94%|█████████▎| 59/63 [00:04<00:00, 23.94it/s] 98%|█████████▊| 62/63 [00:04<00:00, 24.08it/s]100%|██████████| 63/63 [00:05<00:00, 12.52it/s]
+  0%|          | 0/4096 [00:00<?, ?it/s]100%|██████████| 4096/4096 [00:00<00:00, 426998.79it/s]

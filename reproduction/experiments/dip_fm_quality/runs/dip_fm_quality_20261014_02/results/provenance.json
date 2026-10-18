@@ -1,0 +1,31 @@
+{
+  "case_manifest": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/dip_fm_quality/runs/dip_fm_quality_20261014_02/conditions/manifest.json",
+  "case_manifest_sha256": "de770cce7d89a4371be9a4fb015d45fe03694dd33254ded06ba9171dd63c308a",
+  "models": {
+    "dip": {
+      "checkpoint": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt",
+      "args_path": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/args.json",
+      "args_sha256": "91d87db86f9c905015c40c7048e194d015081bd680cfebcde2a82ec82b6b7f0d"
+    },
+    "fm": {
+      "checkpoint": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt",
+      "args_path": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/args.json",
+      "args_sha256": "558e8abda46866b5d7a326c14b8fe63d7fbb8893390359bdf86d70a261af4a96"
+    }
+  },
+  "git_commit": "80b39a1b3e2a7d32d446f40097ea641a6a937f16",
+  "git_dirty": true,
+  "source_sha256": {
+    "closd/env/tasks/closd.py": "af884a8d54fe85e1a55e694de1d0c3fd2ed2999e0081f91a6d14031f30b17a52",
+    "closd/learning/quality_snapshot.py": "1ab85ee28c3f2e738b777213c5703a31e30f1e0c591606b619a9d499234f6046",
+    "reproduction/scripts/hpc/run_dip_fm_quality.py": "e94d85cdbb74b4e10e24543fe7defeb2928f59ddac0d7ea62a8369673786e895",
+    "reproduction/scripts/hpc/quality_metrics.py": "0eac22171a637a45137d0e33d9e44fe2958d7a3f2d2b132d853ef76b31bde627",
+    "reproduction/scripts/hpc/quality_render.py": "0a9cb9e4a095701fc535d71ee8029b068bacdd6ac8db016f9095f45909f19a94"
+  },
+  "slurm_job_id": "5201929",
+  "cases_requested": 20,
+  "cfg": 7.5,
+  "same_initial_noise": true,
+  "internal_randomness_identical": false,
+  "not_controller_executed": true
+}

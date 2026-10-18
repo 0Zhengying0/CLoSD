@@ -1,0 +1,12 @@
+{
+  "case_manifest": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/dip_fm_quality/runs/dip_fm_quality_20261014_02/conditions/manifest.json",
+  "case_manifest_sha256": "de770cce7d89a4371be9a4fb015d45fe03694dd33254ded06ba9171dd63c308a",
+  "checkpoint": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/OTCFM_DIMP_FINAL_seed10_300k/model000300000.pt",
+  "checkpoint_sha256": "e8fedae926ed89d332f882d7d4e8db245b12c020fd661e4cb6baf69210769b75",
+  "solver": "rk4",
+  "steps": 3,
+  "nfe": 12,
+  "cfg": 7.5,
+  "initial_noise": "identical to captured FM cases",
+  "cases": 20
+}

@@ -1,0 +1,401 @@
+===== Formal CLoSD evaluation =====
+Generator: flow
+Model:     /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt
+ODE steps: 24
+Solver:    rk4
+CFG:       7.5
+NFE:       96
+Batch:     4096 environments
+============================================
+MATCHED_ID=FM-MR
+MATCHED_TARGET_NFE=96
+MATCHED_JOB_ID=5220316
+MATCHED_CHECKPOINT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt
+MATCHED_GIT_COMMIT=3ae90b21e891cf3cb16e94318a52b9faa2a3bd97
+MATCHED_SOURCE_SHA256=5d0f45e13f159851f59bf3cf42b3a75c1357eeea65d2f51166236c2140a2638a
+MATCHED_SEED=0
+MATCHED_CONFIG=learning:im_big,env:closd_multitask,robot:smpl_humanoid,controller:CLoSD_multitask_finetune,episode_length:500,num_envs:4096,cfg:7.5,samples_per_task:1000,torch_deterministic:False,solver:rk4,steps:24,target_nfe:96,rtol:0.001,atol:0.0001
+JOB_TMPDIR=/tmp/cfm.2NW04kPX
+Importing module 'gym_38' (/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)
+Setting GYM_USD_PLUG_INFO_PATH to /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/usd/plugInfo.json
+PyTorch version 2.2.2+cu121
+Device count 1
+/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/src/gymtorch
+[1/2] c++ -MMD -MF gymtorch.o.d -DTORCH_EXTENSION_NAME=gymtorch -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -isystem /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/include -isystem /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -isystem /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/include/TH -isystem /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/include/THC -isystem /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/include/python3.8 -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++17 -DTORCH_MAJOR=2 -DTORCH_MINOR=2 -c /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/src/gymtorch/gymtorch.cpp -o gymtorch.o 
+[2/2] c++ gymtorch.o -shared -L/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/lib -lc10 -ltorch_cpu -ltorch -ltorch_python -o gymtorch.so
+MOVING MOTION DATA TO GPU, USING CACHE: False
+MOVING MOTION DATA TO GPU, USING CACHE: False
+Importing module 'rlgpu_38' (/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/isaacgym/python/isaacgym/_bindings/linux-x86_64/rlgpu_38.so)
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+torch_deterministic: False
+Setting seed: 0
+Found checkpoint
+/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_dopri5/runs/dopri5_20261017_01/work/FM-MR_5220316/controller/Humanoid.pth
+Started to play
+Not applying any task filter.
+[2026-10-17 02:11:33,134][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/torch/functional.py:507: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3549.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+
+Not connected to PVD
++++ Using GPU PhysX
+Physics Engine: PhysX
+Physics Device: cuda:0
+GPU Pipeline: enabled
+Using VHACD cache directory '/home/it4i-dianyu/.isaacgym/vhacd'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/strike/target_full.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/back_sit.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/bottom.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/left.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/legs.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/right.obj'
+Found existing convex decomposition for mesh 'closd/data/assets/urdf/../mesh/sofa/sit.obj'
+!!!! Using modified SMPL starting pose !!!!
+
+****************************** Current motion keys ******************************
+Sampling motion: torch.Size([30])_torch.Size([30])_tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0], device='cuda:0')
+['standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing' 'standing'] .....
+*********************************************************************************
+
+Loaded 4096 motions with a total length of 136391.234s and 4096000 frames.
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+MDM dataset size: 4648
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+[2026-10-17 02:13:35,826][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+DiP sampling backend: flow | solver=rk4 | steps=24 | NFE=96
+Loading checkpoints from [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt]...
+loading avg model
+Overwriting [context_len, pred_len] to [20, 40] according to the prefix completion MDM parameters.
+[2026-10-17 02:13:38,498][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+
+RL device:  cuda:0
+4096
+69
+574
+0
+{'observation_space': Box(-inf, inf, (574,), float32), 'action_space': Box(-1.0, 1.0, (69,), float32), 'agents': 1, 'value_size': 1}
+RunningMeanStd:  (574,)
+RunningMeanStd:  (1960,)
+### Evaluating CLoSD success rate. Will buffer stats for the following states: [<STATES.REACH: 2>, <STATES.STRIKE_KICK: 3>, <STATES.STRIKE_PUNCH: 4>, <STATES.SIT: 6>, <STATES.GET_UP: 7>]
+=> loading checkpoint '/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_dopri5/runs/dopri5_20261017_01/work/FM-MR_5220316/controller/Humanoid.pth'
+=> loading checkpoint '/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_dopri5/runs/dopri5_20261017_01/work/FM-MR_5220316/controller/Humanoid.pth'
+[2026-10-17 02:13:43,064][py.warnings][WARNING] - /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/data_loaders/humanml/common/quaternion.py:396: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at ../aten/src/ATen/native/Cross.cpp:63.)
+  v = torch.cross(v0, v1)
+
+PLANNER_LATENCY_SEC=181.197716 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+PLANNER_LATENCY_SEC=181.075588 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+PLANNER_LATENCY_SEC=181.205090 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 58.582950592041016 steps: 100.0
+reward: 61.49360275268555 steps: 109.0
+reward: 63.43194580078125 steps: 111.0
+reward: 53.748802185058594 steps: 112.0
+reward: 67.38924407958984 steps: 113.0
+reward: 60.64794158935547 steps: 115.0
+reward: 72.10476684570312 steps: 116.0
+reward: 58.802696228027344 steps: 117.0
+reward: 73.9300537109375 steps: 120.0
+PLANNER_LATENCY_SEC=181.119222 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 69.94038391113281 steps: 123.0
+reward: 60.070030212402344 steps: 126.0
+reward: 63.65462112426758 steps: 128.0
+reward: 74.28600311279297 steps: 131.0
+reward: 76.49264526367188 steps: 133.0
+reward: 62.44800567626953 steps: 134.0
+reward: 67.33211517333984 steps: 136.0
+reward: 72.14639282226562 steps: 137.0
+reward: 58.40899658203125 steps: 138.0
+reward: 64.38208770751953 steps: 140.0
+reward: 67.3389892578125 steps: 141.0
+reward: 62.956197102864586 steps: 142.0
+reward: 64.79682159423828 steps: 144.0
+reward: 60.08171463012695 steps: 145.0
+reward: 67.8137715657552 steps: 146.0
+reward: 67.10203552246094 steps: 148.0
+reward: 80.12688446044922 steps: 149.0
+reward: 73.36006164550781 steps: 151.0
+reward: 55.94922637939453 steps: 155.0
+reward: 63.74095153808594 steps: 158.0
+reward: 65.71698760986328 steps: 160.0
+reward: 66.77139282226562 steps: 162.0
+reward: 73.39948272705078 steps: 163.0
+reward: 57.7636604309082 steps: 165.0
+reward: 82.09210968017578 steps: 167.0
+reward: 63.395660400390625 steps: 169.0
+reward: 59.70998764038086 steps: 170.0
+reward: 56.98551559448242 steps: 171.0
+reward: 66.93490091959636 steps: 173.0
+reward: 63.59944534301758 steps: 174.0
+reward: 70.46551513671875 steps: 175.0
+reward: 61.2197265625 steps: 176.0
+reward: 65.77134704589844 steps: 178.0
+reward: 68.1263427734375 steps: 179.0
+reward: 62.65984671456473 steps: 180.0
+PLANNER_LATENCY_SEC=181.347709 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 66.22201538085938 steps: 182.0
+reward: 59.91606903076172 steps: 183.0
+reward: 61.08219528198242 steps: 184.0
+reward: 63.6351318359375 steps: 186.0
+reward: 56.626546223958336 steps: 187.0
+reward: 64.6734848022461 steps: 188.0
+reward: 55.93623352050781 steps: 189.0
+reward: 60.83928426106771 steps: 190.0
+reward: 59.173187255859375 steps: 191.0
+reward: 64.50811258951823 steps: 192.0
+reward: 69.63043975830078 steps: 194.0
+reward: 67.38021850585938 steps: 195.0
+reward: 73.10264587402344 steps: 196.0
+reward: 63.6294199625651 steps: 197.0
+reward: 57.55175272623698 steps: 198.0
+reward: 56.13916778564453 steps: 199.0
+reward: 64.15376790364583 steps: 200.0
+reward: 70.35042572021484 steps: 201.0
+reward: 53.638084411621094 steps: 202.0
+reward: 69.01670328776042 steps: 203.0
+reward: 67.41578674316406 steps: 205.0
+reward: 58.20451863606771 steps: 206.0
+reward: 59.13658650716146 steps: 207.0
+reward: 63.28916931152344 steps: 208.0
+reward: 70.17930094401042 steps: 209.0
+reward: 59.02212905883789 steps: 210.0
+reward: 57.39447784423828 steps: 211.0
+reward: 68.49144744873047 steps: 212.0
+reward: 66.71674092610677 steps: 213.0
+reward: 77.32190704345703 steps: 215.0
+reward: 69.47125244140625 steps: 216.0
+reward: 66.62974548339844 steps: 218.0
+reward: 60.890113830566406 steps: 219.0
+reward: 41.05766296386719 steps: 165.5
+reward: 63.808868408203125 steps: 221.0
+reward: 62.61579895019531 steps: 222.0
+reward: 59.853047688802086 steps: 223.0
+reward: 44.86570739746094 steps: 166.33333333333334
+reward: 61.96447245279948 steps: 225.0
+reward: 79.81761169433594 steps: 227.0
+reward: 55.018455505371094 steps: 228.0
+reward: 63.37831420898438 steps: 229.0
+reward: 71.45519510904948 steps: 230.0
+reward: 30.88220977783203 steps: 142.0
+reward: 64.41407012939453 steps: 232.0
+reward: 74.38509368896484 steps: 233.0
+reward: 55.15678405761719 steps: 234.0
+reward: 55.41252136230469 steps: 235.0
+reward: 58.0323974609375 steps: 238.0
+reward: 62.602272033691406 steps: 239.0
+reward: 60.610005696614586 steps: 240.0
+PLANNER_LATENCY_SEC=181.199916 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 53.390576171875 steps: 241.0
+reward: 61.1900390625 steps: 244.0
+reward: 67.24368286132812 steps: 245.0
+reward: 50.0379524230957 steps: 246.0
+reward: 63.72589111328125 steps: 248.0
+reward: 54.83328628540039 steps: 249.0
+reward: 58.531219482421875 steps: 251.0
+reward: 66.19653828938802 steps: 252.0
+reward: 49.71607971191406 steps: 253.0
+reward: 71.79434204101562 steps: 254.0
+reward: 55.401031494140625 steps: 255.0
+reward: 68.35719299316406 steps: 256.0
+reward: 79.83705139160156 steps: 258.0
+reward: 59.63962936401367 steps: 261.0
+reward: 65.49249877929688 steps: 264.0
+reward: 58.752716064453125 steps: 265.0
+reward: 51.40388488769531 steps: 266.0
+reward: 65.37889099121094 steps: 267.0
+reward: 67.84623718261719 steps: 268.0
+reward: 70.7696533203125 steps: 269.0
+reward: 58.991207122802734 steps: 270.0
+reward: 58.46367645263672 steps: 271.0
+reward: 74.0364990234375 steps: 272.0
+reward: 59.89458084106445 steps: 273.0
+reward: 70.70483907063802 steps: 274.0
+reward: 51.52363204956055 steps: 275.0
+reward: 60.67237091064453 steps: 277.0
+reward: 63.69442367553711 steps: 279.0
+reward: 59.29508590698242 steps: 280.0
+reward: 30.924776077270508 steps: 138.0
+reward: 64.3081766764323 steps: 283.0
+reward: 48.66240310668945 steps: 240.25
+reward: 52.365936279296875 steps: 285.0
+reward: 65.49386596679688 steps: 286.0
+reward: 50.29242960611979 steps: 287.0
+reward: 94.95084381103516 steps: 288.0
+reward: 60.26109822591146 steps: 249.0
+reward: 66.74149322509766 steps: 290.0
+reward: 64.51512145996094 steps: 291.0
+reward: 65.42269897460938 steps: 292.0
+reward: 81.07699584960938 steps: 295.0
+reward: 1.1145068407058716 steps: 184.0
+reward: 66.48386637369792 steps: 298.0
+reward: 67.72395833333333 steps: 299.0
+reward: 54.433712005615234 steps: 300.0
+PLANNER_LATENCY_SEC=180.988118 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 55.407432556152344 steps: 301.0
+reward: 64.92064412434895 steps: 303.0
+reward: 18.80959701538086 steps: 134.0
+reward: 64.77053833007812 steps: 264.0
+reward: 70.66832733154297 steps: 308.0
+reward: 76.97278594970703 steps: 309.0
+reward: 35.47294998168945 steps: 159.5
+reward: 43.487918853759766 steps: 224.0
+reward: 58.64542770385742 steps: 312.0
+reward: 38.56459426879883 steps: 314.0
+reward: 55.210693359375 steps: 316.0
+reward: 60.518463134765625 steps: 320.0
+reward: 48.42001724243164 steps: 321.0
+reward: 54.68991470336914 steps: 295.375
+reward: 97.4186782836914 steps: 323.0
+reward: 66.56028747558594 steps: 324.0
+reward: 65.9175033569336 steps: 192.0
+reward: 32.79301834106445 steps: 120.0
+reward: 35.24663162231445 steps: 237.5
+reward: 56.64980697631836 steps: 328.0
+reward: 59.9380989074707 steps: 267.5
+reward: 59.552650451660156 steps: 330.0
+reward: 61.38840866088867 steps: 331.0
+reward: 56.113494873046875 steps: 332.0
+reward: 53.978492736816406 steps: 277.75
+reward: 71.6410624186198 steps: 334.0
+reward: 68.47187805175781 steps: 335.0
+reward: 52.42030715942383 steps: 336.0
+reward: 51.89044952392578 steps: 337.0
+reward: 69.13958740234375 steps: 338.0
+reward: 49.30032857259115 steps: 287.6666666666667
+reward: 61.169193267822266 steps: 343.0
+reward: 56.74477005004883 steps: 344.0
+reward: 61.375946044921875 steps: 298.0
+reward: 49.97633361816406 steps: 346.0
+reward: 61.05915451049805 steps: 99.0
+reward: 64.00212097167969 steps: 348.0
+reward: 60.148834228515625 steps: 350.0
+reward: 44.99208068847656 steps: 148.0
+reward: 46.16492462158203 steps: 352.0
+reward: 51.755859375 steps: 307.25
+reward: 77.17076110839844 steps: 355.0
+reward: 42.87569046020508 steps: 247.5
+reward: 59.7741444905599 steps: 359.0
+PLANNER_LATENCY_SEC=181.166433 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 54.89036560058594 steps: 361.0
+reward: 49.331634521484375 steps: 363.0
+reward: 70.32795715332031 steps: 365.0
+reward: 79.26541900634766 steps: 366.0
+reward: 70.70608520507812 steps: 267.0
+reward: 55.13489532470703 steps: 368.0
+reward: 76.71696472167969 steps: 369.0
+reward: 46.638651529947914 steps: 248.0
+reward: 58.04157638549805 steps: 371.0
+reward: 51.737040201822914 steps: 218.0
+reward: 60.022013346354164 steps: 374.0
+reward: 69.30597432454427 steps: 375.0
+reward: 55.537007649739586 steps: 376.0
+reward: 70.6729965209961 steps: 377.0
+reward: 68.39220428466797 steps: 378.0
+reward: 83.81861877441406 steps: 379.0
+reward: 60.655391693115234 steps: 381.0
+reward: 62.525657653808594 steps: 382.0
+reward: 70.82526143391927 steps: 383.0
+reward: 43.582987467447914 steps: 308.0
+reward: 38.16710662841797 steps: 184.0
+reward: 46.199058532714844 steps: 388.0
+reward: 56.536964416503906 steps: 389.0
+reward: 64.11154174804688 steps: 390.0
+reward: 23.501331329345703 steps: 176.0
+reward: 68.6348648071289 steps: 393.0
+reward: 77.80432891845703 steps: 394.0
+reward: 42.31072235107422 steps: 309.0
+reward: 42.78488540649414 steps: 397.0
+reward: 66.82687377929688 steps: 401.0
+reward: 71.29400634765625 steps: 356.0
+reward: 74.07891845703125 steps: 405.0
+reward: 51.18518829345703 steps: 335.0
+reward: 56.839111328125 steps: 407.0
+reward: 57.7708740234375 steps: 318.0
+reward: 55.975826263427734 steps: 409.0
+reward: 3.017832040786743 steps: 231.0
+reward: 61.3159065246582 steps: 411.0
+reward: 62.9374033610026 steps: 337.3333333333333
+reward: 9.513555526733398 steps: 117.0
+reward: 49.82828140258789 steps: 208.0
+reward: 41.32424545288086 steps: 417.0
+reward: 62.04100036621094 steps: 418.0
+reward: 48.3270149230957 steps: 419.0
+reward: 65.41094970703125 steps: 420.0
+PLANNER_LATENCY_SEC=181.011998 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 56.677818298339844 steps: 421.0
+reward: 47.473018646240234 steps: 423.0
+reward: 54.64429219563802 steps: 424.0
+reward: 29.28466796875 steps: 188.0
+reward: 59.86919021606445 steps: 428.0
+reward: 50.1888916015625 steps: 344.4
+reward: 58.327301025390625 steps: 347.5
+reward: 50.54582977294922 steps: 431.0
+reward: 35.761573791503906 steps: 100.0
+reward: 48.478668212890625 steps: 433.0
+reward: 54.492584228515625 steps: 268.0
+reward: 92.32868957519531 steps: 435.0
+reward: 47.845306396484375 steps: 438.0
+reward: 3.360102891921997 steps: 141.0
+reward: 64.55964660644531 steps: 441.0
+reward: 100.27397918701172 steps: 442.0
+reward: 51.26359939575195 steps: 121.0
+reward: 58.32494354248047 steps: 445.0
+reward: 35.832725524902344 steps: 309.0
+reward: 32.37040710449219 steps: 229.0
+reward: 45.62260818481445 steps: 449.0
+reward: 49.9529914855957 steps: 450.0
+reward: 20.88094711303711 steps: 239.0
+reward: 91.43995666503906 steps: 454.0
+reward: 50.30677032470703 steps: 455.0
+reward: 31.819801330566406 steps: 344.0
+reward: 59.05900192260742 steps: 457.0
+reward: 18.91771697998047 steps: 176.0
+reward: 48.8424186706543 steps: 341.5
+reward: 42.82355880737305 steps: 463.0
+reward: 57.92680740356445 steps: 465.0
+reward: 48.644596099853516 steps: 267.0
+reward: 44.52404022216797 steps: 356.0
+reward: 28.13522720336914 steps: 357.5
+reward: 69.69127655029297 steps: 471.0
+reward: 99.08238220214844 steps: 472.0
+reward: 65.93682861328125 steps: 229.0
+reward: 58.51717758178711 steps: 476.0
+reward: 42.3972053527832 steps: 156.0
+PLANNER_LATENCY_SEC=181.094743 GENERATOR=flow ODE_STEPS=24 SOLVER=rk4 NFE=96 MODEL_FORWARD_CALLS=192 BATCH=4096
+reward: 51.165164947509766 steps: 481.0
+reward: -14.234919548034668 steps: 248.0
+reward: 77.46141052246094 steps: 484.0
+reward: 57.49578857421875 steps: 487.0
+reward: 53.45939254760742 steps: 388.0
+reward: 15.381382942199707 steps: 215.0
+reward: 86.70057678222656 steps: 490.0
+reward: 75.31340026855469 steps: 491.0
+reward: 41.149566650390625 steps: 494.0
+reward: 42.2790781656901 steps: 268.3333333333333
+reward: 101.65332794189453 steps: 497.0
+reward: 50.271759033203125 steps: 295.0
+Collected enough data (1000 per task) success rates:
+STATES.REACH: 0.57
+EVAL_RESULT STATE=REACH SUCCESS=786 RESETS=1390 RATE=0.56546763
+STATES.STRIKE_KICK: 0.69
+EVAL_RESULT STATE=STRIKE_KICK SUCCESS=951 RESETS=1374 RATE=0.69213974
+STATES.STRIKE_PUNCH: 0.69
+EVAL_RESULT STATE=STRIKE_PUNCH SUCCESS=951 RESETS=1374 RATE=0.69213974
+STATES.SIT: 0.96
+EVAL_RESULT STATE=SIT SUCCESS=1347 RESETS=1402 RATE=0.96077033
+STATES.GET_UP: 0.85
+EVAL_RESULT STATE=GET_UP SUCCESS=1135 RESETS=1332 RATE=0.85210210
+EVAL_MACRO_SUCCESS=0.75252391
+EVAL_PROFILE CALLS=10 MODEL_FORWARDS_TOTAL=1920 PLANNER_LATENCY_TOTAL_SEC=1811.406533 PLANNER_LATENCY_MEAN_SEC=181.140653
+Eval plot ended
+MATCHED_PROCESS_EXIT=0
+MATCHED_JOB_EXIT=0

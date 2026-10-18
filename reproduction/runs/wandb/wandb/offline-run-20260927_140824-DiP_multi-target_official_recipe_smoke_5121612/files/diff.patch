@@ -1,0 +1,3024 @@
+diff --git a/.gitattributes b/.gitattributes
+index 7498afe..b4d362c 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -1,3 +1,3 @@
+ # Preserve raw historical evidence, including terminal CRs and trailing spaces.
+ reproduction/logs/** -text -whitespace
+-reproduction/history/** -text -whitespace
++note.txt -text -whitespace
+diff --git a/.gitignore b/.gitignore
+index 8059399..b95c652 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -146,12 +146,15 @@ closd/blender/assets/smpl_humanoid
+ closd/blender/results
+ # Local reproduction resources and runtime outputs
+ /.local/
+-/runs/
++/reproduction/runs/
+ /reproduction/release-assets/
+ # Historical experiment evidence is intentionally versioned.
+-!/scripts/hpc/jobs.json
++!/reproduction/scripts/hpc/jobs.json
+ !/reproduction/**/*.json
+ !/reproduction/**/*.log
+ !/reproduction/logs/wandb/
+ !/reproduction/logs/wandb/**/
+ !/reproduction/logs/wandb/**
++
++# All training products remain local, including args.json and W&B files.
++/reproduction/runs/
+diff --git a/reproduction/README.md b/reproduction/README.md
+index c437ee6..4e0c19e 100644
+--- a/reproduction/README.md
++++ b/reproduction/README.md
+@@ -8,10 +8,10 @@
+ - [实验时间线与失败尝试](experiments/README.md)：完整训练和 `_short` 续训分别记录。
+ - [环境与官方资源恢复](environment/README.md)：实际依赖清单、容器身份、固定资源版本。
+ - [完整日志](logs/)：Slurm stdout/stderr、GPU CSV、训练 logger 与 W&B 文本记录。
+-- [历史脚本](history/scripts/)和[原始笔记](history/note.txt)：保留原始内容，仅作证据，包含迁移前绝对路径；不作为新运行入口。
+-- [迁移清单](experiments/migration-manifest.json)：文件原址、新址、大小、inode、关键文件校验和与软链接变更。
++- [运行脚本](scripts/hpc/)和[工作笔记](../note.txt)：脚本使用当前目录；笔记保留你的最新内容，其中历史命令可能仍含旧路径。
++- [迁移清单](experiments/migration-manifest.json)：记录首次整理时的迁移快照。随后已将笔记移至根目录，并删除有对应运行入口的历史脚本副本；清单中的历史路径不代表当前布局。
+ 
+-训练源码提交为 `4af01718653dbabf1de1dd9a2600aa54c91acc38`；本次整理后的提交只调整复现入口与材料组织，不改模型或训练算法。历史 `args.original.json` 保留原始路径。当前执行配置见 `scripts/hpc/jobs.json` 和各入口 `--check` 输出。
++训练源码提交为 `4af01718653dbabf1de1dd9a2600aa54c91acc38`；本次整理后的提交只调整复现入口与材料组织，不改模型或训练算法。历史 `args.original.json` 保留原始路径。当前执行配置见 `reproduction/scripts/hpc/jobs.json` 和各入口 `--check` 输出。
+ 
+ ## 使用入口
+ 
+@@ -19,22 +19,22 @@
+ 
+ ```bash
+ # 新训练必须使用空目录；默认目录已有历史权重，所以示例指定新目录。
+-bash scripts/hpc/submit.sh dip_train --save-dir "$PWD/runs/my_seed10" --check
++bash reproduction/scripts/hpc/submit.sh dip_train --save-dir "$PWD/reproduction/runs/my_seed10" --check
+ 
+ # 短时训练的新实验与续训必须使用相同目录。
+-bash scripts/hpc/submit.sh dip_train_6h --save-dir "$PWD/runs/my_short" --check
+-bash scripts/hpc/submit.sh dip_train_2h --resume --check
++bash reproduction/scripts/hpc/submit.sh dip_train_6h --save-dir "$PWD/reproduction/runs/my_short" --check
++bash reproduction/scripts/hpc/submit.sh dip_train_2h --resume --check
+ 
+ # 复现权重与官方基线评测（各入口保留原始评测参数）。
+-bash scripts/hpc/submit.sh dip_eval_official --check
+-bash scripts/hpc/submit.sh dip_eval_repro_300k --check
+-bash scripts/hpc/submit.sh dip_eval_repro_600k --check
++bash reproduction/scripts/hpc/submit.sh dip_eval_official --check
++bash reproduction/scripts/hpc/submit.sh dip_eval_repro_300k --check
++bash reproduction/scripts/hpc/submit.sh dip_eval_repro_600k --check
+ 
+ # 环境规模测试和两类 smoke。
+-bash scripts/hpc/submit.sh dip_eval_envtest --num-envs 128 --check
+-bash scripts/hpc/submit.sh closd_smoke --check
+-bash scripts/hpc/submit.sh closd_real_smoke --check
+-bash scripts/hpc/submit.sh dip_train_smoke --save-dir "$PWD/runs/new_smoke" --check
++bash reproduction/scripts/hpc/submit.sh dip_eval_envtest --num-envs 128 --check
++bash reproduction/scripts/hpc/submit.sh closd_smoke --check
++bash reproduction/scripts/hpc/submit.sh closd_real_smoke --check
++bash reproduction/scripts/hpc/submit.sh dip_train_smoke --save-dir "$PWD/reproduction/runs/new_smoke" --check
+ ```
+ 
+ 另有 `dip_train_4h`、`dip_train_12h`，使用 `_short` 默认输出目录。`--resume` 选择该目录步数最大的 `model*.pt` 并要求相应优化器文件及 `args.json`，与原训练器自动查找规则一致。下载的 Release 仅用于评测，不含优化器，不能当作完整续训备份。原 smoke 会删除已有目录，现在改为拒绝覆盖。
+@@ -61,10 +61,36 @@ Slurm 默认为 `EU-26-37`、A100、8 CPU；分区和时长保留各原始脚本
+ [Release repro-dip-seed10-v1](https://github.com/0Zhengying0/CLoSD/releases/tag/repro-dip-seed10-v1) 发布原始 `model000300000.pt`、`model000600000.pt`、相邻 `args.json` 和 SHA-256 清单。下载器依据仓库内的校验值验证，不覆盖内容不同的已有文件。
+ 
+ ```bash
+-python3 scripts/hpc/download_release.py
+-python3 scripts/hpc/download_release.py --check
++python3 reproduction/scripts/hpc/download_release.py
++python3 reproduction/scripts/hpc/download_release.py --check
+ ```
+ 
+-默认恢复到 `runs/DiP_multi-target_repro_seed10/`。其它 checkpoint、优化器和 W&B 二进制保留在本地 `runs`；专属缓存保留在 `.local`，均不提交。共享 Isaac Gym、Miniconda、现有环境和容器保持原路径。归属不明的 `pymp-*` / `torch-shm-*` 临时目录留在共享 `tmp`，未删除。
++默认恢复到 `reproduction/runs/DiP_multi-target_repro_seed10/`。其它 checkpoint、优化器和 W&B 二进制保留在本地 `reproduction/runs`；专属缓存保留在 `.local`，均不提交。共享 Isaac Gym、Miniconda、现有环境和容器保持原路径。归属不明的 `pymp-*` / `torch-shm-*` 临时目录留在共享 `tmp`，未删除。
+ 
+ 本次没有重新训练、重跑正式评测或声称实现逐位确定性复现。具体检查范围见 [验证记录](VALIDATION.md)。
++
++## DIMP_FINAL 新训练与完整流程 smoke
++
++2026-09-27 起，复现脚本统一放在 `reproduction/scripts/hpc/`，训练输出统一放在 `reproduction/runs/`。共享环境、原项目代码和 `.local/cache` 位置保持不变。
++
++作业 5115268 在 step 0 的训练中评测因 `DIMP_FULL` 断言失败。其失败输出目录已删除，stdout/stderr 保留在 `logs/`；正式脚本已改为 `DIMP_FINAL` 以适配当前评测实现。**这会改变目标条件配置，因此新实验不能标为与历史官方 DIMP_FULL 参数完全一致。** 既有 300k/600k 历史实验及权重未改动。
++
++新增的两个独立 Slurm 文件直接通过 `sbatch` 使用，不经过 `submit.sh` 的旧实验注册表。以下从 **Zhengying 目录**执行：
++
++```bash
++# 先测试：训练 + checkpoint + HumanML 评测 + 动作视频生成。
++sbatch CLoSD/reproduction/scripts/hpc/dip_train_official_recipe_smoke.slurm
++
++# smoke 通过后再提交正式训练。
++sbatch CLoSD/reproduction/scripts/hpc/dip_train_official_recipe_300k.slurm
++```
++
++Smoke 使用 `qgpu_exp`、1 张 A100、8 CPU、30 分钟时限，输出目录为 `reproduction/runs/DiP_multi-target_official_recipe_smoke_<jobid>`，日志为 `logs/dip_recipe_smoke_<jobid>.out/.err`。每个新作业使用自己的目录，不删除既有 smoke 结果。
++
++与正式版相同：`DIMP_FINAL`、网络与优化器参数、batch size 64、评测和生成开关。Smoke 参数缩为 `num_steps=20`、`save_interval=10`、`log_interval=1`、`eval_num_samples=320`、`eval_rep_times=1`、`gen_num_samples=2`、`gen_num_repetitions=1`。评测样本保持大于 300，以满足现有 diversity 指标检查；这些指标仅用于验证流程，不作为正式结果。生成样本至少 2 个，以避开上游可视化代码 `squeeze()` 删除单样本维度的问题（5121606 在视频生成时触发）。
++
++Smoke 与正式版共用 `scripts/hpc/train_until_checkpoint.py`，分别传入 `--stop-after-checkpoint 10` 和 `300000`。Smoke 在 step 0 和 step 10 执行保存、评测、生成，step 10 全部完成后正常返回。成功标记为 `TRAIN/EVAL/GEN SMOKE PASSED`。30 分钟是申请的上限，不是保证完成时长。
++
++正式版在 `model000300000.pt` 对应的保存、评测及全部生成完成后正常退出，随后关闭 W&B；Slurm 前台等待 Python 并保留错误退出码。两版均清除 `DIFFUSION_TRAINING_TEST`，不再轮询文件或发送终止信号。包装入口仅控制结束时机，不改变原项目源码、优化器、学习率或训练计算；保留正式版 `num_steps=600000`，另行指定停止点。
++
++停止点沿用上游从 0 开始的 checkpoint 编号：从零训练到文件编号 300000 包含 300001 次训练循环；smoke 的 10 包含 11 次。目标必须是保存间隔的整数倍；目标周期失败或未到达时返回错误，不报告成功。当前官方 README 的目标配置默认值也是 `DIMP_FINAL`；本脚本的生成参数仍沿用已发布权重的参数，因此不要将全部参数标为与当前 README 完全一致。
+diff --git a/reproduction/RELEASE_NOTES.md b/reproduction/RELEASE_NOTES.md
+index 9327331..a291470 100644
+--- a/reproduction/RELEASE_NOTES.md
++++ b/reproduction/RELEASE_NOTES.md
+@@ -13,7 +13,7 @@
+ 复现材料见 `reproduction/README.md`，单次结果和日志来源见 `reproduction/experiments/results.md`。下载并验证：
+ 
+ ```bash
+-python3 scripts/hpc/download_release.py
++python3 reproduction/scripts/hpc/download_release.py
+ ```
+ 
+ 整理后的代码未重跑完整训练或正式评测；验证范围见 `reproduction/VALIDATION.md`。
+diff --git a/reproduction/VALIDATION.md b/reproduction/VALIDATION.md
+index 0feaf89..2bd6b18 100644
+--- a/reproduction/VALIDATION.md
++++ b/reproduction/VALIDATION.md
+@@ -16,11 +16,39 @@
+ 可再次执行的检查：
+ 
+ ```bash
+-python3 scripts/hpc/test_runtime.py
+-python3 scripts/hpc/prepare_dependencies.py --check
+-python3 scripts/hpc/download_release.py --check
+-bash scripts/hpc/submit.sh dip_eval_repro_300k --check
+-bash scripts/hpc/submit.sh dip_eval_repro_600k --check
++python3 reproduction/scripts/hpc/test_runtime.py
++python3 reproduction/scripts/hpc/prepare_dependencies.py --check
++python3 reproduction/scripts/hpc/download_release.py --check
++bash reproduction/scripts/hpc/submit.sh dip_eval_repro_300k --check
++bash reproduction/scripts/hpc/submit.sh dip_eval_repro_600k --check
+ ```
+ 
+ 限制：未从零重建容器/Conda 环境，未在 GPU 上重新验证迁移后的训练和评测执行。参数与路径检查、已有模型的 CPU 加载，不等同于新一次完整复现实验。Release 的远端附件与下载校验状态以发布完成记录为准。
++
++## 2026-09-27 目录调整与 DIMP_FINAL smoke
++
++- 删除 5115268 的失败训练输出；原始调度日志保留。
++- `runs`、`scripts` 移至 `reproduction`，迁移时核对文件/链接的 inode 和大小；记录见 `experiments/layout-update-20260927.json`。
++- 更新路径推导、提交入口、环境设置、下载恢复路径、Git 忽略规则及文档；原始实验参数和日志不改写。
++- 正式脚本改为 DIMP_FINAL；新增短时分区的完整流程 smoke，初版复用原训练器的 integration-test 退出机制（现已由下述统一停止入口替代）。
++- 本次没有提交新作业；GPU 实际结果需以用户提交后的 smoke 日志为准。
++- 调整后 12 个旧入口的检查模式、4 个路径/续训回归测试、Shell/Python 语法及权重校验均通过。
++- 在现有容器内解析两份独立 Slurm 的完整参数，均为 DIMP_FINAL；CPU 虚拟输入经过实际评测构造函数并到达采样边界，没有原来的目标配置断言。
++- 用替身计算调用实际训练循环，确认 step 0、10 按保存→评测→生成顺序执行，并在 step 10 正常返回。该检查没有执行模型采样或 GPU 运算。
++
++## 2026-09-27 指定 checkpoint 完整周期后正常停止
++
++- 再查调度记录及本地日志，只发现 5115268 的 DIMP_FULL 失败；用户确认指的是该任务，同意保留 DIMP_FINAL。
++- 两份独立 Slurm 共用 `scripts/hpc/train_until_checkpoint.py`，目标分别为 300000 和 10。删除正式版的文件非空轮询及 kill；smoke 不再使用 DIFFUSION_TRAINING_TEST。
++- 包装类调用原训练循环，在目标 step 的保存、评测及全部生成返回后结束循环，原 main 随后关闭训练记录平台。正常提前结束但未完成目标也会报错。原项目 `closd/` 源码未修改。
++- 容器内 `python reproduction/scripts/hpc/test_checkpoint_stop.py` 的 5 项 CPU 测试通过：实际训练循环的 smoke 顺序、300k 边界、保存/评测/生成异常传播、未完成目标不得成功、非法停止参数拒绝。模型计算及保存/评测/生成以替身执行，不代表实际 GPU 流程通过。
++- 两份 Slurm 的命令参数经过真实 train_args 解析，确认 DIMP_FINAL、评测及生成开启、停止点与保存间隔一致；Shell/Python 语法及 Git 空白检查通过。
++- 本次未提交作业；完整流程仍需 GPU smoke 验证。
++
++## 2026-09-27 smoke 5121606 单样本可视化错误
++
++- 用户提交的 5121606 运行 1 分 25 秒，FAILED / 1:0。step 0 训练、checkpoint 保存和 HumanML 评测完成；动作结果已写入 results.npy，随后在视频绘制标题处失败。
++- stderr 为 `plot_script.py:146` 的 `IndexError: invalid index to scalar variable.`。`generate.py` 的 heading 数组原为 `[batch, 1, frames]`，无参数 squeeze 在 batch=1 时删除样本维；随后 heading_all[sample_i] 变成标量，而绘图仍按帧索引。
++- 将 smoke 的 gen_num_samples 从 1 改为 2；正式版保持 6，DIMP_FINAL 和训练/评测设置保持不变，原项目源码不改动。失败日志和输出保留。
++- 容器内 CPU 检查使用该作业 results.npy 的前三帧，实际调用原 heading 恢复和绘图函数，重现单样本相同异常；复制为两个样本后，逐帧绘制及原 save_multiple_samples 的 MP4 编码成功。此检查不包含重新生成动作或完整 GPU 训练。
++- 修改后的 Shell 语法及 Git 空白检查通过；未代用户提交新作业。
+diff --git a/reproduction/environment/README.md b/reproduction/environment/README.md
+index c93a174..a6da7e6 100644
+--- a/reproduction/environment/README.md
++++ b/reproduction/environment/README.md
+@@ -22,9 +22,9 @@
+ 在已有 Python 环境的容器 shell 内，从仓库根目录执行：
+ 
+ ```bash
+-source scripts/hpc/closd_env.sh
+-HF_HUB_OFFLINE=0 TRANSFORMERS_OFFLINE=0 python scripts/hpc/prepare_dependencies.py
+-python scripts/hpc/prepare_dependencies.py --check
++source reproduction/scripts/hpc/closd_env.sh
++HF_HUB_OFFLINE=0 TRANSFORMERS_OFFLINE=0 python reproduction/scripts/hpc/prepare_dependencies.py
++python reproduction/scripts/hpc/prepare_dependencies.py --check
+ ```
+ 
+ 准备脚本下载记录的 revision、固定本地 `refs/main`，并建立官方检查点和评测资源链接。它拒绝把已有官方路径悄悄替换为别的模型。新机器恢复需要联网；已有缓存检查无需联网。
+diff --git a/reproduction/experiments/README.md b/reproduction/experiments/README.md
+index 5d1ed90..cb34305 100644
+--- a/reproduction/experiments/README.md
++++ b/reproduction/experiments/README.md
+@@ -40,6 +40,6 @@
+ 
+ ## 本地迁移
+ 
+-迁移清单记录 399 个条目；大文件采用同文件系统重命名并核对 inode/大小，关键权重及小文件另外记录 SHA-256。原始脚本先逐字节归档再移除外部重复项。官方资源软链接改为指向仓库内专属缓存。没有需要保留的旧外部路径兼容链接。
++迁移清单记录 399 个条目；大文件采用同文件系统重命名并核对 inode/大小，关键权重及小文件另外记录 SHA-256。首次整理时原始脚本先逐字节归档再移除外部重复项；随后确认所有脚本均有对应的 HPC 入口，已删除归档副本，原文仍可从 Git 历史查看。工作笔记已移至仓库根目录 `note.txt`，保留移动前的最新内容。官方资源软链接改为指向仓库内专属缓存。没有需要保留的旧外部路径兼容链接。
+ 
+-W&B 完整二进制运行保留在 `runs/wandb`，文本日志和配置另复制到 `reproduction/logs/wandb`。可确认的训练 logger 文件从共享 tmp 移至 `reproduction/logs/training_logger`；未能确定归属的通用临时目录仍留原地。
++W&B 完整二进制运行保留在 `reproduction/runs/wandb`，文本日志和配置另复制到 `reproduction/logs/wandb`。可确认的训练 logger 文件从共享 tmp 移至 `reproduction/logs/training_logger`；未能确定归属的通用临时目录仍留原地。
+diff --git a/reproduction/experiments/release.json b/reproduction/experiments/release.json
+index d68f449..c68b00c 100644
+--- a/reproduction/experiments/release.json
++++ b/reproduction/experiments/release.json
+@@ -8,20 +8,20 @@
+       "step": 300000,
+       "bytes": 234251446,
+       "sha256": "de0467c08bc4ec8ed5507aee15b21e78ee14771df4999e3362a9f6171c1f436e",
+-      "local_path": "runs/DiP_multi-target_repro_seed10/model000300000.pt"
++      "local_path": "reproduction/runs/DiP_multi-target_repro_seed10/model000300000.pt"
+     },
+     {
+       "name": "model000600000.pt",
+       "step": 600000,
+       "bytes": 234251446,
+       "sha256": "c4d4b9ed23d7b0b96ae4d9768c07bc2efa2a20e1541a6d71a2e779e45f41f19b",
+-      "local_path": "runs/DiP_multi-target_repro_seed10/model000600000.pt"
++      "local_path": "reproduction/runs/DiP_multi-target_repro_seed10/model000600000.pt"
+     },
+     {
+       "name": "args.json",
+       "bytes": 1819,
+       "sha256": "fb5d5b627b69d34aae66513c08f3747e7c135194e4a285892101cc24da2ac2d4",
+-      "local_path": "runs/DiP_multi-target_repro_seed10/args.json"
++      "local_path": "reproduction/runs/DiP_multi-target_repro_seed10/args.json"
+     }
+   ]
+ }
+diff --git a/reproduction/experiments/results.csv b/reproduction/experiments/results.csv
+index 51a5ed3..7b67479 100644
+--- a/reproduction/experiments/results.csv
++++ b/reproduction/experiments/results.csv
+@@ -1,4 +1,4 @@
+ experiment,job_id,model,log,num_envs,episode_length,cfg,samples_per_task,REACH,STRIKE_KICK,STRIKE_PUNCH,SIT,GET_UP
+ official_300k,5100756,official DiP multi-target 300k,../logs/dip_eval_official_5100756.out,4096,500,7.5,1000,1.00,0.93,0.93,0.88,0.97
+-reproduction_300k,5114966,runs/DiP_multi-target_repro_seed10/model000300000.pt,../logs/dip_eval_repro300_5114966.out,4096,500,7.5,1000,1.00,0.88,0.88,0.47,0.91
+-reproduction_600k,5114967,runs/DiP_multi-target_repro_seed10/model000600000.pt,../logs/dip_eval_repro600_5114967.out,4096,500,7.5,1000,0.99,0.89,0.89,0.76,0.93
++reproduction_300k,5114966,reproduction/runs/DiP_multi-target_repro_seed10/model000300000.pt,../logs/dip_eval_repro300_5114966.out,4096,500,7.5,1000,1.00,0.88,0.88,0.47,0.91
++reproduction_600k,5114967,reproduction/runs/DiP_multi-target_repro_seed10/model000600000.pt,../logs/dip_eval_repro600_5114967.out,4096,500,7.5,1000,0.99,0.89,0.89,0.76,0.93
+diff --git a/reproduction/history/note.txt b/reproduction/history/note.txt
+deleted file mode 100644
+index 843a7ae..0000000
+--- a/reproduction/history/note.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-For CLoSD:
+-
+-source /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/closd_env.sh
+-
+-sbatch closd_smoke.slurm
+-squeue -j 5099223
+-scontrol update JobId=5114966 MailType=BEGIN,END,FAIL MailUser=zy.xu@tum.de
+-cat logs/closd_smoke_5100756.out
+-cat logs/closd_smoke_5100756.err
+-sacct -j 5100756 \
+-  --format=JobID,JobName,Partition,State,ExitCode,Elapsed,MaxRSS
+-
+-训练 完整 5099223
+-
+-    6小时 5100766 结束，至120k步
+-    2小时  接着120k步 5105097 结束，至160k步
+-          接着160k步 5106709 结束，至200k步
+-          接着200k步 5108318 结束，至240k步
+-
+-
+-评测 官方checkpoints 5100756 （CD）
+-    从零训练的checkpoints 300k 5114966
+-    从零训练的checkpoints 600k 5114967
+\ No newline at end of file
+diff --git a/reproduction/history/scripts/closd_env.repository.sh b/reproduction/history/scripts/closd_env.repository.sh
+deleted file mode 100644
+index 2b677ac..0000000
+--- a/reproduction/history/scripts/closd_env.repository.sh
++++ /dev/null
+@@ -1,13 +0,0 @@
+-export ZHENGYING_ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-
+-export PATH=$ZHENGYING_ROOT/envs/closd/bin:$PATH
+-export HF_HOME=$ZHENGYING_ROOT/cache/huggingface
+-export TORCH_HOME=$ZHENGYING_ROOT/cache/torch
+-export XDG_CACHE_HOME=$ZHENGYING_ROOT/cache/xdg
+-export PIP_CACHE_DIR=$ZHENGYING_ROOT/cache/pip
+-export APPTAINER_CACHEDIR=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/apptainer
+-export APPTAINER_TMPDIR=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/tmp
+-export TMPDIR=$ZHENGYING_ROOT/tmp
+-
+-export ISAACGYM_BINDINGS=$ZHENGYING_ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ZHENGYING_ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+diff --git a/reproduction/history/scripts/closd_env.sh b/reproduction/history/scripts/closd_env.sh
+deleted file mode 100644
+index 78969b2..0000000
+--- a/reproduction/history/scripts/closd_env.sh
++++ /dev/null
+@@ -1,15 +0,0 @@
+-export ZHENGYING_ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-
+-export PATH=$ROOT/envs/closd/bin:$PATH
+-export HF_HOME=$ZHENGYING_ROOT/cache/huggingface
+-export TORCH_HOME=$ZHENGYING_ROOT/cache/torch
+-export XDG_CACHE_HOME=$ZHENGYING_ROOT/cache/xdg
+-export PIP_CACHE_DIR=$ZHENGYING_ROOT/cache/pip
+-export TMPDIR=$ZHENGYING_ROOT/tmp
+-
+-export APPTAINER_CACHEDIR=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/apptainer
+-export APPTAINER_TMPDIR=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/tmp
+-export TMPDIR=$ZHENGYING_ROOT/tmp
+-
+-export ISAACGYM_BINDINGS=$ZHENGYING_ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ZHENGYING_ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+\ No newline at end of file
+diff --git a/reproduction/history/scripts/closd_real_smoke.slurm b/reproduction/history/scripts/closd_real_smoke.slurm
+deleted file mode 100644
+index 82344c0..0000000
+--- a/reproduction/history/scripts/closd_real_smoke.slurm
++++ /dev/null
+@@ -1,60 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=closd_real_smoke
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:15:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=$ROOT/tmp
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export ISAACGYM_BINDINGS=$ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-        export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+-
+-        export MAX_JOBS=4
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== REAL CLoSD SMOKE START ==="
+-
+-        python closd/run.py \
+-            learning=im_big \
+-            robot=smpl_humanoid \
+-            env=closd_multitask \
+-            exp_name=CLoSD_multitask_finetune \
+-            epoch=-1 \
+-            test=True \
+-            no_virtual_display=True \
+-            headless=True \
+-            no_log=True \
+-            env.num_envs=4 \
+-            env.episode_length=100 \
+-            learning.params.config.player.games_num=1
+-
+-        echo "=== REAL CLoSD SMOKE PASSED ==="
+-    '
+diff --git a/reproduction/history/scripts/closd_smoke.slurm b/reproduction/history/scripts/closd_smoke.slurm
+deleted file mode 100644
+index d2e5088..0000000
+--- a/reproduction/history/scripts/closd_smoke.slurm
++++ /dev/null
+@@ -1,85 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=closd_smoke
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:20:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-
+-echo "=== HOST ==="
+-hostname
+-date
+-
+-echo "=== GPU ==="
+-nvidia-smi
+-
+-echo "=== CONTAINER TEST ==="
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=$ROOT/tmp
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export ISAACGYM_BINDINGS=$ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-        export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+-
+-        export MAX_JOBS=4
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== PYTHON / TORCH ==="
+-        python - << "PY"
+-import torch
+-
+-print("torch:", torch.__version__)
+-print("compiled CUDA:", torch.version.cuda)
+-print("cuda available:", torch.cuda.is_available())
+-print("device count:", torch.cuda.device_count())
+-
+-if torch.cuda.is_available():
+-    print("GPU:", torch.cuda.get_device_name(0))
+-else:
+-    raise RuntimeError("CUDA is not available")
+-PY
+-
+-        echo "=== NINJA ==="
+-        command -v ninja
+-        ninja --version
+-
+-        echo "=== ISAAC GYM / GYMTORCH ==="
+-        python - << "PY"
+-from isaacgym import gymapi
+-from isaacgym import gymtorch
+-print("Isaac Gym + gymtorch import OK")
+-PY
+-
+-        echo "=== CLoSD IMPORT ==="
+-        python - << "PY"
+-import closd.run
+-print("CLoSD run.py import OK")
+-PY
+-
+-        echo "=== SMOKE TEST PASSED ==="
+-    '
+diff --git a/reproduction/history/scripts/dip_eval_envtest.slurm b/reproduction/history/scripts/dip_eval_envtest.slurm
+deleted file mode 100644
+index 831dfe8..0000000
+--- a/reproduction/history/scripts/dip_eval_envtest.slurm
++++ /dev/null
+@@ -1,141 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_envtest
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:45:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-MODEL=$ROOT/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt
+-
+-NUM_ENVS=${NUM_ENVS:-128}
+-
+-mkdir -p "$ROOT/logs"
+-
+-echo "=================================================="
+-echo "CLoSD evaluation env-count test"
+-echo "Job ID:       ${SLURM_JOB_ID:-unknown}"
+-echo "Host:         $(hostname)"
+-echo "NUM_ENVS:     $NUM_ENVS"
+-echo "episode_len:  500"
+-echo "Model:        $MODEL"
+-echo "Start:        $(date)"
+-echo "=================================================="
+-
+-test -f "$MODEL"
+-
+-GPU_LOG=$ROOT/logs/gpu_${SLURM_JOB_ID}_${NUM_ENVS}env.csv
+-
+-# 每两秒记录一次显存占用
+-GPU_ID="${CUDA_VISIBLE_DEVICES%%,*}"
+-echo "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
+-echo "Monitoring GPU=$GPU_ID"
+-
+-stdbuf -oL nvidia-smi \
+-    -i "$GPU_ID" \
+-    --query-gpu=timestamp,memory.used,utilization.gpu \
+-    --format=csv,noheader,nounits \
+-    -l 1 > "$GPU_LOG" &
+-
+-MON_PID=$!
+-
+-cleanup() {
+-    kill "$MON_PID" 2>/dev/null || true
+-}
+-trap cleanup EXIT
+-
+-set +e
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        MODEL=$ROOT/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-        export ISAACGYM_BINDINGS=$ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-        export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+-        export TMPDIR=${SLURM_TMPDIR:-$ROOT/tmp}
+-        export PYTHONUNBUFFERED=1
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== GPU ==="
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA:", torch.version.cuda)
+-print("GPU:", torch.cuda.get_device_name(0))
+-print("Total VRAM GiB:",
+-      torch.cuda.get_device_properties(0).total_memory / 1024**3)
+-PY
+-
+-        echo "=== EVAL ENV TEST START ==="
+-        echo "NUM_ENVS='"$NUM_ENVS"'"
+-
+-        python closd/run.py \
+-            learning=im_big \
+-            env=closd_multitask \
+-            robot=smpl_humanoid \
+-            exp_name=CLoSD_multitask_finetune \
+-            epoch=-1 \
+-            env.episode_length=500 \
+-            env.dip.cfg_param=7.5 \
+-            env.dip.model_path="$MODEL" \
+-            env.num_envs='"$NUM_ENVS"' \
+-            test=True \
+-            no_virtual_display=True \
+-            headless=True \
+-            closd_eval=True \
+-            no_log=True \
+-            learning.params.config.player.games_num=1
+-    '
+-
+-RC=$?
+-
+-set -e
+-
+-cleanup
+-trap - EXIT
+-
+-echo
+-echo "=================================================="
+-echo "Process exit code: $RC"
+-
+-awk -F',' '
+-{
+-    gsub(/ /, "", $2)
+-    if ($2 + 0 > max) max=$2 + 0
+-}
+-END {
+-    print "Peak GPU memory:", max, "MiB"
+-}
+-' "$GPU_LOG"
+-
+-if [ "$RC" -eq 0 ]; then
+-    echo "=== EVAL ENV TEST PASSED ==="
+-else
+-    echo "=== EVAL ENV TEST FAILED ==="
+-fi
+-
+-echo "End: $(date)"
+-echo "=================================================="
+-
+-exit "$RC"
+diff --git a/reproduction/history/scripts/dip_eval_official.slurm b/reproduction/history/scripts/dip_eval_official.slurm
+deleted file mode 100644
+index bf9cc63..0000000
+--- a/reproduction/history/scripts/dip_eval_official.slurm
++++ /dev/null
+@@ -1,90 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_eval_official
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-MODEL=$ROOT/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt
+-
+-mkdir -p "$ROOT/logs"
+-
+-echo "=================================================="
+-echo "Official DiP multi-target 300k - FORMAL EVALUATION"
+-echo "Host:       $(hostname)"
+-echo "Job ID:     ${SLURM_JOB_ID:-unknown}"
+-echo "Model:      $MODEL"
+-echo "num_envs:   4096"
+-echo "episode:    500"
+-echo "CFG:        7.5"
+-echo "Start:      $(date)"
+-echo "=================================================="
+-
+-test -f "$MODEL"
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind "$ROOT:$ROOT" \
+-    "$CONTAINER" \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        MODEL=$ROOT/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export ISAACGYM_BINDINGS=$ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-        export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+-
+-        export TMPDIR=/tmp
+-        export PYTHONUNBUFFERED=1
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== GPU ==="
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA:", torch.version.cuda)
+-print("GPU:", torch.cuda.get_device_name(0))
+-print("VRAM GiB:", torch.cuda.get_device_properties(0).total_memory / 1024**3)
+-PY
+-
+-        echo "=== FORMAL EVALUATION START ==="
+-
+-        python closd/run.py \
+-            learning=im_big \
+-            env=closd_multitask \
+-            robot=smpl_humanoid \
+-            exp_name=CLoSD_multitask_finetune \
+-            epoch=-1 \
+-            env.episode_length=500 \
+-            env.dip.cfg_param=7.5 \
+-            env.dip.model_path="$MODEL" \
+-            env.num_envs=4096 \
+-            test=True \
+-            no_virtual_display=True \
+-            headless=True \
+-            closd_eval=True \
+-            no_log=True
+-
+-        echo "=== FORMAL EVALUATION FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_eval_repro_300k.slurm b/reproduction/history/scripts/dip_eval_repro_300k.slurm
+deleted file mode 100644
+index 7802f98..0000000
+--- a/reproduction/history/scripts/dip_eval_repro_300k.slurm
++++ /dev/null
+@@ -1,90 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_eval_repro300
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-MODEL=$ROOT/runs/DiP_multi-target_repro_seed10/model000300000.pt
+-
+-mkdir -p "$ROOT/logs"
+-
+-echo "=================================================="
+-echo "Official DiP multi-target 300k - FORMAL EVALUATION"
+-echo "Host:       $(hostname)"
+-echo "Job ID:     ${SLURM_JOB_ID:-unknown}"
+-echo "Model:      $MODEL"
+-echo "num_envs:   4096"
+-echo "episode:    500"
+-echo "CFG:        7.5"
+-echo "Start:      $(date)"
+-echo "=================================================="
+-
+-test -f "$MODEL"
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind "$ROOT:$ROOT" \
+-    "$CONTAINER" \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        MODEL=$ROOT/runs/DiP_multi-target_repro_seed10/model000300000.pt
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export ISAACGYM_BINDINGS=$ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-        export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+-
+-        export TMPDIR=/tmp
+-        export PYTHONUNBUFFERED=1
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== GPU ==="
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA:", torch.version.cuda)
+-print("GPU:", torch.cuda.get_device_name(0))
+-print("VRAM GiB:", torch.cuda.get_device_properties(0).total_memory / 1024**3)
+-PY
+-
+-        echo "=== FORMAL EVALUATION START ==="
+-
+-        python closd/run.py \
+-            learning=im_big \
+-            env=closd_multitask \
+-            robot=smpl_humanoid \
+-            exp_name=CLoSD_multitask_finetune \
+-            epoch=-1 \
+-            env.episode_length=500 \
+-            env.dip.cfg_param=7.5 \
+-            env.dip.model_path="$MODEL" \
+-            env.num_envs=4096 \
+-            test=True \
+-            no_virtual_display=True \
+-            headless=True \
+-            closd_eval=True \
+-            no_log=True
+-
+-        echo "=== FORMAL EVALUATION FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_eval_repro_600k.slurm b/reproduction/history/scripts/dip_eval_repro_600k.slurm
+deleted file mode 100644
+index 493919b..0000000
+--- a/reproduction/history/scripts/dip_eval_repro_600k.slurm
++++ /dev/null
+@@ -1,90 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_eval_repro600
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-MODEL=$ROOT/runs/DiP_multi-target_repro_seed10/model000600000.pt
+-
+-mkdir -p "$ROOT/logs"
+-
+-echo "=================================================="
+-echo "Official DiP multi-target 300k - FORMAL EVALUATION"
+-echo "Host:       $(hostname)"
+-echo "Job ID:     ${SLURM_JOB_ID:-unknown}"
+-echo "Model:      $MODEL"
+-echo "num_envs:   4096"
+-echo "episode:    500"
+-echo "CFG:        7.5"
+-echo "Start:      $(date)"
+-echo "=================================================="
+-
+-test -f "$MODEL"
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind "$ROOT:$ROOT" \
+-    "$CONTAINER" \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        MODEL=$ROOT/runs/DiP_multi-target_repro_seed10/model000600000.pt
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export ISAACGYM_BINDINGS=$ROOT/isaacgym/python/isaacgym/_bindings/linux-x86_64
+-        export LD_LIBRARY_PATH=$ISAACGYM_BINDINGS:$ROOT/envs/closd/lib:${LD_LIBRARY_PATH:-}
+-
+-        export TMPDIR=/tmp
+-        export PYTHONUNBUFFERED=1
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== GPU ==="
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA:", torch.version.cuda)
+-print("GPU:", torch.cuda.get_device_name(0))
+-print("VRAM GiB:", torch.cuda.get_device_properties(0).total_memory / 1024**3)
+-PY
+-
+-        echo "=== FORMAL EVALUATION START ==="
+-
+-        python closd/run.py \
+-            learning=im_big \
+-            env=closd_multitask \
+-            robot=smpl_humanoid \
+-            exp_name=CLoSD_multitask_finetune \
+-            epoch=-1 \
+-            env.episode_length=500 \
+-            env.dip.cfg_param=7.5 \
+-            env.dip.model_path="$MODEL" \
+-            env.num_envs=4096 \
+-            test=True \
+-            no_virtual_display=True \
+-            headless=True \
+-            closd_eval=True \
+-            no_log=True
+-
+-        echo "=== FORMAL EVALUATION FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_train.slurm b/reproduction/history/scripts/dip_train.slurm
+deleted file mode 100644
+index f2bfbda..0000000
+--- a/reproduction/history/scripts/dip_train.slurm
++++ /dev/null
+@@ -1,129 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_mt_train
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=2-00:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10
+-
+-mkdir -p \
+-    "$ROOT/logs" \
+-    "$ROOT/runs" \
+-    "$ROOT/runs/wandb" \
+-    "$ROOT/tmp"
+-
+-echo "=================================================="
+-echo "DiP multi-target training"
+-echo "Host:      $(hostname)"
+-echo "Start:     $(date)"
+-echo "Save dir:  $SAVE_DIR"
+-echo "Job ID:    ${SLURM_JOB_ID:-unknown}"
+-echo "=================================================="
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=${SLURM_TMPDIR:-$ROOT/tmp}
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export PYTHONUNBUFFERED=1
+-
+-        # W&B offline logging
+-        export WANDB_MODE=offline
+-        export WANDB_DIR=$ROOT/runs/wandb
+-        export WANDB_CACHE_DIR=$ROOT/cache/wandb
+-        export WANDB_CONFIG_DIR=$ROOT/cache/wandb_config
+-
+-        mkdir -p \
+-            "$WANDB_DIR" \
+-            "$WANDB_CACHE_DIR" \
+-            "$WANDB_CONFIG_DIR"
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== REPRODUCIBILITY INFO ==="
+-
+-        python --version
+-
+-        echo "Git commit:"
+-        git rev-parse HEAD || true
+-
+-        echo "Local modifications:"
+-        git status --short || true
+-
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA build:", torch.version.cuda)
+-print("CUDA available:", torch.cuda.is_available())
+-print("GPU:", torch.cuda.get_device_name(0))
+-PY
+-
+-        echo "=== W&B ==="
+-        echo "WANDB_MODE=$WANDB_MODE"
+-        echo "WANDB_DIR=$WANDB_DIR"
+-
+-        echo "=== TRAINING START ==="
+-
+-        python -m closd.diffusion_planner.train.train_mdm \
+-            --save_dir "$SAVE_DIR" \
+-            --overwrite \
+-            --seed 10 \
+-            --batch_size 64 \
+-            --dataset humanml \
+-            --arch trans_dec \
+-            --text_encoder_type bert \
+-            --layers 8 \
+-            --latent_dim 512 \
+-            --cond_mask_prob 0.1 \
+-            --emb_policy concat \
+-            --diffusion_steps 10 \
+-            --noise_schedule cosine \
+-            --context_len 20 \
+-            --pred_len 40 \
+-            --mask_frames \
+-            --lambda_target_loc 1.0 \
+-            --multi_target_cond \
+-            --multi_encoder_type single \
+-            --target_enc_layers 1 \
+-            --target_joint_names DIMP_FULL \
+-            --use_ema \
+-            --avg_model_beta 0.9999 \
+-            --autoregressive \
+-            --lr 0.0001 \
+-            --weight_decay 0.0 \
+-            --adam_beta2 0.999 \
+-            --num_steps 600000 \
+-            --save_interval 10000 \
+-            --log_interval 1000 \
+-            --gen_guidance_param 2.5 \
+-            --train_platform_type WandBPlatform
+-
+-        echo "=== TRAINING FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_train_12h.slurm b/reproduction/history/scripts/dip_train_12h.slurm
+deleted file mode 100644
+index bc1f826..0000000
+--- a/reproduction/history/scripts/dip_train_12h.slurm
++++ /dev/null
+@@ -1,129 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_mt_12h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=12:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-mkdir -p \
+-    "$ROOT/logs" \
+-    "$ROOT/runs" \
+-    "$ROOT/runs/wandb" \
+-    "$ROOT/tmp"
+-
+-echo "=================================================="
+-echo "DiP multi-target training"
+-echo "Host:      $(hostname)"
+-echo "Start:     $(date)"
+-echo "Save dir:  $SAVE_DIR"
+-echo "Job ID:    ${SLURM_JOB_ID:-unknown}"
+-echo "=================================================="
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=${SLURM_TMPDIR:-$ROOT/tmp}
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export PYTHONUNBUFFERED=1
+-
+-        # W&B offline logging
+-        export WANDB_MODE=offline
+-        export WANDB_DIR=$ROOT/runs/wandb
+-        export WANDB_CACHE_DIR=$ROOT/cache/wandb
+-        export WANDB_CONFIG_DIR=$ROOT/cache/wandb_config
+-
+-        mkdir -p \
+-            "$WANDB_DIR" \
+-            "$WANDB_CACHE_DIR" \
+-            "$WANDB_CONFIG_DIR"
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== REPRODUCIBILITY INFO ==="
+-
+-        python --version
+-
+-        echo "Git commit:"
+-        git rev-parse HEAD || true
+-
+-        echo "Local modifications:"
+-        git status --short || true
+-
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA build:", torch.version.cuda)
+-print("CUDA available:", torch.cuda.is_available())
+-print("GPU:", torch.cuda.get_device_name(0))
+-PY
+-
+-        echo "=== W&B ==="
+-        echo "WANDB_MODE=$WANDB_MODE"
+-        echo "WANDB_DIR=$WANDB_DIR"
+-
+-        echo "=== TRAINING START ==="
+-
+-        python -m closd.diffusion_planner.train.train_mdm \
+-            --save_dir "$SAVE_DIR" \
+-            --overwrite \
+-            --seed 10 \
+-            --batch_size 64 \
+-            --dataset humanml \
+-            --arch trans_dec \
+-            --text_encoder_type bert \
+-            --layers 8 \
+-            --latent_dim 512 \
+-            --cond_mask_prob 0.1 \
+-            --emb_policy concat \
+-            --diffusion_steps 10 \
+-            --noise_schedule cosine \
+-            --context_len 20 \
+-            --pred_len 40 \
+-            --mask_frames \
+-            --lambda_target_loc 1.0 \
+-            --multi_target_cond \
+-            --multi_encoder_type single \
+-            --target_enc_layers 1 \
+-            --target_joint_names DIMP_FULL \
+-            --use_ema \
+-            --avg_model_beta 0.9999 \
+-            --autoregressive \
+-            --lr 0.0001 \
+-            --weight_decay 0.0 \
+-            --adam_beta2 0.999 \
+-            --num_steps 600000 \
+-            --save_interval 10000 \
+-            --log_interval 1000 \
+-            --gen_guidance_param 2.5 \
+-            --train_platform_type WandBPlatform
+-
+-        echo "=== TRAINING FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_train_2h.slurm b/reproduction/history/scripts/dip_train_2h.slurm
+deleted file mode 100644
+index 63fdfb9..0000000
+--- a/reproduction/history/scripts/dip_train_2h.slurm
++++ /dev/null
+@@ -1,129 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_mt_2h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=02:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-mkdir -p \
+-    "$ROOT/logs" \
+-    "$ROOT/runs" \
+-    "$ROOT/runs/wandb" \
+-    "$ROOT/tmp"
+-
+-echo "=================================================="
+-echo "DiP multi-target training"
+-echo "Host:      $(hostname)"
+-echo "Start:     $(date)"
+-echo "Save dir:  $SAVE_DIR"
+-echo "Job ID:    ${SLURM_JOB_ID:-unknown}"
+-echo "=================================================="
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=${SLURM_TMPDIR:-$ROOT/tmp}
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export PYTHONUNBUFFERED=1
+-
+-        # W&B offline logging
+-        export WANDB_MODE=offline
+-        export WANDB_DIR=$ROOT/runs/wandb
+-        export WANDB_CACHE_DIR=$ROOT/cache/wandb
+-        export WANDB_CONFIG_DIR=$ROOT/cache/wandb_config
+-
+-        mkdir -p \
+-            "$WANDB_DIR" \
+-            "$WANDB_CACHE_DIR" \
+-            "$WANDB_CONFIG_DIR"
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== REPRODUCIBILITY INFO ==="
+-
+-        python --version
+-
+-        echo "Git commit:"
+-        git rev-parse HEAD || true
+-
+-        echo "Local modifications:"
+-        git status --short || true
+-
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA build:", torch.version.cuda)
+-print("CUDA available:", torch.cuda.is_available())
+-print("GPU:", torch.cuda.get_device_name(0))
+-PY
+-
+-        echo "=== W&B ==="
+-        echo "WANDB_MODE=$WANDB_MODE"
+-        echo "WANDB_DIR=$WANDB_DIR"
+-
+-        echo "=== TRAINING START ==="
+-
+-        python -m closd.diffusion_planner.train.train_mdm \
+-            --save_dir "$SAVE_DIR" \
+-            --overwrite \
+-            --seed 10 \
+-            --batch_size 64 \
+-            --dataset humanml \
+-            --arch trans_dec \
+-            --text_encoder_type bert \
+-            --layers 8 \
+-            --latent_dim 512 \
+-            --cond_mask_prob 0.1 \
+-            --emb_policy concat \
+-            --diffusion_steps 10 \
+-            --noise_schedule cosine \
+-            --context_len 20 \
+-            --pred_len 40 \
+-            --mask_frames \
+-            --lambda_target_loc 1.0 \
+-            --multi_target_cond \
+-            --multi_encoder_type single \
+-            --target_enc_layers 1 \
+-            --target_joint_names DIMP_FULL \
+-            --use_ema \
+-            --avg_model_beta 0.9999 \
+-            --autoregressive \
+-            --lr 0.0001 \
+-            --weight_decay 0.0 \
+-            --adam_beta2 0.999 \
+-            --num_steps 600000 \
+-            --save_interval 10000 \
+-            --log_interval 1000 \
+-            --gen_guidance_param 2.5 \
+-            --train_platform_type WandBPlatform
+-
+-        echo "=== TRAINING FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_train_4h.slurm b/reproduction/history/scripts/dip_train_4h.slurm
+deleted file mode 100644
+index 6340b28..0000000
+--- a/reproduction/history/scripts/dip_train_4h.slurm
++++ /dev/null
+@@ -1,129 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_mt_4h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-mkdir -p \
+-    "$ROOT/logs" \
+-    "$ROOT/runs" \
+-    "$ROOT/runs/wandb" \
+-    "$ROOT/tmp"
+-
+-echo "=================================================="
+-echo "DiP multi-target training"
+-echo "Host:      $(hostname)"
+-echo "Start:     $(date)"
+-echo "Save dir:  $SAVE_DIR"
+-echo "Job ID:    ${SLURM_JOB_ID:-unknown}"
+-echo "=================================================="
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=${SLURM_TMPDIR:-$ROOT/tmp}
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export PYTHONUNBUFFERED=1
+-
+-        # W&B offline logging
+-        export WANDB_MODE=offline
+-        export WANDB_DIR=$ROOT/runs/wandb
+-        export WANDB_CACHE_DIR=$ROOT/cache/wandb
+-        export WANDB_CONFIG_DIR=$ROOT/cache/wandb_config
+-
+-        mkdir -p \
+-            "$WANDB_DIR" \
+-            "$WANDB_CACHE_DIR" \
+-            "$WANDB_CONFIG_DIR"
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== REPRODUCIBILITY INFO ==="
+-
+-        python --version
+-
+-        echo "Git commit:"
+-        git rev-parse HEAD || true
+-
+-        echo "Local modifications:"
+-        git status --short || true
+-
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA build:", torch.version.cuda)
+-print("CUDA available:", torch.cuda.is_available())
+-print("GPU:", torch.cuda.get_device_name(0))
+-PY
+-
+-        echo "=== W&B ==="
+-        echo "WANDB_MODE=$WANDB_MODE"
+-        echo "WANDB_DIR=$WANDB_DIR"
+-
+-        echo "=== TRAINING START ==="
+-
+-        python -m closd.diffusion_planner.train.train_mdm \
+-            --save_dir "$SAVE_DIR" \
+-            --overwrite \
+-            --seed 10 \
+-            --batch_size 64 \
+-            --dataset humanml \
+-            --arch trans_dec \
+-            --text_encoder_type bert \
+-            --layers 8 \
+-            --latent_dim 512 \
+-            --cond_mask_prob 0.1 \
+-            --emb_policy concat \
+-            --diffusion_steps 10 \
+-            --noise_schedule cosine \
+-            --context_len 20 \
+-            --pred_len 40 \
+-            --mask_frames \
+-            --lambda_target_loc 1.0 \
+-            --multi_target_cond \
+-            --multi_encoder_type single \
+-            --target_enc_layers 1 \
+-            --target_joint_names DIMP_FULL \
+-            --use_ema \
+-            --avg_model_beta 0.9999 \
+-            --autoregressive \
+-            --lr 0.0001 \
+-            --weight_decay 0.0 \
+-            --adam_beta2 0.999 \
+-            --num_steps 600000 \
+-            --save_interval 10000 \
+-            --log_interval 1000 \
+-            --gen_guidance_param 2.5 \
+-            --train_platform_type WandBPlatform
+-
+-        echo "=== TRAINING FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_train_6h.slurm b/reproduction/history/scripts/dip_train_6h.slurm
+deleted file mode 100644
+index 76e8ed4..0000000
+--- a/reproduction/history/scripts/dip_train_6h.slurm
++++ /dev/null
+@@ -1,129 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_mt_6h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=06:00:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-mkdir -p \
+-    "$ROOT/logs" \
+-    "$ROOT/runs" \
+-    "$ROOT/runs/wandb" \
+-    "$ROOT/tmp"
+-
+-echo "=================================================="
+-echo "DiP multi-target training"
+-echo "Host:      $(hostname)"
+-echo "Start:     $(date)"
+-echo "Save dir:  $SAVE_DIR"
+-echo "Job ID:    ${SLURM_JOB_ID:-unknown}"
+-echo "=================================================="
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        SAVE_DIR=$ROOT/runs/DiP_multi-target_repro_seed10_short
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=${SLURM_TMPDIR:-$ROOT/tmp}
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-
+-        export PYTHONUNBUFFERED=1
+-
+-        # W&B offline logging
+-        export WANDB_MODE=offline
+-        export WANDB_DIR=$ROOT/runs/wandb
+-        export WANDB_CACHE_DIR=$ROOT/cache/wandb
+-        export WANDB_CONFIG_DIR=$ROOT/cache/wandb_config
+-
+-        mkdir -p \
+-            "$WANDB_DIR" \
+-            "$WANDB_CACHE_DIR" \
+-            "$WANDB_CONFIG_DIR"
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== REPRODUCIBILITY INFO ==="
+-
+-        python --version
+-
+-        echo "Git commit:"
+-        git rev-parse HEAD || true
+-
+-        echo "Local modifications:"
+-        git status --short || true
+-
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA build:", torch.version.cuda)
+-print("CUDA available:", torch.cuda.is_available())
+-print("GPU:", torch.cuda.get_device_name(0))
+-PY
+-
+-        echo "=== W&B ==="
+-        echo "WANDB_MODE=$WANDB_MODE"
+-        echo "WANDB_DIR=$WANDB_DIR"
+-
+-        echo "=== TRAINING START ==="
+-
+-        python -m closd.diffusion_planner.train.train_mdm \
+-            --save_dir "$SAVE_DIR" \
+-            --overwrite \
+-            --seed 10 \
+-            --batch_size 64 \
+-            --dataset humanml \
+-            --arch trans_dec \
+-            --text_encoder_type bert \
+-            --layers 8 \
+-            --latent_dim 512 \
+-            --cond_mask_prob 0.1 \
+-            --emb_policy concat \
+-            --diffusion_steps 10 \
+-            --noise_schedule cosine \
+-            --context_len 20 \
+-            --pred_len 40 \
+-            --mask_frames \
+-            --lambda_target_loc 1.0 \
+-            --multi_target_cond \
+-            --multi_encoder_type single \
+-            --target_enc_layers 1 \
+-            --target_joint_names DIMP_FULL \
+-            --use_ema \
+-            --avg_model_beta 0.9999 \
+-            --autoregressive \
+-            --lr 0.0001 \
+-            --weight_decay 0.0 \
+-            --adam_beta2 0.999 \
+-            --num_steps 600000 \
+-            --save_interval 10000 \
+-            --log_interval 1000 \
+-            --gen_guidance_param 2.5 \
+-            --train_platform_type WandBPlatform
+-
+-        echo "=== TRAINING FINISHED ==="
+-        date
+-    '
+diff --git a/reproduction/history/scripts/dip_train_smoke.slurm b/reproduction/history/scripts/dip_train_smoke.slurm
+deleted file mode 100644
+index d107b4e..0000000
+--- a/reproduction/history/scripts/dip_train_smoke.slurm
++++ /dev/null
+@@ -1,118 +0,0 @@
+-#!/bin/bash
+-#SBATCH --job-name=dip_train_smoke
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:30:00
+-#SBATCH --output=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.out
+-#SBATCH --error=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/logs/%x_%j.err
+-
+-set -euo pipefail
+-
+-ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-CONTAINER=$ROOT/containers/closd_cuda121_ubuntu20_devel.sif
+-SAVE_DIR=$ROOT/runs/DiP_multi-target_smoke
+-
+-# 每次 smoke 都从干净目录开始
+-rm -rf "$SAVE_DIR"
+-mkdir -p \
+-    "$SAVE_DIR" \
+-    "$ROOT/logs" \
+-    "$ROOT/runs/wandb" \
+-    "$ROOT/cache/wandb" \
+-    "$ROOT/cache/wandb_config"
+-
+-echo "=================================================="
+-echo "DiP TRAINING SMOKE TEST"
+-echo "Host:     $(hostname)"
+-echo "Start:    $(date)"
+-echo "Save dir: $SAVE_DIR"
+-echo "Job ID:   ${SLURM_JOB_ID:-unknown}"
+-echo "=================================================="
+-
+-nvidia-smi
+-
+-apptainer exec \
+-    --nv \
+-    --bind $ROOT:$ROOT \
+-    $CONTAINER \
+-    bash -lc '
+-        set -euo pipefail
+-
+-        ROOT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying
+-        SAVE_DIR=$ROOT/runs/DiP_multi-target_smoke
+-
+-        export PATH=$ROOT/envs/closd/bin:$PATH
+-        export PYTHONPATH=$ROOT/CLoSD/closd:$ROOT/CLoSD:${PYTHONPATH:-}
+-
+-        export HF_HOME=$ROOT/cache/huggingface
+-        export TORCH_HOME=$ROOT/cache/torch
+-        export XDG_CACHE_HOME=$ROOT/cache/xdg
+-        export PIP_CACHE_DIR=$ROOT/cache/pip
+-
+-        export TMPDIR=${SLURM_TMPDIR:-$ROOT/tmp}
+-        export TORCH_EXTENSIONS_DIR=$ROOT/cache/torch_extensions
+-        export PYTHONUNBUFFERED=1
+-
+-        export WANDB_MODE=offline
+-        export WANDB_DIR=$ROOT/runs/wandb
+-        export WANDB_CACHE_DIR=$ROOT/cache/wandb
+-        export WANDB_CONFIG_DIR=$ROOT/cache/wandb_config
+-
+-        # CLoSD 训练代码自带的 integration-test 退出机制：
+-        # 在第一次非零 step 的 checkpoint 保存后退出。
+-        export DIFFUSION_TRAINING_TEST=1
+-
+-        cd $ROOT/CLoSD
+-
+-        echo "=== PYTORCH / GPU ==="
+-        python - << "PY"
+-import torch
+-print("PyTorch:", torch.__version__)
+-print("CUDA:", torch.version.cuda)
+-print("CUDA available:", torch.cuda.is_available())
+-print("GPU:", torch.cuda.get_device_name(0))
+-PY
+-
+-        echo "=== TRAINING SMOKE START ==="
+-
+-        python -m closd.diffusion_planner.train.train_mdm \
+-            --save_dir "$SAVE_DIR" \
+-            --overwrite \
+-            --seed 10 \
+-            --batch_size 64 \
+-            --dataset humanml \
+-            --arch trans_dec \
+-            --text_encoder_type bert \
+-            --layers 8 \
+-            --latent_dim 512 \
+-            --cond_mask_prob 0.1 \
+-            --emb_policy concat \
+-            --diffusion_steps 10 \
+-            --noise_schedule cosine \
+-            --context_len 20 \
+-            --pred_len 40 \
+-            --mask_frames \
+-            --lambda_target_loc 1.0 \
+-            --multi_target_cond \
+-            --multi_encoder_type single \
+-            --target_enc_layers 1 \
+-            --target_joint_names DIMP_FULL \
+-            --use_ema \
+-            --avg_model_beta 0.9999 \
+-            --autoregressive \
+-            --lr 0.0001 \
+-            --weight_decay 0.0 \
+-            --adam_beta2 0.999 \
+-            --num_steps 20 \
+-            --save_interval 10 \
+-            --log_interval 1 \
+-            --gen_guidance_param 2.5 \
+-            --train_platform_type WandBPlatform
+-
+-        echo "=== TRAINING SMOKE PASSED ==="
+-
+-        echo "=== OUTPUT FILES ==="
+-        ls -lh "$SAVE_DIR"
+-    '
+diff --git a/scripts/hpc/README.md b/scripts/hpc/README.md
+deleted file mode 100644
+index 9aa47f2..0000000
+--- a/scripts/hpc/README.md
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# HPC reproduction entrypoints
+-
+-完整中文说明见 [reproduction/README.md](../../reproduction/README.md)。
+-
+-使用 `bash scripts/hpc/submit.sh <job> --check` 检查资源、最终 Python 命令和 Slurm 命令；去掉 `--check` 后提交。已有训练目录需显式 `--resume`，新训练可用 `--save-dir` 指定空目录。
+-
+-`jobs.json` 保留历史实验参数；`run_job.py` 统一处理路径、容器、训练保护和 GPU 监控。`.slurm` 文件保留各入口资源设置，调用同一个执行器。历史原文在 `reproduction/history/scripts`，不可作为迁移后的运行入口。
+diff --git a/scripts/hpc/closd_env.sh b/scripts/hpc/closd_env.sh
+deleted file mode 100755
+index 649cb23..0000000
+--- a/scripts/hpc/closd_env.sh
++++ /dev/null
+@@ -1,32 +0,0 @@
+-#!/usr/bin/env bash
+-# Source this inside the container; installed environments remain at their original prefix.
+-export CLOSD_ROOT="${CLOSD_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+-export CLOSD_SHARED_ROOT="${CLOSD_SHARED_ROOT:-$(dirname "$CLOSD_ROOT")}"
+-export CLOSD_ENV="${CLOSD_ENV:-$CLOSD_SHARED_ROOT/envs/closd}"
+-export CLOSD_ISAACGYM="${CLOSD_ISAACGYM:-$CLOSD_SHARED_ROOT/isaacgym}"
+-export CLOSD_CONTAINER="${CLOSD_CONTAINER:-$CLOSD_SHARED_ROOT/containers/closd_cuda121_ubuntu20_devel.sif}"
+-export CLOSD_CACHE="${CLOSD_CACHE:-$CLOSD_ROOT/.local/cache}"
+-export CLOSD_LOGS="${CLOSD_LOGS:-$CLOSD_ROOT/reproduction/logs}"
+-export PATH="$CLOSD_ENV/bin:$PATH"
+-export PYTHONPATH="$CLOSD_ROOT/closd:$CLOSD_ROOT:${PYTHONPATH:-}"
+-export HF_HOME="$CLOSD_CACHE/huggingface"
+-export HF_HUB_CACHE="$HF_HOME/hub"
+-export HUGGINGFACE_HUB_CACHE="$HF_HUB_CACHE"
+-# Run from the prepared, version-pinned snapshot rather than updating upstream main.
+-export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
+-export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+-export TORCH_HOME="$CLOSD_SHARED_ROOT/cache/torch"
+-export PIP_CACHE_DIR="$CLOSD_SHARED_ROOT/cache/pip"
+-export APPTAINER_CACHEDIR="$CLOSD_SHARED_ROOT/cache/apptainer"
+-export XDG_CACHE_HOME="$CLOSD_CACHE/xdg"
+-export TORCH_EXTENSIONS_DIR="$CLOSD_CACHE/torch_extensions"
+-export TMPDIR="${SLURM_TMPDIR:-$CLOSD_ROOT/.local/tmp}"
+-export APPTAINER_TMPDIR="$TMPDIR"
+-export ISAACGYM_BINDINGS="$CLOSD_ISAACGYM/python/isaacgym/_bindings/linux-x86_64"
+-export LD_LIBRARY_PATH="$ISAACGYM_BINDINGS:$CLOSD_ENV/lib:${LD_LIBRARY_PATH:-}"
+-export WANDB_MODE=offline
+-export WANDB_DIR="$CLOSD_ROOT/runs/wandb"
+-export WANDB_CACHE_DIR="$CLOSD_CACHE/wandb"
+-export WANDB_CONFIG_DIR="$CLOSD_CACHE/wandb_config"
+-export PYTHONUNBUFFERED=1
+-export MAX_JOBS="${MAX_JOBS:-4}"
+diff --git a/scripts/hpc/closd_real_smoke.slurm b/scripts/hpc/closd_real_smoke.slurm
+deleted file mode 100755
+index 806ef4c..0000000
+--- a/scripts/hpc/closd_real_smoke.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=closd_real_smoke
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:15:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" closd_real_smoke "$@"
+diff --git a/scripts/hpc/closd_smoke.slurm b/scripts/hpc/closd_smoke.slurm
+deleted file mode 100755
+index e68319d..0000000
+--- a/scripts/hpc/closd_smoke.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=closd_smoke
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:20:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" closd_smoke "$@"
+diff --git a/scripts/hpc/container.sh b/scripts/hpc/container.sh
+deleted file mode 100755
+index ec1f8fe..0000000
+--- a/scripts/hpc/container.sh
++++ /dev/null
+@@ -1,6 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-source "${CLOSD_ROOT:?CLOSD_ROOT must be exported by the submitter}/scripts/hpc/closd_env.sh"
+-mkdir -p "$CLOSD_LOGS" "$TMPDIR" "$TORCH_EXTENSIONS_DIR" "$XDG_CACHE_HOME" "$WANDB_DIR" "$WANDB_CACHE_DIR" "$WANDB_CONFIG_DIR"
+-cd "$CLOSD_ROOT"
+-exec python "$CLOSD_ROOT/scripts/hpc/run_job.py" "$@" --inside
+diff --git a/scripts/hpc/dip_eval_envtest.slurm b/scripts/hpc/dip_eval_envtest.slurm
+deleted file mode 100755
+index 38298a1..0000000
+--- a/scripts/hpc/dip_eval_envtest.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_envtest
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:45:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_eval_envtest "$@"
+diff --git a/scripts/hpc/dip_eval_official.slurm b/scripts/hpc/dip_eval_official.slurm
+deleted file mode 100755
+index d057049..0000000
+--- a/scripts/hpc/dip_eval_official.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_eval_official
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_eval_official "$@"
+diff --git a/scripts/hpc/dip_eval_repro_300k.slurm b/scripts/hpc/dip_eval_repro_300k.slurm
+deleted file mode 100755
+index cdcd63d..0000000
+--- a/scripts/hpc/dip_eval_repro_300k.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_eval_repro300
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_eval_repro_300k "$@"
+diff --git a/scripts/hpc/dip_eval_repro_600k.slurm b/scripts/hpc/dip_eval_repro_600k.slurm
+deleted file mode 100755
+index 2c1e946..0000000
+--- a/scripts/hpc/dip_eval_repro_600k.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_eval_repro600
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_eval_repro_600k "$@"
+diff --git a/scripts/hpc/dip_train.slurm b/scripts/hpc/dip_train.slurm
+deleted file mode 100755
+index aac0a92..0000000
+--- a/scripts/hpc/dip_train.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_mt_train
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=2-00:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_train "$@"
+diff --git a/scripts/hpc/dip_train_12h.slurm b/scripts/hpc/dip_train_12h.slurm
+deleted file mode 100755
+index ff79c57..0000000
+--- a/scripts/hpc/dip_train_12h.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_mt_12h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=12:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_train_12h "$@"
+diff --git a/scripts/hpc/dip_train_2h.slurm b/scripts/hpc/dip_train_2h.slurm
+deleted file mode 100755
+index b03a5d5..0000000
+--- a/scripts/hpc/dip_train_2h.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_mt_2h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=02:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_train_2h "$@"
+diff --git a/scripts/hpc/dip_train_4h.slurm b/scripts/hpc/dip_train_4h.slurm
+deleted file mode 100755
+index 720e92e..0000000
+--- a/scripts/hpc/dip_train_4h.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_mt_4h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=04:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_train_4h "$@"
+diff --git a/scripts/hpc/dip_train_6h.slurm b/scripts/hpc/dip_train_6h.slurm
+deleted file mode 100755
+index 65345ea..0000000
+--- a/scripts/hpc/dip_train_6h.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_mt_6h
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=06:00:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_train_6h "$@"
+diff --git a/scripts/hpc/dip_train_smoke.slurm b/scripts/hpc/dip_train_smoke.slurm
+deleted file mode 100755
+index 8d8adea..0000000
+--- a/scripts/hpc/dip_train_smoke.slurm
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/usr/bin/env bash
+-#SBATCH --job-name=dip_train_smoke
+-#SBATCH --account=EU-26-37
+-#SBATCH --partition=qgpu_exp
+-#SBATCH --gres=gpu:a100:1
+-#SBATCH --cpus-per-task=8
+-#SBATCH --time=00:30:00
+-set -euo pipefail
+-# Slurm copies this script to a spool directory. submit.sh supplies CLOSD_ROOT.
+-export CLOSD_ROOT="${CLOSD_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" dip_train_smoke "$@"
+diff --git a/scripts/hpc/download_release.py b/scripts/hpc/download_release.py
+deleted file mode 100755
+index 6720afe..0000000
+--- a/scripts/hpc/download_release.py
++++ /dev/null
+@@ -1,57 +0,0 @@
+-#!/usr/bin/env python3
+-"""Download the two evaluated checkpoints and verify against committed SHA-256 hashes."""
+-import argparse
+-import hashlib
+-import json
+-import os
+-from pathlib import Path
+-import tempfile
+-from urllib.request import urlopen
+-
+-
+-def sha256(path):
+-    h = hashlib.sha256()
+-    with path.open('rb') as f:
+-        for block in iter(lambda: f.read(8 * 1024 * 1024), b''):
+-            h.update(block)
+-    return h.hexdigest()
+-
+-
+-def main():
+-    root = Path(__file__).resolve().parents[2]
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--destination', type=Path, default=root / 'runs/DiP_multi-target_repro_seed10')
+-    parser.add_argument('--check', action='store_true', help='verify local files only')
+-    args = parser.parse_args()
+-    manifest = json.loads((root / 'reproduction/experiments/release.json').read_text())
+-    for asset in manifest['assets']:
+-        target = args.destination / asset['name']
+-        if target.exists():
+-            if sha256(target) != asset['sha256']:
+-                parser.error('Existing file differs; refusing to overwrite: ' + str(target))
+-            print('Verified:', target)
+-            continue
+-        if args.check:
+-            parser.error('Missing: ' + str(target))
+-        target.parent.mkdir(parents=True, exist_ok=True)
+-        url = 'https://github.com/{repository}/releases/download/{tag}/{name}'.format(name=asset['name'], **manifest)
+-        handle = tempfile.NamedTemporaryFile(dir=str(target.parent), prefix='.' + target.name, delete=False)
+-        temporary = Path(handle.name)
+-        try:
+-            with handle, urlopen(url, timeout=120) as response:
+-                while True:
+-                    block = response.read(8 * 1024 * 1024)
+-                    if not block:
+-                        break
+-                    handle.write(block)
+-            if sha256(temporary) != asset['sha256']:
+-                raise RuntimeError('SHA-256 mismatch: ' + asset['name'])
+-            # Fail safely if another downloader produced the file meanwhile.
+-            os.link(str(temporary), str(target))
+-            print('Downloaded and verified:', target)
+-        finally:
+-            temporary.unlink()
+-
+-
+-if __name__ == '__main__':
+-    main()
+diff --git a/scripts/hpc/import_smoke.py b/scripts/hpc/import_smoke.py
+deleted file mode 100755
+index 1a74313..0000000
+--- a/scripts/hpc/import_smoke.py
++++ /dev/null
+@@ -1,10 +0,0 @@
+-"""Import checks in separate interpreters (Isaac Gym requires import before torch)."""
+-import subprocess
+-import sys
+-for code in [
+-    'import torch; print(torch.__version__, torch.version.cuda); assert torch.cuda.is_available(); print(torch.cuda.get_device_name(0))',
+-    'from isaacgym import gymapi, gymtorch; print("Isaac Gym + gymtorch import OK")',
+-    'import closd.run; print("CLoSD import OK")',
+-]:
+-    subprocess.check_call([sys.executable, '-c', code])
+-subprocess.check_call(['ninja', '--version'])
+diff --git a/scripts/hpc/jobs.json b/scripts/hpc/jobs.json
+deleted file mode 100644
+index dbfc0fc..0000000
+--- a/scripts/hpc/jobs.json
++++ /dev/null
+@@ -1,623 +0,0 @@
+-{
+-  "closd_real_smoke": {
+-    "argv": [
+-      "python",
+-      "closd/run.py",
+-      "learning=im_big",
+-      "robot=smpl_humanoid",
+-      "env=closd_multitask",
+-      "exp_name=CLoSD_multitask_finetune",
+-      "epoch=-1",
+-      "test=True",
+-      "no_virtual_display=True",
+-      "headless=True",
+-      "no_log=True",
+-      "env.num_envs=4",
+-      "env.episode_length=100",
+-      "learning.params.config.player.games_num=1"
+-    ],
+-    "slurm": {
+-      "job-name": "closd_real_smoke",
+-      "account": "EU-26-37",
+-      "partition": "qgpu_exp",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "00:15:00"
+-    },
+-    "kind": "smoke"
+-  },
+-  "closd_smoke": {
+-    "argv": [
+-      "python",
+-      "{repo}/scripts/hpc/import_smoke.py"
+-    ],
+-    "slurm": {
+-      "job-name": "closd_smoke",
+-      "account": "EU-26-37",
+-      "partition": "qgpu_exp",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "00:20:00"
+-    },
+-    "kind": "smoke"
+-  },
+-  "dip_eval_envtest": {
+-    "argv": [
+-      "python",
+-      "closd/run.py",
+-      "learning=im_big",
+-      "env=closd_multitask",
+-      "robot=smpl_humanoid",
+-      "exp_name=CLoSD_multitask_finetune",
+-      "epoch=-1",
+-      "env.episode_length=500",
+-      "env.dip.cfg_param=7.5",
+-      "env.dip.model_path={model}",
+-      "env.num_envs={num_envs}",
+-      "test=True",
+-      "no_virtual_display=True",
+-      "headless=True",
+-      "closd_eval=True",
+-      "no_log=True",
+-      "learning.params.config.player.games_num=1"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_envtest",
+-      "account": "EU-26-37",
+-      "partition": "qgpu_exp",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "00:45:00"
+-    },
+-    "kind": "eval",
+-    "model": "closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt",
+-    "num_envs": 128
+-  },
+-  "dip_eval_official": {
+-    "argv": [
+-      "python",
+-      "closd/run.py",
+-      "learning=im_big",
+-      "env=closd_multitask",
+-      "robot=smpl_humanoid",
+-      "exp_name=CLoSD_multitask_finetune",
+-      "epoch=-1",
+-      "env.episode_length=500",
+-      "env.dip.cfg_param=7.5",
+-      "env.dip.model_path={model}",
+-      "env.num_envs=4096",
+-      "test=True",
+-      "no_virtual_display=True",
+-      "headless=True",
+-      "closd_eval=True",
+-      "no_log=True"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_eval_official",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "04:00:00"
+-    },
+-    "kind": "eval",
+-    "model": "closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt"
+-  },
+-  "dip_eval_repro_300k": {
+-    "argv": [
+-      "python",
+-      "closd/run.py",
+-      "learning=im_big",
+-      "env=closd_multitask",
+-      "robot=smpl_humanoid",
+-      "exp_name=CLoSD_multitask_finetune",
+-      "epoch=-1",
+-      "env.episode_length=500",
+-      "env.dip.cfg_param=7.5",
+-      "env.dip.model_path={model}",
+-      "env.num_envs=4096",
+-      "test=True",
+-      "no_virtual_display=True",
+-      "headless=True",
+-      "closd_eval=True",
+-      "no_log=True"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_eval_repro300",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "04:00:00"
+-    },
+-    "kind": "eval",
+-    "model": "runs/DiP_multi-target_repro_seed10/model000300000.pt"
+-  },
+-  "dip_eval_repro_600k": {
+-    "argv": [
+-      "python",
+-      "closd/run.py",
+-      "learning=im_big",
+-      "env=closd_multitask",
+-      "robot=smpl_humanoid",
+-      "exp_name=CLoSD_multitask_finetune",
+-      "epoch=-1",
+-      "env.episode_length=500",
+-      "env.dip.cfg_param=7.5",
+-      "env.dip.model_path={model}",
+-      "env.num_envs=4096",
+-      "test=True",
+-      "no_virtual_display=True",
+-      "headless=True",
+-      "closd_eval=True",
+-      "no_log=True"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_eval_repro600",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "04:00:00"
+-    },
+-    "kind": "eval",
+-    "model": "runs/DiP_multi-target_repro_seed10/model000600000.pt"
+-  },
+-  "dip_train": {
+-    "argv": [
+-      "python",
+-      "-m",
+-      "closd.diffusion_planner.train.train_mdm",
+-      "--save_dir",
+-      "{save_dir}",
+-      "--overwrite",
+-      "--seed",
+-      "10",
+-      "--batch_size",
+-      "64",
+-      "--dataset",
+-      "humanml",
+-      "--arch",
+-      "trans_dec",
+-      "--text_encoder_type",
+-      "bert",
+-      "--layers",
+-      "8",
+-      "--latent_dim",
+-      "512",
+-      "--cond_mask_prob",
+-      "0.1",
+-      "--emb_policy",
+-      "concat",
+-      "--diffusion_steps",
+-      "10",
+-      "--noise_schedule",
+-      "cosine",
+-      "--context_len",
+-      "20",
+-      "--pred_len",
+-      "40",
+-      "--mask_frames",
+-      "--lambda_target_loc",
+-      "1.0",
+-      "--multi_target_cond",
+-      "--multi_encoder_type",
+-      "single",
+-      "--target_enc_layers",
+-      "1",
+-      "--target_joint_names",
+-      "DIMP_FULL",
+-      "--use_ema",
+-      "--avg_model_beta",
+-      "0.9999",
+-      "--autoregressive",
+-      "--lr",
+-      "0.0001",
+-      "--weight_decay",
+-      "0.0",
+-      "--adam_beta2",
+-      "0.999",
+-      "--num_steps",
+-      "600000",
+-      "--save_interval",
+-      "10000",
+-      "--log_interval",
+-      "1000",
+-      "--gen_guidance_param",
+-      "2.5",
+-      "--train_platform_type",
+-      "WandBPlatform"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_mt_train",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "2-00:00:00"
+-    },
+-    "kind": "train",
+-    "save_dir": "runs/DiP_multi-target_repro_seed10"
+-  },
+-  "dip_train_12h": {
+-    "argv": [
+-      "python",
+-      "-m",
+-      "closd.diffusion_planner.train.train_mdm",
+-      "--save_dir",
+-      "{save_dir}",
+-      "--overwrite",
+-      "--seed",
+-      "10",
+-      "--batch_size",
+-      "64",
+-      "--dataset",
+-      "humanml",
+-      "--arch",
+-      "trans_dec",
+-      "--text_encoder_type",
+-      "bert",
+-      "--layers",
+-      "8",
+-      "--latent_dim",
+-      "512",
+-      "--cond_mask_prob",
+-      "0.1",
+-      "--emb_policy",
+-      "concat",
+-      "--diffusion_steps",
+-      "10",
+-      "--noise_schedule",
+-      "cosine",
+-      "--context_len",
+-      "20",
+-      "--pred_len",
+-      "40",
+-      "--mask_frames",
+-      "--lambda_target_loc",
+-      "1.0",
+-      "--multi_target_cond",
+-      "--multi_encoder_type",
+-      "single",
+-      "--target_enc_layers",
+-      "1",
+-      "--target_joint_names",
+-      "DIMP_FULL",
+-      "--use_ema",
+-      "--avg_model_beta",
+-      "0.9999",
+-      "--autoregressive",
+-      "--lr",
+-      "0.0001",
+-      "--weight_decay",
+-      "0.0",
+-      "--adam_beta2",
+-      "0.999",
+-      "--num_steps",
+-      "600000",
+-      "--save_interval",
+-      "10000",
+-      "--log_interval",
+-      "1000",
+-      "--gen_guidance_param",
+-      "2.5",
+-      "--train_platform_type",
+-      "WandBPlatform"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_mt_12h",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "12:00:00"
+-    },
+-    "kind": "train",
+-    "save_dir": "runs/DiP_multi-target_repro_seed10_short"
+-  },
+-  "dip_train_2h": {
+-    "argv": [
+-      "python",
+-      "-m",
+-      "closd.diffusion_planner.train.train_mdm",
+-      "--save_dir",
+-      "{save_dir}",
+-      "--overwrite",
+-      "--seed",
+-      "10",
+-      "--batch_size",
+-      "64",
+-      "--dataset",
+-      "humanml",
+-      "--arch",
+-      "trans_dec",
+-      "--text_encoder_type",
+-      "bert",
+-      "--layers",
+-      "8",
+-      "--latent_dim",
+-      "512",
+-      "--cond_mask_prob",
+-      "0.1",
+-      "--emb_policy",
+-      "concat",
+-      "--diffusion_steps",
+-      "10",
+-      "--noise_schedule",
+-      "cosine",
+-      "--context_len",
+-      "20",
+-      "--pred_len",
+-      "40",
+-      "--mask_frames",
+-      "--lambda_target_loc",
+-      "1.0",
+-      "--multi_target_cond",
+-      "--multi_encoder_type",
+-      "single",
+-      "--target_enc_layers",
+-      "1",
+-      "--target_joint_names",
+-      "DIMP_FULL",
+-      "--use_ema",
+-      "--avg_model_beta",
+-      "0.9999",
+-      "--autoregressive",
+-      "--lr",
+-      "0.0001",
+-      "--weight_decay",
+-      "0.0",
+-      "--adam_beta2",
+-      "0.999",
+-      "--num_steps",
+-      "600000",
+-      "--save_interval",
+-      "10000",
+-      "--log_interval",
+-      "1000",
+-      "--gen_guidance_param",
+-      "2.5",
+-      "--train_platform_type",
+-      "WandBPlatform"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_mt_2h",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "02:00:00"
+-    },
+-    "kind": "train",
+-    "save_dir": "runs/DiP_multi-target_repro_seed10_short"
+-  },
+-  "dip_train_4h": {
+-    "argv": [
+-      "python",
+-      "-m",
+-      "closd.diffusion_planner.train.train_mdm",
+-      "--save_dir",
+-      "{save_dir}",
+-      "--overwrite",
+-      "--seed",
+-      "10",
+-      "--batch_size",
+-      "64",
+-      "--dataset",
+-      "humanml",
+-      "--arch",
+-      "trans_dec",
+-      "--text_encoder_type",
+-      "bert",
+-      "--layers",
+-      "8",
+-      "--latent_dim",
+-      "512",
+-      "--cond_mask_prob",
+-      "0.1",
+-      "--emb_policy",
+-      "concat",
+-      "--diffusion_steps",
+-      "10",
+-      "--noise_schedule",
+-      "cosine",
+-      "--context_len",
+-      "20",
+-      "--pred_len",
+-      "40",
+-      "--mask_frames",
+-      "--lambda_target_loc",
+-      "1.0",
+-      "--multi_target_cond",
+-      "--multi_encoder_type",
+-      "single",
+-      "--target_enc_layers",
+-      "1",
+-      "--target_joint_names",
+-      "DIMP_FULL",
+-      "--use_ema",
+-      "--avg_model_beta",
+-      "0.9999",
+-      "--autoregressive",
+-      "--lr",
+-      "0.0001",
+-      "--weight_decay",
+-      "0.0",
+-      "--adam_beta2",
+-      "0.999",
+-      "--num_steps",
+-      "600000",
+-      "--save_interval",
+-      "10000",
+-      "--log_interval",
+-      "1000",
+-      "--gen_guidance_param",
+-      "2.5",
+-      "--train_platform_type",
+-      "WandBPlatform"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_mt_4h",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "04:00:00"
+-    },
+-    "kind": "train",
+-    "save_dir": "runs/DiP_multi-target_repro_seed10_short"
+-  },
+-  "dip_train_6h": {
+-    "argv": [
+-      "python",
+-      "-m",
+-      "closd.diffusion_planner.train.train_mdm",
+-      "--save_dir",
+-      "{save_dir}",
+-      "--overwrite",
+-      "--seed",
+-      "10",
+-      "--batch_size",
+-      "64",
+-      "--dataset",
+-      "humanml",
+-      "--arch",
+-      "trans_dec",
+-      "--text_encoder_type",
+-      "bert",
+-      "--layers",
+-      "8",
+-      "--latent_dim",
+-      "512",
+-      "--cond_mask_prob",
+-      "0.1",
+-      "--emb_policy",
+-      "concat",
+-      "--diffusion_steps",
+-      "10",
+-      "--noise_schedule",
+-      "cosine",
+-      "--context_len",
+-      "20",
+-      "--pred_len",
+-      "40",
+-      "--mask_frames",
+-      "--lambda_target_loc",
+-      "1.0",
+-      "--multi_target_cond",
+-      "--multi_encoder_type",
+-      "single",
+-      "--target_enc_layers",
+-      "1",
+-      "--target_joint_names",
+-      "DIMP_FULL",
+-      "--use_ema",
+-      "--avg_model_beta",
+-      "0.9999",
+-      "--autoregressive",
+-      "--lr",
+-      "0.0001",
+-      "--weight_decay",
+-      "0.0",
+-      "--adam_beta2",
+-      "0.999",
+-      "--num_steps",
+-      "600000",
+-      "--save_interval",
+-      "10000",
+-      "--log_interval",
+-      "1000",
+-      "--gen_guidance_param",
+-      "2.5",
+-      "--train_platform_type",
+-      "WandBPlatform"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_mt_6h",
+-      "account": "EU-26-37",
+-      "partition": "qgpu",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "06:00:00"
+-    },
+-    "kind": "train",
+-    "save_dir": "runs/DiP_multi-target_repro_seed10_short"
+-  },
+-  "dip_train_smoke": {
+-    "argv": [
+-      "python",
+-      "-m",
+-      "closd.diffusion_planner.train.train_mdm",
+-      "--save_dir",
+-      "{save_dir}",
+-      "--overwrite",
+-      "--seed",
+-      "10",
+-      "--batch_size",
+-      "64",
+-      "--dataset",
+-      "humanml",
+-      "--arch",
+-      "trans_dec",
+-      "--text_encoder_type",
+-      "bert",
+-      "--layers",
+-      "8",
+-      "--latent_dim",
+-      "512",
+-      "--cond_mask_prob",
+-      "0.1",
+-      "--emb_policy",
+-      "concat",
+-      "--diffusion_steps",
+-      "10",
+-      "--noise_schedule",
+-      "cosine",
+-      "--context_len",
+-      "20",
+-      "--pred_len",
+-      "40",
+-      "--mask_frames",
+-      "--lambda_target_loc",
+-      "1.0",
+-      "--multi_target_cond",
+-      "--multi_encoder_type",
+-      "single",
+-      "--target_enc_layers",
+-      "1",
+-      "--target_joint_names",
+-      "DIMP_FULL",
+-      "--use_ema",
+-      "--avg_model_beta",
+-      "0.9999",
+-      "--autoregressive",
+-      "--lr",
+-      "0.0001",
+-      "--weight_decay",
+-      "0.0",
+-      "--adam_beta2",
+-      "0.999",
+-      "--num_steps",
+-      "20",
+-      "--save_interval",
+-      "10",
+-      "--log_interval",
+-      "1",
+-      "--gen_guidance_param",
+-      "2.5",
+-      "--train_platform_type",
+-      "WandBPlatform"
+-    ],
+-    "slurm": {
+-      "job-name": "dip_train_smoke",
+-      "account": "EU-26-37",
+-      "partition": "qgpu_exp",
+-      "gres": "gpu:a100:1",
+-      "cpus-per-task": "8",
+-      "time": "00:30:00"
+-    },
+-    "kind": "train",
+-    "save_dir": "runs/DiP_multi-target_smoke",
+-    "integration_test": true
+-  }
+-}
+diff --git a/scripts/hpc/prepare_dependencies.py b/scripts/hpc/prepare_dependencies.py
+deleted file mode 100755
+index c662d50..0000000
+--- a/scripts/hpc/prepare_dependencies.py
++++ /dev/null
+@@ -1,45 +0,0 @@
+-#!/usr/bin/env python3
+-"""Restore official HF assets at the revisions recorded in this reproduction."""
+-import argparse
+-import json
+-import os
+-from pathlib import Path
+-
+-
+-def main():
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--check', action='store_true', help='check cache refs and official links without downloads')
+-    args = parser.parse_args()
+-    root = Path(os.environ.get('CLOSD_ROOT', str(Path(__file__).resolve().parents[2]))).resolve()
+-    hub = Path(os.environ.get('HF_HOME', str(root / '.local/cache/huggingface'))) / 'hub'
+-    revisions = json.loads((root / 'reproduction/environment/official-resources.json').read_text())
+-    for model, revision in revisions.items():
+-        directory = hub / ('models--' + model.replace('/', '--'))
+-        snapshot = directory / 'snapshots' / revision
+-        if not args.check:
+-            from huggingface_hub import snapshot_download
+-            snapshot_download(repo_id=model, revision=revision, cache_dir=str(hub))
+-            (directory / 'refs').mkdir(parents=True, exist_ok=True)
+-            (directory / 'refs/main').write_text(revision)
+-        if not snapshot.is_dir() or (directory / 'refs/main').read_text().strip() != revision:
+-            parser.error('Missing or unpinned cache: ' + model)
+-        print('Pinned:', model, revision)
+-    snapshot = hub / 'models--guytevet--CLoSD/snapshots' / revisions['guytevet/CLoSD']
+-    for source, destination in [('checkpoints/dip', 'closd/diffusion_planner/save'), ('checkpoints/closd', 'output/CLoSD'), ('evaluation', 'closd/diffusion_planner/saved_motions')]:
+-        for child in (snapshot / source).iterdir():
+-            if not child.is_dir():
+-                continue
+-            link = root / destination / child.name
+-            if not args.check and not link.exists() and not link.is_symlink():
+-                link.parent.mkdir(parents=True, exist_ok=True)
+-                link.symlink_to(os.path.relpath(str(child), str(link.parent)))
+-            if not link.exists() or link.resolve() != child.resolve():
+-                parser.error('Official asset path missing or points elsewhere: ' + str(link))
+-            print('Verified link:', link.relative_to(root))
+-    for p in hub.rglob('*'):
+-        if p.is_symlink() and not p.exists():
+-            parser.error('Broken cache link: ' + str(p))
+-
+-
+-if __name__ == '__main__':
+-    main()
+diff --git a/scripts/hpc/run_job.py b/scripts/hpc/run_job.py
+deleted file mode 100755
+index 472e3ad..0000000
+--- a/scripts/hpc/run_job.py
++++ /dev/null
+@@ -1,191 +0,0 @@
+-#!/usr/bin/env python3
+-"""Inspect, submit, or execute preserved CLoSD/DiP experiment recipes."""
+-import argparse
+-import json
+-import os
+-from pathlib import Path
+-import re
+-import shlex
+-import subprocess
+-import sys
+-
+-ROOT = Path(os.environ.get('CLOSD_ROOT', str(Path(__file__).resolve().parents[2]))).resolve()
+-JOBS = json.loads((ROOT / 'scripts/hpc/jobs.json').read_text())
+-
+-
+-def paths():
+-    shared = Path(os.environ.get('CLOSD_SHARED_ROOT', str(ROOT.parent))).resolve()
+-    def setting(name, default):
+-        return Path(os.environ.get(name, str(default))).expanduser().resolve()
+-    return {
+-        'repo': ROOT, 'shared': shared,
+-        'env': setting('CLOSD_ENV', shared / 'envs/closd'),
+-        'isaac': setting('CLOSD_ISAACGYM', shared / 'isaacgym'),
+-        'container': setting('CLOSD_CONTAINER', shared / 'containers/closd_cuda121_ubuntu20_devel.sif'),
+-        'cache': setting('CLOSD_CACHE', ROOT / '.local/cache'),
+-        'logs': setting('CLOSD_LOGS', ROOT / 'reproduction/logs'),
+-    }
+-
+-
+-def recipe(args, p):
+-    job = JOBS[args.job]
+-    if args.num_envs is not None and args.job != 'dip_eval_envtest':
+-        raise ValueError('--num-envs 仅用于 dip_eval_envtest；正式评测保留 4096 个环境')
+-    values = dict((k, str(v)) for k, v in p.items())
+-    values['num_envs'] = str(args.num_envs or int(os.environ.get('NUM_ENVS', job.get('num_envs', 4096))))
+-    checkpoint = None
+-    if job['kind'] == 'train':
+-        save = Path(args.save_dir).expanduser().resolve() if args.save_dir else ROOT / job['save_dir']
+-        values['save_dir'] = str(save)
+-        models = []
+-        if save.exists():
+-            for f in save.iterdir():
+-                match = re.fullmatch(r'model(\d+)\.pt', f.name)
+-                if match and f.is_file():
+-                    models.append((int(match.group(1)), f))
+-        if args.resume:
+-            if not models:
+-                raise ValueError('续训目录没有 model*.pt: ' + str(save))
+-            step, checkpoint = max(models)
+-            optimizer = save / ('opt%09d.pt' % step)
+-            if not optimizer.is_file():
+-                raise ValueError('续训缺少优化器状态: ' + str(optimizer))
+-            if not (save / 'args.json').is_file():
+-                raise ValueError('续训缺少 args.json: ' + str(save))
+-            # The upstream trainer prefers the highest checkpoint in save_dir.
+-            # Explicitly report and pass that same file; do not select an older step.
+-        elif save.exists() and any(save.iterdir()):
+-            raise ValueError('输出目录非空，首次训练不会覆盖。续训请加 --resume，或用 --save-dir 指定新目录: ' + str(save))
+-    elif args.resume or args.save_dir:
+-        raise ValueError('--resume / --save-dir 仅用于训练')
+-    if 'model' in job:
+-        model = Path(args.model).expanduser().resolve() if args.model else ROOT / job['model']
+-        values['model'] = str(model)
+-        if not model.is_file() or not (model.parent / 'args.json').is_file():
+-            raise ValueError('模型或相邻 args.json 不存在: ' + str(model))
+-    elif args.model:
+-        raise ValueError('--model 仅用于 DiP 评测')
+-    argv = [s.format(**values) for s in job['argv']]
+-    if checkpoint:
+-        argv.extend(['--resume_checkpoint', str(checkpoint)])
+-    return job, values, argv, checkpoint
+-
+-
+-def options(args):
+-    out = []
+-    for key in ['save_dir', 'model', 'num_envs']:
+-        value = getattr(args, key)
+-        if value is not None:
+-            if key in ['save_dir', 'model']:
+-                value = str(Path(value).expanduser().resolve())
+-            out.extend(['--' + key.replace('_', '-'), str(value)])
+-    if args.resume:
+-        out.append('--resume')
+-    return out
+-
+-
+-def shell(argv):
+-    return ' '.join(shlex.quote(str(x)) for x in argv)
+-
+-
+-def main():
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('job', choices=sorted(JOBS))
+-    parser.add_argument('--check', action='store_true', help='只检查并打印命令，不创建文件或提交作业')
+-    parser.add_argument('--submit', action='store_true')
+-    parser.add_argument('--inside', action='store_true', help=argparse.SUPPRESS)
+-    parser.add_argument('--resume', action='store_true')
+-    parser.add_argument('--save-dir')
+-    parser.add_argument('--model')
+-    parser.add_argument('--num-envs', type=int)
+-    args = parser.parse_args()
+-    if args.num_envs is not None and args.num_envs <= 0:
+-        parser.error('--num-envs 必须为正整数')
+-    p = paths()
+-    try:
+-        job, values, argv, checkpoint = recipe(args, p)
+-        for name in ['env', 'isaac', 'container']:
+-            if not p[name].exists():
+-                raise ValueError('缺少资源 %s: %s' % (name, p[name]))
+-    except ValueError as exc:
+-        parser.error(str(exc))
+-    env = os.environ.copy()
+-    env.update({'CLOSD_ROOT': str(ROOT), 'CLOSD_SHARED_ROOT': str(p['shared']),
+-                'CLOSD_ENV': str(p['env']), 'CLOSD_ISAACGYM': str(p['isaac']),
+-                'CLOSD_CONTAINER': str(p['container']), 'CLOSD_CACHE': str(p['cache']),
+-                'CLOSD_LOGS': str(p['logs'])})
+-    submit = ['sbatch', '--chdir=' + str(ROOT), '--export=ALL',
+-              '--output=' + str(p['logs'] / '%x_%j.out'),
+-              '--error=' + str(p['logs'] / '%x_%j.err')]
+-    for setting in ['account', 'partition', 'gres', 'cpus-per-task', 'time']:
+-        override = os.environ.get('CLOSD_SLURM_' + setting.upper().replace('-', '_'))
+-        if override:
+-            submit.append('--%s=%s' % (setting, override))
+-    submit += [str(ROOT / 'scripts/hpc' / (args.job + '.slurm'))] + options(args)
+-    # Also bind overridden resources outside the default shared root.
+-    mounts = sorted(set(str(p[k]) for k in ['repo', 'shared', 'env', 'isaac', 'cache', 'logs']))
+-    for key in ['save_dir', 'model']:
+-        if key in values:
+-            parent = Path(values[key]).parent
+-            while not parent.exists():
+-                parent = parent.parent
+-            if not any(str(parent) == m or str(parent).startswith(m + os.sep) for m in mounts):
+-                mounts.append(str(parent))
+-    if os.environ.get('SLURM_TMPDIR'):
+-        mounts.append(os.environ['SLURM_TMPDIR'])
+-    container = ['apptainer', 'exec', '--nv']
+-    for mount in mounts:
+-        container += ['--bind', mount + ':' + mount]
+-    container += [str(p['container']), 'bash', str(ROOT / 'scripts/hpc/container.sh'), args.job] + options(args)
+-    print('Job:', args.job, '\nPaths:', json.dumps(dict((k, str(v)) for k, v in p.items()), ensure_ascii=False))
+-    print('Resume checkpoint:', checkpoint or '(none)')
+-    print('Python command:', shell(argv))
+-    print('Container command:', shell(container))
+-    print('Submission command:', shell(submit), flush=True)
+-    if args.check:
+-        return 0
+-    if args.submit:
+-        p['logs'].mkdir(parents=True, exist_ok=True)
+-        return subprocess.call(submit, env=env, cwd=str(ROOT))
+-    if not args.inside:
+-        if not os.environ.get('SLURM_JOB_ID'):
+-            parser.error('GPU 作业请使用 submit.sh；检查请使用 --check')
+-        for name in ['cache', 'logs']:
+-            p[name].mkdir(parents=True, exist_ok=True)
+-        return subprocess.call(container, env=env, cwd=str(ROOT))
+-    if not os.environ.get('SLURM_JOB_ID'):
+-        parser.error('--inside 只能在 Slurm 分配中使用')
+-    if job.get('integration_test'):
+-        env['DIFFUSION_TRAINING_TEST'] = '1'
+-    else:
+-        env.pop('DIFFUSION_TRAINING_TEST', None)
+-    subprocess.call(['git', 'rev-parse', 'HEAD'], cwd=str(ROOT))
+-    subprocess.call(['git', 'status', '--short'], cwd=str(ROOT))
+-    subprocess.check_call([sys.executable, '-c', 'import torch; print("Python", __import__("sys").version); print("PyTorch", torch.__version__, "CUDA", torch.version.cuda); print("GPU", torch.cuda.get_device_name(0))'])
+-    monitor = None
+-    handle = None
+-    try:
+-        if args.job == 'dip_eval_envtest':
+-            log = p['logs'] / ('gpu_%s_%senv.csv' % (os.environ['SLURM_JOB_ID'], values['num_envs']))
+-            handle = log.open('w')
+-            monitor = subprocess.Popen(['nvidia-smi', '-i', os.environ.get('CUDA_VISIBLE_DEVICES', '0').split(',')[0], '--query-gpu=timestamp,memory.used,utilization.gpu', '--format=csv,noheader,nounits', '-l', '1'], stdout=handle)
+-        result = subprocess.call(argv, env=env, cwd=str(ROOT))
+-    finally:
+-        if monitor:
+-            monitor.terminate()
+-            monitor.wait()
+-        if handle:
+-            handle.close()
+-            samples = []
+-            for line in log.read_text().splitlines():
+-                try:
+-                    samples.append(float(line.split(',')[1]))
+-                except (IndexError, ValueError):
+-                    pass
+-            print('Peak GPU memory MiB:', max(samples) if samples else 'unavailable')
+-    print('Job finished with exit code:', result, flush=True)
+-    return result
+-
+-
+-if __name__ == '__main__':
+-    sys.exit(main())
+diff --git a/scripts/hpc/submit.sh b/scripts/hpc/submit.sh
+deleted file mode 100755
+index c60e983..0000000
+--- a/scripts/hpc/submit.sh
++++ /dev/null
+@@ -1,4 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-export CLOSD_ROOT="${CLOSD_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+-exec /usr/bin/python3 "$CLOSD_ROOT/scripts/hpc/run_job.py" "$@" --submit
+diff --git a/scripts/hpc/test_runtime.py b/scripts/hpc/test_runtime.py
+deleted file mode 100644
+index 2c05486..0000000
+--- a/scripts/hpc/test_runtime.py
++++ /dev/null
+@@ -1,70 +0,0 @@
+-"""CPU-only regression checks for job safety and Slurm path handling."""
+-import contextlib
+-import importlib.util
+-import io
+-import json
+-import os
+-from pathlib import Path
+-import subprocess
+-import tempfile
+-import unittest
+-from unittest import mock
+-
+-spec = importlib.util.spec_from_file_location('run_job', str(Path(__file__).with_name('run_job.py')))
+-runtime = importlib.util.module_from_spec(spec)
+-spec.loader.exec_module(runtime)
+-
+-
+-class RuntimeTests(unittest.TestCase):
+-    def invoke(self, args, overrides=None):
+-        with mock.patch.dict(os.environ, overrides or {}, clear=False), mock.patch('sys.argv', ['run_job.py'] + args), contextlib.redirect_stdout(io.StringIO()) as output:
+-            result = runtime.main()
+-        return result, output.getvalue()
+-
+-    def test_fresh_check_does_not_write(self):
+-        with tempfile.TemporaryDirectory() as d:
+-            save = Path(d) / 'new run'
+-            _, output = self.invoke(['dip_train', '--check', '--save-dir', str(save)])
+-            self.assertFalse(save.exists())
+-            self.assertIn('--save_dir', output)
+-            self.assertIn('Resume checkpoint: (none)', output)
+-
+-    def test_existing_training_requires_resume(self):
+-        with tempfile.TemporaryDirectory() as d, contextlib.redirect_stderr(io.StringIO()):
+-            save = Path(d)
+-            (save / 'args.json').write_text('{}')
+-            with self.assertRaises(SystemExit):
+-                self.invoke(['dip_train', '--check', '--save-dir', d])
+-            with self.assertRaises(SystemExit):
+-                self.invoke(['dip_train', '--check', '--save-dir', d, '--resume'])
+-            for step in [10, 100]:
+-                (save / ('model%09d.pt' % step)).touch()
+-            with self.assertRaises(SystemExit):
+-                self.invoke(['dip_train', '--check', '--save-dir', d, '--resume'])
+-            (save / 'opt000000100.pt').touch()
+-            _, output = self.invoke(['dip_train', '--check', '--save-dir', d, '--resume'])
+-            self.assertIn('Resume checkpoint: ' + str(save / 'model000000100.pt'), output)
+-
+-    def test_submit_explicit_paths_and_export(self):
+-        with tempfile.TemporaryDirectory() as d:
+-            log = Path(d) / 'logs'
+-            with mock.patch.object(runtime.subprocess, 'call', return_value=0) as call:
+-                self.invoke(['dip_train', '--submit', '--save-dir', str(Path(d) / 'new')], {'CLOSD_LOGS': str(log), 'CLOSD_SLURM_TIME': '00:10:00'})
+-            self.assertTrue(log.is_dir())
+-            command = call.call_args[0][0]
+-            self.assertIn('--chdir=' + str(runtime.ROOT), command)
+-            self.assertIn('--output=' + str(log / '%x_%j.out'), command)
+-            self.assertIn('--time=00:10:00', command)
+-            self.assertEqual(call.call_args[1]['env']['CLOSD_ROOT'], str(runtime.ROOT))
+-
+-    def test_slurm_spool_location_does_not_change_root(self):
+-        with tempfile.TemporaryDirectory() as d:
+-            script = Path(d) / 'slurm_script'
+-            script.write_bytes((runtime.ROOT / 'scripts/hpc/dip_train.slurm').read_bytes())
+-            env = dict(os.environ, CLOSD_ROOT=str(runtime.ROOT), SLURM_SUBMIT_DIR='/tmp')
+-            output = subprocess.check_output(['bash', str(script), '--check', '--save-dir', str(Path(d) / 'new')], env=env, cwd=d, universal_newlines=True)
+-            self.assertIn('--chdir=' + str(runtime.ROOT), output)
+-
+-
+-if __name__ == '__main__':
+-    unittest.main()

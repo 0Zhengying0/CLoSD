@@ -1,0 +1,42 @@
+==================== Replication 0 ====================
+Time: 2026-09-27 14:10:01.732561
+---> [ground truth] Matching Score: 3.2574
+---> [ground truth] R_precision: (top 1): 0.4483 (top 2): 0.6575 (top 3): 0.7647 
+---> [test] Matching Score: 7.7122
+---> [test] R_precision: (top 1): 0.0344 (top 2): 0.0625 (top 3): 0.1031 
+Time: 2026-09-27 14:10:05.542127
+---> [ground truth] FID: 0.0011
+---> [test] FID: 42.9375
+Time: 2026-09-27 14:10:08.412633
+---> [ground truth] Diversity: 9.4948
+---> [test] Diversity: 1.9065
+AUX METRICS:
+---> [test] skate_ratio: 0.1795
+---> [test] mean_penetration: 70.1836
+---> [test] penetration: 2.9931
+---> [test] floating: 9.1686
+---> [test] skating: 7.3176
+!!! DONE !!!
+========== Matching Score Summary ==========
+---> [ground truth] Mean: 3.2574 CInterval: 0.0000
+---> [test] Mean: 7.7122 CInterval: 0.0000
+========== R_precision Summary ==========
+---> [ground truth](top 1) Mean: 0.4483 CInt: 0.0000;(top 2) Mean: 0.6575 CInt: 0.0000;(top 3) Mean: 0.7647 CInt: 0.0000;
+---> [test](top 1) Mean: 0.0344 CInt: 0.0000;(top 2) Mean: 0.0625 CInt: 0.0000;(top 3) Mean: 0.1031 CInt: 0.0000;
+========== FID Summary ==========
+---> [ground truth] Mean: 0.0011 CInterval: 0.0000
+---> [test] Mean: 42.9375 CInterval: 0.0000
+========== Diversity Summary ==========
+---> [ground truth] Mean: 9.4948 CInterval: 0.0000
+---> [test] Mean: 1.9065 CInterval: 0.0000
+========== MultiModality Summary ==========
+========== skate_ratio Summary ==========
+---> [test] Mean: 0.1795 CInterval: 0.0000
+========== mean_penetration Summary ==========
+---> [test] Mean: 70.1836 CInterval: 0.0000
+========== penetration Summary ==========
+---> [test] Mean: 2.9931 CInterval: 0.0000
+========== floating Summary ==========
+---> [test] Mean: 9.1686 CInterval: 0.0000
+========== skating Summary ==========
+---> [test] Mean: 7.3176 CInterval: 0.0000

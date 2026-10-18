@@ -1,0 +1,6 @@
+task,episode,dip_mp4,fm_mp4,side_by_side_mp4,side_by_side_gif,source_kind
+REACH,0_0,REACH/dip_executed.mp4,REACH/fm_executed.mp4,REACH/side_by_side_executed.mp4,,closed-loop simulator execution
+STRIKE_KICK,25_0,STRIKE_KICK/dip_executed.mp4,STRIKE_KICK/fm_executed.mp4,STRIKE_KICK/side_by_side_executed.mp4,,closed-loop simulator execution
+STRIKE_PUNCH,3_0,STRIKE_PUNCH/dip_executed.mp4,STRIKE_PUNCH/fm_executed.mp4,STRIKE_PUNCH/side_by_side_executed.mp4,,closed-loop simulator execution
+SIT,2_0,SIT/dip_executed.mp4,SIT/fm_executed.mp4,SIT/side_by_side_executed.mp4,,closed-loop simulator execution
+GET_UP,2_0,GET_UP/dip_executed.mp4,GET_UP/fm_executed.mp4,GET_UP/side_by_side_executed.mp4,GET_UP/side_by_side_executed.gif,closed-loop simulator execution

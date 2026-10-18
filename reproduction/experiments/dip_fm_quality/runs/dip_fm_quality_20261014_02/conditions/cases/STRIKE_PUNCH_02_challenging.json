@@ -1,0 +1,27 @@
+{
+  "task": "STRIKE_PUNCH",
+  "source_env_id": 85,
+  "source_progress_step": 61,
+  "history_source": "simulator pose_buffer, after first planning horizon",
+  "text": "A person is punching with the right hand.",
+  "target_joint_names": [
+    "right_wrist"
+  ],
+  "is_heading": true,
+  "heading_target_rad": 0.4479646682739258,
+  "distance_at_capture_m": 1.3560826778411865,
+  "conditioned_distance_at_capture_m": 1.200079083442688,
+  "case_id": "STRIKE_PUNCH_02_challenging",
+  "difficulty": "challenging",
+  "seed": 10010,
+  "prefix_frames": 20,
+  "pred_frames": 40,
+  "total_frames": 60,
+  "fps": 20,
+  "coordinate_system": "local HumanML3D, Y up, metres",
+  "normalization": "(hml_features - mean) / std",
+  "text_encoding": "raw text; re-encode with each checkpoint's BERT text encoder",
+  "target_coordinate_system": "same local HumanML3D frame as recovered motion",
+  "matched_ground_truth": false,
+  "npz": "STRIKE_PUNCH_02_challenging.npz"
+}

@@ -1,0 +1,17 @@
+- learning=im_big
+- env=closd_multitask
+- robot=smpl_humanoid
+- exp_name=CLoSD_multitask_finetune
+- epoch=-1
+- seed=0
+- torch_deterministic=False
+- env.episode_length=500
+- env.num_envs=128
+- env.dip.cfg_param=7.5
+- env.dip.model_path=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt
+- test=True
+- no_virtual_display=True
+- headless=True
+- closd_eval=True
+- no_log=True
+- output_path=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/dip_fm_quality/runs/dip_fm_quality_20261014_02/work/execution_fm_5201947/controller

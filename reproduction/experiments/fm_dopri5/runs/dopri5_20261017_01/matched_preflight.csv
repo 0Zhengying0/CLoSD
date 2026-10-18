@@ -1,0 +1,5 @@
+experiment_id,solver,status,job_id,target_nfe,pilot_nfe,nfe_mean,nfe_min,nfe_max,mdm_forwards_mean,latency_mean_sec,macro,REACH,KICK,PUNCH,SIT,GET_UP
+FM-ME,euler,NOT_SUBMITTED,,,,,,,,,,,,,,
+FM-MH,heun,NOT_SUBMITTED,,,,,,,,,,,,,,
+FM-MR,rk4,NOT_SUBMITTED,,,,,,,,,,,,,,
+FM-MD,dopri5,NOT_SUBMITTED,,,,,,,,,,,,,,

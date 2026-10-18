@@ -1,0 +1,45 @@
+QUALITY_COMPARE_JOB_ID=5201929
+QUALITY_COMPARE_MODE=formal
+QUALITY_COMPARE_GIT_COMMIT=80b39a1b3e2a7d32d446f40097ea641a6a937f16
+QUALITY_PREFLIGHT cases=20 DiP=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt FM=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+loading avg model
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+loading avg model
+QUALITY_CASE_COMPLETE=REACH_00_normal 1/20
+QUALITY_CASE_COMPLETE=REACH_01_moderate 2/20
+QUALITY_CASE_COMPLETE=REACH_02_challenging 3/20
+QUALITY_CASE_COMPLETE=REACH_03_hard 4/20
+QUALITY_CASE_COMPLETE=STRIKE_KICK_00_normal 5/20
+QUALITY_CASE_COMPLETE=STRIKE_KICK_01_moderate 6/20
+QUALITY_CASE_COMPLETE=STRIKE_KICK_02_challenging 7/20
+QUALITY_CASE_COMPLETE=STRIKE_KICK_03_hard 8/20
+QUALITY_CASE_COMPLETE=STRIKE_PUNCH_00_normal 9/20
+QUALITY_CASE_COMPLETE=STRIKE_PUNCH_01_moderate 10/20
+QUALITY_CASE_COMPLETE=STRIKE_PUNCH_02_challenging 11/20
+QUALITY_CASE_COMPLETE=STRIKE_PUNCH_03_hard 12/20
+QUALITY_CASE_COMPLETE=SIT_00_normal 13/20
+QUALITY_CASE_COMPLETE=SIT_01_moderate 14/20
+QUALITY_CASE_COMPLETE=SIT_02_challenging 15/20
+QUALITY_CASE_COMPLETE=SIT_03_hard 16/20
+QUALITY_CASE_COMPLETE=GET_UP_00_normal 17/20
+QUALITY_CASE_COMPLETE=GET_UP_01_moderate 18/20
+QUALITY_CASE_COMPLETE=GET_UP_02_challenging 19/20
+QUALITY_CASE_COMPLETE=GET_UP_03_hard 20/20
+QUALITY_COMPARISON_COMPLETE=1 OUTPUT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/dip_fm_quality/runs/dip_fm_quality_20261014_02/results
+QUALITY_COMPARE_PROCESS_EXIT=0
+QUALITY_COMPARE_JOB_EXIT=0

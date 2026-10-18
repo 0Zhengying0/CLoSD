@@ -1,0 +1,31 @@
+INFO:    Environment variable SINGULARITY_BINDPATH is set, but APPTAINER_BINDPATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_PRELOAD is set, but APPTAINERENV_LD_PRELOAD is preferred
+Using /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_cfg_sweep/runs/fm_cfg_20261014_01/work/FM-CFG10_5199643/cache/torch_extensions as PyTorch extensions root...
+Creating extension directory /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_cfg_sweep/runs/fm_cfg_20261014_01/work/FM-CFG10_5199643/cache/torch_extensions/gymtorch...
+Emitting ninja build file /mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/fm_cfg_sweep/runs/fm_cfg_20261014_01/work/FM-CFG10_5199643/cache/torch_extensions/gymtorch/build.ninja...
+Building extension module gymtorch...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+Loading extension module gymtorch...
+2026-10-14 02:33:49,532 - INFO - logger - logger initialized
+  0%|          | 0/63 [00:00<?, ?it/s]  3%|▎         | 2/63 [00:00<00:03, 16.31it/s]  8%|▊         | 5/63 [00:00<00:03, 18.13it/s] 13%|█▎        | 8/63 [00:00<00:02, 20.63it/s] 17%|█▋        | 11/63 [00:00<00:02, 20.42it/s] 22%|██▏       | 14/63 [00:00<00:02, 21.74it/s] 27%|██▋       | 17/63 [00:00<00:02, 22.37it/s] 32%|███▏      | 20/63 [00:01<00:02, 19.34it/s] 37%|███▋      | 23/63 [00:01<00:01, 20.55it/s] 41%|████▏     | 26/63 [00:01<00:01, 21.55it/s] 46%|████▌     | 29/63 [00:01<00:01, 22.23it/s] 51%|█████     | 32/63 [00:01<00:01, 22.72it/s] 56%|█████▌    | 35/63 [00:01<00:01, 15.72it/s] 60%|██████    | 38/63 [00:01<00:01, 17.56it/s] 65%|██████▌   | 41/63 [00:02<00:01, 18.15it/s] 70%|██████▉   | 44/63 [00:02<00:00, 19.41it/s] 75%|███████▍  | 47/63 [00:02<00:00, 20.63it/s] 79%|███████▉  | 50/63 [00:02<00:00, 21.53it/s] 84%|████████▍ | 53/63 [00:02<00:00, 22.25it/s] 89%|████████▉ | 56/63 [00:02<00:00, 22.83it/s] 94%|█████████▎| 59/63 [00:02<00:00, 23.19it/s] 98%|█████████▊| 62/63 [00:02<00:00, 23.44it/s]100%|██████████| 63/63 [00:03<00:00, 20.83it/s]
+  0%|          | 0/4096 [00:00<?, ?it/s]100%|██████████| 4096/4096 [00:00<00:00, 421902.48it/s]
+Exception in thread QueueFeederThread:
+Traceback (most recent call last):
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/multiprocessing/queues.py", line 235, in _feed
+    close()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/multiprocessing/connection.py", line 177, in close
+    self._close()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/multiprocessing/connection.py", line 361, in _close
+    _close(self._handle)
+OSError: [Errno 9] Bad file descriptor
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/envs/closd/lib/python3.8/multiprocessing/queues.py", line 266, in _feed
+    queue_sem.release()
+ValueError: semaphore or lock released too many times

@@ -1,0 +1,17 @@
+DOPRI5_SMOKE_JOB_ID=5220070
+DOPRI5_SMOKE_GIT_COMMIT=3ae90b21e891cf3cb16e94318a52b9faa2a3bd97
+DOPRI5_SMOKE_CHECKPOINT=/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/runs/FlowMatching_DIMP_FINAL_seed10_300k/model000300000.pt
+Data dependencies are cached at [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b]
+Reading closd/diffusion_planner/./dataset/humanml_opt.txt
+Loading dataset t2m ...
+Loading motions from cache file [/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/cache/huggingface/hub/models--guytevet--CLoSD/snapshots/de7106b947b6f70700b5320d1cd61fef4a9ebc9b/data/humanml3d/t2m_test.npy]...
+Pointer Pointing at 0
+TRANS_DEC init
+EMBED TEXT
+Loading BERT...
+loading avg model
+DOPRI5_SMOKE_CASE={"case_id": "REACH_00_normal", "task": "REACH", "seed": 10000, "nfe": 80, "mdm_forwards": 160, "planner_latency_sec": 1.2766543868929148, "finite": true, "shape": [263, 1, 60]}
+DOPRI5_SMOKE_CASE={"case_id": "GET_UP_00_normal", "task": "GET_UP", "seed": 10016, "nfe": 68, "mdm_forwards": 136, "planner_latency_sec": 0.8485423852689564, "finite": true, "shape": [263, 1, 60]}
+DOPRI5_SMOKE_COMPLETE=1
+DOPRI5_SMOKE_PROCESS_EXIT=0
+DOPRI5_SMOKE_JOB_EXIT=0

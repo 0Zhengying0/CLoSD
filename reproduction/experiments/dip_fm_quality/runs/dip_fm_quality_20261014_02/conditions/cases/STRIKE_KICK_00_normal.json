@@ -1,0 +1,27 @@
+{
+  "task": "STRIKE_KICK",
+  "source_env_id": 52,
+  "source_progress_step": 61,
+  "history_source": "simulator pose_buffer, after first planning horizon",
+  "text": "A person is performing a high kick with the left.",
+  "target_joint_names": [
+    "left_foot"
+  ],
+  "is_heading": true,
+  "heading_target_rad": 0.5637152194976807,
+  "distance_at_capture_m": 1.3140615224838257,
+  "conditioned_distance_at_capture_m": 1.1999239921569824,
+  "case_id": "STRIKE_KICK_00_normal",
+  "difficulty": "normal",
+  "seed": 10004,
+  "prefix_frames": 20,
+  "pred_frames": 40,
+  "total_frames": 60,
+  "fps": 20,
+  "coordinate_system": "local HumanML3D, Y up, metres",
+  "normalization": "(hml_features - mean) / std",
+  "text_encoding": "raw text; re-encode with each checkpoint's BERT text encoder",
+  "target_coordinate_system": "same local HumanML3D frame as recovered motion",
+  "matched_ground_truth": false,
+  "npz": "STRIKE_KICK_00_normal.npz"
+}

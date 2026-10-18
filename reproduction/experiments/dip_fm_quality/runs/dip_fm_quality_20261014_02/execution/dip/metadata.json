@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "kind": "CLoSD closed-loop controller execution",
+  "recording_method": "HumanoidIm._record_states + _write_states_to_file",
+  "frames_recorded": 500,
+  "num_envs": 128,
+  "generator": "diffusion",
+  "planner_checkpoint": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/closd/diffusion_planner/save/DiP_multi-target_10steps_context20_predict40/model000300000.pt",
+  "cfg": 7.5,
+  "ode_solver": "euler",
+  "ode_steps": 10
+}

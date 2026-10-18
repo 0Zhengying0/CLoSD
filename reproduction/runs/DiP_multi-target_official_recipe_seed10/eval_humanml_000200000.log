@@ -1,0 +1,80 @@
+==================== Replication 0 ====================
+Time: 2026-09-28 00:39:32.649751
+---> [ground truth] Matching Score: 3.2301
+---> [ground truth] R_precision: (top 1): 0.4560 (top 2): 0.6593 (top 3): 0.7707 
+---> [test] Matching Score: 4.1654
+---> [test] R_precision: (top 1): 0.3408 (top 2): 0.5166 (top 3): 0.6143 
+Time: 2026-09-28 00:39:36.661932
+---> [ground truth] FID: 0.0009
+---> [test] FID: 2.5254
+Time: 2026-09-28 00:39:39.387761
+---> [ground truth] Diversity: 9.3159
+---> [test] Diversity: 8.5686
+AUX METRICS:
+---> [test] skate_ratio: 0.0477
+---> [test] mean_penetration: 2.1255
+---> [test] penetration: 0.0337
+---> [test] floating: 14.5883
+---> [test] skating: 0.3946
+!!! DONE !!!
+==================== Replication 1 ====================
+Time: 2026-09-28 00:40:23.481783
+---> [ground truth] Matching Score: 3.2492
+---> [ground truth] R_precision: (top 1): 0.4578 (top 2): 0.6638 (top 3): 0.7698 
+---> [test] Matching Score: 4.1387
+---> [test] R_precision: (top 1): 0.3311 (top 2): 0.5088 (top 3): 0.6289 
+Time: 2026-09-28 00:40:27.006906
+---> [ground truth] FID: 0.0011
+---> [test] FID: 1.8431
+Time: 2026-09-28 00:40:29.728250
+---> [ground truth] Diversity: 9.3403
+---> [test] Diversity: 8.8971
+AUX METRICS:
+---> [test] skate_ratio: 0.0490
+---> [test] mean_penetration: 1.6237
+---> [test] penetration: 0.0288
+---> [test] floating: 12.8966
+---> [test] skating: 0.3713
+!!! DONE !!!
+==================== Replication 2 ====================
+Time: 2026-09-28 00:41:13.280304
+---> [ground truth] Matching Score: 3.2130
+---> [ground truth] R_precision: (top 1): 0.4489 (top 2): 0.6582 (top 3): 0.7668 
+---> [test] Matching Score: 4.2134
+---> [test] R_precision: (top 1): 0.3301 (top 2): 0.5088 (top 3): 0.6094 
+Time: 2026-09-28 00:41:17.391259
+---> [ground truth] FID: 0.0012
+---> [test] FID: 2.4819
+Time: 2026-09-28 00:41:20.217916
+---> [ground truth] Diversity: 9.7162
+---> [test] Diversity: 8.5607
+AUX METRICS:
+---> [test] skate_ratio: 0.0502
+---> [test] mean_penetration: 2.0865
+---> [test] penetration: 0.0138
+---> [test] floating: 13.8179
+---> [test] skating: 0.4122
+!!! DONE !!!
+========== Matching Score Summary ==========
+---> [ground truth] Mean: 3.2308 CInterval: 0.0167
+---> [test] Mean: 4.1725 CInterval: 0.0350
+========== R_precision Summary ==========
+---> [ground truth](top 1) Mean: 0.4542 CInt: 0.0043;(top 2) Mean: 0.6604 CInt: 0.0027;(top 3) Mean: 0.7691 CInt: 0.0019;
+---> [test](top 1) Mean: 0.3340 CInt: 0.0055;(top 2) Mean: 0.5114 CInt: 0.0042;(top 3) Mean: 0.6175 CInt: 0.0094;
+========== FID Summary ==========
+---> [ground truth] Mean: 0.0011 CInterval: 0.0001
+---> [test] Mean: 2.2834 CInterval: 0.3530
+========== Diversity Summary ==========
+---> [ground truth] Mean: 9.4575 CInterval: 0.2073
+---> [test] Mean: 8.6755 CInterval: 0.1774
+========== MultiModality Summary ==========
+========== skate_ratio Summary ==========
+---> [test] Mean: 0.0490 CInterval: 0.0011
+========== mean_penetration Summary ==========
+---> [test] Mean: 1.9452 CInterval: 0.2579
+========== penetration Summary ==========
+---> [test] Mean: 0.0254 CInterval: 0.0096
+========== floating Summary ==========
+---> [test] Mean: 13.7676 CInterval: 0.7826
+========== skating Summary ==========
+---> [test] Mean: 0.3927 CInterval: 0.0190

@@ -1,0 +1,12 @@
+{
+  "source_record": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/dip_fm_quality/runs/dip_fm_quality_20261014_02/execution/dip/episodes.pkl",
+  "episode": "3_0",
+  "initial_task": "STRIKE_PUNCH",
+  "states_seen": [
+    "HALT",
+    "STRIKE_PUNCH"
+  ],
+  "frames": 250,
+  "fps": 30,
+  "kind": "closed-loop executed simulator trajectory"
+}

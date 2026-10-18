@@ -1,0 +1,2 @@
+case_id,task,frames,dip_mp4,fm_mp4,comparison_mp4,comparison_gif
+REACH_00_normal,REACH,60,REACH_00_normal/dip_official.mp4,REACH_00_normal/fm_official.mp4,REACH_00_normal/side_by_side_official.mp4,REACH_00_normal/side_by_side_official.gif

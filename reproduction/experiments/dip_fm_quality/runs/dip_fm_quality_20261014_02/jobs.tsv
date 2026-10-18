@@ -1,0 +1,5 @@
+stage	job_id	job_name
+capture	5199654	quality_capture_dip_fm_quality_20261014_02
+smoke	5199655	quality_smoke_dip_fm_quality_20261014_02
+smoke	5201637	quality_smoke_dip_fm_quality_20261014_02
+compare	5201929	quality_compare_dip_fm_quality_20261014_02

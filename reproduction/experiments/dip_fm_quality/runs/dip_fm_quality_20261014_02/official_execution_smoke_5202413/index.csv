@@ -1,0 +1,2 @@
+task,episode,dip_mp4,fm_mp4,side_by_side_mp4,side_by_side_gif,source_kind
+REACH,0_0,REACH/dip_executed.mp4,REACH/fm_executed.mp4,REACH/side_by_side_executed.mp4,REACH/side_by_side_executed.gif,closed-loop simulator execution

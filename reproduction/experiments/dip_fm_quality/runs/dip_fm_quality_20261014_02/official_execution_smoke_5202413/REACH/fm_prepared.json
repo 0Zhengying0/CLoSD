@@ -1,0 +1,11 @@
+{
+  "source_record": "/mnt/proj1/eu-26-37/it4i-dianyu/Zhengying/CLoSD/reproduction/experiments/dip_fm_quality/runs/dip_fm_quality_20261014_02/execution/fm/episodes.pkl",
+  "episode": "0_0",
+  "initial_task": "REACH",
+  "states_seen": [
+    "REACH"
+  ],
+  "frames": 136,
+  "fps": 30,
+  "kind": "closed-loop executed simulator trajectory"
+}
